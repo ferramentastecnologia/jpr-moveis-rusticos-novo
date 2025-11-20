@@ -429,16 +429,16 @@ function abrirModalProduto(produtoId) {
                 </div>
 
                 <!-- Conteúdo das Abas - COMPACTO -->
-                <div class="modal-tabs-content" style="max-height: 350px; overflow-y: auto; padding-right: 8px;">
+                <div class="modal-tabs-content" style="max-height: 400px; overflow-y: auto; padding-right: 8px; padding-bottom: 16px;">
                     <!-- ABA 1: Descrição -->
                     <div class="modal-tab-pane active" id="descricao">
                         <p class="description-text" style="font-size: 13px; line-height: 1.5; margin-bottom: 12px;">${produto.descricaoLonga}</p>
 
                         <!-- Seletores em linha -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
                             <!-- Seletor de Tamanho -->
                             <div class="size-selector-modern">
-                                <h4 style="font-size: 13px; margin-bottom: 8px; font-weight: 600;">Tamanho</h4>
+                                <h4 style="font-size: 13px; margin: 0 0 8px 0; font-weight: 600; color: #5D4037;">Tamanho</h4>
                                 <div class="size-options" style="display: flex; flex-direction: column; gap: 6px;">
                                     ${produto.tamanhos ? produto.tamanhos.map((tamanho, idx) => `
                                         <button class="size-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarTamanho(this, ${tamanho.preco}, '${tamanho.precoFormatado}')" style="padding: 8px; font-size: 12px;">
@@ -451,7 +451,7 @@ function abrirModalProduto(produtoId) {
 
                             <!-- Seletor de Acabamento -->
                             <div class="finish-selector-modern">
-                                <h4 style="font-size: 13px; margin-bottom: 8px; font-weight: 600;">Acabamento</h4>
+                                <h4 style="font-size: 13px; margin: 0 0 8px 0; font-weight: 600; color: #5D4037;">Acabamento</h4>
                                 <div class="finish-options" style="display: flex; flex-direction: column; gap: 6px;">
                                     ${variantes.map((variante, idx) => `
                                         <button class="finish-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarVariante(this, '${variante}')" style="padding: 8px; font-size: 12px;">
@@ -463,13 +463,13 @@ function abrirModalProduto(produtoId) {
                         </div>
 
                         <!-- Características - 2 COLUNAS -->
-                        <div class="characteristics-modern">
-                            <h4 style="font-size: 13px; margin-bottom: 8px; font-weight: 600;">Características</h4>
-                            <ul class="char-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; list-style: none; padding: 0; margin: 0;">
+                        <div class="characteristics-modern" style="padding-bottom: 8px;">
+                            <h4 style="font-size: 13px; margin: 0 0 10px 0; font-weight: 600; color: #5D4037;">Características</h4>
+                            <ul class="char-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; list-style: none; padding: 0; margin: 0;">
                                 ${produto.caracteristicas.map(car => `
-                                    <li class="char-item" style="display: flex; align-items: start; gap: 6px; font-size: 12px;">
-                                        <span class="char-icon" style="color: #2E7D32; font-weight: bold;">✓</span>
-                                        <span>${car}</span>
+                                    <li class="char-item" style="display: flex; align-items: start; gap: 6px; font-size: 12px; line-height: 1.4;">
+                                        <span class="char-icon" style="color: #2E7D32; font-weight: bold; flex-shrink: 0;">✓</span>
+                                        <span style="word-break: break-word;">${car}</span>
                                     </li>
                                 `).join('')}
                             </ul>
