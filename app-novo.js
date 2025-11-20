@@ -328,11 +328,37 @@ function renderizarProdutos(filtro = 'todas', termoBusca = '') {
                     </div>
                 </div>
                 <div class="product-footer">
-                    <button class="btn-adicionar" onclick="adicionarAoCarrinhoRapido('${produto.id}', event)">
-                        🛒 Adicionar
+                    <button class="btn-adicionar" onclick="adicionarAoCarrinhoRapido('${produto.id}', event)" style="
+                        background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+                        color: white;
+                        border: none;
+                        padding: 12px 16px;
+                        border-radius: 8px;
+                        font-weight: 700;
+                        font-size: 14px;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+                        transition: all 0.3s ease;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 8px;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(46, 125, 50, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(46, 125, 50, 0.3)'">
+                        🛒 Comprar Agora
                     </button>
-                    <button class="btn-detalhes" onclick="abrirModalProduto('${produto.id}')">
-                        📋 Mais detalhes
+                    <button class="btn-detalhes" onclick="abrirModalProduto('${produto.id}')" style="
+                        background: linear-gradient(135deg, #8B6F61 0%, #5D4037 100%);
+                        color: white;
+                        border: none;
+                        padding: 12px 16px;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        font-size: 13px;
+                        cursor: pointer;
+                        box-shadow: 0 2px 8px rgba(93, 64, 55, 0.3);
+                        transition: all 0.3s ease;
+                    " onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                        📋 Detalhes
                     </button>
                 </div>
             </div>
@@ -675,7 +701,124 @@ function adicionarAoCarrinhoRapido(produtoId, event) {
 
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     atualizarCarrinho();
-    mostrarNotificacao(`${produto.nome} (${selectedSize || 'Padrão'}) adicionado ao carrinho! ✅`);
+
+    // Mostrar popup de confirmação
+    mostrarPopupCarrinho(produto, selectedSize);
+}
+
+// Popup de confirmação ao adicionar ao carrinho
+function mostrarPopupCarrinho(produto, tamanho) {
+    const popup = document.createElement('div');
+    popup.id = 'popup-carrinho';
+    popup.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        animation: fadeIn 0.3s ease;
+    `;
+
+    const totalCarrinho = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+    const qtdItens = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
+
+    popup.innerHTML = `
+        <div style="
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        ">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div style="font-size: 48px; margin-bottom: 12px;">✅</div>
+                <h2 style="color: #2E7D32; margin: 0 0 8px 0; font-size: 24px;">Produto Adicionado!</h2>
+                <p style="color: #5D4037; margin: 0; font-size: 14px;">${produto.nome} ${tamanho ? `(${tamanho})` : ''}</p>
+            </div>
+
+            <div style="background: #F5F1E8; padding: 16px; border-radius: 12px; margin-bottom: 24px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: #6B5D4F; font-size: 14px;">Itens no carrinho:</span>
+                    <strong style="color: #5D4037; font-size: 14px;">${qtdItens}</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #6B5D4F; font-size: 14px;">Total:</span>
+                    <strong style="color: #2E7D32; font-size: 18px;">${totalCarrinho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <button onclick="fecharPopupCarrinho()" style="
+                    background: white;
+                    color: #5D4037;
+                    border: 2px solid #E5D4C1;
+                    padding: 14px;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                " onmouseover="this.style.background='#F5F1E8'" onmouseout="this.style.background='white'">
+                    Continuar Comprando
+                </button>
+                <button onclick="finalizarCompra(); fecharPopupCarrinho();" style="
+                    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+                    color: white;
+                    border: none;
+                    padding: 14px;
+                    border-radius: 8px;
+                    font-weight: 700;
+                    font-size: 14px;
+                    cursor: pointer;
+                    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+                    transition: all 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(46, 125, 50, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(46, 125, 50, 0.3)'">
+                    Finalizar Compra 🛒
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    // Adicionar estilos de animação
+    if (!document.getElementById('popup-animations')) {
+        const style = document.createElement('style');
+        style.id = 'popup-animations';
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translateY(30px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Fechar ao clicar fora
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            fecharPopupCarrinho();
+        }
+    });
+}
+
+function fecharPopupCarrinho() {
+    const popup = document.getElementById('popup-carrinho');
+    if (popup) {
+        popup.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => popup.remove(), 300);
+    }
 }
 
 function toggleWishlistModal(btn) {
