@@ -1,0 +1,109 @@
+/**
+ * Design Tokens - Luis Alves Mesas Landing Page
+ * Generated from Figma Design System
+ * Version: 1.0.0
+ */
+
+/* ========================================
+   COLORS
+   ======================================== */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #983421;
+  --color-primary-rgb: 152, 52, 33;
+  --color-primary-light: #b84e2e;
+  --color-primary-dark: #7a2a1a;
+
+  /* Secondary Colors */
+  --color-secondary: #D3B185;
+  --color-secondary-rgb: 211, 177, 133;
+  --color-secondary-light: #e0c9a5;
+  --color-secondary-dark: #b89a6f;
+
+  /* Accent Colors */
+  --color-accent: #23af24;
+  --color-accent-rgb: 35, 175, 36;
+  --color-accent-light: #2ed630;
+  --color-accent-dark: #1c8b1d;
+
+  /* Text Colors */
+  --color-text: #17252a;
+  --color-text-rgb: 23, 37, 42;
+  --color-text-secondary: #4a5c63;
+  --color-text-light: #6c7a80;
+
+  /* Footer */
+  --color-footer: #563524;
+  --color-footer-rgb: 86, 53, 36;
+
+  /* Neutral Colors */
+  --color-white: #ffffff;
+  --color-gray: #f8f9fa;
+  --color-gray-medium: #4a5c63;
+  --color-gray-dark: #2a3a42;
+  --color-black: #000000;
+
+  /* Semantic Colors */
+  --color-success: #23af24;
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+  --color-info: #17a2b8;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+:root {
+  /* Font Families */
+  --font-display: 'Lobster Two', cursive;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  /* Font Sizes */
+  --font-size-h1-desktop: 64px;
+  --font-size-h1-mobile: 48px;
+  --font-size-h2-desktop: 40px;
+  --font-size-h2-mobile: 32px;
+  --font-size-h3: 28px;
+  --font-size-body: 16px;
+  --font-size-button: 14px;
+  --font-size-menu: 16px;
+  --font-size-caption: 14px;
+  --font-size-small: 12px;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 120%;
+  --line-height-normal: 130%;
+  --line-height-relaxed: 140%;
+  --line-height-loose: 160%;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.5px;
+  --letter-spacing-normal: 0px;
+  --letter-spacing-wide: 1px;
+  --letter-spacing-wider: 2px;
+}
+
+/* ========================================
+   SPACING & SHADOWS
+   ======================================== */
+
+:root {
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-button: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

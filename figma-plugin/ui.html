@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Inter, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    button {
+      background: #23af24;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover {
+      background: #1e9620;
+    }
+  </style>
+</head>
+<body>
+  <h2>Luis Alves Mesas</h2>
+  <p>Criar Landing Page completa</p>
+  <button onclick="parent.postMessage({pluginMessage: 'create'}, '*')">
+    Criar Projeto
+  </button>
+</body>
+</html>

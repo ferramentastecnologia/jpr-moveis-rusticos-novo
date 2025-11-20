@@ -1,0 +1,236 @@
+/**
+ * DESIGN TOKENS
+ * Luis Alves Mesas para Festas
+ * Gerado automaticamente em 11/10/2025, 10:43:45 AM
+ */
+
+:root {
+  /* ========================================
+     CORES
+     ======================================== */
+  --color-primary: #983421;
+  --color-secondary: #D3B185;
+  --color-accent: #23af24;
+  --color-text: #17252a;
+  --color-footer: #563524;
+  --color-white: #ffffff;
+  --color-gray: #f8f9fa;
+  --color-grayMedium: #6c757d;
+
+  /* ========================================
+     TIPOGRAFIA
+     ======================================== */
+  --font-h1Desktop-family: 'Lobster Two';
+  --font-h1Desktop-size: 64px;
+  --font-h1Desktop-weight: 700;
+  --font-h1Desktop-line-height: 76.8px;
+  --font-h1Desktop-letter-spacing: -1px;
+
+  --font-h1Mobile-family: 'Lobster Two';
+  --font-h1Mobile-size: 40px;
+  --font-h1Mobile-weight: 700;
+  --font-h1Mobile-line-height: 48px;
+  --font-h1Mobile-letter-spacing: -0.5px;
+
+  --font-h2Desktop-family: 'Poppins';
+  --font-h2Desktop-size: 48px;
+  --font-h2Desktop-weight: 700;
+  --font-h2Desktop-line-height: 57.6px;
+  --font-h2Desktop-letter-spacing: -0.5px;
+
+  --font-h2Mobile-family: 'Poppins';
+  --font-h2Mobile-size: 32px;
+  --font-h2Mobile-weight: 700;
+  --font-h2Mobile-line-height: 38.4px;
+  --font-h2Mobile-letter-spacing: -0.5px;
+
+  --font-h3-family: 'Poppins';
+  --font-h3-size: 24px;
+  --font-h3-weight: 600;
+  --font-h3-line-height: 32px;
+  --font-h3-letter-spacing: 0px;
+
+  --font-body-family: 'Open Sans';
+  --font-body-size: 16px;
+  --font-body-weight: 400;
+  --font-body-line-height: 24px;
+  --font-body-letter-spacing: 0px;
+
+  --font-bodyBold-family: 'Open Sans';
+  --font-bodyBold-size: 16px;
+  --font-bodyBold-weight: 700;
+  --font-bodyBold-line-height: 24px;
+  --font-bodyBold-letter-spacing: 0px;
+
+  --font-button-family: 'Poppins';
+  --font-button-size: 18px;
+  --font-button-weight: 600;
+  --font-button-line-height: 24px;
+  --font-button-letter-spacing: 0.5px;
+
+  --font-menu-family: 'Poppins';
+  --font-menu-size: 16px;
+  --font-menu-weight: 500;
+  --font-menu-line-height: 24px;
+  --font-menu-letter-spacing: 0px;
+
+  --font-caption-family: 'Open Sans';
+  --font-caption-size: 14px;
+  --font-caption-weight: 400;
+  --font-caption-line-height: 20px;
+  --font-caption-letter-spacing: 0px;
+
+  /* ========================================
+     ESPAÇAMENTO
+     ======================================== */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* ========================================
+     BORDAS
+     ======================================== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ========================================
+     SOMBRAS
+     ======================================== */
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-button: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+  /* ========================================
+     BREAKPOINTS
+     ======================================== */
+  --breakpoint-mobile: 375px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1280px;
+  --breakpoint-wide: 1920px;
+}
+
+/* ========================================
+   CLASSES DE TIPOGRAFIA
+   ======================================== */
+.texth1-desktop {
+  font-family: var(--font-h1Desktop-family);
+  font-size: var(--font-h1Desktop-size);
+  font-weight: var(--font-h1Desktop-weight);
+  line-height: var(--font-h1Desktop-line-height);
+  letter-spacing: var(--font-h1Desktop-letter-spacing);
+}
+
+.texth1-mobile {
+  font-family: var(--font-h1Mobile-family);
+  font-size: var(--font-h1Mobile-size);
+  font-weight: var(--font-h1Mobile-weight);
+  line-height: var(--font-h1Mobile-line-height);
+  letter-spacing: var(--font-h1Mobile-letter-spacing);
+}
+
+.texth2-desktop {
+  font-family: var(--font-h2Desktop-family);
+  font-size: var(--font-h2Desktop-size);
+  font-weight: var(--font-h2Desktop-weight);
+  line-height: var(--font-h2Desktop-line-height);
+  letter-spacing: var(--font-h2Desktop-letter-spacing);
+}
+
+.texth2-mobile {
+  font-family: var(--font-h2Mobile-family);
+  font-size: var(--font-h2Mobile-size);
+  font-weight: var(--font-h2Mobile-weight);
+  line-height: var(--font-h2Mobile-line-height);
+  letter-spacing: var(--font-h2Mobile-letter-spacing);
+}
+
+.texth3 {
+  font-family: var(--font-h3-family);
+  font-size: var(--font-h3-size);
+  font-weight: var(--font-h3-weight);
+  line-height: var(--font-h3-line-height);
+  letter-spacing: var(--font-h3-letter-spacing);
+}
+
+.textbody {
+  font-family: var(--font-body-family);
+  font-size: var(--font-body-size);
+  font-weight: var(--font-body-weight);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
+}
+
+.textbody-bold {
+  font-family: var(--font-bodyBold-family);
+  font-size: var(--font-bodyBold-size);
+  font-weight: var(--font-bodyBold-weight);
+  line-height: var(--font-bodyBold-line-height);
+  letter-spacing: var(--font-bodyBold-letter-spacing);
+}
+
+.textbutton {
+  font-family: var(--font-button-family);
+  font-size: var(--font-button-size);
+  font-weight: var(--font-button-weight);
+  line-height: var(--font-button-line-height);
+  letter-spacing: var(--font-button-letter-spacing);
+}
+
+.textmenu {
+  font-family: var(--font-menu-family);
+  font-size: var(--font-menu-size);
+  font-weight: var(--font-menu-weight);
+  line-height: var(--font-menu-line-height);
+  letter-spacing: var(--font-menu-letter-spacing);
+}
+
+.textcaption {
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  line-height: var(--font-caption-line-height);
+  letter-spacing: var(--font-caption-letter-spacing);
+}
+
+/* ========================================
+   CLASSES DE CORES
+   ======================================== */
+.bg-primary { background-color: var(--color-primary); }
+.text-primary { color: var(--color-primary); }
+.border-primary { border-color: var(--color-primary); }
+
+.bg-secondary { background-color: var(--color-secondary); }
+.text-secondary { color: var(--color-secondary); }
+.border-secondary { border-color: var(--color-secondary); }
+
+.bg-accent { background-color: var(--color-accent); }
+.text-accent { color: var(--color-accent); }
+.border-accent { border-color: var(--color-accent); }
+
+.bg-text { background-color: var(--color-text); }
+.text-text { color: var(--color-text); }
+.border-text { border-color: var(--color-text); }
+
+.bg-footer { background-color: var(--color-footer); }
+.text-footer { color: var(--color-footer); }
+.border-footer { border-color: var(--color-footer); }
+
+.bg-white { background-color: var(--color-white); }
+.text-white { color: var(--color-white); }
+.border-white { border-color: var(--color-white); }
+
+.bg-gray { background-color: var(--color-gray); }
+.text-gray { color: var(--color-gray); }
+.border-gray { border-color: var(--color-gray); }
+
+.bg-grayMedium { background-color: var(--color-grayMedium); }
+.text-grayMedium { color: var(--color-grayMedium); }
+.border-grayMedium { border-color: var(--color-grayMedium); }
+

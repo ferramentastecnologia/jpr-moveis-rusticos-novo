@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="Galeria de Projetos JPR Móveis Rústicos - Veja mesas em ambientes reais, diferentes estilos e combinações perfeitas.">
+    <meta name="keywords" content="projetos móveis rústicos, mesas em ambientes, galeria fotos, ideias decoração, antes depois">
+    <meta name="author" content="JPR Móveis Rústicos">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Galeria de Projetos - JPR Móveis Rústicos">
+    <meta property="og:description" content="Veja nossos projetos realizados em diferentes ambientes e estilos.">
+    <meta property="og:url" content="https://jprmoveis.com.br/galeria">
+
+    <title>Galeria de Projetos | JPR Móveis Rústicos</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <link rel="canonical" href="https://jprmoveis.com.br/galeria">
+    <style>
+        /* ========================
+           ESTILOS ESPECÍFICOS DA GALERIA
+           ======================== */
+
+        .galeria-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl);
+        }
+
+        .galeria-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .galeria-header h1 {
+            color: var(--secondary);
+            font-size: 36px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .galeria-header p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Seção de Filtros */
+        .galeria-filters {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .filter-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-label {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--gray-light);
+            border: 2px solid transparent;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+            transition: var(--transition);
+            color: var(--text);
+        }
+
+        .filter-btn:hover {
+            background: #ececec;
+            border-color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+        }
+
+        /* Busca */
+        .search-container {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .search-container input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-medium);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+        }
+
+        .search-container button {
+            padding: 12px 24px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-container button:hover {
+            background: #158c60;
+        }
+
+        /* Grid de Projetos */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .projeto-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .projeto-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .projeto-image {
+            height: 240px;
+            background: linear-gradient(135deg, #dbc1a2 0%, #1b8768 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            line-height: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projeto-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(27, 135, 104, 0.1);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .projeto-card:hover .projeto-image::after {
+            opacity: 1;
+        }
+
+        .projeto-rating {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--white);
+            padding: 6px 12px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            box-shadow: var(--shadow-md);
+            z-index: 10;
+        }
+
+        .projeto-content {
+            padding: var(--spacing-lg);
+        }
+
+        .projeto-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .projeto-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .projeto-title {
+            color: var(--secondary);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.4;
+        }
+
+        .projeto-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .projeto-tags {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .projeto-tag {
+            background: rgba(27, 135, 104, 0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .projeto-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .projeto-cliente {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .projeto-cliente strong {
+            color: var(--secondary);
+        }
+
+        .view-btn {
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 6px 14px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: var(--transition);
+        }
+
+        .view-btn:hover {
+            background: #158c60;
+        }
+
+        /* Mensagem de Nenhum Resultado */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: var(--text-secondary);
+        }
+
+        .no-results h3 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Estatísticas */
+        .galeria-stats {
+            background: linear-gradient(135deg, rgba(27, 135, 104, 0.1), rgba(219, 193, 162, 0.1));
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-2xl);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-2xl);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            color: var(--accent);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .galeria-container {
+                padding: var(--spacing-lg);
+            }
+
+            .galeria-header h1 {
+                font-size: 28px;
+            }
+
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                gap: var(--spacing-xs);
+            }
+
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .galeria-filters {
+                padding: var(--spacing-lg);
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .projeto-image {
+                height: 180px;
+                font-size: 60px;
+            }
+
+            .galeria-stats {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navegação -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="index-nova.html" class="nav-link">← Voltar à Loja</a>
+                <button class="btn-carrinho" onclick="toggleCarrinho()">
+                    🛒 <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Galeria Area -->
+    <main class="galeria-container">
+        <div class="galeria-header">
+            <h1>Galeria de Projetos Realizados</h1>
+            <p>Veja nossos móveis em ambientes reais • Inspiração para seu espaço • 12+ projetos executados</p>
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="galeria-stats">
+            <div class="stat-item">
+                <div class="stat-number">12+</div>
+                <div class="stat-label">Projetos Realizados</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Clientes Satisfeitos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Ambientes Diferentes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Estilos Distintos</div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="galeria-filters">
+            <!-- Busca -->
+            <div class="filter-group">
+                <label class="filter-label">🔍 Buscar</label>
+                <div class="search-container">
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Buscar por projeto, cliente ou estilo..."
+                        onkeyup="filtrarGaleria()"
+                    >
+                    <button onclick="filtrarGaleria()">Buscar</button>
+                </div>
+            </div>
+
+            <!-- Filtro por Estilo -->
+            <div class="filter-group">
+                <label class="filter-label">🎨 Estilo</label>
+                <div class="filter-buttons" id="filter-estilos">
+                    <!-- Botões renderizados aqui -->
+                </div>
+            </div>
+
+            <!-- Filtro por Ambiente -->
+            <div class="filter-group">
+                <label class="filter-label">🏠 Ambiente</label>
+                <div class="filter-buttons" id="filter-ambientes">
+                    <!-- Botões renderizados aqui -->
+                </div>
+            </div>
+
+            <!-- Filtro por Cor -->
+            <div class="filter-group">
+                <label class="filter-label">🎨 Cor da Mesa</label>
+                <div class="filter-buttons" id="filter-cores">
+                    <!-- Botões renderizados aqui -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid de Projetos -->
+        <div class="galeria-grid" id="galeria-grid">
+            <!-- Projetos renderizados aqui -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JPR Móveis Rústicos. Todos os direitos reservados.</p>
+            <p class="footer-credit">Desenvolvido com ❤️ para qualidade em móveis</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="galeria-dados.js"></script>
+    <script>
+        // Estado global
+        let filtrosAtivos = {
+            estilo: null,
+            ambiente: null,
+            cor: null,
+            termo: null
+        };
+
+        /**
+         * Inicializar galeria
+         */
+        function inicializarGaleria() {
+            renderizarFiltros();
+            renderizarProjetos();
+            atualizarCarrinhoCount();
+        }
+
+        /**
+         * Renderizar botões de filtro
+         */
+        function renderizarFiltros() {
+            // Estilos
+            const estilos = obterEstilos();
+            const filterEstilos = document.getElementById('filter-estilos');
+            filterEstilos.innerHTML = `
+                <button class="filter-btn active" onclick="definirFiltro('estilo', null)">
+                    Todos (${projetos.length})
+                </button>
+                ${estilos.map(estilo => `
+                    <button class="filter-btn" onclick="definirFiltro('estilo', '${estilo}')">
+                        ${estilo} (${obterProjetosPorEstilo(estilo).length})
+                    </button>
+                `).join('')}
+            `;
+
+            // Ambientes
+            const ambientes = obterAmbientes();
+            const filterAmbientes = document.getElementById('filter-ambientes');
+            filterAmbientes.innerHTML = `
+                <button class="filter-btn active" onclick="definirFiltro('ambiente', null)">
+                    Todos (${projetos.length})
+                </button>
+                ${ambientes.map(ambiente => `
+                    <button class="filter-btn" onclick="definirFiltro('ambiente', '${ambiente}')">
+                        ${ambiente} (${obterProjetosPorAmbiente(ambiente).length})
+                    </button>
+                `).join('')}
+            `;
+
+            // Cores
+            const cores = obterCores();
+            const filterCores = document.getElementById('filter-cores');
+            filterCores.innerHTML = `
+                <button class="filter-btn active" onclick="definirFiltro('cor', null)">
+                    Todas (${projetos.length})
+                </button>
+                ${cores.map(cor => `
+                    <button class="filter-btn" onclick="definirFiltro('cor', '${cor}')">
+                        ${cor} (${obterProjetosPorCor(cor).length})
+                    </button>
+                `).join('')}
+            `;
+        }
+
+        /**
+         * Definir filtro ativo
+         */
+        function definirFiltro(tipo, valor) {
+            filtrosAtivos[tipo] = valor;
+
+            // Atualizar estilo dos botões
+            const botoes = event.target.parentElement.querySelectorAll('.filter-btn');
+            botoes.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            renderizarProjetos();
+        }
+
+        /**
+         * Filtrar galeria (busca)
+         */
+        function filtrarGaleria() {
+            const termo = document.getElementById('search-input').value;
+            filtrosAtivos.termo = termo;
+            renderizarProjetos();
+        }
+
+        /**
+         * Renderizar projetos
+         */
+        function renderizarProjetos() {
+            const projetosFiltrados = filtrarProjetos(filtrosAtivos);
+            const container = document.getElementById('galeria-grid');
+
+            if (projetosFiltrados.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <h3>Nenhum projeto encontrado</h3>
+                        <p>Tente alterar seus filtros ou refine sua busca</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = projetosFiltrados.map(projeto => `
+                <div class="projeto-card" onclick="abrirProjeto(${projeto.id})">
+                    <div class="projeto-image">
+                        ${projeto.imagem}
+                        <div class="projeto-rating">⭐ ${projeto.avaliacao}.0</div>
+                    </div>
+                    <div class="projeto-content">
+                        <div class="projeto-meta">
+                            <span>📍 ${projeto.ambiente}</span>
+                            <span>📅 ${projeto.ano}</span>
+                        </div>
+                        <h3 class="projeto-title">${projeto.titulo}</h3>
+                        <p class="projeto-description">${projeto.descricao}</p>
+                        <div class="projeto-tags">
+                            ${projeto.tags.slice(0, 2).map(tag => `
+                                <span class="projeto-tag">${tag}</span>
+                            `).join('')}
+                        </div>
+                        <div class="projeto-footer">
+                            <div class="projeto-cliente">
+                                👤 <strong>${projeto.cliente}</strong>
+                            </div>
+                            <button class="view-btn" onclick="event.stopPropagation(); abrirProjeto(${projeto.id})">
+                                Ver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * Abrir projeto
+         */
+        function abrirProjeto(id) {
+            window.location.href = `projeto.html?id=${id}`;
+        }
+
+        /**
+         * Atualizar contagem de carrinho
+         */
+        function atualizarCarrinhoCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const count = cart.reduce((sum, item) => sum + item.quantidade, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        /**
+         * Toggle carrinho
+         */
+        function toggleCarrinho() {
+            window.location.href = 'index-nova.html#catalogo';
+        }
+
+        // Inicializar ao carregar
+        document.addEventListener('DOMContentLoaded', inicializarGaleria);
+    </script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Realizada - JPR Móveis Rústicos</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        .sucesso-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .sucesso-box {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sucesso-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .sucesso-titulo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-family: var(--font-display);
+        }
+
+        .sucesso-mensagem {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .pedido-info {
+            background: var(--gray-light);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Timeline Melhorada */
+        .proximos-passos {
+            background: transparent;
+            border-left: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .proximos-passos h3 {
+            color: var(--text);
+            margin-bottom: 24px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent), var(--primary));
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 100px;
+            position: relative;
+        }
+
+        .timeline-item.completed .timeline-icon {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .timeline-item.completed::before {
+            transform: scale(1);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border: 3px solid var(--gray-medium);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            z-index: 10;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content h4 {
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .timeline-content .timeline-date {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.4s ease;
+        }
+
+        .botoes-acao {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-acao {
+            padding: 16px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .btn-acao-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-acao-primary:hover {
+            background: var(--footer);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-acao-secondary {
+            background: var(--gray-light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-acao-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .contato-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid var(--gray-medium);
+        }
+
+        .contato-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .contato-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contato-info a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .sucesso-box {
+                padding: 30px 20px;
+            }
+
+            .sucesso-titulo {
+                font-size: 24px;
+            }
+
+            .sucesso-icon {
+                font-size: 60px;
+            }
+
+            .botoes-acao {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="index-nova.html" class="nav-link">Voltar à Loja</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sucesso Container -->
+    <div class="sucesso-container">
+        <div class="sucesso-box">
+            <div class="sucesso-icon">✓</div>
+            <h1 class="sucesso-titulo">Compra Realizada com Sucesso!</h1>
+            <p class="sucesso-mensagem">
+                Obrigado pela sua compra! Seu pedido foi confirmado e em breve você receberá um email com mais detalhes.
+            </p>
+
+            <!-- Informações do Pedido -->
+            <div class="pedido-info">
+                <div id="pedido-details">
+                    <!-- Carregado via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Próximos Passos - Timeline -->
+            <div class="proximos-passos">
+                <h3>📋 Próximos Passos - Timeline de Entrega</h3>
+                <div class="timeline">
+                    <div class="timeline-item completed">
+                        <div class="timeline-icon">✓</div>
+                        <div class="timeline-content">
+                            <h4>Pedido Confirmado</h4>
+                            <p>Sua compra foi confirmada e registrada no sistema</p>
+                            <div class="timeline-date">Agora</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📧</div>
+                        <div class="timeline-content">
+                            <h4>Email de Confirmação</h4>
+                            <p>Você receberá um email com os detalhes do seu pedido em poucos minutos</p>
+                            <div class="timeline-date">Hoje</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🛠️</div>
+                        <div class="timeline-content">
+                            <h4>Preparação da Encomenda</h4>
+                            <p>Nossa equipe preparará sua encomenda com cuidado e qualidade</p>
+                            <div class="timeline-date">1-2 dias úteis</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🚚</div>
+                        <div class="timeline-content">
+                            <h4>Envio em Trânsito</h4>
+                            <p>Seu produto foi enviado! Você receberá o código de rastreamento</p>
+                            <div class="timeline-date">3-5 dias úteis</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📦</div>
+                        <div class="timeline-content">
+                            <h4>Entrega Realizada</h4>
+                            <p>Seu móvel foi entregue com sucesso! Aproveite a sua nova aquisição</p>
+                            <div class="timeline-date">10-25 dias úteis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="botoes-acao">
+                <button class="btn-acao btn-acao-primary" onclick="window.location.href='index-nova.html'">
+                    Continuar Comprando
+                </button>
+                <button class="btn-acao btn-acao-secondary" onclick="imprimirPedido()">
+                    Imprimir Pedido
+                </button>
+            </div>
+
+            <!-- Contato -->
+            <div class="contato-info">
+                <p><strong>Dúvidas sobre seu pedido?</strong></p>
+                <p>
+                    📞 <a href="tel:4732883096">(47) 3288-3096</a> |
+                    📱 <a href="https://wa.me/5547997168814">WhatsApp</a>
+                </p>
+                <p style="margin-top: 16px; font-size: 12px;">
+                    Horário de atendimento: Seg-Sex 8h-18h | Sáb 8h-12h
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data-produtos.js"></script>
+    <script>
+        // Carregar e exibir detalhes do pedido
+        function exibirDetalhesPedido() {
+            const pedido = JSON.parse(localStorage.getItem('pedidoAtual'));
+            if (!pedido) {
+                document.getElementById('pedido-details').innerHTML =
+                    '<p style="color: #999;">Dados do pedido não encontrados</p>';
+                return;
+            }
+
+            const dataFormatada = new Date(pedido.data).toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const metodoPagamento = {
+                'pix': '📱 PIX',
+                'cartao': '💳 Cartão de Crédito',
+                'boleto': '📋 Boleto Bancário'
+            };
+
+            const html = `
+                <div class="info-item">
+                    <span class="info-label">Número do Pedido:</span>
+                    <span class="info-value">#${Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Data:</span>
+                    <span class="info-value">${dataFormatada}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Cliente:</span>
+                    <span class="info-value">${pedido.cliente.nome}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value" style="font-size: 12px;">${pedido.cliente.email}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Forma de Pagamento:</span>
+                    <span class="info-value">${metodoPagamento[pedido.pagamento]}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Valor Total:</span>
+                    <span class="info-value" style="color: var(--primary); font-size: 18px;">
+                        ${pedido.total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+                    </span>
+                </div>
+            `;
+
+            document.getElementById('pedido-details').innerHTML = html;
+        }
+
+        // Imprimir pedido
+        function imprimirPedido() {
+            window.print();
+        }
+
+        // Confete ao carregar
+        function acionarConfete() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        // Limpar localStorage após exibição
+        function limparCarrinho() {
+            localStorage.removeItem('carrinhoCheckout');
+            localStorage.removeItem('carrinho');
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            exibirDetalhesPedido();
+            acionarConfete();
+            limparCarrinho();
+        });
+    </script>
+</body>
+</html>

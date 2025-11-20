@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - JPR Móveis Rústicos</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <style>
+        .checkout-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Progress Bar Melhorado */
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gray-medium);
+            z-index: 0;
+        }
+
+        .checkout-steps::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            height: 3px;
+            background: var(--accent);
+            z-index: 1;
+            width: 33.33%;
+            transition: width 0.5s ease;
+        }
+
+        .checkout-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border: 3px solid var(--gray-medium);
+            border-radius: 50%;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-step.completed .step-number {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--white);
+        }
+
+        .checkout-step.completed .step-number::after {
+            content: '✓';
+            position: absolute;
+            font-size: 24px;
+            color: var(--white);
+        }
+
+        .checkout-step.completed .step-number {
+            font-size: 0;
+        }
+
+        .checkout-step.active .step-number {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(27, 135, 104, 0.2);
+        }
+
+        .step-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .checkout-step.active .step-label {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .checkout-step.completed .step-label {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .checkout-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .checkout-form {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gray-medium);
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(152, 52, 33, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            padding: 16px;
+            border: 2px solid var(--gray-medium);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary);
+        }
+
+        .payment-method input {
+            display: none;
+        }
+
+        .payment-method input:checked + label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .payment-method.selected {
+            background: rgba(152, 52, 33, 0.1);
+            border-color: var(--primary);
+        }
+
+        .payment-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .checkout-summary {
+            background: var(--gray-light);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gray-medium);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-medium);
+            font-size: 14px;
+        }
+
+        .summary-item-name {
+            color: var(--text-secondary);
+        }
+
+        .summary-item-price {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid var(--primary);
+        }
+
+        .shipping-info {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            color: #0D47A1;
+            margin-bottom: 16px;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .btn-finalizar:hover {
+            background: var(--footer);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-voltar {
+            width: 100%;
+            padding: 12px;
+            background: var(--gray-light);
+            color: var(--text);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .btn-voltar:hover {
+            background: var(--gray-medium);
+        }
+
+        @media (max-width: 768px) {
+            .checkout-content {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-summary {
+                position: static;
+                order: -1;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-steps {
+                margin-bottom: 30px;
+            }
+
+            .checkout-step {
+                font-size: 12px;
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="index-nova.html" class="nav-link">← Voltar ao Catálogo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Checkout Container -->
+    <div class="checkout-container">
+        <h2 style="text-align: center; margin-bottom: 30px; color: var(--text);">Finalizar Compra</h2>
+
+        <!-- Steps -->
+        <div class="checkout-steps">
+            <div class="checkout-step active">
+                <div class="step-number">1</div>
+                <div class="step-label">Revisar Pedido</div>
+            </div>
+            <div class="checkout-step">
+                <div class="step-number">2</div>
+                <div class="step-label">Dados Pessoais</div>
+            </div>
+            <div class="checkout-step">
+                <div class="step-number">3</div>
+                <div class="step-label">Pagamento</div>
+            </div>
+            <div class="checkout-step">
+                <div class="step-number">4</div>
+                <div class="step-label">Confirmação</div>
+            </div>
+        </div>
+
+        <!-- Checkout Content -->
+        <div class="checkout-content">
+            <!-- Formulário -->
+            <div class="checkout-form">
+                <!-- Dados Pessoais -->
+                <div class="form-section">
+                    <h3>📋 Seus Dados</h3>
+
+                    <div class="form-group">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" placeholder="João Silva" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone *</label>
+                            <input type="tel" id="telefone" placeholder="(47) 99999-9999" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Endereço de Entrega -->
+                <div class="form-section">
+                    <h3>📦 Endereço de Entrega</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cep">CEP *</label>
+                            <input type="text" id="cep" placeholder="88000-000" maxlength="9" required onblur="validarCEPe calcularFrete()">
+                            <small id="cep-error" style="color: #d32f2f; display: none;">CEP inválido. Use o formato: 12345-678</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado *</label>
+                            <select id="estado" required onchange="calcularFrete()">
+                                <option value="">Selecione o estado</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="PR">Paraná</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="SP">São Paulo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="frete-info" style="display: none; background: #E8F5E9; padding: 12px; border-radius: var(--radius-md); margin: 16px 0; border-left: 4px solid var(--accent);">
+                        <strong>📦 Valor do Frete:</strong> <span id="frete-value">R$ 0,00</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
+                        <input type="text" id="cidade" placeholder="Blumenau" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rua">Rua *</label>
+                        <input type="text" id="rua" placeholder="Rua Carlos Rischbieter" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="numero">Número *</label>
+                            <input type="text" id="numero" placeholder="64" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" placeholder="Apto 102">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bairro">Bairro *</label>
+                        <input type="text" id="bairro" placeholder="Victor Konder" required>
+                    </div>
+
+                    <div class="shipping-info">
+                        📦 Prazo de entrega: 10-25 dias úteis. Frete será calculado com base no CEP informado.
+                    </div>
+                </div>
+
+                <!-- Método de Pagamento -->
+                <div class="form-section">
+                    <h3>💳 Forma de Pagamento</h3>
+
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="selecionarMetodoPagamento(this, 'pix')">
+                            <input type="radio" name="pagamento" value="pix" id="pix-check">
+                            <label for="pix-check">
+                                <div class="payment-icon">📱</div>
+                                PIX
+                            </label>
+                        </div>
+
+                        <div class="payment-method" onclick="selecionarMetodoPagamento(this, 'cartao')">
+                            <input type="radio" name="pagamento" value="cartao" id="cartao-check">
+                            <label for="cartao-check">
+                                <div class="payment-icon">💳</div>
+                                Cartão
+                            </label>
+                        </div>
+
+                        <div class="payment-method" onclick="selecionarMetodoPagamento(this, 'boleto')">
+                            <input type="radio" name="pagamento" value="boleto" id="boleto-check">
+                            <label for="boleto-check">
+                                <div class="payment-icon">📋</div>
+                                Boleto
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dados do Cartão -->
+                    <div id="cartao-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="nome-cartao">Nome no Cartão *</label>
+                            <input type="text" id="nome-cartao" placeholder="JOÃO SILVA">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numero-cartao">Número do Cartão *</label>
+                            <input type="text" id="numero-cartao" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="validade">Válido até *</label>
+                                <input type="text" id="validade" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV *</label>
+                                <input type="text" id="cvv" placeholder="000" maxlength="3">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parcelas">Parcelar em:</label>
+                            <select id="parcelas">
+                                <option value="1">1x sem juros</option>
+                                <option value="2">2x sem juros</option>
+                                <option value="3">3x sem juros</option>
+                                <option value="6">6x sem juros</option>
+                                <option value="12">12x sem juros</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-finalizar" onclick="procesarPagamento()">
+                    ✓ Confirmar Compra
+                </button>
+                <button class="btn-voltar" onclick="window.history.back()">
+                    ← Voltar
+                </button>
+            </div>
+
+            <!-- Resumo -->
+            <div class="checkout-summary">
+                <div class="summary-title">📦 Resumo do Pedido</div>
+
+                <div id="summary-items">
+                    <!-- Items carregados via JavaScript -->
+                </div>
+
+                <div class="summary-item" style="border-top: 1px solid var(--gray-light); padding-top: 12px; margin-top: 12px;">
+                    <div class="summary-item-name">Subtotal</div>
+                    <div class="summary-item-price" id="subtotal-price">R$ 0,00</div>
+                </div>
+
+                <div class="summary-item" id="frete-summary" style="display: none;">
+                    <div class="summary-item-name">Frete</div>
+                    <div class="summary-item-price" id="frete-summary-price">R$ 0,00</div>
+                </div>
+
+                <div class="summary-total" style="background: linear-gradient(135deg, #ff6913 0%, #e04c16 100%); color: white; padding: 16px; border-radius: var(--radius-md);">
+                    <span>Total:</span>
+                    <span id="total-price">R$ 0,00</span>
+                </div>
+
+                <div style="background: #F0F7FF; padding: 12px; border-radius: var(--radius-md); margin-top: 16px; font-size: 13px; color: #0D47A1;">
+                    ✓ Entrega em Santa Catarina e Paraná<br>
+                    ✓ Garantia de qualidade<br>
+                    ✓ Móveis sob medida disponível
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data-produtos.js"></script>
+    <script>
+        // Carregar carrinho
+        let carrinho = JSON.parse(localStorage.getItem('carrinhoCheckout')) || [];
+
+        // Variável para armazenar o frete
+        let freteAtual = 0;
+
+        // Tabela de fretes por estado
+        const fretesPorEstado = {
+            'SC': 150,    // Santa Catarina: R$ 150
+            'PR': 250,    // Paraná: R$ 250
+            'RS': 200,    // Rio Grande do Sul: R$ 200 (estimado)
+            'SP': 300     // São Paulo: R$ 300 (estimado)
+        };
+
+        // Calcular frete baseado no estado
+        function calcularFrete() {
+            const estadoSelect = document.getElementById('estado');
+            const cepInput = document.getElementById('cep');
+            const estado = estadoSelect.value;
+            const cep = cepInput.value;
+
+            // Validar CEP
+            if (!cep || cep.length < 8) {
+                document.getElementById('frete-info').style.display = 'none';
+                document.getElementById('frete-summary').style.display = 'none';
+                return;
+            }
+
+            if (!estado) {
+                document.getElementById('frete-info').style.display = 'none';
+                document.getElementById('frete-summary').style.display = 'none';
+                return;
+            }
+
+            // Obter frete do estado
+            freteAtual = fretesPorEstado[estado] || 0;
+
+            if (freteAtual > 0) {
+                // Mostrar frete
+                document.getElementById('frete-info').style.display = 'block';
+                document.getElementById('frete-value').textContent = freteAtual.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                });
+
+                // Atualizar resumo
+                document.getElementById('frete-summary').style.display = 'flex';
+                document.getElementById('frete-summary-price').textContent = freteAtual.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                });
+
+                atualizarTotalComFrete();
+            }
+        }
+
+        // Renderizar resumo
+        function renderizarResumo() {
+            const summaryItems = document.getElementById('summary-items');
+            let subtotal = 0;
+
+            summaryItems.innerHTML = carrinho.map(item => {
+                const itemSubtotal = item.preco * item.quantidade;
+                subtotal += itemSubtotal;
+
+                return `
+                    <div class="summary-item">
+                        <div class="summary-item-name">
+                            ${item.nome} <br>
+                            <small style="opacity: 0.7;">x${item.quantidade}</small>
+                        </div>
+                        <div class="summary-item-price">
+                            ${itemSubtotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Atualizar subtotal
+            document.getElementById('subtotal-price').textContent = subtotal.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+
+            atualizarTotalComFrete();
+        }
+
+        // Atualizar total com frete
+        function atualizarTotalComFrete() {
+            const subtotal = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+            const total = subtotal + freteAtual;
+
+            document.getElementById('total-price').textContent = total.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        }
+
+        // Validar CEP
+        function validarCEPe(cep) {
+            const regex = /^\d{5}-?\d{3}$/;
+            return regex.test(cep);
+        }
+
+        // Selecionar método de pagamento
+        function selecionarMetodoPagamento(elemento, metodo) {
+            // Remover seleção anterior
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            // Selecionar novo
+            elemento.classList.add('selected');
+            elemento.querySelector('input').checked = true;
+
+            // Mostrar/ocultar campos do cartão
+            const cartaoFields = document.getElementById('cartao-fields');
+            if (metodo === 'cartao') {
+                cartaoFields.style.display = 'block';
+            } else {
+                cartaoFields.style.display = 'none';
+            }
+        }
+
+        // Processar pagamento
+        function procesarPagamento() {
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const cep = document.getElementById('cep').value.trim();
+            const estado = document.getElementById('estado').value;
+            const cidade = document.getElementById('cidade').value.trim();
+            const rua = document.getElementById('rua').value.trim();
+            const numero = document.getElementById('numero').value.trim();
+            const bairro = document.getElementById('bairro').value.trim();
+            const pagamento = document.querySelector('input[name="pagamento"]:checked');
+
+            // Validação completa
+            if (!nome || !email || !telefone || !cep || !estado || !cidade || !rua || !numero || !bairro || !pagamento) {
+                alert('Por favor, preencha todos os campos obrigatórios!');
+                return;
+            }
+
+            // Validar formato do CEP
+            if (!validarCEP(cep)) {
+                alert('CEP inválido! Use o formato: 12345-678');
+                return;
+            }
+
+            // Validar email
+            if (!validarEmail(email)) {
+                alert('Email inválido!');
+                return;
+            }
+
+            // Calcular totais
+            const subtotal = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+            const frete = fretesPorEstado[estado] || 0;
+            const total = subtotal + frete;
+
+            // Coletar dados do pedido
+            const pedido = {
+                cliente: {
+                    nome,
+                    email,
+                    telefone,
+                    endereco: {
+                        cep,
+                        estado,
+                        cidade,
+                        rua,
+                        numero,
+                        complemento: document.getElementById('complemento').value,
+                        bairro
+                    }
+                },
+                pagamento: pagamento.value,
+                itens: carrinho,
+                subtotal,
+                frete,
+                total,
+                data: new Date().toISOString()
+            };
+
+            // Validar carrinho não vazio
+            if (carrinho.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+
+            // Salvar pedido no localStorage
+            localStorage.setItem('pedidoAtual', JSON.stringify(pedido));
+            localStorage.removeItem('carrinhoCheckout');
+
+            // Aqui você integraria com a API do backend
+            // Por enquanto, redirecionar para página de sucesso
+            alert('Pedido realizado com sucesso!');
+            window.location.href = 'sucesso-compra.html';
+        }
+
+        // Validações em tempo real
+        function validarEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function validarTelefone(telefone) {
+            const regex = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/;
+            return regex.test(telefone) || telefone.replace(/\D/g, '').length >= 10;
+        }
+
+        function validarCEP(cep) {
+            const regex = /^\d{5}-?\d{3}$/;
+            return regex.test(cep);
+        }
+
+        // Adicionar listeners de validação
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarResumo();
+
+            // Email validation
+            const emailInput = document.getElementById('email');
+            emailInput.addEventListener('blur', function() {
+                if (this.value && !validarEmail(this.value)) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '';
+                }
+            });
+
+            // Telefone validation
+            const teleInput = document.getElementById('telefone');
+            teleInput.addEventListener('blur', function() {
+                if (this.value && !validarTelefone(this.value)) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '';
+                }
+            });
+
+            // CEP validation
+            const cepInput = document.getElementById('cep');
+            cepInput.addEventListener('blur', function() {
+                if (this.value && !validarCEP(this.value)) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '';
+                }
+            });
+
+            // Atualizar progress bar ao preencher
+            document.querySelectorAll('.checkout-form input[required], .checkout-form select[required]').forEach(input => {
+                input.addEventListener('change', atualizarProgressBar);
+                input.addEventListener('blur', atualizarProgressBar);
+            });
+        });
+
+        // Atualizar progress bar
+        function atualizarProgressBar() {
+            const etapa1 = validarEtapa1();
+            const etapa2 = validarEtapa2();
+            const etapa3 = validarEtapa3();
+
+            // Atualizar classe dos steps
+            document.querySelectorAll('.checkout-step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index === 0 && etapa1) {
+                    step.classList.add('completed');
+                } else if (index === 1 && etapa2) {
+                    step.classList.add('completed');
+                } else if (index === 2 && etapa3) {
+                    step.classList.add('completed');
+                }
+            });
+
+            // Step ativo
+            if (!etapa1) {
+                document.querySelectorAll('.checkout-step')[0].classList.add('active');
+            } else if (!etapa2) {
+                document.querySelectorAll('.checkout-step')[1].classList.add('active');
+            } else if (!etapa3) {
+                document.querySelectorAll('.checkout-step')[2].classList.add('active');
+            } else {
+                document.querySelectorAll('.checkout-step')[3].classList.add('active');
+            }
+
+            // Atualizar width da progress bar
+            let progress = 0;
+            if (etapa1) progress = 33.33;
+            if (etapa2) progress = 66.66;
+            if (etapa3) progress = 100;
+
+            document.querySelector('.checkout-steps::after').style.width = progress + '%';
+        }
+
+        function validarEtapa1() {
+            return document.getElementById('nome').value.trim() &&
+                   document.getElementById('email').value.trim() &&
+                   document.getElementById('telefone').value.trim() &&
+                   validarEmail(document.getElementById('email').value);
+        }
+
+        function validarEtapa2() {
+            return validarEtapa1() &&
+                   document.getElementById('cep').value.trim() &&
+                   document.getElementById('estado').value &&
+                   document.getElementById('cidade').value.trim() &&
+                   document.getElementById('rua').value.trim() &&
+                   document.getElementById('numero').value.trim() &&
+                   document.getElementById('bairro').value.trim();
+        }
+
+        function validarEtapa3() {
+            return validarEtapa2() &&
+                   document.querySelector('input[name="pagamento"]:checked');
+        }
+
+        // Melhorado: Processar pagamento
+        function procesarPagamento() {
+            // Validar Etapa 1
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+
+            if (!nome || !email || !telefone) {
+                alert('Por favor, preencha os dados pessoais!');
+                return;
+            }
+
+            if (!validarEmail(email)) {
+                alert('Email inválido!');
+                return;
+            }
+
+            // Validar Etapa 2
+            const cep = document.getElementById('cep').value.trim();
+            const estado = document.getElementById('estado').value;
+            const cidade = document.getElementById('cidade').value.trim();
+            const rua = document.getElementById('rua').value.trim();
+            const numero = document.getElementById('numero').value.trim();
+            const bairro = document.getElementById('bairro').value.trim();
+
+            if (!cep || !estado || !cidade || !rua || !numero || !bairro) {
+                alert('Por favor, preencha todos os dados de endereço!');
+                return;
+            }
+
+            // Validar Etapa 3
+            const pagamento = document.querySelector('input[name="pagamento"]:checked');
+            if (!pagamento) {
+                alert('Por favor, selecione uma forma de pagamento!');
+                return;
+            }
+
+            // Se cartão, validar campos do cartão
+            if (pagamento.value === 'cartao') {
+                const nomeCartao = document.getElementById('nome-cartao').value.trim();
+                const numeroCartao = document.getElementById('numero-cartao').value.trim();
+                const validade = document.getElementById('validade').value.trim();
+                const cvv = document.getElementById('cvv').value.trim();
+
+                if (!nomeCartao || !numeroCartao || !validade || !cvv) {
+                    alert('Por favor, preencha todos os dados do cartão!');
+                    return;
+                }
+            }
+
+            // Coletar dados do pedido
+            const pedido = {
+                cliente: {
+                    nome,
+                    email,
+                    telefone,
+                    endereco: {
+                        cep,
+                        estado,
+                        cidade,
+                        rua,
+                        numero,
+                        complemento: document.getElementById('complemento').value,
+                        bairro
+                    }
+                },
+                pagamento: pagamento.value,
+                itens: carrinho,
+                data: new Date().toISOString(),
+                total: carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0)
+            };
+
+            // Salvar pedido no localStorage
+            localStorage.setItem('pedidoAtual', JSON.stringify(pedido));
+
+            // Limpar carrinho
+            localStorage.removeItem('carrinhoCheckout');
+
+            // Redirecionar para página de sucesso
+            window.location.href = 'sucesso-compra.html';
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarResumo();
+            atualizarProgressBar();
+        });
+    </script>
+</body>
+</html>

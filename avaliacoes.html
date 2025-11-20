@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="Avaliações JPR Móveis Rústicos - Veja o que nossos clientes acham de nossos móveis. Avaliações verificadas e autênticas.">
+    <meta name="keywords" content="avaliações móveis, reviews, testimonials, clientes satisfeitos, qualidade móveis rústicos">
+    <meta name="author" content="JPR Móveis Rústicos">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Avaliações dos Clientes - JPR Móveis Rústicos">
+    <meta property="og:description" content="Leia avaliações reais de nossos clientes satisfeitos.">
+    <meta property="og:url" content="https://jprmoveis.com.br/avaliacoes">
+
+    <title>Avaliações dos Clientes | JPR Móveis Rústicos</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <link rel="canonical" href="https://jprmoveis.com.br/avaliacoes">
+    <style>
+        /* ========================
+           ESTILOS DA PÁGINA DE AVALIAÇÕES
+           ======================== */
+
+        .avaliacoes-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl);
+        }
+
+        .avaliacoes-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .avaliacoes-header h1 {
+            color: var(--secondary);
+            font-size: 36px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .avaliacoes-header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        /* Estatísticas */
+        .avaliacoes-stats {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            color: var(--accent);
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Rating Visual */
+        .rating-display {
+            background: linear-gradient(135deg, rgba(27, 135, 104, 0.1), rgba(219, 193, 162, 0.1));
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+        }
+
+        .rating-main {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .rating-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rating-score-number {
+            color: var(--accent);
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .rating-score-label {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .rating-bars {
+            flex: 1;
+        }
+
+        .rating-bar-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .rating-bar-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .rating-bar-label {
+            min-width: 80px;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        .rating-bar-container {
+            flex: 1;
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .rating-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .rating-bar-percent {
+            min-width: 50px;
+            text-align: right;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Formulário de Avaliação */
+        .avaliacoes-form-section {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .form-title {
+            color: var(--secondary);
+            font-size: 20px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-medium);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(27, 135, 104, 0.1);
+        }
+
+        .rating-selector {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .rating-btn {
+            padding: 12px 16px;
+            border: 2px solid var(--gray-medium);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .rating-btn:hover {
+            border-color: var(--accent);
+        }
+
+        .rating-btn.active {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .form-submit-btn {
+            background: var(--accent);
+            color: var(--white);
+            padding: 14px 32px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit-btn:hover {
+            background: #158c60;
+        }
+
+        /* Filtros */
+        .avaliacoes-filters {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-2xl);
+            display: flex;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-item {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+        }
+
+        .filter-item label {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .filter-item select {
+            padding: 8px 12px;
+            border: 1px solid var(--gray-medium);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+        }
+
+        /* Grid de Avaliações */
+        .avaliacoes-grid {
+            display: grid;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .avaliacao-card {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-2xl);
+            transition: var(--transition);
+        }
+
+        .avaliacao-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .avaliacao-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .avaliacao-info {
+            flex: 1;
+        }
+
+        .avaliacao-cliente {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .avaliacao-meta {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-top: 4px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .avaliacao-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .avaliacao-rating {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star {
+            font-size: 16px;
+            color: var(--accent);
+        }
+
+        .avaliacao-badge {
+            display: inline-block;
+            background: rgba(27, 135, 104, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .avaliacao-titulo {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .avaliacao-texto {
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .avaliacao-footer {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--gray-light);
+            flex-wrap: wrap;
+        }
+
+        .avaliacao-util {
+            display: flex;
+            gap: var(--spacing-md);
+            font-size: 13px;
+        }
+
+        .useful-btn {
+            background: transparent;
+            border: 1px solid var(--gray-medium);
+            padding: 6px 12px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .useful-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .avaliacao-resposta {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: rgba(27, 135, 104, 0.05);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius-md);
+        }
+
+        .resposta-label {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .resposta-texto {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .resposta-data {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        /* Mensagem de Sucesso */
+        .success-message {
+            background: #e8f5e9;
+            border-left: 4px solid var(--accent);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            color: var(--accent);
+            margin-top: var(--spacing-lg);
+            display: none;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: var(--text-secondary);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .avaliacoes-container {
+                padding: var(--spacing-lg);
+            }
+
+            .avaliacoes-header h1 {
+                font-size: 28px;
+            }
+
+            .rating-main {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .avaliacao-header {
+                flex-direction: column;
+            }
+
+            .rating-selector {
+                flex-wrap: wrap;
+            }
+
+            .avaliacoes-filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filter-item {
+                width: 100%;
+            }
+
+            .filter-item select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navegação -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="index-nova.html" class="nav-link">← Voltar à Loja</a>
+                <button class="btn-carrinho" onclick="toggleCarrinho()">
+                    🛒 <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Avaliações Area -->
+    <main class="avaliacoes-container">
+        <div class="avaliacoes-header">
+            <h1>Avaliações dos Nossos Clientes</h1>
+            <p>Confira a opinião de clientes reais que confiaram na JPR Móveis Rústicos</p>
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="avaliacoes-stats">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-total">8</div>
+                    <div class="stat-label">Avaliações</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-media">4.9</div>
+                    <div class="stat-label">Nota Média</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-verificadas">8</div>
+                    <div class="stat-label">Verificadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-resposta">8</div>
+                    <div class="stat-label">Com Resposta</div>
+                </div>
+            </div>
+
+            <!-- Rating Visual -->
+            <div class="rating-display">
+                <div class="rating-main">
+                    <div class="rating-score">
+                        <div class="rating-score-number" id="rating-number">4.9</div>
+                        <div class="rating-score-label">de 5 estrelas</div>
+                        <div class="avaliacao-rating" style="margin-top: 8px;">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                    </div>
+
+                    <div class="rating-bars" id="rating-bars">
+                        <!-- Renderizado com JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Avaliação -->
+        <div class="avaliacoes-form-section">
+            <h2 class="form-title">Deixe Sua Avaliação</h2>
+            <form id="avaliacao-form" onsubmit="enviarAvaliacao(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Seu Nome *</label>
+                        <input type="text" id="form-nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Seu Email *</label>
+                        <input type="email" id="form-email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Seu Produto *</label>
+                        <select id="form-produto" required>
+                            <option value="">Selecione um produto...</option>
+                            <!-- Opções renderizadas -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Sua Cidade</label>
+                        <input type="text" id="form-cidade" placeholder="Ex: Blumenau, SC">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Sua Avaliação *</label>
+                    <div class="rating-selector" id="rating-selector">
+                        <!-- Renderizado com JavaScript -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Título da Avaliação *</label>
+                    <input type="text" id="form-titulo" placeholder="Ex: Excelente qualidade!" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Seu Comentário *</label>
+                    <textarea id="form-comentario" placeholder="Conte-nos sobre sua experiência..." required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit-btn">
+                    ✅ Enviar Avaliação
+                </button>
+
+                <div class="success-message" id="success-message">
+                    ✓ Avaliação enviada com sucesso! Obrigado por sua feedback. Será revisada antes de ser publicada.
+                </div>
+            </form>
+        </div>
+
+        <!-- Filtros -->
+        <div class="avaliacoes-filters">
+            <div class="filter-item">
+                <label>Filtrar por:</label>
+            </div>
+            <div class="filter-item">
+                <label>Avaliação:</label>
+                <select onchange="filtrarAvaliacoes()">
+                    <option value="">Todas</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (5 Estrelas)</option>
+                    <option value="4">⭐⭐⭐⭐ (4 Estrelas)</option>
+                    <option value="3">⭐⭐⭐ (3 Estrelas)</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Ordenar por:</label>
+                <select onchange="filtrarAvaliacoes()">
+                    <option value="recente">Mais Recentes</option>
+                    <option value="util">Mais Úteis</option>
+                    <option value="rating">Melhor Avaliação</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Grid de Avaliações -->
+        <div class="avaliacoes-grid" id="avaliacoes-grid">
+            <!-- Avaliações renderizadas aqui -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JPR Móveis Rústicos. Todos os direitos reservados.</p>
+            <p class="footer-credit">Desenvolvido com ❤️ para qualidade em móveis</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="avaliacoes-dados.js"></script>
+    <script>
+        // Estado global
+        let ratingAtual = 0;
+        let filtrosAtivos = {
+            rating: null,
+            ordenar: 'recente'
+        };
+
+        /**
+         * Inicializar avaliações
+         */
+        function inicializarAvaliacoes() {
+            renderizarEstatisticas();
+            renderizarRatingSelector();
+            renderizarProdutos();
+            renderizarAvaliacoes();
+            atualizarCarrinhoCount();
+        }
+
+        /**
+         * Renderizar estatísticas
+         */
+        function renderizarEstatisticas() {
+            const stats = obterEstatisticasAvaliacoes();
+
+            document.getElementById('stat-total').textContent = stats.total;
+            document.getElementById('stat-media').textContent = stats.media;
+            document.getElementById('stat-verificadas').textContent = stats.verificadas;
+            document.getElementById('stat-resposta').textContent = stats.comResposta;
+            document.getElementById('rating-number').textContent = stats.media;
+
+            // Rating bars
+            const barsHTML = `
+                <div class="rating-bar-item">
+                    <div class="rating-bar-label">⭐⭐⭐⭐⭐</div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar-fill" style="width: ${stats.percentual5}%"></div>
+                    </div>
+                    <div class="rating-bar-percent">${stats.percentual5}%</div>
+                </div>
+                <div class="rating-bar-item">
+                    <div class="rating-bar-label">⭐⭐⭐⭐</div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar-fill" style="width: ${stats.percentual4}%"></div>
+                    </div>
+                    <div class="rating-bar-percent">${stats.percentual4}%</div>
+                </div>
+                <div class="rating-bar-item">
+                    <div class="rating-bar-label">⭐⭐⭐</div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar-fill" style="width: ${stats.percentual3}%"></div>
+                    </div>
+                    <div class="rating-bar-percent">${stats.percentual3}%</div>
+                </div>
+                <div class="rating-bar-item">
+                    <div class="rating-bar-label">⭐⭐</div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar-fill" style="width: ${stats.percentual2}%"></div>
+                    </div>
+                    <div class="rating-bar-percent">${stats.percentual2}%</div>
+                </div>
+                <div class="rating-bar-item">
+                    <div class="rating-bar-label">⭐</div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar-fill" style="width: ${stats.percentual1}%"></div>
+                    </div>
+                    <div class="rating-bar-percent">${stats.percentual1}%</div>
+                </div>
+            `;
+
+            document.getElementById('rating-bars').innerHTML = barsHTML;
+        }
+
+        /**
+         * Renderizar seletor de rating
+         */
+        function renderizarRatingSelector() {
+            const selectorHTML = [1, 2, 3, 4, 5].map(n => `
+                <button type="button" class="rating-btn" onclick="definirRating(${n})">
+                    ${'⭐'.repeat(n)}
+                </button>
+            `).join('');
+
+            document.getElementById('rating-selector').innerHTML = selectorHTML;
+        }
+
+        /**
+         * Definir rating
+         */
+        function definirRating(rating) {
+            ratingAtual = rating;
+
+            const botoes = document.querySelectorAll('.rating-btn');
+            botoes.forEach(btn => btn.classList.remove('active'));
+            botoes[rating - 1].classList.add('active');
+        }
+
+        /**
+         * Renderizar produtos
+         */
+        function renderizarProdutos() {
+            const produtos = obterProdutosComAvaliacoes();
+            const select = document.getElementById('form-produto');
+
+            const opcoesHTML = produtos.map(p => `
+                <option value="${p}">${p}</option>
+            `).join('');
+
+            select.innerHTML += opcoesHTML;
+        }
+
+        /**
+         * Enviar avaliação
+         */
+        function enviarAvaliacao(event) {
+            event.preventDefault();
+
+            if (ratingAtual === 0) {
+                alert('Por favor, selecione uma avaliação (estrelas)');
+                return;
+            }
+
+            const novaAvaliacao = {
+                cliente: document.getElementById('form-nome').value,
+                email: document.getElementById('form-email').value,
+                cidade: document.getElementById('form-cidade').value,
+                produto: document.getElementById('form-produto').value,
+                rating: ratingAtual,
+                titulo: document.getElementById('form-titulo').value,
+                comentario: document.getElementById('form-comentario').value
+            };
+
+            adicionarAvaliacao(novaAvaliacao);
+
+            // Mostrar sucesso
+            document.getElementById('success-message').style.display = 'block';
+
+            // Resetar form
+            document.getElementById('avaliacao-form').reset();
+            ratingAtual = 0;
+            document.querySelectorAll('.rating-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Limpar mensagem após 5 segundos
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none';
+            }, 5000);
+
+            // Renderizar novamente
+            renderizarAvaliacoes();
+        }
+
+        /**
+         * Filtrar avaliações
+         */
+        function filtrarAvaliacoes() {
+            const ratingSelect = document.querySelector('select');
+            const ordenarSelect = document.querySelectorAll('select')[1];
+
+            filtrosAtivos.rating = ratingSelect.value ? parseInt(ratingSelect.value) : null;
+            filtrosAtivos.ordenar = ordenarSelect.value;
+
+            renderizarAvaliacoes();
+        }
+
+        /**
+         * Renderizar avaliações
+         */
+        function renderizarAvaliacoes() {
+            const avaliacoesFiltradas = filtrarAvaliacoes({
+                rating: filtrosAtivos.rating,
+                verificado: true,
+                ordenar: filtrosAtivos.ordenar
+            });
+
+            if (avaliacoesFiltradas.length === 0) {
+                document.getElementById('avaliacoes-grid').innerHTML = `
+                    <div class="no-results">
+                        <h3>Nenhuma avaliação encontrada</h3>
+                        <p>Tente alterar seus filtros</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const gridHTML = avaliacoesFiltradas.map(avaliacao => `
+                <div class="avaliacao-card">
+                    <div class="avaliacao-header">
+                        <div class="avaliacao-info">
+                            <div class="avaliacao-cliente">
+                                ${avaliacao.cliente}
+                                <span class="avaliacao-badge">✓ Verificado</span>
+                            </div>
+                            <div class="avaliacao-meta">
+                                <span>📍 ${avaliacao.cidade}</span>
+                                <span>📅 ${formatarData(avaliacao.data)}</span>
+                                <span>🛋️ ${avaliacao.produto}</span>
+                            </div>
+                        </div>
+                        <div class="avaliacao-rating">
+                            ${'<span class="star">⭐</span>'.repeat(avaliacao.rating)}
+                        </div>
+                    </div>
+
+                    <h3 class="avaliacao-titulo">"${avaliacao.titulo}"</h3>
+                    <p class="avaliacao-texto">${avaliacao.comentario}</p>
+
+                    ${avaliacao.resposta ? `
+                        <div class="avaliacao-resposta">
+                            <div class="resposta-label">Resposta da JPR Móveis Rústicos</div>
+                            <div class="resposta-texto">${avaliacao.resposta.texto}</div>
+                            <div class="resposta-data">${formatarData(avaliacao.resposta.data)}</div>
+                        </div>
+                    ` : ''}
+
+                    <div class="avaliacao-footer">
+                        <div class="avaliacao-util">
+                            <button class="useful-btn" onclick="marcarUtil(${avaliacao.id})">
+                                👍 Útil (${avaliacao.util})
+                            </button>
+                            <button class="useful-btn" onclick="marcarNaoUtil(${avaliacao.id})">
+                                👎 Não útil (${avaliacao.naoUtil})
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('avaliacoes-grid').innerHTML = gridHTML;
+        }
+
+        /**
+         * Marcar como útil
+         */
+        function marcarUtil(id) {
+            marcarComoUtil(id);
+            renderizarAvaliacoes();
+        }
+
+        /**
+         * Marcar como não útil
+         */
+        function marcarNaoUtil(id) {
+            marcarComoNaoUtil(id);
+            renderizarAvaliacoes();
+        }
+
+        /**
+         * Formatar data
+         */
+        function formatarData(data) {
+            const date = new Date(data);
+            return date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        /**
+         * Atualizar contagem de carrinho
+         */
+        function atualizarCarrinhoCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const count = cart.reduce((sum, item) => sum + item.quantidade, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        /**
+         * Toggle carrinho
+         */
+        function toggleCarrinho() {
+            window.location.href = 'index-nova.html#catalogo';
+        }
+
+        // Inicializar ao carregar
+        document.addEventListener('DOMContentLoaded', inicializarAvaliacoes);
+    </script>
+</body>
+</html>

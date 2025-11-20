@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vouchers JPR Móveis Rústicos - Presenteie com Sabor Autêntico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --mexican-red: #D32F2F;
+            --mexican-orange: #FF6F00;
+            --mexican-yellow: #FFC107;
+            --mexican-green: #388E3C;
+            --dark: #1A1A1A;
+            --gray-dark: #2C2C2C;
+            --gray-medium: #666;
+            --gray-light: #E0E0E0;
+            --white: #FFFFFF;
+            --bg-light: #F5F5F5;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--mexican-red) 0%, var(--mexican-orange) 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🌮';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            left: 10%;
+            transform: rotate(-15deg);
+        }
+
+        .hero::after {
+            content: '🌶️';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            bottom: -30px;
+            right: 10%;
+            transform: rotate(15deg);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1em;
+            color: var(--gray-medium);
+            margin-bottom: 50px;
+        }
+
+        /* Voucher Cards Grid */
+        .vouchers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .voucher-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .voucher-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .voucher-card.featured {
+            border: 3px solid var(--mexican-red);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--mexican-red);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .voucher-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--mexican-orange), var(--mexican-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .voucher-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2) 0%, transparent 60%);
+        }
+
+        .voucher-content {
+            padding: 30px;
+        }
+
+        .voucher-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .voucher-description {
+            color: var(--gray-medium);
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .voucher-items {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .voucher-items li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-light);
+            color: var(--gray-dark);
+            font-size: 0.9em;
+        }
+
+        .voucher-items li::before {
+            content: '✓';
+            color: var(--mexican-green);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .voucher-items li:last-child {
+            border-bottom: none;
+        }
+
+        .voucher-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--gray-light);
+        }
+
+        .voucher-price {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-label {
+            font-size: 0.8em;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--mexican-red);
+        }
+
+        .price-installments {
+            font-size: 0.75em;
+            color: var(--gray-medium);
+            margin-top: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--mexican-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--mexican-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--mexican-red);
+            border: 2px solid var(--mexican-red);
+        }
+
+        .btn-secondary:hover {
+            background: var(--mexican-red);
+            color: white;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: white;
+            padding: 60px 20px;
+            margin: 40px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .benefit-description {
+            color: var(--gray-medium);
+            font-size: 0.95em;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--bg-light);
+            padding: 60px 20px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--mexican-red), var(--mexican-orange));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            color: var(--gray-medium);
+            font-size: 0.9em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--mexican-red) 0%, var(--mexican-orange) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-dark);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .footer-info {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .footer-info a {
+            color: var(--mexican-yellow);
+            text-decoration: none;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+            font-size: 1.5em;
+        }
+
+        .footer-social a {
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-copy {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .vouchers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--gray-light);
+            border-top-color: var(--mexican-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>🌮 Vouchers JPR Móveis Rústicos</h1>
+            <p>Presenteie com uma experiência gastronômica autêntica mexicana em Blumenau</p>
+            <div>
+                <span class="badge">🎁 Presente Perfeito</span>
+                <span class="badge">📱 Receba Instantaneamente</span>
+                <span class="badge">💳 Parcele sem Juros</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vouchers Section -->
+    <div class="container">
+        <h2 class="section-title">Escolha Seu Combo</h2>
+        <p class="section-subtitle">Experiências gastronômicas autênticas para você ou presentear</p>
+
+        <div class="vouchers-grid">
+            <!-- Combo Romântico -->
+            <div class="voucher-card featured">
+                <div class="featured-badge">🔥 MAIS VENDIDO</div>
+                <div class="voucher-image">💑</div>
+                <div class="voucher-content">
+                    <h3 class="voucher-title">Combo Romântico</h3>
+                    <p class="voucher-description">
+                        Perfeito para um jantar a dois! Inclui entrada, pratos principais e sobremesa.
+                    </p>
+                    <ul class="voucher-items">
+                        <li>2 Guacamoles com Nachos</li>
+                        <li>2 Tacos Premium (6 unidades)</li>
+                        <li>2 Quesadillas Especiais</li>
+                        <li>2 Sobremesas Mexicanas</li>
+                        <li>2 Bebidas (sucos ou refrigerantes)</li>
+                    </ul>
+                    <div class="voucher-footer">
+                        <div class="voucher-price">
+                            <span class="price-label">Valor do Voucher</span>
+                            <span class="price-value">R$ 159,90</span>
+                            <span class="price-installments">ou 3x de R$ 53,30</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="selectVoucher('romantico', 159.90)">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo Família -->
+            <div class="voucher-card">
+                <div class="voucher-image">👨‍👩‍👧‍👦</div>
+                <div class="voucher-content">
+                    <h3 class="voucher-title">Combo Família</h3>
+                    <p class="voucher-description">
+                        Ideal para reunir a família! Uma refeição completa para 4 pessoas.
+                    </p>
+                    <ul class="voucher-items">
+                        <li>4 Entradas (Nachos ou Guacamole)</li>
+                        <li>4 Pratos Principais à escolha</li>
+                        <li>Porção de Batata Frita</li>
+                        <li>4 Sobremesas</li>
+                        <li>4 Bebidas incluídas</li>
+                    </ul>
+                    <div class="voucher-footer">
+                        <div class="voucher-price">
+                            <span class="price-label">Valor do Voucher</span>
+                            <span class="price-value">R$ 279,90</span>
+                            <span class="price-installments">ou 5x de R$ 55,98</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="selectVoucher('familia', 279.90)">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo Degustação -->
+            <div class="voucher-card">
+                <div class="voucher-image">🌮</div>
+                <div class="voucher-content">
+                    <h3 class="voucher-title">Combo Degustação</h3>
+                    <p class="voucher-description">
+                        Para conhecer o melhor da culinária mexicana! 1 pessoa.
+                    </p>
+                    <ul class="voucher-items">
+                        <li>Entrada: Guacamole + Nachos</li>
+                        <li>Trio de Tacos Especiais</li>
+                        <li>Quesadilla à escolha</li>
+                        <li>Sobremesa Mexicana</li>
+                        <li>1 Bebida especial</li>
+                    </ul>
+                    <div class="voucher-footer">
+                        <div class="voucher-price">
+                            <span class="price-label">Valor do Voucher</span>
+                            <span class="price-value">R$ 89,90</span>
+                            <span class="price-installments">ou 2x de R$ 44,95</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="selectVoucher('degustacao', 89.90)">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo Taco Night -->
+            <div class="voucher-card">
+                <div class="voucher-image">🎉</div>
+                <div class="voucher-content">
+                    <h3 class="voucher-title">Combo Taco Night</h3>
+                    <p class="voucher-description">
+                        Perfeito para uma noite entre amigos! Para 2 pessoas.
+                    </p>
+                    <ul class="voucher-items">
+                        <li>2 Entradas à escolha</li>
+                        <li>12 Tacos Variados</li>
+                        <li>2 Porções de Guarnição</li>
+                        <li>2 Margaritas ou Bebidas</li>
+                        <li>Molhos especiais da casa</li>
+                    </ul>
+                    <div class="voucher-footer">
+                        <div class="voucher-price">
+                            <span class="price-label">Valor do Voucher</span>
+                            <span class="price-value">R$ 189,90</span>
+                            <span class="price-installments">ou 4x de R$ 47,48</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="selectVoucher('taconight', 189.90)">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo Aniversário -->
+            <div class="voucher-card">
+                <div class="voucher-image">🎂</div>
+                <div class="voucher-content">
+                    <h3 class="voucher-title">Combo Aniversário</h3>
+                    <p class="voucher-description">
+                        Celebre com estilo mexicano! Refeição completa para 6 pessoas.
+                    </p>
+                    <ul class="voucher-items">
+                        <li>6 Entradas variadas</li>
+                        <li>6 Pratos Principais Premium</li>
+                        <li>Bolo de Aniversário Especial</li>
+                        <li>6 Sobremesas</li>
+                        <li>6 Bebidas + Brinde Especial</li>
+                    </ul>
+                    <div class="voucher-footer">
+                        <div class="voucher-price">
+                            <span class="price-label">Valor do Voucher</span>
+                            <span class="price-value">R$ 399,90</span>
+                            <span class="price-installments">ou 6x de R$ 66,65</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="selectVoucher('aniversario', 399.90)">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo Empresarial -->
+            <div class="voucher-card">
+                <div class="voucher-image">💼</div>
+                <div class="voucher-content">
+                    <h3 class="voucher-title">Combo Empresarial</h3>
+                    <p class="voucher-description">
+                        Ideal para almoços corporativos! Para 4 pessoas.
+                    </p>
+                    <ul class="voucher-items">
+                        <li>4 Entradas executivas</li>
+                        <li>4 Pratos Executivos</li>
+                        <li>Café e sobremesa inclusos</li>
+                        <li>4 Bebidas</li>
+                        <li>Atendimento prioritário</li>
+                    </ul>
+                    <div class="voucher-footer">
+                        <div class="voucher-price">
+                            <span class="price-label">Valor do Voucher</span>
+                            <span class="price-value">R$ 249,90</span>
+                            <span class="price-installments">ou 5x de R$ 49,98</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="selectVoucher('empresarial', 249.90)">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon">⚡</div>
+                <h3 class="benefit-title">Receba na Hora</h3>
+                <p class="benefit-description">
+                    Após a confirmação do pagamento, você recebe o voucher por email e WhatsApp instantaneamente
+                </p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🎁</div>
+                <h3 class="benefit-title">Presente Perfeito</h3>
+                <p class="benefit-description">
+                    Ideal para presentear em aniversários, datas especiais ou simplesmente agradar alguém
+                </p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🔒</div>
+                <h3 class="benefit-title">Pagamento Seguro</h3>
+                <p class="benefit-description">
+                    Processamento via Mercado Pago com total segurança. PIX, cartão ou boleto
+                </p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">📅</div>
+                <h3 class="benefit-title">Validade Estendida</h3>
+                <p class="benefit-description">
+                    Seus vouchers têm 6 meses de validade para você usar quando quiser
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            <p class="section-subtitle">É simples e rápido!</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Escolha o Combo</h3>
+                    <p class="step-description">Selecione o voucher que mais combina com você</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Pague com Segurança</h3>
+                    <p class="step-description">PIX, cartão de crédito ou boleto via Mercado Pago</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Receba Instantaneamente</h3>
+                    <p class="step-description">Voucher enviado por email e WhatsApp na hora</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Use no Restaurante</h3>
+                    <p class="step-description">Apresente o código no JPR Móveis Rústicos e aproveite!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <h2>Pronto para uma experiência mexicana autêntica?</h2>
+        <p>Escolha seu combo agora e garanta sua mesa no melhor restaurante mexicano de Blumenau!</p>
+        <a href="#vouchers" class="btn btn-secondary">Ver Combos Disponíveis</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">🌮 JPR Móveis Rústicos</div>
+            <div class="footer-info">
+                <p><strong>Restaurante Mexicano em Blumenau</strong></p>
+                <p>📍 Endereço: [Inserir endereço]</p>
+                <p>📞 Telefone: <a href="tel:+5547999999999">(47) 99999-9999</a></p>
+                <p>📧 Email: <a href="mailto:contato@rosamexicano.com.br">contato@rosamexicano.com.br</a></p>
+            </div>
+            <div class="footer-social">
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="WhatsApp">💬</a>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2024 JPR Móveis Rústicos Blumenau - Todos os direitos reservados</p>
+                <p style="margin-top: 10px; font-size: 0.85em;">
+                    Sistema desenvolvido por <strong style="color: var(--mexican-yellow);">Starken Tecnologia</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Processando seu pedido...</p>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos vouchers
+        const vouchers = {
+            romantico: {
+                title: 'Combo Romântico',
+                price: 159.90,
+                description: 'Jantar romântico para 2 pessoas',
+                emoji: '💑'
+            },
+            familia: {
+                title: 'Combo Família',
+                price: 279.90,
+                description: 'Refeição completa para 4 pessoas',
+                emoji: '👨‍👩‍👧‍👦'
+            },
+            degustacao: {
+                title: 'Combo Degustação',
+                price: 89.90,
+                description: 'Experiência gastronômica para 1 pessoa',
+                emoji: '🌮'
+            },
+            taconight: {
+                title: 'Combo Taco Night',
+                price: 189.90,
+                description: 'Noite entre amigos para 2 pessoas',
+                emoji: '🎉'
+            },
+            aniversario: {
+                title: 'Combo Aniversário',
+                price: 399.90,
+                description: 'Celebração para 6 pessoas',
+                emoji: '🎂'
+            },
+            empresarial: {
+                title: 'Combo Empresarial',
+                price: 249.90,
+                description: 'Almoço corporativo para 4 pessoas',
+                emoji: '💼'
+            }
+        };
+
+        // Função para selecionar voucher
+        function selectVoucher(voucherId, price) {
+            const voucher = vouchers[voucherId];
+
+            // Salvar seleção no localStorage
+            localStorage.setItem('selectedVoucher', JSON.stringify({
+                id: voucherId,
+                ...voucher
+            }));
+
+            // Redirecionar para página de checkout
+            window.location.href = 'checkout.html';
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

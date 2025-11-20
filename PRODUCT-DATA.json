@@ -1,0 +1,508 @@
+{
+  "produtos": [
+    {
+      "id": "mesa-001",
+      "nome": "Mesa Imperatriz Natural",
+      "slug": "mesa-imperatriz-natural",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Mesa rústica em madeira natural com acabamento premium. Perfeita para eventos sofisticados e casamentos.",
+      "descricaoLonga": "A Mesa Imperatriz Natural é confeccionada em madeira maciça de reflorestamento, com acabamento natural que preserva a beleza autêntica da madeira. Seus pés torneados artesanalmente conferem elegância e estabilidade. Ideal para eventos que buscam sofisticação rústica.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Madeira de reflorestamento certificada",
+        "Acabamento natural fosco",
+        "Pés torneados artesanalmente",
+        "Suporta até 200kg",
+        "Tratamento anti-cupim"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-imperatriz-natural.jpg",
+      "galeria": [
+        "mesa-imperatriz-natural-1.jpg",
+        "mesa-imperatriz-natural-2.jpg",
+        "mesa-imperatriz-natural-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-002",
+      "nome": "Mesa Glamour",
+      "slug": "mesa-glamour",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Design elegante com detalhes sofisticados que encantam qualquer ambiente.",
+      "descricaoLonga": "A Mesa Glamour combina rusticidade com sofisticação. Detalhes trabalhados à mão e acabamento impecável fazem desta peça uma escolha premium para eventos exclusivos.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Design sofisticado",
+        "Acabamento premium",
+        "Detalhes artesanais",
+        "Madeira selecionada",
+        "Tratamento especial"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-glamour.jpg",
+      "galeria": [
+        "mesa-glamour-1.jpg",
+        "mesa-glamour-2.jpg",
+        "mesa-glamour-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-003",
+      "nome": "Mesa Glamour Mel",
+      "slug": "mesa-glamour-mel",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Acabamento mel com verniz fosco que realça a textura natural da madeira.",
+      "descricaoLonga": "Com acabamento especial cor mel, esta mesa traz calor e elegância. O verniz fosco premium protege sem perder a naturalidade da madeira.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Acabamento cor mel",
+        "Verniz fosco premium",
+        "Proteção UV",
+        "Resistente a manchas",
+        "Fácil limpeza"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-glamour-mel.jpg",
+      "galeria": [
+        "mesa-glamour-mel-1.jpg",
+        "mesa-glamour-mel-2.jpg",
+        "mesa-glamour-mel-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-004",
+      "nome": "Mesa Requinte Nobre",
+      "slug": "mesa-requinte-nobre",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Madeira nobre com design refinado e acabamento impecável.",
+      "descricaoLonga": "A Mesa Requinte Nobre é sinônimo de exclusividade. Confeccionada com as melhores madeiras nobres, traz refinamento e classe para eventos de alto padrão.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Madeira nobre selecionada",
+        "Design refinado",
+        "Acabamento de luxo",
+        "Qualidade superior",
+        "Exclusividade garantida"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-requinte-nobre.jpg",
+      "galeria": [
+        "mesa-requinte-nobre-1.jpg",
+        "mesa-requinte-nobre-2.jpg",
+        "mesa-requinte-nobre-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-005",
+      "nome": "Mesa Nobreza",
+      "slug": "mesa-nobreza",
+      "preco": 4200,
+      "precoFormatado": "R$ 4.200,00",
+      "categoria": "Premium Plus",
+      "descricao": "Premium: Madeira extra selecionada com dimensões ampliadas para grandes eventos.",
+      "descricaoLonga": "A Mesa Nobreza é nossa linha premium plus, com madeira extra selecionada e dimensões ampliadas. Perfeita para grandes celebrações e eventos corporativos de destaque.",
+      "dimensoes": {
+        "comprimento": "2,40m",
+        "largura": "1,10m",
+        "altura": "0,78m",
+        "espessura": "6cm"
+      },
+      "caracteristicas": [
+        "Madeira extra selecionada",
+        "Dimensões ampliadas",
+        "Acabamento premium plus",
+        "Maior capacidade",
+        "Design imponente"
+      ],
+      "disponibilidade": "Sob encomenda",
+      "prazoEntrega": "15-20 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-nobreza.jpg",
+      "galeria": [
+        "mesa-nobreza-1.jpg",
+        "mesa-nobreza-2.jpg",
+        "mesa-nobreza-3.jpg"
+      ],
+      "badge": "PREMIUM"
+    },
+    {
+      "id": "mesa-006",
+      "nome": "Mesa Encanto",
+      "slug": "mesa-encanto",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Design encantador com pés torneados e acabamento diferenciado.",
+      "descricaoLonga": "A Mesa Encanto traz charme e sofisticação com seus pés torneados artesanalmente. Cada detalhe é pensado para encantar e transformar seu evento.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Pés torneados artesanalmente",
+        "Design encantador",
+        "Acabamento diferenciado",
+        "Rusticidade elegante",
+        "Peça única"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-encanto.jpg",
+      "galeria": [
+        "mesa-encanto-1.jpg",
+        "mesa-encanto-2.jpg",
+        "mesa-encanto-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-007",
+      "nome": "Mesa Império",
+      "slug": "mesa-imperio",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Robustez e elegância combinadas em uma peça imponente.",
+      "descricaoLonga": "A Mesa Império une força e beleza. Sua estrutura robusta não abre mão da elegância, perfeita para eventos que exigem presença e sofisticação.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Estrutura robusta",
+        "Design imponente",
+        "Alta resistência",
+        "Elegância marcante",
+        "Durabilidade superior"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-imperio.jpg",
+      "galeria": [
+        "mesa-imperio-1.jpg",
+        "mesa-imperio-2.jpg",
+        "mesa-imperio-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-008",
+      "nome": "Mesa Charme",
+      "slug": "mesa-charme",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Charme rústico autêntico que conquista pela simplicidade elegante.",
+      "descricaoLonga": "A Mesa Charme celebra a beleza da simplicidade. Com seu charme rústico autêntico, conquista pela naturalidade e elegância discreta.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Charme rústico autêntico",
+        "Simplicidade elegante",
+        "Naturalidade preservada",
+        "Acabamento natural",
+        "Essência rústica"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-charme.jpg",
+      "galeria": [
+        "mesa-charme-1.jpg",
+        "mesa-charme-2.jpg",
+        "mesa-charme-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-009",
+      "nome": "Mesa Imperatriz",
+      "slug": "mesa-imperatriz",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Versão clássica com acabamento premium e design atemporal.",
+      "descricaoLonga": "A Mesa Imperatriz clássica traz um design atemporal que nunca sai de moda. Acabamento premium e atenção aos detalhes fazem dela uma escolha certeira.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Design atemporal",
+        "Acabamento premium",
+        "Versão clássica",
+        "Elegância eterna",
+        "Qualidade comprovada"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-imperatriz.jpg",
+      "galeria": [
+        "mesa-imperatriz-1.jpg",
+        "mesa-imperatriz-2.jpg",
+        "mesa-imperatriz-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-010",
+      "nome": "Mesa Luxúria",
+      "slug": "mesa-luxuria",
+      "preco": 4500,
+      "precoFormatado": "R$ 4.500,00",
+      "categoria": "Top Premium",
+      "descricao": "TOP: Nossa linha mais premium com madeira extra selecionada e dimensões generosas.",
+      "descricaoLonga": "A Mesa Luxúria representa o topo da nossa linha. Madeira extra selecionada, dimensões generosas e acabamento excepcional. Para eventos que não aceitam menos que o melhor.",
+      "dimensoes": {
+        "comprimento": "2,50m",
+        "largura": "1,20m",
+        "altura": "0,78m",
+        "espessura": "6cm"
+      },
+      "caracteristicas": [
+        "Linha TOP premium",
+        "Madeira extra selecionada",
+        "Dimensões generosas",
+        "Acabamento excepcional",
+        "Exclusividade máxima"
+      ],
+      "disponibilidade": "Sob encomenda",
+      "prazoEntrega": "20-25 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-luxuria.jpg",
+      "galeria": [
+        "mesa-luxuria-1.jpg",
+        "mesa-luxuria-2.jpg",
+        "mesa-luxuria-3.jpg"
+      ],
+      "badge": "TOP"
+    },
+    {
+      "id": "mesa-011",
+      "nome": "Mesa Requinte",
+      "slug": "mesa-requinte",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Requinte e sofisticação em cada detalhe desta peça especial.",
+      "descricaoLonga": "A Mesa Requinte honra seu nome com sofisticação em cada detalhe. Perfeita para quem busca elegância sem abrir mão da autenticidade rústica.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Requinte em cada detalhe",
+        "Sofisticação marcante",
+        "Acabamento especial",
+        "Design refinado",
+        "Elegância rústica"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-requinte.jpg",
+      "galeria": [
+        "mesa-requinte-1.jpg",
+        "mesa-requinte-2.jpg",
+        "mesa-requinte-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-012",
+      "nome": "Mesa Paris",
+      "slug": "mesa-paris",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Inspiração parisiense com elegância europeia e rusticidade brasileira.",
+      "descricaoLonga": "A Mesa Paris combina a elegância europeia com a autenticidade rústica brasileira. Uma fusão perfeita de estilos que resulta em uma peça única.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Inspiração parisiense",
+        "Elegância europeia",
+        "Fusão de estilos",
+        "Design diferenciado",
+        "Sofisticação internacional"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-paris.jpg",
+      "galeria": [
+        "mesa-paris-1.jpg",
+        "mesa-paris-2.jpg",
+        "mesa-paris-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    },
+    {
+      "id": "mesa-013",
+      "nome": "Mesa Sublime",
+      "slug": "mesa-sublime",
+      "preco": 3400,
+      "precoFormatado": "R$ 3.400,00",
+      "categoria": "Premium",
+      "descricao": "Beleza sublime e atemporal que transcende modismos.",
+      "descricaoLonga": "A Mesa Sublime é para quem aprecia o belo em sua forma mais pura. Design atemporal que transcende modismos e permanece sempre atual.",
+      "dimensoes": {
+        "comprimento": "2,20m",
+        "largura": "1,00m",
+        "altura": "0,78m",
+        "espessura": "5cm"
+      },
+      "caracteristicas": [
+        "Beleza sublime",
+        "Design atemporal",
+        "Transcende modismos",
+        "Eternamente atual",
+        "Pureza estética"
+      ],
+      "disponibilidade": "Em estoque",
+      "prazoEntrega": "10-15 dias úteis",
+      "sobMedida": true,
+      "imagem": "mesa-sublime.jpg",
+      "galeria": [
+        "mesa-sublime-1.jpg",
+        "mesa-sublime-2.jpg",
+        "mesa-sublime-3.jpg"
+      ],
+      "badge": "SOB MEDIDA"
+    }
+  ],
+  "categorias": [
+    {
+      "nome": "Premium",
+      "descricao": "Linha premium com madeira selecionada e acabamento de alta qualidade",
+      "faixaPreco": "R$ 3.400 - R$ 3.800"
+    },
+    {
+      "nome": "Premium Plus",
+      "descricao": "Madeira extra selecionada com dimensões ampliadas",
+      "faixaPreco": "R$ 4.200 - R$ 4.500"
+    },
+    {
+      "nome": "Top Premium",
+      "descricao": "Nossa linha mais exclusiva para eventos especiais",
+      "faixaPreco": "R$ 4.500+"
+    }
+  ],
+  "pagamento": {
+    "metodos": [
+      {
+        "tipo": "PIX",
+        "desconto": "5% de desconto à vista",
+        "icone": "pix-icon"
+      },
+      {
+        "tipo": "Cartão de Crédito",
+        "parcelas": "12x sem juros",
+        "bandeiras": ["Visa", "Mastercard", "Elo", "Amex"],
+        "icone": "credit-card-icon"
+      },
+      {
+        "tipo": "Boleto",
+        "prazo": "À vista",
+        "desconto": "3% de desconto",
+        "icone": "barcode-icon"
+      }
+    ]
+  },
+  "entrega": {
+    "regioes": [
+      {
+        "estado": "Santa Catarina",
+        "cidades": "Todas",
+        "prazo": "10-15 dias úteis",
+        "frete": "Consultar"
+      },
+      {
+        "estado": "Paraná",
+        "cidades": "Principais cidades",
+        "prazo": "15-20 dias úteis",
+        "frete": "Consultar"
+      }
+    ]
+  },
+  "contato": {
+    "telefone": "(47) 99716-8814",
+    "whatsapp": "5547997168814",
+    "email": "contato@luisalvesmesas.com.br",
+    "endereco": {
+      "rua": "Luis Alves",
+      "cidade": "Luis Alves",
+      "estado": "SC",
+      "cep": "88000-000"
+    },
+    "horario": {
+      "semana": "Segunda a Sexta: 8h às 18h",
+      "sabado": "Sábado: 8h às 12h",
+      "domingo": "Fechado"
+    },
+    "redesSociais": {
+      "instagram": "@luisalvesmesas",
+      "facebook": "/luisalvesmesas",
+      "whatsapp": "5547997168814"
+    }
+  }
+}

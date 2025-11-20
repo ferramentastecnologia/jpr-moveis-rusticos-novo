@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="Blog JPR Móveis Rústicos - Dicas de decoração, tendências, manutenção e muito mais sobre móveis rústicos e design.">
+    <meta name="keywords" content="blog móveis rústicos, dicas decoração, manutenção móveis, tendências 2024, design interior">
+    <meta name="author" content="JPR Móveis Rústicos">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog JPR Móveis Rústicos - Dicas e Tendências">
+    <meta property="og:description" content="Leia artigos sobre decoração, manutenção de móveis e tendências em design rústico.">
+    <meta property="og:url" content="https://jprmoveis.com.br/blog">
+
+    <title>Blog JPR Móveis Rústicos | Dicas, Tendências e Manutenção</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <link rel="canonical" href="https://jprmoveis.com.br/blog">
+    <style>
+        /* ========================
+           ESTILOS ESPECÍFICOS DO BLOG
+           ======================== */
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl);
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .blog-header h1 {
+            color: var(--secondary);
+            font-size: 36px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .blog-header p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-main {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: var(--spacing-2xl);
+        }
+
+        /* Seção de Filtros e Busca */
+        .blog-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-widget {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .sidebar-widget h3 {
+            color: var(--secondary);
+            font-size: 16px;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Search Widget */
+        .search-box {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid var(--gray-medium);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+        }
+
+        .search-box button {
+            padding: 10px 16px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .search-box button:hover {
+            background: #158c60;
+        }
+
+        /* Categorias */
+        .categories-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .category-btn {
+            padding: 10px 14px;
+            background: var(--gray-light);
+            border: none;
+            border-left: 3px solid transparent;
+            text-align: left;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background: #ececec;
+            border-left-color: var(--accent);
+        }
+
+        .category-btn.active {
+            background: rgba(27, 135, 104, 0.1);
+            border-left-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Grid de Artigos */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .article-image {
+            height: 180px;
+            background: linear-gradient(135deg, #dbc1a2 0%, #1b8768 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            line-height: 1;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: rgba(27, 135, 104, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+
+        .article-content {
+            padding: var(--spacing-lg);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-title {
+            color: var(--secondary);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+            flex-grow: 1;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--gray-light);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .article-author {
+            font-weight: 500;
+        }
+
+        .article-date {
+            font-size: 11px;
+        }
+
+        .reading-time {
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Mensagem de Nenhum Resultado */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: var(--text-secondary);
+        }
+
+        .no-results h3 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Paginação */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .pagination button {
+            padding: 10px 14px;
+            border: 1px solid var(--gray-medium);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .pagination button:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+        }
+
+        .pagination button.active {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .blog-main {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-sidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-md);
+                margin-bottom: var(--spacing-2xl);
+            }
+
+            .sidebar-widget {
+                margin-bottom: 0;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navegação -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="index-nova.html" class="nav-link">← Voltar à Loja</a>
+                <button class="btn-carrinho" onclick="toggleCarrinho()">
+                    🛒 <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Blog Area -->
+    <main class="blog-container">
+        <div class="blog-header">
+            <h1>Blog JPR Móveis Rústicos</h1>
+            <p>Dicas de decoração, tendências em design e tudo que você precisa saber sobre móveis rústicos</p>
+        </div>
+
+        <div class="blog-main">
+            <!-- Grid de Artigos -->
+            <section>
+                <div class="blog-grid" id="blog-grid">
+                    <!-- Artigos renderizados aqui -->
+                </div>
+
+                <!-- Paginação -->
+                <div class="pagination" id="pagination"></div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="blog-sidebar">
+                <!-- Widget de Busca -->
+                <div class="sidebar-widget">
+                    <h3>🔍 Buscar</h3>
+                    <div class="search-box">
+                        <input
+                            type="text"
+                            id="search-input"
+                            placeholder="Buscar artigos..."
+                            onkeyup="filtrarArtigos()"
+                        >
+                        <button onclick="filtrarArtigos()">Go</button>
+                    </div>
+                </div>
+
+                <!-- Widget de Categorias -->
+                <div class="sidebar-widget">
+                    <h3>📂 Categorias</h3>
+                    <div class="categories-list" id="categories-list">
+                        <!-- Categorias renderizadas aqui -->
+                    </div>
+                </div>
+
+                <!-- Widget de Artigos Populares -->
+                <div class="sidebar-widget">
+                    <h3>🔥 Populares</h3>
+                    <div id="popular-articles">
+                        <!-- Top 3 artigos -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JPR Móveis Rústicos. Todos os direitos reservados.</p>
+            <p class="footer-credit">Desenvolvido com ❤️ para qualidade em móveis</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="blog-dados.js"></script>
+    <script>
+        // Estado global
+        let categoriaSelecionada = null;
+        let paginaAtual = 1;
+        const artigosPorPagina = 6;
+        let artigosExibidos = [...artigos];
+
+        /**
+         * Inicializar blog
+         */
+        function inicializarBlog() {
+            renderizarCategorias();
+            renderizarArtigos();
+            renderizarPopulares();
+            atualizarCarrinhoCount();
+        }
+
+        /**
+         * Renderizar categorias na sidebar
+         */
+        function renderizarCategorias() {
+            const categorias = obterCategorias();
+            const container = document.getElementById('categories-list');
+
+            container.innerHTML = `
+                <button class="category-btn active" onclick="selecionarCategoria(null)">
+                    Todas (${artigos.length})
+                </button>
+                ${categorias.map(cat => `
+                    <button class="category-btn" onclick="selecionarCategoria('${cat}')">
+                        ${cat} (${obterArtigosPorCategoria(cat).length})
+                    </button>
+                `).join('')}
+            `;
+        }
+
+        /**
+         * Renderizar artigos principais
+         */
+        function renderizarArtigos() {
+            const container = document.getElementById('blog-grid');
+
+            if (artigosExibidos.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <h3>Nenhum artigo encontrado</h3>
+                        <p>Tente mudar seus filtros ou busca</p>
+                    </div>
+                `;
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+
+            // Paginação
+            const inicio = (paginaAtual - 1) * artigosPorPagina;
+            const fim = inicio + artigosPorPagina;
+            const artigosPaginados = artigosExibidos.slice(inicio, fim);
+
+            container.innerHTML = artigosPaginados.map(artigo => `
+                <div class="article-card" onclick="abrirArtigo(${artigo.id})">
+                    <div class="article-image">${artigo.imagem}</div>
+                    <div class="article-content">
+                        <span class="article-category">${artigo.categoria}</span>
+                        <h2 class="article-title">${artigo.titulo}</h2>
+                        <p class="article-excerpt">${artigo.resumo}</p>
+                        <div class="article-meta">
+                            <span class="article-author">📝 ${artigo.autor}</span>
+                            <span class="article-date">${formatarData(artigo.data)}</span>
+                        </div>
+                    </div>
+                    <div style="padding: var(--spacing-lg); padding-top: 0;">
+                        <span class="reading-time">⏱️ ${artigo.tempoLeitura} min</span>
+                    </div>
+                </div>
+            `).join('');
+
+            renderizarPaginacao();
+        }
+
+        /**
+         * Renderizar paginação
+         */
+        function renderizarPaginacao() {
+            const totalPaginas = Math.ceil(artigosExibidos.length / artigosPorPagina);
+            const container = document.getElementById('pagination');
+
+            if (totalPaginas <= 1) {
+                container.innerHTML = '';
+                return;
+            }
+
+            container.innerHTML = Array.from({ length: totalPaginas }, (_, i) => i + 1)
+                .map(pagina => `
+                    <button
+                        class="pagination-btn ${pagina === paginaAtual ? 'active' : ''}"
+                        onclick="irParaPagina(${pagina})"
+                    >
+                        ${pagina}
+                    </button>
+                `).join('');
+        }
+
+        /**
+         * Renderizar artigos populares
+         */
+        function renderizarPopulares() {
+            const top3 = obterUltimosArtigos(3);
+            const container = document.getElementById('popular-articles');
+
+            container.innerHTML = top3.map(artigo => `
+                <div style="padding: var(--spacing-sm) 0; cursor: pointer;" onclick="abrirArtigo(${artigo.id})">
+                    <div style="color: var(--secondary); font-weight: 600; font-size: 12px; line-height: 1.4;">
+                        ${artigo.titulo.substring(0, 40)}...
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">
+                        ${formatarData(artigo.data)}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * Selecionar categoria
+         */
+        function selecionarCategoria(categoria) {
+            categoriaSelecionada = categoria;
+            paginaAtual = 1;
+
+            if (categoria) {
+                artigosExibidos = obterArtigosPorCategoria(categoria);
+            } else {
+                artigosExibidos = [...artigos];
+            }
+
+            // Atualizar botões
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            renderizarArtigos();
+        }
+
+        /**
+         * Filtrar artigos por busca
+         */
+        function filtrarArtigos() {
+            const termo = document.getElementById('search-input').value;
+            paginaAtual = 1;
+
+            if (termo.trim() === '') {
+                if (categoriaSelecionada) {
+                    artigosExibidos = obterArtigosPorCategoria(categoriaSelecionada);
+                } else {
+                    artigosExibidos = [...artigos];
+                }
+            } else {
+                artigosExibidos = buscarArtigos(termo);
+                if (categoriaSelecionada) {
+                    artigosExibidos = artigosExibidos.filter(a => a.categoria === categoriaSelecionada);
+                }
+            }
+
+            renderizarArtigos();
+        }
+
+        /**
+         * Ir para página
+         */
+        function irParaPagina(pagina) {
+            paginaAtual = pagina;
+            renderizarArtigos();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /**
+         * Abrir artigo completo
+         */
+        function abrirArtigo(id) {
+            window.location.href = `artigo.html?id=${id}`;
+        }
+
+        /**
+         * Formatar data
+         */
+        function formatarData(data) {
+            const date = new Date(data);
+            return date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        /**
+         * Atualizar contagem de carrinho
+         */
+        function atualizarCarrinhoCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const count = cart.reduce((sum, item) => sum + item.quantidade, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        /**
+         * Toggle carrinho
+         */
+        function toggleCarrinho() {
+            window.location.href = 'index-nova.html#catalogo';
+        }
+
+        // Inicializar ao carregar
+        document.addEventListener('DOMContentLoaded', inicializarBlog);
+    </script>
+</body>
+</html>

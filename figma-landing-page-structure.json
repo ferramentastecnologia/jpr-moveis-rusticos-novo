@@ -1,0 +1,729 @@
+{
+  "name": "Luis Alves Mesas - Landing Page",
+  "version": "1.0.0",
+  "description": "Landing page completa para JPR Móveis Rústicos - Luis Alves",
+  "type": "FILE",
+  "document": {
+    "type": "DOCUMENT",
+    "children": [
+      {
+        "type": "CANVAS",
+        "name": "Design System",
+        "backgroundColor": {"r": 0.98, "g": 0.98, "b": 0.98, "a": 1},
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Colors",
+            "x": 0,
+            "y": 0,
+            "width": 1200,
+            "height": 400,
+            "children": [
+              {
+                "type": "RECTANGLE",
+                "name": "Primary",
+                "x": 0,
+                "y": 0,
+                "width": 120,
+                "height": 120,
+                "fills": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}],
+                "description": "#983421"
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "Secondary",
+                "x": 140,
+                "y": 0,
+                "width": 120,
+                "height": 120,
+                "fills": [{"type": "SOLID", "color": {"r": 0.827, "g": 0.694, "b": 0.522}}],
+                "description": "#D3B185"
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "Accent",
+                "x": 280,
+                "y": 0,
+                "width": 120,
+                "height": 120,
+                "fills": [{"type": "SOLID", "color": {"r": 0.137, "g": 0.686, "b": 0.141}}],
+                "description": "#23af24"
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "Text",
+                "x": 420,
+                "y": 0,
+                "width": 120,
+                "height": 120,
+                "fills": [{"type": "SOLID", "color": {"r": 0.090, "g": 0.145, "b": 0.165}}],
+                "description": "#17252a"
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "Footer",
+                "x": 560,
+                "y": 0,
+                "width": 120,
+                "height": 120,
+                "fills": [{"type": "SOLID", "color": {"r": 0.337, "g": 0.208, "b": 0.141}}],
+                "description": "#563524"
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "White",
+                "x": 700,
+                "y": 0,
+                "width": 120,
+                "height": 120,
+                "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1}}],
+                "description": "#ffffff",
+                "strokes": [{"type": "SOLID", "color": {"r": 0.8, "g": 0.8, "b": 0.8}}],
+                "strokeWeight": 1
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "Gray",
+                "x": 840,
+                "y": 0,
+                "width": 120,
+                "height": 120,
+                "fills": [{"type": "SOLID", "color": {"r": 0.973, "g": 0.976, "b": 0.980}}],
+                "description": "#f8f9fa"
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "Gray-Medium",
+                "x": 980,
+                "y": 0,
+                "width": 120,
+                "height": 120,
+                "fills": [{"type": "SOLID", "color": {"r": 0.290, "g": 0.361, "b": 0.388}}],
+                "description": "#4a5c63"
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Typography",
+            "x": 0,
+            "y": 450,
+            "width": 1200,
+            "height": 800,
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "H1-Desktop",
+                "x": 0,
+                "y": 0,
+                "characters": "Mesas Rústicas Premium",
+                "fontSize": 64,
+                "fontName": {"family": "Lobster Two", "style": "Bold"},
+                "lineHeight": {"value": 120, "unit": "PERCENT"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "H1-Mobile",
+                "x": 0,
+                "y": 100,
+                "characters": "Mesas Rústicas Premium",
+                "fontSize": 48,
+                "fontName": {"family": "Lobster Two", "style": "Bold"},
+                "lineHeight": {"value": 120, "unit": "PERCENT"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "H2-Desktop",
+                "x": 0,
+                "y": 200,
+                "characters": "Transforme seu espaço",
+                "fontSize": 40,
+                "fontName": {"family": "Poppins", "style": "SemiBold"},
+                "lineHeight": {"value": 130, "unit": "PERCENT"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.090, "g": 0.145, "b": 0.165}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "H2-Mobile",
+                "x": 0,
+                "y": 280,
+                "characters": "Transforme seu espaço",
+                "fontSize": 32,
+                "fontName": {"family": "Poppins", "style": "SemiBold"},
+                "lineHeight": {"value": 130, "unit": "PERCENT"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.090, "g": 0.145, "b": 0.165}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "H3",
+                "x": 0,
+                "y": 350,
+                "characters": "Artesanato de Excelência",
+                "fontSize": 28,
+                "fontName": {"family": "Poppins", "style": "SemiBold"},
+                "lineHeight": {"value": 140, "unit": "PERCENT"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.090, "g": 0.145, "b": 0.165}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "Body",
+                "x": 0,
+                "y": 420,
+                "characters": "Transforme seu espaço com móveis de qualidade incomparável",
+                "fontSize": 16,
+                "fontName": {"family": "Open Sans", "style": "Regular"},
+                "lineHeight": {"value": 160, "unit": "PERCENT"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.290, "g": 0.361, "b": 0.388}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "Button",
+                "x": 0,
+                "y": 490,
+                "characters": "VER CATÁLOGO COMPLETO",
+                "fontSize": 14,
+                "fontName": {"family": "Poppins", "style": "SemiBold"},
+                "letterSpacing": {"value": 1, "unit": "PIXELS"},
+                "textCase": "UPPER",
+                "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "Menu",
+                "x": 0,
+                "y": 540,
+                "characters": "Catálogo",
+                "fontSize": 16,
+                "fontName": {"family": "Poppins", "style": "Medium"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.090, "g": 0.145, "b": 0.165}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "Caption",
+                "x": 0,
+                "y": 590,
+                "characters": "Produto em destaque",
+                "fontSize": 14,
+                "fontName": {"family": "Open Sans", "style": "Regular"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.290, "g": 0.361, "b": 0.388}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "Small",
+                "x": 0,
+                "y": 630,
+                "characters": "Todos os direitos reservados",
+                "fontSize": 12,
+                "fontName": {"family": "Open Sans", "style": "Regular"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.6, "g": 0.6, "b": 0.6}}]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "CANVAS",
+        "name": "Components",
+        "backgroundColor": {"r": 0.96, "g": 0.96, "b": 0.96, "a": 1},
+        "children": [
+          {
+            "type": "COMPONENT_SET",
+            "name": "Button",
+            "x": 0,
+            "y": 0,
+            "children": [
+              {
+                "type": "COMPONENT",
+                "name": "variant=Primary,state=Default",
+                "width": 280,
+                "height": 56,
+                "children": [
+                  {
+                    "type": "RECTANGLE",
+                    "name": "bg",
+                    "width": 280,
+                    "height": 56,
+                    "cornerRadius": 8,
+                    "fills": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}],
+                    "effects": [
+                      {
+                        "type": "DROP_SHADOW",
+                        "color": {"r": 0, "g": 0, "b": 0, "a": 0.1},
+                        "offset": {"x": 0, "y": 2},
+                        "radius": 8,
+                        "visible": true
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "label",
+                    "characters": "VER CATÁLOGO",
+                    "fontSize": 14,
+                    "fontName": {"family": "Poppins", "style": "SemiBold"},
+                    "textCase": "UPPER",
+                    "letterSpacing": {"value": 1, "unit": "PIXELS"},
+                    "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1}}],
+                    "textAlignHorizontal": "CENTER",
+                    "textAlignVertical": "CENTER",
+                    "constraints": {"horizontal": "STRETCH", "vertical": "CENTER"}
+                  }
+                ]
+              },
+              {
+                "type": "COMPONENT",
+                "name": "variant=Primary,state=Hover",
+                "x": 300,
+                "width": 280,
+                "height": 56,
+                "children": [
+                  {
+                    "type": "RECTANGLE",
+                    "name": "bg",
+                    "width": 280,
+                    "height": 56,
+                    "cornerRadius": 8,
+                    "fills": [{"type": "SOLID", "color": {"r": 0.7, "g": 0.25, "b": 0.15}}],
+                    "effects": [
+                      {
+                        "type": "DROP_SHADOW",
+                        "color": {"r": 0, "g": 0, "b": 0, "a": 0.15},
+                        "offset": {"x": 0, "y": 4},
+                        "radius": 16,
+                        "visible": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "COMPONENT",
+                "name": "variant=Secondary,state=Default",
+                "x": 600,
+                "width": 280,
+                "height": 56,
+                "children": [
+                  {
+                    "type": "RECTANGLE",
+                    "name": "bg",
+                    "width": 280,
+                    "height": 56,
+                    "cornerRadius": 8,
+                    "fills": [{"type": "SOLID", "color": {"r": 0.827, "g": 0.694, "b": 0.522}}]
+                  }
+                ]
+              },
+              {
+                "type": "COMPONENT",
+                "name": "variant=Outline,state=Default",
+                "x": 900,
+                "width": 280,
+                "height": 56,
+                "children": [
+                  {
+                    "type": "RECTANGLE",
+                    "name": "bg",
+                    "width": 280,
+                    "height": 56,
+                    "cornerRadius": 8,
+                    "fills": [],
+                    "strokes": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}],
+                    "strokeWeight": 2
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "label",
+                    "characters": "SAIBA MAIS",
+                    "fontSize": 14,
+                    "fontName": {"family": "Poppins", "style": "SemiBold"},
+                    "textCase": "UPPER",
+                    "fills": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "COMPONENT",
+            "name": "Product Card",
+            "x": 0,
+            "y": 150,
+            "width": 380,
+            "height": 480,
+            "children": [
+              {
+                "type": "RECTANGLE",
+                "name": "container",
+                "width": 380,
+                "height": 480,
+                "cornerRadius": 12,
+                "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1}}],
+                "effects": [
+                  {
+                    "type": "DROP_SHADOW",
+                    "color": {"r": 0, "g": 0, "b": 0, "a": 0.1},
+                    "offset": {"x": 0, "y": 4},
+                    "radius": 12,
+                    "visible": true
+                  }
+                ]
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "image",
+                "x": 16,
+                "y": 16,
+                "width": 348,
+                "height": 280,
+                "cornerRadius": 8,
+                "fills": [{"type": "SOLID", "color": {"r": 0.9, "g": 0.9, "b": 0.9}}]
+              },
+              {
+                "type": "FRAME",
+                "name": "badge",
+                "x": 28,
+                "y": 28,
+                "width": 100,
+                "height": 32,
+                "cornerRadius": 6,
+                "fills": [{"type": "SOLID", "color": {"r": 0.137, "g": 0.686, "b": 0.141}}],
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "characters": "DESTAQUE",
+                    "fontSize": 12,
+                    "fontName": {"family": "Poppins", "style": "SemiBold"},
+                    "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1}}]
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "title",
+                "x": 24,
+                "y": 320,
+                "width": 332,
+                "characters": "Mesa Imperatriz Natural",
+                "fontSize": 20,
+                "fontName": {"family": "Poppins", "style": "SemiBold"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.090, "g": 0.145, "b": 0.165}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "description",
+                "x": 24,
+                "y": 355,
+                "width": 332,
+                "characters": "Madeira maciça de demolição",
+                "fontSize": 14,
+                "fontName": {"family": "Open Sans", "style": "Regular"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.290, "g": 0.361, "b": 0.388}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "price",
+                "x": 24,
+                "y": 400,
+                "characters": "R$ 3.400",
+                "fontSize": 28,
+                "fontName": {"family": "Poppins", "style": "Bold"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}]
+              },
+              {
+                "type": "INSTANCE",
+                "name": "cta-button",
+                "x": 24,
+                "y": 435,
+                "width": 332,
+                "height": 40
+              }
+            ]
+          },
+          {
+            "type": "COMPONENT",
+            "name": "Testimonial Card",
+            "x": 400,
+            "y": 150,
+            "width": 360,
+            "height": 200,
+            "children": [
+              {
+                "type": "RECTANGLE",
+                "name": "container",
+                "width": 360,
+                "height": 200,
+                "cornerRadius": 12,
+                "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1}}],
+                "effects": [
+                  {
+                    "type": "DROP_SHADOW",
+                    "color": {"r": 0, "g": 0, "b": 0, "a": 0.08},
+                    "offset": {"x": 0, "y": 2},
+                    "radius": 8,
+                    "visible": true
+                  }
+                ]
+              },
+              {
+                "type": "ELLIPSE",
+                "name": "avatar",
+                "x": 24,
+                "y": 24,
+                "width": 56,
+                "height": 56,
+                "fills": [{"type": "SOLID", "color": {"r": 0.827, "g": 0.694, "b": 0.522}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "name",
+                "x": 96,
+                "y": 28,
+                "characters": "Maria Silva",
+                "fontSize": 16,
+                "fontName": {"family": "Poppins", "style": "SemiBold"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.090, "g": 0.145, "b": 0.165}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "stars",
+                "x": 96,
+                "y": 52,
+                "characters": "★★★★★ 5.0",
+                "fontSize": 14,
+                "fontName": {"family": "Open Sans", "style": "Regular"},
+                "fills": [{"type": "SOLID", "color": {"r": 1, "g": 0.706, "b": 0}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "review",
+                "x": 24,
+                "y": 100,
+                "width": 312,
+                "characters": "\"Qualidade excepcional! A mesa transformou completamente nossa sala de jantar.\"",
+                "fontSize": 14,
+                "fontName": {"family": "Open Sans", "style": "Regular"},
+                "lineHeight": {"value": 160, "unit": "PERCENT"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.290, "g": 0.361, "b": 0.388}}]
+              }
+            ]
+          },
+          {
+            "type": "COMPONENT",
+            "name": "Feature Card",
+            "x": 800,
+            "y": 150,
+            "width": 260,
+            "height": 220,
+            "children": [
+              {
+                "type": "RECTANGLE",
+                "name": "container",
+                "width": 260,
+                "height": 220,
+                "cornerRadius": 12,
+                "fills": [{"type": "SOLID", "color": {"r": 0.973, "g": 0.976, "b": 0.980}}]
+              },
+              {
+                "type": "RECTANGLE",
+                "name": "icon",
+                "x": 24,
+                "y": 24,
+                "width": 48,
+                "height": 48,
+                "cornerRadius": 8,
+                "fills": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "title",
+                "x": 24,
+                "y": 92,
+                "width": 212,
+                "characters": "100% Artesanal",
+                "fontSize": 18,
+                "fontName": {"family": "Poppins", "style": "SemiBold"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.090, "g": 0.145, "b": 0.165}}]
+              },
+              {
+                "type": "TEXT",
+                "name": "description",
+                "x": 24,
+                "y": 128,
+                "width": 212,
+                "characters": "Cada peça é única, feita com dedicação e expertise",
+                "fontSize": 14,
+                "fontName": {"family": "Open Sans", "style": "Regular"},
+                "lineHeight": {"value": 150, "unit": "PERCENT"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.290, "g": 0.361, "b": 0.388}}]
+              }
+            ]
+          },
+          {
+            "type": "COMPONENT",
+            "name": "Navigation Bar",
+            "x": 0,
+            "y": 700,
+            "width": 1280,
+            "height": 80,
+            "children": [
+              {
+                "type": "RECTANGLE",
+                "name": "bg",
+                "width": 1280,
+                "height": 80,
+                "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1}}],
+                "effects": [
+                  {
+                    "type": "DROP_SHADOW",
+                    "color": {"r": 0, "g": 0, "b": 0, "a": 0.06},
+                    "offset": {"x": 0, "y": 2},
+                    "radius": 8,
+                    "visible": true
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "logo",
+                "x": 80,
+                "y": 24,
+                "characters": "JPR Móveis Rústicos",
+                "fontSize": 20,
+                "fontName": {"family": "Lobster Two", "style": "Bold"},
+                "fills": [{"type": "SOLID", "color": {"r": 0.596, "g": 0.204, "b": 0.129}}]
+              },
+              {
+                "type": "FRAME",
+                "name": "menu",
+                "x": 600,
+                "y": 20,
+                "width": 400,
+                "height": 40,
+                "layoutMode": "HORIZONTAL",
+                "itemSpacing": 32,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "characters": "Catálogo",
+                    "fontSize": 16,
+                    "fontName": {"family": "Poppins", "style": "Medium"}
+                  },
+                  {
+                    "type": "TEXT",
+                    "characters": "Sobre",
+                    "fontSize": 16,
+                    "fontName": {"family": "Poppins", "style": "Medium"}
+                  },
+                  {
+                    "type": "TEXT",
+                    "characters": "Depoimentos",
+                    "fontSize": 16,
+                    "fontName": {"family": "Poppins", "style": "Medium"}
+                  },
+                  {
+                    "type": "TEXT",
+                    "characters": "Contato",
+                    "fontSize": 16,
+                    "fontName": {"family": "Poppins", "style": "Medium"}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "colors": [
+      {"name": "Primary", "key": "color-primary", "value": "#983421"},
+      {"name": "Secondary", "key": "color-secondary", "value": "#D3B185"},
+      {"name": "Accent", "key": "color-accent", "value": "#23af24"},
+      {"name": "Text", "key": "color-text", "value": "#17252a"},
+      {"name": "Footer", "key": "color-footer", "value": "#563524"},
+      {"name": "White", "key": "color-white", "value": "#ffffff"},
+      {"name": "Gray", "key": "color-gray", "value": "#f8f9fa"},
+      {"name": "Gray-Medium", "key": "color-gray-medium", "value": "#4a5c63"}
+    ],
+    "textStyles": [
+      {"name": "H1-Desktop", "fontSize": 64, "fontFamily": "Lobster Two", "fontWeight": 700, "lineHeight": "120%"},
+      {"name": "H1-Mobile", "fontSize": 48, "fontFamily": "Lobster Two", "fontWeight": 700, "lineHeight": "120%"},
+      {"name": "H2-Desktop", "fontSize": 40, "fontFamily": "Poppins", "fontWeight": 600, "lineHeight": "130%"},
+      {"name": "H2-Mobile", "fontSize": 32, "fontFamily": "Poppins", "fontWeight": 600, "lineHeight": "130%"},
+      {"name": "H3", "fontSize": 28, "fontFamily": "Poppins", "fontWeight": 600, "lineHeight": "140%"},
+      {"name": "Body", "fontSize": 16, "fontFamily": "Open Sans", "fontWeight": 400, "lineHeight": "160%"},
+      {"name": "Button", "fontSize": 14, "fontFamily": "Poppins", "fontWeight": 600, "letterSpacing": "1px", "textTransform": "uppercase"},
+      {"name": "Menu", "fontSize": 16, "fontFamily": "Poppins", "fontWeight": 500},
+      {"name": "Caption", "fontSize": 14, "fontFamily": "Open Sans", "fontWeight": 400},
+      {"name": "Small", "fontSize": 12, "fontFamily": "Open Sans", "fontWeight": 400}
+    ],
+    "effects": [
+      {"name": "Card Shadow", "type": "DROP_SHADOW", "offset": {"x": 0, "y": 4}, "radius": 12, "color": "rgba(0,0,0,0.1)"},
+      {"name": "Card Hover", "type": "DROP_SHADOW", "offset": {"x": 0, "y": 8}, "radius": 24, "color": "rgba(0,0,0,0.15)"},
+      {"name": "Button Shadow", "type": "DROP_SHADOW", "offset": {"x": 0, "y": 2}, "radius": 8, "color": "rgba(0,0,0,0.1)"}
+    ]
+  },
+  "products": [
+    {"id": 1, "name": "Mesa Imperatriz Natural", "price": "R$ 3.400", "badge": "DESTAQUE", "description": "Madeira maciça de demolição"},
+    {"id": 2, "name": "Mesa Glamour", "price": "R$ 3.200", "description": "Design elegante e atemporal"},
+    {"id": 3, "name": "Mesa Glamour Mel", "price": "R$ 3.250", "description": "Acabamento em tom mel"},
+    {"id": 4, "name": "Mesa Requinte Nobre", "price": "R$ 3.800", "badge": "NOVO", "description": "Nobreza em cada detalhe"},
+    {"id": 5, "name": "Mesa Nobreza", "price": "R$ 4.200", "description": "Para ambientes sofisticados"},
+    {"id": 6, "name": "Mesa Encanto", "price": "R$ 2.900", "description": "Charme rústico autêntico"},
+    {"id": 7, "name": "Mesa Império", "price": "R$ 3.600", "description": "Imponência e elegância"},
+    {"id": 8, "name": "Mesa Charme", "price": "R$ 3.100", "description": "Beleza natural da madeira"},
+    {"id": 9, "name": "Mesa Imperatriz", "price": "R$ 3.500", "description": "Peça imponente e única"},
+    {"id": 10, "name": "Mesa Luxúria", "price": "R$ 4.500", "badge": "PREMIUM", "description": "O ápice do luxo rústico"},
+    {"id": 11, "name": "Mesa Requinte", "price": "R$ 3.700", "description": "Refinamento incomparável"},
+    {"id": 12, "name": "Mesa Paris", "price": "R$ 3.300", "description": "Inspiração francesa"},
+    {"id": 13, "name": "Mesa Sublime", "price": "R$ 3.900", "description": "Perfeição em madeira maciça"}
+  ],
+  "testimonials": [
+    {"id": 1, "name": "Maria Silva", "rating": 5.0, "avatar": "MS", "text": "Qualidade excepcional! A mesa transformou completamente nossa sala de jantar."},
+    {"id": 2, "name": "João Santos", "rating": 4.9, "avatar": "JS", "text": "Atendimento impecável e produto de primeira linha. Super recomendo!"},
+    {"id": 3, "name": "Ana Costa", "rating": 5.0, "avatar": "AC", "text": "A madeira é de uma qualidade impressionante. Valeu cada centavo investido."},
+    {"id": 4, "name": "Pedro Lima", "rating": 4.8, "avatar": "PL", "text": "Mesa linda e resistente. Chegou no prazo e bem embalada."},
+    {"id": 5, "name": "Carla Mendes", "rating": 5.0, "avatar": "CM", "text": "Artesanato de excelência! Todos os detalhes são perfeitos."},
+    {"id": 6, "name": "Roberto Alves", "rating": 4.9, "avatar": "RA", "text": "Melhor investimento para nossa casa. A mesa é simplesmente magnífica."},
+    {"id": 7, "name": "Juliana Rocha", "rating": 5.0, "avatar": "JR", "text": "Superou todas as expectativas. Produto premium de verdade!"},
+    {"id": 8, "name": "Marcos Ferreira", "rating": 4.9, "avatar": "MF", "text": "Entrega rápida, produto exatamente como descrito. Nota 10!"}
+  ],
+  "content": {
+    "hero": {
+      "headline": "Mesas Rústicas Premium",
+      "subheadline": "Transforme seu espaço com móveis de qualidade incomparável",
+      "cta1": "VER CATÁLOGO COMPLETO",
+      "cta2": "FALAR NO WHATSAPP"
+    },
+    "features": [
+      {"icon": "craft", "title": "100% Artesanal", "description": "Cada peça é única, feita com dedicação e expertise"},
+      {"icon": "wood", "title": "Madeira Nobre", "description": "Utilizamos apenas madeira de demolição de primeira qualidade"},
+      {"icon": "warranty", "title": "Garantia Vitalícia", "description": "Confiança total na durabilidade dos nossos móveis"},
+      {"icon": "delivery", "title": "Entrega Segura", "description": "Enviamos para todo Brasil com embalagem reforçada"}
+    ],
+    "about": {
+      "title": "Artesanato de Excelência em Luis Alves",
+      "text": "Há mais de 15 anos transformando madeira de demolição em obras de arte funcionais. Nossa paixão é criar móveis que contam histórias e duram gerações.",
+      "values": [
+        {"title": "Sustentabilidade", "text": "Reutilizamos madeira de demolição"},
+        {"title": "Qualidade", "text": "Rigor em cada etapa de produção"},
+        {"title": "Tradição", "text": "Técnicas artesanais preservadas"}
+      ]
+    },
+    "process": [
+      {"step": 1, "title": "Escolha", "description": "Selecione seu modelo favorito no catálogo"},
+      {"step": 2, "title": "Contato", "description": "Entre em contato via WhatsApp"},
+      {"step": 3, "title": "Produção", "description": "Criamos sua peça exclusiva com cuidado"},
+      {"step": 4, "title": "Entrega", "description": "Receba em casa com toda segurança"}
+    ],
+    "contact": {
+      "phone": "(47) 99716-8814",
+      "whatsapp": "5547997168814",
+      "instagram": "@jpr.moveisrusticos",
+      "facebook": "@jprmoveisrusticos",
+      "location": "Luis Alves - SC"
+    }
+  }
+}

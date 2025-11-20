@@ -1,0 +1,203 @@
+{
+  "perfil": {
+    "nome": "JPR Móveis Rústicos Blumenau",
+    "username": "@rosamexicanobnu",
+    "url_linktree": "https://linktr.ee/rosamexicanobnu",
+    "data_criacao": "2020-05-18T15:32:42.000Z",
+    "data_ultima_atualizacao": "2025-11-09T18:06:56.000Z",
+    "avatar": "https://ugc.production.linktr.ee/oIUQw8raR8GQtLzOe1eP_11d36199ebf1a804a236bb3f0f4c3bd91?io=true&size=avatar-v3_0",
+    "descricao": "Linktree. Make your link do more."
+  },
+  "design": {
+    "tema": {
+      "cor_fundo": "#780016",
+      "cor_texto": "#ffffff",
+      "cor_botoes_texto": "#ffffff",
+      "cor_botoes_fundo": "transparent",
+      "cor_borda_botoes": "#ffffff",
+      "estilo_borda": "1px solid",
+      "raio_borda": "28px",
+      "fonte_principal": "Link Sans Product",
+      "fonte_secundaria": "Inter"
+    },
+    "layout": {
+      "modo_avatar": "CIRCLE_SMALL",
+      "luminosidade": "LIGHT",
+      "estilo_botoes": "OUTLINE",
+      "layout_links": "stack",
+      "estilo_cantos": "ROUNDED_FULL",
+      "tipo_sombra": "SHADOW_NONE",
+      "largura_maxima_desktop": "580px"
+    }
+  },
+  "links": [
+    {
+      "ordem": 1,
+      "id": "503948283",
+      "titulo": "SITE OFICIAL - VOUCHERS BLACK NOVEMBER",
+      "url": "https://rosamexicanovouchers.netlify.app/",
+      "tipo": "promocao",
+      "categoria": "website",
+      "icone": "imagem_customizada",
+      "imagem_thumb": "https://ugc.production.linktr.ee/0891c8e9-1709-411a-9caa-af458d01433d_9765ccdf033584ae747592030138a5f9.webp?io=true&size=thumbnail-stack_v1_0",
+      "descricao": "Link promocional para vouchers da Black November"
+    },
+    {
+      "ordem": 2,
+      "id": "414987340",
+      "titulo": "Fazer Pedido Delivery",
+      "url": "https://cardapio.link/rosamexicano",
+      "tipo": "pedido_online",
+      "categoria": "delivery",
+      "icone": "archive",
+      "descricao": "Site de pedidos oficial do JPR Móveis Rústicos em Blumenau, SC. Confira nossos pratos no cardápio on-line com preços e promoções exclusivas para entrega e retirada em balcão."
+    },
+    {
+      "ordem": 3,
+      "id": "365203989",
+      "titulo": "Reservas",
+      "url": "https://www.rosamexicano.com.br/reservas",
+      "tipo": "reserva",
+      "categoria": "website",
+      "icone": "device-mobile",
+      "descricao": "Cozinha tradicional mexicana de menu repaginado, em ambiente descontraído de cores e mobiliário vibrantes. Desfrute da cultura Mexicana, das obras criadas pelo artista plástico Luiz Bernardes, das diversas sensações que essas cores e desenhos proporcionam e do fator talvez mais importantíssimo da cultura mexicana: a Culinária, aqui você vai saborear as delícias da gastronomia, tudo elaborado com muito carinho e fidelidade aos ingredientes e a originalidade dos pratos. Aprecie todas essas sensações e emoções. A cor vibrante e cheia de energia preenche nossos ambientes."
+    },
+    {
+      "ordem": 4,
+      "id": "360904238",
+      "titulo": "Site",
+      "url": "https://www.rosamexicano.com.br/blumenau",
+      "tipo": "website",
+      "categoria": "website",
+      "icone": "sitemap",
+      "descricao": "Site oficial JPR Móveis Rústicos Blumenau"
+    },
+    {
+      "ordem": 5,
+      "id": "28381877",
+      "titulo": "WhatsApp Delivery",
+      "url": "https://api.whatsapp.com/send?phone=5547992334348&text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20😊",
+      "tipo": "whatsapp",
+      "categoria": "contato",
+      "icone": "brand-whatsapp",
+      "telefone": "+55 47 99233-4348",
+      "mensagem_padrao": "Olá! Gostaria de fazer um pedido. 😊",
+      "descricao": "Contato direto via WhatsApp para pedidos delivery"
+    },
+    {
+      "ordem": 6,
+      "id": "28381591",
+      "titulo": "Cardápio Salão",
+      "url": "https://drive.google.com/file/d/1aRaS9oJXH0V-qHj9Xr7xot9HsoO4JZfz/view?usp=sharing",
+      "tipo": "documento",
+      "categoria": "menu",
+      "icone": "clipboard-list",
+      "descricao": "Cardápio para consumo no salão (arquivo Google Drive)"
+    },
+    {
+      "ordem": 7,
+      "id": "28386035",
+      "titulo": "Facebook",
+      "url": "https://www.facebook.com/rosamexicanoblumenau/",
+      "tipo": "social_media",
+      "categoria": "redes_sociais",
+      "icone": "brand-facebook",
+      "plataforma": "Facebook",
+      "descricao": "Página oficial do Facebook"
+    },
+    {
+      "ordem": 8,
+      "id": "28382904",
+      "titulo": "Localização",
+      "url": "https://www.google.com/maps/place/Rosa+Mexicano/@-26.9072606,-49.0731114,15z/data=!4m5!3m4!1s0x0:0x3e1868fa95a1925b!8m2!3d-26.9072606!4d-49.0731114",
+      "tipo": "localizacao",
+      "categoria": "endereco",
+      "icone": "map-pin",
+      "coordenadas": {
+        "latitude": "-26.9072606",
+        "longitude": "-49.0731114"
+      },
+      "descricao": "★★★★★ · Mexican restaurant"
+    }
+  ],
+  "redes_sociais": {
+    "facebook": {
+      "presente": true,
+      "url": "https://www.facebook.com/rosamexicanoblumenau/",
+      "posicao_na_lista": 7
+    },
+    "instagram": {
+      "presente": false,
+      "observacao": "Instagram não encontrado diretamente no Linktree, mas com base na pesquisa existe @rosamexicanoblumenau no Instagram"
+    },
+    "whatsapp": {
+      "presente": true,
+      "numero": "+55 47 99233-4348",
+      "posicao_na_lista": 5
+    }
+  },
+  "categorias_de_links": {
+    "promocao": 1,
+    "delivery": 1,
+    "website": 2,
+    "contato": 1,
+    "menu": 1,
+    "redes_sociais": 1,
+    "endereco": 1
+  },
+  "estatisticas": {
+    "total_links": 8,
+    "links_com_imagem_customizada": 1,
+    "links_com_icone_padrao": 7,
+    "links_externos": 8,
+    "links_redes_sociais": 1,
+    "links_contato": 1,
+    "links_vendas": 3
+  },
+  "funcionalidades_ativas": {
+    "botao_compartilhar": true,
+    "cookies_banner": true,
+    "logo_linktree_visivel": true,
+    "compartilhamento_links": true,
+    "link_signup": false,
+    "google_analytics": false,
+    "facebook_pixel": false,
+    "tiktok_pixel": false,
+    "venmo": true,
+    "square_wallet": true
+  },
+  "informacoes_tecnicas": {
+    "tier": "free",
+    "timezone": "America/Sao_Paulo",
+    "plataforma": "Linktree",
+    "versao_framework": "Next.js",
+    "links_plataformas_detectadas": ["Facebook"],
+    "avatar_type": "IMAGE",
+    "social_links_position": "BOTTOM"
+  },
+  "observacoes": [
+    "O Linktree possui 8 links principais organizados verticalmente",
+    "Destaque para promoção de Black November no primeiro link",
+    "Duas opções de pedido: Site de delivery e WhatsApp",
+    "Cardápios separados: um para delivery (integrado) e outro para salão (PDF)",
+    "Forte presença de cor vermelha (#780016) relacionada à identidade da marca",
+    "Botões com bordas arredondadas (28px) e estilo outline",
+    "Link para reservas de mesa no site oficial",
+    "Localização via Google Maps com avaliação 5 estrelas",
+    "Apenas Facebook como rede social vinculada diretamente no Linktree",
+    "Design clean e minimalista focado em conversão"
+  ],
+  "recomendacoes": [
+    "Adicionar link do Instagram (@rosamexicanoblumenau) no Linktree",
+    "Considerar adicionar horários de funcionamento na descrição do perfil",
+    "Avaliar upgrade para tier pago para analytics e personalização avançada",
+    "Adicionar link para avaliações/reviews (TripAdvisor, Google Reviews)",
+    "Considerar adicionar seção de eventos especiais ou programação semanal (Mariachi)"
+  ],
+  "metadata": {
+    "data_extracao": "2025-11-09",
+    "metodo_extracao": "Web scraping via curl",
+    "arquivo_fonte": "/tmp/linktree_rosa.html",
+    "url_analisada": "https://linktr.ee/rosamexicanobnu"
+  }
+}

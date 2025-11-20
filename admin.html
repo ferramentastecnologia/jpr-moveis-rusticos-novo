@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Admin Dashboard - JPR Móveis Rústicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .admin-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* ========================
+           SIDEBAR
+           ======================== */
+
+        .sidebar {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            height: 50px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-user {
+            font-size: 12px;
+            color: #bdc3c7;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-item {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 12px 16px;
+            color: #bdc3c7;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sidebar-link.active {
+            background: #1b8768;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* ========================
+           MAIN CONTENT
+           ======================== */
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .page-title p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .page-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #1b8768;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #158c60;
+        }
+
+        .btn-secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .btn-secondary:hover {
+            background: #d5dbdb;
+        }
+
+        /* ========================
+           STATS GRID
+           ======================== */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .stat-change {
+            font-size: 12px;
+            color: #1b8768;
+        }
+
+        /* ========================
+           TABELAS
+           ======================== */
+
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .table-header {
+            padding: 20px;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h2 {
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f8f9fa;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        th {
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 14px;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-confirmado {
+            background: #ffeaa7;
+            color: #d63031;
+        }
+
+        .status-preparacao {
+            background: #dfe6e9;
+            color: #636e72;
+        }
+
+        .status-enviado {
+            background: #74b9ff;
+            color: #0984e3;
+        }
+
+        .status-entregue {
+            background: #55efc4;
+            color: #00b894;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            margin: 0 4px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .edit-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .approve-btn {
+            background: #27ae60;
+            color: white;
+        }
+
+        /* ========================
+           FORMS
+           ======================== */
+
+        .form-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ========================
+           MODAIS
+           ======================== */
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            color: #2c3e50;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+
+        .close-btn:hover {
+            color: #2c3e50;
+        }
+
+        /* ========================
+           RESPONSIVO
+           ======================== */
+
+        @media (max-width: 768px) {
+            .admin-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -250px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Modal -->
+    <div class="modal active" id="login-modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Admin JPR Móveis</h2>
+            </div>
+            <form id="login-form" onsubmit="fazerLoginForm(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" placeholder="admin@jprmoveis.com.br" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="login-senha" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Entrar
+                </button>
+                <p style="text-align: center; margin-top: 20px; font-size: 12px; color: #7f8c8d;">
+                    Demo: admin@jprmoveis.com.br / admin123
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-container" id="admin-dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="sidebar-logo">
+                <div class="sidebar-user" id="sidebar-user"></div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a class="sidebar-link active" onclick="abrirSecao('dashboard')">📊 Dashboard</a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" onclick="abrirSecao('vendas')">💰 Vendas</a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" onclick="abrirSecao('produtos')">📦 Produtos</a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" onclick="abrirSecao('avaliacoes')">⭐ Avaliações</a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" onclick="abrirSecao('usuarios')">👥 Usuários</a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" onclick="abrirSecao('atividades')">📋 Atividades</a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" onclick="abrirSecao('relatorios')">📈 Relatórios</a>
+                </li>
+                <li class="sidebar-item" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <a class="sidebar-link" onclick="fazerLogoutForm()" style="color: #e74c3c;">🚪 Sair</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-secao">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                        <p>Visão geral de sua loja</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary" onclick="exportarDadosJSON()">💾 Backup</button>
+                    </div>
+                </div>
+
+                <div class="stats-grid" id="stats-grid">
+                    <!-- Stats renderizadas aqui -->
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Últimas Vendas</h2>
+                        <button class="btn btn-primary btn-small" onclick="abrirSecao('vendas')">Ver Todas</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Produto</th>
+                                <th>Valor</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ultimas-vendas">
+                            <!-- Renderizadas aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Vendas Section -->
+            <section id="vendas-secao" style="display: none;">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Vendas</h1>
+                        <p>Gerencie todas as vendas</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Todas as Vendas</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Produto</th>
+                                <th>Valor</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="todas-vendas">
+                            <!-- Renderizadas aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Produtos Section -->
+            <section id="produtos-secao" style="display: none;">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Produtos</h1>
+                        <p>Gerencie seu catálogo</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary" onclick="abrirModalAdicionarProduto()">➕ Novo Produto</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Catálogo de Produtos</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Categoria</th>
+                                <th>Estoque</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-produtos">
+                            <!-- Renderizados aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Avaliações Section -->
+            <section id="avaliacoes-secao" style="display: none;">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Avaliações</h1>
+                        <p>Aprove e responda avaliações de clientes</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Avaliações Pendentes</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Produto</th>
+                                <th>Rating</th>
+                                <th>Título</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="avaliacoes-pendentes">
+                            <!-- Renderizadas aqui -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-container" style="margin-top: 30px;">
+                    <div class="table-header">
+                        <h2>Avaliações Aprovadas</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Produto</th>
+                                <th>Rating</th>
+                                <th>Tem Resposta?</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="avaliacoes-aprovadas">
+                            <!-- Renderizadas aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Usuários Section -->
+            <section id="usuarios-secao" style="display: none;">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Usuários Admin</h1>
+                        <p>Gerencie acessos ao painel</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary" onclick="abrirModalAdicionarUsuario()">➕ Novo Usuário</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Usuários</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Último Acesso</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-usuarios">
+                            <!-- Renderizados aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Atividades Section -->
+            <section id="atividades-secao" style="display: none;">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Atividades</h1>
+                        <p>Histórico de mudanças no sistema</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Últimas Atividades</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Tipo</th>
+                                <th>Descrição</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-atividades">
+                            <!-- Renderizadas aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Relatórios Section -->
+            <section id="relatorios-secao" style="display: none;">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Relatórios</h1>
+                        <p>Análises e exportações</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Total de Vendas</div>
+                        <div class="stat-number" id="rel-total-vendas">0</div>
+                        <button class="btn btn-secondary btn-small" onclick="exportarRelatorioCSV('vendas')" style="width: 100%; margin-top: 10px;">
+                            📥 Exportar CSV
+                        </button>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Receita Total</div>
+                        <div class="stat-number" id="rel-receita">R$ 0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Total de Avaliações</div>
+                        <div class="stat-number" id="rel-total-aval">0</div>
+                        <button class="btn btn-secondary btn-small" onclick="exportarRelatorioCSV('avaliacoes')" style="width: 100%; margin-top: 10px;">
+                            📥 Exportar CSV
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data-produtos.js"></script>
+    <script src="avaliacoes-dados.js"></script>
+    <script src="admin-dados.js"></script>
+    <script>
+        /**
+         * Fazer login do form
+         */
+        function fazerLoginForm(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('login-email').value;
+            const senha = document.getElementById('login-senha').value;
+
+            if (fazerLogin(email, senha)) {
+                document.getElementById('login-modal').classList.remove('active');
+                document.getElementById('admin-dashboard').style.display = 'grid';
+
+                inicializarDashboard();
+            } else {
+                alert('Email ou senha incorretos!');
+            }
+        }
+
+        /**
+         * Fazer logout
+         */
+        function fazerLogoutForm() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                fazerLogout();
+                document.getElementById('login-modal').classList.add('active');
+                document.getElementById('admin-dashboard').style.display = 'none';
+                document.getElementById('login-form').reset();
+            }
+        }
+
+        /**
+         * Inicializar dashboard
+         */
+        function inicializarDashboard() {
+            const usuario = obterUsuarioLogado();
+            document.getElementById('sidebar-user').textContent = `👤 ${usuario.nome}`;
+
+            renderizarDashboard();
+            renderizarVendas();
+            renderizarProdutos();
+            renderizarAvaliacoes();
+            renderizarUsuarios();
+            renderizarAtividades();
+            renderizarRelatorios();
+        }
+
+        /**
+         * Abrir seção
+         */
+        function abrirSecao(secao) {
+            // Esconder todas as seções
+            document.querySelectorAll('[id$="-secao"]').forEach(el => {
+                el.style.display = 'none';
+            });
+
+            // Remover active dos links
+            document.querySelectorAll('.sidebar-link').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Mostrar seção selecionada
+            const secaoEl = document.getElementById(secao + '-secao');
+            if (secaoEl) {
+                secaoEl.style.display = 'block';
+                event.target.classList.add('active');
+            }
+        }
+
+        /**
+         * Renderizar dashboard
+         */
+        function renderizarDashboard() {
+            const stats = obterDashboardStats();
+
+            const statsHTML = `
+                <div class="stat-card">
+                    <div class="stat-label">Total de Produtos</div>
+                    <div class="stat-number">${stats.totalProdutos}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Avaliações</div>
+                    <div class="stat-number">${stats.totalAvaliacoes}</div>
+                    <div class="stat-change">Pendentes: ${stats.avaliacoesPendentes}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Nota Média</div>
+                    <div class="stat-number">⭐ ${stats.mediaAvaliacoes}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Vendidos Hoje</div>
+                    <div class="stat-number">${stats.vendidos}</div>
+                    <div class="stat-change">R$ ${stats.receita.toLocaleString('pt-BR')}</div>
+                </div>
+            `;
+
+            document.getElementById('stats-grid').innerHTML = statsHTML;
+
+            const vendas = obterVendas().slice(0, 5);
+            const vendasHTML = vendas.map(v => `
+                <tr>
+                    <td>${v.cliente}</td>
+                    <td>${v.produto}</td>
+                    <td>R$ ${v.valor.toLocaleString('pt-BR')}</td>
+                    <td>${v.data}</td>
+                    <td><span class="status-badge status-${v.status.toLowerCase().replace(' ', '-')}">${v.status}</span></td>
+                </tr>
+            `).join('');
+
+            document.getElementById('ultimas-vendas').innerHTML = vendasHTML;
+        }
+
+        /**
+         * Renderizar vendas
+         */
+        function renderizarVendas() {
+            const vendas = obterVendas();
+            const vendasHTML = vendas.map(v => `
+                <tr>
+                    <td>#${v.id}</td>
+                    <td>${v.cliente}</td>
+                    <td>${v.produto}</td>
+                    <td>R$ ${v.valor.toLocaleString('pt-BR')}</td>
+                    <td>${v.data}</td>
+                    <td><span class="status-badge status-${v.status.toLowerCase().replace(' ', '-')}">${v.status}</span></td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editarVenda(${v.id})">Editar</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            document.getElementById('todas-vendas').innerHTML = vendasHTML;
+        }
+
+        /**
+         * Renderizar produtos
+         */
+        function renderizarProdutos() {
+            const produtos = obterProdutosAdmin();
+            const produtosHTML = produtos.map(p => `
+                <tr>
+                    <td>${p.nome}</td>
+                    <td>R$ ${p.preco.toLocaleString('pt-BR')}</td>
+                    <td>${p.categoria}</td>
+                    <td><strong>10+</strong></td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editarProduto(${p.id})">Editar</button>
+                        <button class="action-btn delete-btn" onclick="deletarProdutoConfirm(${p.id})">Deletar</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            document.getElementById('lista-produtos').innerHTML = produtosHTML;
+        }
+
+        /**
+         * Renderizar avaliações
+         */
+        function renderizarAvaliacoes() {
+            const pendentes = obterAvaliacoesPendentes();
+            const aprovadas = obterAvaliacoesVerificadas();
+
+            const pendentesHTML = pendentes.map(a => `
+                <tr>
+                    <td>${a.cliente}</td>
+                    <td>${a.produto}</td>
+                    <td>${'⭐'.repeat(a.rating)}</td>
+                    <td>${a.titulo}</td>
+                    <td>${a.data}</td>
+                    <td>
+                        <button class="action-btn approve-btn" onclick="aprovarAvaliacaoForm(${a.id})">Aprovar</button>
+                        <button class="action-btn delete-btn" onclick="rejeitarAvaliacaoForm(${a.id})">Rejeitar</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            const aprovadasHTML = aprovadas.map(a => `
+                <tr>
+                    <td>${a.cliente}</td>
+                    <td>${a.produto}</td>
+                    <td>${'⭐'.repeat(a.rating)}</td>
+                    <td>${a.resposta ? '✓ Sim' : 'Não'}</td>
+                    <td>${a.data}</td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editarRespostaForm(${a.id})">Responder</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            document.getElementById('avaliacoes-pendentes').innerHTML = pendentesHTML || '<tr><td colspan="6" style="text-align: center;">Nenhuma avaliação pendente</td></tr>';
+            document.getElementById('avaliacoes-aprovadas').innerHTML = aprovadasHTML;
+        }
+
+        /**
+         * Renderizar usuários
+         */
+        function renderizarUsuarios() {
+            const usuarios = obterUsuariosAdmin();
+            const usuariosHTML = usuarios.map(u => `
+                <tr>
+                    <td>${u.nome}</td>
+                    <td>${u.email}</td>
+                    <td>${u.role}</td>
+                    <td>${u.ativo ? '✓ Ativo' : '✗ Inativo'}</td>
+                    <td>${u.ultimoAcesso || '-'}</td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editarUsuarioForm(${u.id})">Editar</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            document.getElementById('lista-usuarios').innerHTML = usuariosHTML;
+        }
+
+        /**
+         * Renderizar atividades
+         */
+        function renderizarAtividades() {
+            const atividades = obterUltimasAtividades(20);
+            const atividadesHTML = atividades.map(a => `
+                <tr>
+                    <td>${a.usuario}</td>
+                    <td>${a.tipo}</td>
+                    <td>${a.descricao}</td>
+                    <td>${a.data.split('T')[0]}</td>
+                </tr>
+            `).join('');
+
+            document.getElementById('lista-atividades').innerHTML = atividadesHTML || '<tr><td colspan="4">Nenhuma atividade registrada</td></tr>';
+        }
+
+        /**
+         * Renderizar relatórios
+         */
+        function renderizarRelatorios() {
+            const statsVendas = obterEstatisticasVendas();
+            const statsAval = obterEstatisticasAvaliacoes();
+
+            document.getElementById('rel-total-vendas').textContent = statsVendas.total;
+            document.getElementById('rel-receita').textContent = 'R$ ' + statsVendas.receita.toLocaleString('pt-BR');
+            document.getElementById('rel-total-aval').textContent = statsAval.total;
+        }
+
+        /**
+         * Funções auxiliares
+         */
+        function editarVenda(id) {
+            alert('Funcionalidade: Editar Venda #' + id);
+            registrarAtividade('venda', 'Tentativa de edição de venda');
+        }
+
+        function editarProduto(id) {
+            alert('Funcionalidade: Editar Produto #' + id);
+            registrarAtividade('produto', 'Tentativa de edição de produto');
+        }
+
+        function deletarProdutoConfirm(id) {
+            if (confirm('Tem certeza que deseja deletar este produto?')) {
+                deletarProduto(id);
+                renderizarProdutos();
+                registrarAtividade('produto', 'Deletou produto #' + id);
+            }
+        }
+
+        function aprovarAvaliacaoForm(id) {
+            if (confirm('Aprovar esta avaliação?')) {
+                aprovarAvaliacao(id);
+                renderizarAvaliacoes();
+                registrarAtividade('avaliacao', 'Aprovou avaliação #' + id);
+            }
+        }
+
+        function rejeitarAvaliacaoForm(id) {
+            if (confirm('Rejeitar esta avaliação?')) {
+                rejeitarAvaliacao(id);
+                renderizarAvaliacoes();
+                registrarAtividade('avaliacao', 'Rejeitou avaliação #' + id);
+            }
+        }
+
+        function editarRespostaForm(id) {
+            const texto = prompt('Digite sua resposta:');
+            if (texto) {
+                adicionarRespostaAvaliacao(id, texto);
+                renderizarAvaliacoes();
+                registrarAtividade('avaliacao', 'Respondeu avaliação #' + id);
+            }
+        }
+
+        function editarUsuarioForm(id) {
+            alert('Funcionalidade: Editar Usuário #' + id);
+        }
+
+        function abrirModalAdicionarProduto() {
+            alert('Funcionalidade: Adicionar Novo Produto');
+        }
+
+        function abrirModalAdicionarUsuario() {
+            alert('Funcionalidade: Adicionar Novo Usuário');
+        }
+
+        // Inicializar ao carregar
+        window.addEventListener('load', () => {
+            const usuario = obterUsuarioLogado();
+            if (usuario) {
+                document.getElementById('login-modal').classList.remove('active');
+                document.getElementById('admin-dashboard').style.display = 'grid';
+                inicializarDashboard();
+            }
+        });
+    </script>
+</body>
+</html>

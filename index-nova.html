@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Meta Tags Essenciais -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="JPR Móveis Rústicos - Mesas e móveis de madeira premium, artesanais e personalizáveis. 13+ modelos com garantia de 2 anos. Entrega em SC e PR. Aproveite descontos exclusivos!">
+    <meta name="keywords" content="móveis rústicos, mesas de madeira, móveis sob medida, móveis artesanais, Blumenau, Santa Catarina">
+    <meta name="author" content="JPR Móveis Rústicos">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Portuguese">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph (Social Media) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JPR Móveis Rústicos - Mesas Premium de Madeira">
+    <meta property="og:description" content="Móveis artesanais de alta qualidade, personalizáveis e com garantia. Entrega em Santa Catarina e Paraná.">
+    <meta property="og:url" content="https://jprmoveis.com.br">
+    <meta property="og:image" content="https://jprmoveis.com.br/og-image.jpg">
+    <meta property="og:site_name" content="JPR Móveis Rústicos">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JPR Móveis Rústicos">
+    <meta name="twitter:description" content="Móveis artesanais premium em madeira rústica">
+    <meta name="twitter:image" content="https://jprmoveis.com.br/og-image.jpg">
+
+    <!-- Other Meta Tags -->
+    <meta name="theme-color" content="#1b8768">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <title>JPR Móveis Rústicos - Mesas Premium de Madeira | Artesanal 100% Personalizável</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <link rel="canonical" href="https://jprmoveis.com.br">
+    <link rel="alternate" hreflang="pt-BR" href="https://jprmoveis.com.br">
+</head>
+<body>
+    <!-- Header / Navegação -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="#catalogo" class="nav-link">Catálogo</a>
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="galeria.html" class="nav-link">🖼️ Galeria</a>
+                <a href="blog.html" class="nav-link">📝 Blog</a>
+                <a href="avaliacoes.html" class="nav-link">⭐ Avaliações</a>
+                <a href="#contato" class="nav-link">Contato</a>
+                <a href="rastreamento.html" class="nav-link">📦 Rastreamento</a>
+                <button class="btn-carrinho" onclick="toggleCarrinho()">
+                    🛒 <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section - Melhorado -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🏆 Móveis Artesanais Premium</div>
+            <h2>Mesas Rústicas de Madeira Maciça</h2>
+            <p class="hero-subtitle">Confeccionadas com maestria • Sob medida • Garantia de qualidade</p>
+
+            <div class="hero-highlights">
+                <div class="hero-highlight">
+                    <span class="highlight-number">13+</span>
+                    <span class="highlight-label">Modelos</span>
+                </div>
+                <div class="hero-highlight">
+                    <span class="highlight-number">100%</span>
+                    <span class="highlight-label">Personalizável</span>
+                </div>
+                <div class="hero-highlight">
+                    <span class="highlight-number">10-25</span>
+                    <span class="highlight-label">Dias de Entrega</span>
+                </div>
+            </div>
+
+            <button class="btn-primary btn-large" onclick="scrollTo('catalogo')">Explorar Catálogo</button>
+
+            <div class="hero-social">
+                <p>⭐⭐⭐⭐⭐ 4.8 (127 avaliações)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Filtros e Busca - Melhorada -->
+    <section class="catalogo-controls">
+        <div class="container">
+            <!-- Busca -->
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="🔍 Buscar por nome, tamanho, estilo..."
+                    class="search-input"
+                >
+            </div>
+
+            <!-- Filtros e Ordenação -->
+            <div class="controls-row">
+                <div class="filters-group">
+                    <button class="filter-btn active" data-filter="todas">Todas (13)</button>
+                    <button class="filter-btn" data-filter="Premium">Premium (11)</button>
+                    <button class="filter-btn" data-filter="Premium Plus">Premium Plus (1)</button>
+                    <button class="filter-btn" data-filter="Top Premium">Top Premium (1)</button>
+                </div>
+
+                <div class="sort-controls">
+                    <select id="sort-select" class="sort-select">
+                        <option value="relevancia">Ordenar: Relevância</option>
+                        <option value="preco-menor">Preço: Menor</option>
+                        <option value="preco-maior">Preço: Maior</option>
+                        <option value="novo">Mais Novo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo de Produtos -->
+    <section id="catalogo" class="catalogo">
+        <div class="container">
+            <h2>Nossos Produtos</h2>
+            <div id="products-grid" class="products-grid">
+                <!-- Produtos carregados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>A JPR Móveis Rústicos oferece móveis de madeira de alta qualidade, confeccionados com técnicas tradicionais e materiais premium. Cada peça é um trabalho artesanal que reflete o compromisso com a excelência.</p>
+                    <ul class="features-list">
+                        <li>✓ Madeira de reflorestamento certificada</li>
+                        <li>✓ Acabamento premium e artesanal</li>
+                        <li>✓ Sob medida conforme necessário</li>
+                        <li>✓ Entrega em Santa Catarina e Paraná</li>
+                    </ul>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-number">13+</span>
+                        <span class="stat-label">Modelos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Categorias</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Customizável</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Por Que Escolher JPR -->
+    <section class="por-que-escolher">
+        <div class="container">
+            <h2>Por Que Escolher JPR Móveis Rústicos</h2>
+            <div class="beneficios-grid">
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🏆</div>
+                    <h3>Qualidade Premium</h3>
+                    <p>Madeira de reflorestamento certificada com acabamento impecável. Cada peça é inspecionada rigorosamente antes do envio.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🎨</div>
+                    <h3>100% Personalizável</h3>
+                    <p>Escolha cores, acabamentos, tamanhos e estilos. Seus móveis sob medida, conforme suas preferências e espaço.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🛠️</div>
+                    <h3>Artesanato Tradicional</h3>
+                    <p>Técnicas tradicionais combinadas com máquinas modernas. Cada móvel é uma obra de arte feita com maestria.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🚚</div>
+                    <h3>Entrega Garantida</h3>
+                    <p>Enviamos para Santa Catarina e Paraná. Prazo de 10-25 dias úteis com rastreamento completo do produto.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">💰</div>
+                    <h3>Melhor Custo-Benefício</h3>
+                    <p>Preços competitivos sem comprometer a qualidade. Parcelamos em até 12x sem juros em compras com cartão.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🛡️</div>
+                    <h3>Garantia 2 Anos</h3>
+                    <p>Garantia contra defeitos de fabricação. Suporte dedicado durante todo o período de garantia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Avaliações de Clientes -->
+    <section class="reviews">
+        <div class="container">
+            <h2>Avaliações de Nossos Clientes</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Maria Silva</span>
+                        <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p class="review-text">"Adorei minha mesa! A qualidade é excelente e o atendimento foi impecável. Recomendo muito!"</p>
+                    <p class="review-product">Mesa Requinte Nobre - Verificado</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">João Santos</span>
+                        <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p class="review-text">"Perfeito! Exatamente como esperava. A entrega foi rápida e o móvel chegou impecável."</p>
+                    <p class="review-product">Mesa Glamour - Verificado</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Ana Costa</span>
+                        <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p class="review-text">"Melhor compra que já fiz! Móvel de qualidade superior e preço justo. Muito satisfeita!"</p>
+                    <p class="review-product">Mesa Imperatriz Natural - Verificado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Como funciona a personalização dos móveis?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Você pode escolher cores, acabamentos (brilhante ou acetinado), tamanhos, tipos de verniz (automotivo ou P.U.) e estilos de bordas (rústicas ou retas). Entre em contato conosco para discutir suas necessidades específicas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Qual é o prazo de entrega?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O prazo de entrega é de 10 a 25 dias úteis, dependendo da localização e do tamanho do pedido. Você receberá atualizações sobre o status do envio por email.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Vocês entregam em outros estados?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Atualmente entregamos em Santa Catarina e Paraná. Para outros estados, entre em contato conosco para verificar possibilidades de envio especial e cotação de frete.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>As mesas acompanham bancos?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Todas as mesas acompanham 2 bancos grandes. Você pode adicionar banquinhos de cabeceira por R$ 150,00 cada, ou para o modelo Luxúria que acompanha banquetas de acordo com o tamanho.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Qual é a garantia?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Todos os móveis têm garantia de 2 anos contra defeitos de fabricação. Tratamos com técnicas anti-cupim e usamos madeira de excelente qualidade para garantir durabilidade.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Como é o processo de compra?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>1. Escolha o modelo e personalize no carrinho; 2. Preencha dados pessoais e endereço; 3. Escolha forma de pagamento (PIX, Cartão ou Boleto); 4. Receba confirmação por email; 5. Seu móvel é preparado e enviado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Formas de Pagamento -->
+    <section class="formas-pagamento">
+        <div class="container">
+            <h2>Segurança e Facilidade no Pagamento</h2>
+            <p class="section-subtitle">Escolha a forma de pagamento que melhor se adequa ao seu perfil</p>
+
+            <div class="pagamento-grid">
+                <!-- PIX -->
+                <div class="pagamento-card pix-card">
+                    <div class="pagamento-icon">⚡</div>
+                    <h3>PIX</h3>
+                    <div class="pagamento-badge">Mais Rápido</div>
+                    <ul class="pagamento-features">
+                        <li>✓ Transferência instantânea</li>
+                        <li>✓ Sem taxas adicionais</li>
+                        <li>✓ Disponível 24/7</li>
+                        <li>✓ Segurança máxima</li>
+                    </ul>
+                    <div class="pagamento-tempo">
+                        <strong>Processamento:</strong> Imediato
+                    </div>
+                </div>
+
+                <!-- Cartão de Crédito -->
+                <div class="pagamento-card cartao-card">
+                    <div class="pagamento-icon">💳</div>
+                    <h3>Cartão de Crédito</h3>
+                    <div class="pagamento-badge">Parcelado</div>
+                    <ul class="pagamento-features">
+                        <li>✓ Parcelamento em até 12x</li>
+                        <li>✓ Juros a partir de 3 parcelas</li>
+                        <li>✓ Todas as bandeiras</li>
+                        <li>✓ Proteção ao comprador</li>
+                    </ul>
+                    <div class="pagamento-tempo">
+                        <strong>Processamento:</strong> Até 24h
+                    </div>
+                </div>
+
+                <!-- Boleto Bancário -->
+                <div class="pagamento-card boleto-card">
+                    <div class="pagamento-icon">📄</div>
+                    <h3>Boleto Bancário</h3>
+                    <div class="pagamento-badge">Tradicional</div>
+                    <ul class="pagamento-features">
+                        <li>✓ Desconto de 3%</li>
+                        <li>✓ Aceito em qualquer banco</li>
+                        <li>✓ Sem risco de clonagem</li>
+                        <li>✓ Comprovante instantâneo</li>
+                    </ul>
+                    <div class="pagamento-tempo">
+                        <strong>Processamento:</strong> 2-3 dias úteis
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informações de Segurança -->
+            <div class="pagamento-seguranca">
+                <h3>🔒 Seus Dados Estão Protegidos</h3>
+                <div class="seguranca-items">
+                    <div class="seguranca-item">
+                        <span class="seguranca-icon">🛡️</span>
+                        <div>
+                            <strong>Criptografia SSL</strong>
+                            <p>Todos os dados são transmitidos com criptografia de ponta a ponta</p>
+                        </div>
+                    </div>
+                    <div class="seguranca-item">
+                        <span class="seguranca-icon">✅</span>
+                        <div>
+                            <strong>Certificado de Segurança</strong>
+                            <p>Certificado SSL válido emitido por autoridade certificadora reconhecida</p>
+                        </div>
+                    </div>
+                    <div class="seguranca-item">
+                        <span class="seguranca-icon">🚨</span>
+                        <div>
+                            <strong>Proteção Contra Fraude</strong>
+                            <p>Sistema avançado de detecção de fraudes em todas as transações</p>
+                        </div>
+                    </div>
+                    <div class="seguranca-item">
+                        <span class="seguranca-icon">📱</span>
+                        <div>
+                            <strong>Autenticação em 2 Fatores</strong>
+                            <p>Verificação adicional para maior segurança nas compras</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparativo de Métodos -->
+            <div class="pagamento-tabela">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th class="pix-col">PIX</th>
+                            <th class="cartao-col">Cartão</th>
+                            <th class="boleto-col">Boleto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Velocidade</td>
+                            <td class="pix-col">⚡ Imediata</td>
+                            <td class="cartao-col">⏱️ 24h</td>
+                            <td class="boleto-col">📅 2-3 dias</td>
+                        </tr>
+                        <tr>
+                            <td>Parcelamento</td>
+                            <td class="pix-col">Não</td>
+                            <td class="cartao-col">Até 12x</td>
+                            <td class="boleto-col">Não</td>
+                        </tr>
+                        <tr>
+                            <td>Taxa</td>
+                            <td class="pix-col">Sem taxa</td>
+                            <td class="cartao-col">Variável</td>
+                            <td class="boleto-col">Desconto 3%</td>
+                        </tr>
+                        <tr>
+                            <td>Risco</td>
+                            <td class="pix-col">Mínimo</td>
+                            <td class="cartao-col">Proteção</td>
+                            <td class="boleto-col">Seguro</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- CTA -->
+            <div class="pagamento-cta">
+                <p>Pronto para fazer seu pedido?</p>
+                <button class="btn-primary btn-large" onclick="scrollTo('catalogo')">
+                    Escolher um Móvel Agora
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <div class="contato-content">
+                <div class="contato-info">
+                    <h3>JPR Móveis Rústicos</h3>
+                    <p class="info-item">
+                        <span class="icon">📍</span>
+                        Luis Alves, SC - Brasil
+                    </p>
+                    <p class="info-item">
+                        <span class="icon">📱</span>
+                        <a href="https://wa.me/5547997168814">(47) 99716-8814 (WhatsApp)</a>
+                    </p>
+                    <p class="info-item">
+                        <span class="icon">📞</span>
+                        <a href="tel:4732883096">(47) 3288-3096</a>
+                    </p>
+                    <p class="info-item">
+                        <span class="icon">📧</span>
+                        <a href="mailto:contato@jprmoveis.com.br">contato@jprmoveis.com.br</a>
+                    </p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/jprmoveis" class="social-btn">📷 Instagram</a>
+                        <a href="https://facebook.com/jprmoveis" class="social-btn">👍 Facebook</a>
+                    </div>
+                </div>
+                <div class="contato-form">
+                    <form id="contato-form">
+                        <input type="text" placeholder="Seu Nome" required>
+                        <input type="email" placeholder="Seu Email" required>
+                        <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+                        <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Newsletter -->
+    <section class="newsletter">
+        <div class="container" style="max-width: 600px;">
+            <h2>Receba Nossas Novidades</h2>
+            <p>Inscreva-se em nossa newsletter e receba descontos exclusivos, dicas de decoração e informações sobre novos modelos.</p>
+
+            <form class="newsletter-form" onsubmit="inscreverNewsletter(event)">
+                <input
+                    type="email"
+                    id="newsletter-email"
+                    placeholder="seu@email.com"
+                    required
+                    class="newsletter-input"
+                >
+                <button type="submit" class="newsletter-btn">
+                    Inscrever-se
+                </button>
+            </form>
+
+            <div id="newsletter-message" class="newsletter-message"></div>
+
+            <p class="newsletter-privacy">
+                Você receberá emails sobre promoções e conteúdo relevante.
+                Respeitar sua privacidade é nossa prioridade. Você pode desinscrever-se a qualquer momento.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JPR Móveis Rústicos. Todos os direitos reservados.</p>
+            <p class="footer-credit">Desenvolvido com ❤️ para qualidade em móveis</p>
+        </div>
+    </footer>
+
+    <!-- Carrinho Lateral - MELHORADO -->
+    <div id="carrinho-modal" class="carrinho-modal">
+        <div class="carrinho-content">
+            <button class="btn-close" onclick="toggleCarrinho()">✕</button>
+
+            <!-- Header -->
+            <div class="carrinho-header">
+                <h3>Seu Carrinho</h3>
+                <span class="carrinho-count" id="carrinho-count-badge">0 itens</span>
+            </div>
+
+            <!-- Itens do Carrinho -->
+            <div id="carrinho-items" class="carrinho-items">
+                <!-- Itens do carrinho carregados via JavaScript -->
+            </div>
+
+            <!-- Seção de Cupom -->
+            <div class="carrinho-coupon-section">
+                <div class="coupon-form">
+                    <input
+                        type="text"
+                        id="coupon-input"
+                        placeholder="Código do cupom"
+                        class="coupon-input"
+                    >
+                    <button class="coupon-btn" onclick="aplicarCupom()">Aplicar</button>
+                </div>
+                <div id="coupon-message" class="coupon-message"></div>
+                <button class="coupon-remove-btn" id="coupon-remove" onclick="removerCupom()" style="display: none;">
+                    Remover Cupom
+                </button>
+            </div>
+
+            <!-- Resumo de Preços -->
+            <div class="carrinho-footer">
+                <div class="price-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="carrinho-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-row" id="discount-row" style="display: none;">
+                        <span>Desconto:</span>
+                        <span id="carrinho-discount" class="discount-value">-R$ 0,00</span>
+                    </div>
+                    <div class="summary-row" id="freight-row">
+                        <span>Frete Estimado:</span>
+                        <span id="carrinho-freight">Cálculo na entrega</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="carrinho-total-value">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="cart-trust-badges">
+                    <span>🔐 Seguro</span>
+                    <span>🚚 Rastreado</span>
+                    <span>💳 Parcelado</span>
+                </div>
+
+                <!-- Botões -->
+                <button class="btn-primary btn-checkout" onclick="finalizarCompra()" id="btn-checkout">
+                    Finalizar Compra
+                </button>
+                <button class="btn-secondary btn-continue" onclick="toggleCarrinho()">
+                    Continuar Comprando
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes do Produto -->
+    <div id="produto-modal" class="modal">
+        <div class="modal-content">
+            <button class="btn-close" onclick="fecharModalProduto()">✕</button>
+            <div id="modal-product-content" class="modal-product-content">
+                <!-- Conteúdo do produto carregado via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data-produtos.js"></script>
+    <script src="app-novo.js"></script>
+</body>
+</html>

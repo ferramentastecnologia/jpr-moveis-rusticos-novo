@@ -1,0 +1,26 @@
+{
+  "name": "jpr-moveis-rusticos",
+  "version": "1.0.0",
+  "description": "JPR Móveis Rústicos - Sistema Completo com Frontend, Backend Express, PostgreSQL e Asaas",
+  "main": "backend/src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "cd backend && npm run start",
+    "dev": "cd backend && npm run dev",
+    "test": "cd backend && npm run test",
+    "install": "npm install && cd backend && npm install"
+  },
+  "keywords": [
+    "ecommerce",
+    "moveis",
+    "rusticos",
+    "express",
+    "postgresql",
+    "asaas"
+  ],
+  "author": "JPR Móveis Rústicos",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

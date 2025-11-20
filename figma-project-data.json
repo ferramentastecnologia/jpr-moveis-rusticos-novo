@@ -1,0 +1,597 @@
+{
+  "project": {
+    "name": "Luis Alves Mesas - Landing Page",
+    "description": "Landing Page completa para Luis Alves Mesas para Festas",
+    "email": "ferramentas.starken@gmail.com",
+    "created": "2025-11-10T13:43:45.959Z"
+  },
+  "designSystem": {
+    "colors": {
+      "primary": {
+        "name": "Primary/Marrom Rústico",
+        "hex": "#983421",
+        "rgb": {
+          "r": 0.596,
+          "g": 0.204,
+          "b": 0.129
+        }
+      },
+      "secondary": {
+        "name": "Secondary/Bege",
+        "hex": "#D3B185",
+        "rgb": {
+          "r": 0.827,
+          "g": 0.694,
+          "b": 0.522
+        }
+      },
+      "accent": {
+        "name": "Accent/Verde CTA",
+        "hex": "#23af24",
+        "rgb": {
+          "r": 0.137,
+          "g": 0.686,
+          "b": 0.141
+        }
+      },
+      "text": {
+        "name": "Text/Preto",
+        "hex": "#17252a",
+        "rgb": {
+          "r": 0.09,
+          "g": 0.145,
+          "b": 0.164
+        }
+      },
+      "footer": {
+        "name": "Footer/Marrom Escuro",
+        "hex": "#563524",
+        "rgb": {
+          "r": 0.337,
+          "g": 0.208,
+          "b": 0.141
+        }
+      },
+      "white": {
+        "name": "Base/Branco",
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        }
+      },
+      "gray": {
+        "name": "Base/Cinza Claro",
+        "hex": "#f8f9fa",
+        "rgb": {
+          "r": 0.973,
+          "g": 0.976,
+          "b": 0.98
+        }
+      },
+      "grayMedium": {
+        "name": "Base/Cinza Médio",
+        "hex": "#6c757d",
+        "rgb": {
+          "r": 0.424,
+          "g": 0.459,
+          "b": 0.49
+        }
+      }
+    },
+    "typography": {
+      "h1Desktop": {
+        "name": "H1/Desktop",
+        "fontFamily": "Lobster Two",
+        "fontSize": 64,
+        "fontWeight": 700,
+        "lineHeight": 76.8,
+        "letterSpacing": -1
+      },
+      "h1Mobile": {
+        "name": "H1/Mobile",
+        "fontFamily": "Lobster Two",
+        "fontSize": 40,
+        "fontWeight": 700,
+        "lineHeight": 48,
+        "letterSpacing": -0.5
+      },
+      "h2Desktop": {
+        "name": "H2/Desktop",
+        "fontFamily": "Poppins",
+        "fontSize": 48,
+        "fontWeight": 700,
+        "lineHeight": 57.6,
+        "letterSpacing": -0.5
+      },
+      "h2Mobile": {
+        "name": "H2/Mobile",
+        "fontFamily": "Poppins",
+        "fontSize": 32,
+        "fontWeight": 700,
+        "lineHeight": 38.4,
+        "letterSpacing": -0.5
+      },
+      "h3": {
+        "name": "H3/Subtitle",
+        "fontFamily": "Poppins",
+        "fontSize": 24,
+        "fontWeight": 600,
+        "lineHeight": 32,
+        "letterSpacing": 0
+      },
+      "body": {
+        "name": "Body/Regular",
+        "fontFamily": "Open Sans",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": 24,
+        "letterSpacing": 0
+      },
+      "bodyBold": {
+        "name": "Body/Bold",
+        "fontFamily": "Open Sans",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": 24,
+        "letterSpacing": 0
+      },
+      "button": {
+        "name": "Button/Text",
+        "fontFamily": "Poppins",
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "letterSpacing": 0.5
+      },
+      "menu": {
+        "name": "Menu/Item",
+        "fontFamily": "Poppins",
+        "fontSize": 16,
+        "fontWeight": 500,
+        "lineHeight": 24,
+        "letterSpacing": 0
+      },
+      "caption": {
+        "name": "Caption/Small",
+        "fontFamily": "Open Sans",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "letterSpacing": 0
+      }
+    },
+    "effects": {
+      "cardShadow": {
+        "name": "Shadow/Card",
+        "type": "DROP_SHADOW",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.1
+        },
+        "offset": {
+          "x": 0,
+          "y": 4
+        },
+        "radius": 12,
+        "spread": 0
+      },
+      "cardHover": {
+        "name": "Shadow/Card Hover",
+        "type": "DROP_SHADOW",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.15
+        },
+        "offset": {
+          "x": 0,
+          "y": 8
+        },
+        "radius": 24,
+        "spread": 0
+      },
+      "buttonShadow": {
+        "name": "Shadow/Button",
+        "type": "DROP_SHADOW",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.12
+        },
+        "offset": {
+          "x": 0,
+          "y": 2
+        },
+        "radius": 8,
+        "spread": 0
+      }
+    }
+  },
+  "content": {
+    "hero": {
+      "headline": "Mesas Rústicas Premium",
+      "subheadline": "Transforme seu espaço com móveis de qualidade incomparável",
+      "cta1": "Explorar Catálogo",
+      "cta2": "Solicitar Orçamento"
+    },
+    "features": [
+      {
+        "icon": "🏆",
+        "title": "7+ Anos Experiência",
+        "description": "Tradição e expertise em móveis rústicos"
+      },
+      {
+        "icon": "📦",
+        "title": "Entrega SC/PR",
+        "description": "Entregamos em todo o Sul do Brasil"
+      },
+      {
+        "icon": "🎨",
+        "title": "Customização Sob Medida",
+        "description": "Projetos personalizados para você"
+      },
+      {
+        "icon": "💳",
+        "title": "Parcelamento 12x",
+        "description": "Sem juros em até 12 parcelas"
+      }
+    ],
+    "about": {
+      "title": "Sobre Nós",
+      "text": "Com mais de 7 anos de experiência, a Luis Alves Mesas é referência em móveis rústicos premium. Cada peça é cuidadosamente projetada e construída com madeira de alta qualidade.",
+      "values": [
+        {
+          "title": "Qualidade",
+          "description": "Materiais selecionados"
+        },
+        {
+          "title": "Tradição",
+          "description": "Técnicas artesanais"
+        },
+        {
+          "title": "Garantia",
+          "description": "Satisfação garantida"
+        }
+      ]
+    },
+    "process": [
+      {
+        "step": 1,
+        "title": "Escolha",
+        "description": "Selecione o modelo ideal"
+      },
+      {
+        "step": 2,
+        "title": "Personalize",
+        "description": "Customize cores e medidas"
+      },
+      {
+        "step": 3,
+        "title": "Pagamento",
+        "description": "Parcele em até 12x sem juros"
+      },
+      {
+        "step": 4,
+        "title": "Receba",
+        "description": "Entrega e montagem incluídas"
+      }
+    ],
+    "footer": {
+      "address": "Luis Alves, Santa Catarina",
+      "phone": "(47) 99999-9999",
+      "email": "contato@luisalvesmesas.com.br",
+      "social": [
+        "Instagram",
+        "Facebook",
+        "WhatsApp"
+      ]
+    }
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Mesa Imperatriz Natural",
+      "price": 3400,
+      "badge": "Destaque"
+    },
+    {
+      "id": 2,
+      "name": "Mesa Glamour",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 3,
+      "name": "Mesa Glamour Mel",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 4,
+      "name": "Mesa Requinte Nobre",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 5,
+      "name": "Mesa Nobreza",
+      "price": 4200,
+      "badge": "Premium"
+    },
+    {
+      "id": 6,
+      "name": "Mesa Encanto",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 7,
+      "name": "Mesa Império",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 8,
+      "name": "Mesa Charme",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 9,
+      "name": "Mesa Imperatriz",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 10,
+      "name": "Mesa Luxúria",
+      "price": 4500,
+      "badge": "Premium"
+    },
+    {
+      "id": 11,
+      "name": "Mesa Requinte",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 12,
+      "name": "Mesa Paris",
+      "price": 3400,
+      "badge": null
+    },
+    {
+      "id": 13,
+      "name": "Mesa Sublime",
+      "price": 3400,
+      "badge": null
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Maria Santos",
+      "rating": 5,
+      "text": "Qualidade excepcional! A mesa é linda e resistente.",
+      "location": "Florianópolis, SC"
+    },
+    {
+      "name": "João Silva",
+      "rating": 5,
+      "text": "Atendimento impecável e entrega no prazo.",
+      "location": "Joinville, SC"
+    },
+    {
+      "name": "Ana Paula",
+      "rating": 5,
+      "text": "Melhor investimento que fiz para minha casa!",
+      "location": "Blumenau, SC"
+    },
+    {
+      "name": "Carlos Eduardo",
+      "rating": 5,
+      "text": "Design exclusivo e acabamento perfeito.",
+      "location": "Curitiba, PR"
+    },
+    {
+      "name": "Patricia Lima",
+      "rating": 4,
+      "text": "Produto de alta qualidade, recomendo!",
+      "location": "Balneário Camboriú, SC"
+    },
+    {
+      "name": "Roberto Costa",
+      "rating": 5,
+      "text": "Superou minhas expectativas em todos os aspectos.",
+      "location": "Itajaí, SC"
+    },
+    {
+      "name": "Fernanda Alves",
+      "rating": 5,
+      "text": "Atendimento personalizado e produto impecável.",
+      "location": "São José, SC"
+    },
+    {
+      "name": "Lucas Oliveira",
+      "rating": 5,
+      "text": "Vale cada centavo! Qualidade incomparável.",
+      "location": "Chapecó, SC"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Design System",
+      "description": "Cores, tipografia e efeitos",
+      "sections": [
+        "Color Styles",
+        "Text Styles",
+        "Effect Styles"
+      ]
+    },
+    {
+      "name": "Components",
+      "description": "Componentes reutilizáveis",
+      "components": [
+        "Button (Primary, Secondary, Outline)",
+        "Input Field (text, textarea, select)",
+        "Product Card",
+        "Testimonial Card",
+        "Feature Card",
+        "Navigation Bar",
+        "Product Grid",
+        "Footer"
+      ]
+    },
+    {
+      "name": "Landing Page Desktop",
+      "description": "Layout desktop 1280px",
+      "sections": [
+        "Header + Hero (600px)",
+        "Diferenciais (4 cards)",
+        "Catálogo (grid 3 colunas)",
+        "Sobre a Empresa",
+        "Depoimentos",
+        "Processo (4 steps)",
+        "Footer"
+      ]
+    },
+    {
+      "name": "Landing Page Mobile",
+      "description": "Layout mobile 375px",
+      "sections": [
+        "Mobile responsive layout"
+      ]
+    }
+  ],
+  "tokens": {
+    "colors": [
+      {
+        "name": "Primary/Marrom Rústico",
+        "value": "#983421",
+        "variable": "--color-primary"
+      },
+      {
+        "name": "Secondary/Bege",
+        "value": "#D3B185",
+        "variable": "--color-secondary"
+      },
+      {
+        "name": "Accent/Verde CTA",
+        "value": "#23af24",
+        "variable": "--color-accent"
+      },
+      {
+        "name": "Text/Preto",
+        "value": "#17252a",
+        "variable": "--color-text"
+      },
+      {
+        "name": "Footer/Marrom Escuro",
+        "value": "#563524",
+        "variable": "--color-footer"
+      },
+      {
+        "name": "Base/Branco",
+        "value": "#ffffff",
+        "variable": "--color-white"
+      },
+      {
+        "name": "Base/Cinza Claro",
+        "value": "#f8f9fa",
+        "variable": "--color-gray"
+      },
+      {
+        "name": "Base/Cinza Médio",
+        "value": "#6c757d",
+        "variable": "--color-grayMedium"
+      }
+    ],
+    "typography": [
+      {
+        "name": "H1/Desktop",
+        "fontFamily": "Lobster Two",
+        "fontSize": 64,
+        "fontWeight": 700,
+        "lineHeight": 76.8,
+        "letterSpacing": -1
+      },
+      {
+        "name": "H1/Mobile",
+        "fontFamily": "Lobster Two",
+        "fontSize": 40,
+        "fontWeight": 700,
+        "lineHeight": 48,
+        "letterSpacing": -0.5
+      },
+      {
+        "name": "H2/Desktop",
+        "fontFamily": "Poppins",
+        "fontSize": 48,
+        "fontWeight": 700,
+        "lineHeight": 57.6,
+        "letterSpacing": -0.5
+      },
+      {
+        "name": "H2/Mobile",
+        "fontFamily": "Poppins",
+        "fontSize": 32,
+        "fontWeight": 700,
+        "lineHeight": 38.4,
+        "letterSpacing": -0.5
+      },
+      {
+        "name": "H3/Subtitle",
+        "fontFamily": "Poppins",
+        "fontSize": 24,
+        "fontWeight": 600,
+        "lineHeight": 32,
+        "letterSpacing": 0
+      },
+      {
+        "name": "Body/Regular",
+        "fontFamily": "Open Sans",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": 24,
+        "letterSpacing": 0
+      },
+      {
+        "name": "Body/Bold",
+        "fontFamily": "Open Sans",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": 24,
+        "letterSpacing": 0
+      },
+      {
+        "name": "Button/Text",
+        "fontFamily": "Poppins",
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "letterSpacing": 0.5
+      },
+      {
+        "name": "Menu/Item",
+        "fontFamily": "Poppins",
+        "fontSize": 16,
+        "fontWeight": 500,
+        "lineHeight": 24,
+        "letterSpacing": 0
+      },
+      {
+        "name": "Caption/Small",
+        "fontFamily": "Open Sans",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "letterSpacing": 0
+      }
+    ]
+  }
+}

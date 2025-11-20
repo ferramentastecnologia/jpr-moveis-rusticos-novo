@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Projeto - JPR Móveis Rústicos</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <style>
+        /* ========================
+           ESTILOS DA PÁGINA DE PROJETO
+           ======================== */
+
+        .projeto-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl);
+        }
+
+        .projeto-breadcrumb {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .projeto-breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .projeto-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero do Projeto */
+        .projeto-hero {
+            background: linear-gradient(135deg, #dbc1a2 0%, #1b8768 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-3xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            font-size: 120px;
+            margin-bottom: var(--spacing-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projeto-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .projeto-hero-emoji {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header do Projeto */
+        .projeto-header {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .projeto-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .projeto-titulo-section h1 {
+            color: var(--secondary);
+            font-size: 32px;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.3;
+        }
+
+        .projeto-rating-badge {
+            background: var(--accent);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .projeto-rating-badge .stars {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        /* Grid Principal */
+        .projeto-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        /* Antes e Depois */
+        .before-after {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .before-after h2 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 20px;
+        }
+
+        .ba-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .ba-item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--gray-light);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .ba-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .ba-image {
+            font-size: 60px;
+            line-height: 1;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .ba-description {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .ba-before {
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+        }
+
+        .ba-after {
+            background: linear-gradient(135deg, rgba(27, 135, 104, 0.05), rgba(219, 193, 162, 0.05));
+            border: 2px solid var(--accent);
+        }
+
+        /* Sidebar de Informações */
+        .projeto-info-sidebar {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+        }
+
+        .projeto-info-sidebar h3 {
+            color: var(--secondary);
+            font-size: 16px;
+            margin-bottom: var(--spacing-lg);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .info-value {
+            color: var(--secondary);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .info-value small {
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 400;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Descrição Principal */
+        .projeto-descricao {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .projeto-descricao h2 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .projeto-descricao p {
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Tags */
+        .projeto-tags-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .projeto-tags-section h3 {
+            color: var(--secondary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .projeto-tags {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .projeto-tag {
+            background: rgba(27, 135, 104, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* CTA */
+        .projeto-cta {
+            background: linear-gradient(135deg, #1b8768 0%, #0d4d3a 100%);
+            color: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .projeto-cta h2 {
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .projeto-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-lg);
+            font-size: 16px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .cta-btn-primary {
+            background: var(--primary);
+            color: var(--text);
+        }
+
+        .cta-btn-primary:hover {
+            background: #cdb394;
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Projetos Relacionados */
+        .related-projects {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .related-projects h2 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .related-card {
+            padding: var(--spacing-lg);
+            border: 2px solid var(--gray-light);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .related-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .related-card h4 {
+            color: var(--secondary);
+            font-size: 15px;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.4;
+        }
+
+        .related-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .projeto-container {
+                padding: var(--spacing-lg);
+            }
+
+            .projeto-header-top {
+                flex-direction: column;
+            }
+
+            .projeto-main {
+                grid-template-columns: 1fr;
+            }
+
+            .ba-container {
+                grid-template-columns: 1fr;
+            }
+
+            .projeto-titulo-section h1 {
+                font-size: 24px;
+            }
+
+            .projeto-hero {
+                min-height: 200px;
+                font-size: 80px;
+                padding: var(--spacing-2xl);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navegação -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="galeria.html" class="nav-link">← Voltar à Galeria</a>
+                <button class="btn-carrinho" onclick="toggleCarrinho()">
+                    🛒 <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Projeto Principal -->
+    <main class="projeto-container">
+        <div class="projeto-breadcrumb">
+            <a href="index-nova.html">Home</a> / <a href="galeria.html">Galeria</a> / <span id="breadcrumb-title"></span>
+        </div>
+
+        <!-- Hero -->
+        <div class="projeto-hero">
+            <div class="projeto-hero-emoji" id="projeto-emoji"></div>
+        </div>
+
+        <!-- Header -->
+        <div class="projeto-header">
+            <div class="projeto-header-top">
+                <div class="projeto-titulo-section">
+                    <h1 id="projeto-titulo"></h1>
+                    <div id="projeto-meta" style="display: flex; gap: 16px; font-size: 14px; color: var(--text-secondary);"></div>
+                </div>
+                <div class="projeto-rating-badge">
+                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                    Satisfação 100%
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="projeto-main">
+            <!-- Antes e Depois -->
+            <div class="before-after">
+                <h2>Transformação do Espaço</h2>
+                <div class="ba-container">
+                    <div class="ba-item ba-before">
+                        <div class="ba-label">❌ Antes</div>
+                        <div class="ba-image">📦</div>
+                        <div class="ba-description" id="projeto-antes"></div>
+                    </div>
+                    <div class="ba-item ba-after">
+                        <div class="ba-label">✅ Depois</div>
+                        <div class="ba-image">✨</div>
+                        <div class="ba-description" id="projeto-depois"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="projeto-info-sidebar">
+                <h3>Informações</h3>
+
+                <div class="info-item">
+                    <div class="info-label">Mesa</div>
+                    <div class="info-value" id="projeto-mesa"></div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Cor</div>
+                    <div class="info-value" id="projeto-cor"></div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Dimensões</div>
+                    <div class="info-value" id="projeto-dimensoes">
+                        <small id="projeto-dims-value"></small>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Ambiente</div>
+                    <div class="info-value" id="projeto-ambiente"></div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Estilo</div>
+                    <div class="info-value" id="projeto-estilo"></div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Cliente</div>
+                    <div class="info-value">
+                        <small id="projeto-cliente"></small>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Ano</div>
+                    <div class="info-value" id="projeto-ano"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="projeto-descricao">
+            <h2>Sobre Este Projeto</h2>
+            <p id="projeto-descricao"></p>
+        </div>
+
+        <!-- Tags -->
+        <div class="projeto-tags-section">
+            <h3>Características</h3>
+            <div class="projeto-tags" id="projeto-tags"></div>
+        </div>
+
+        <!-- CTA -->
+        <div class="projeto-cta">
+            <h2>Gostou Deste Projeto?</h2>
+            <p>Solicite um orçamento personalizado para sua mesa rústica ou agende uma consulta com nossos especialistas.</p>
+            <div class="cta-buttons">
+                <button class="cta-btn cta-btn-primary" onclick="solicitarOrcamento()">
+                    💰 Solicitar Orçamento
+                </button>
+                <button class="cta-btn cta-btn-secondary" onclick="agendar()">
+                    📞 Agendar Consulta
+                </button>
+            </div>
+        </div>
+
+        <!-- Projetos Relacionados -->
+        <div class="related-projects" id="related-container" style="display: none;">
+            <h2>Mais Projetos do Mesmo Estilo</h2>
+            <div class="related-grid" id="related-grid"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JPR Móveis Rústicos. Todos os direitos reservados.</p>
+            <p class="footer-credit">Desenvolvido com ❤️ para qualidade em móveis</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="galeria-dados.js"></script>
+    <script>
+        let projetoAtual = null;
+
+        /**
+         * Inicializar página de projeto
+         */
+        function inicializarProjeto() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+
+            if (!id) {
+                window.location.href = 'galeria.html';
+                return;
+            }
+
+            projetoAtual = obterProjetoPorId(id);
+
+            if (!projetoAtual) {
+                window.location.href = 'galeria.html';
+                return;
+            }
+
+            renderizarProjeto();
+            renderizarRelacionados();
+            atualizarCarrinhoCount();
+            atualizarMetaTags();
+        }
+
+        /**
+         * Renderizar projeto
+         */
+        function renderizarProjeto() {
+            // Breadcrumb
+            document.getElementById('breadcrumb-title').textContent = projetoAtual.titulo.substring(0, 40) + '...';
+
+            // Hero
+            document.getElementById('projeto-emoji').textContent = projetoAtual.imagem;
+
+            // Header
+            document.getElementById('projeto-titulo').textContent = projetoAtual.titulo;
+            document.getElementById('projeto-meta').innerHTML = `
+                <span>🏠 ${projetoAtual.ambiente}</span>
+                <span>🎨 ${projetoAtual.estilo}</span>
+                <span>📅 ${projetoAtual.ano}</span>
+            `;
+
+            // Antes e Depois
+            document.getElementById('projeto-antes').textContent = projetoAtual.antes;
+            document.getElementById('projeto-depois').textContent = projetoAtual.depois;
+
+            // Informações
+            document.getElementById('projeto-mesa').textContent = projetoAtual.mesa;
+            document.getElementById('projeto-cor').textContent = projetoAtual.cor;
+            document.getElementById('projeto-dimensoes').innerHTML = `<small>${projetoAtual.dimensoes}</small>`;
+            document.getElementById('projeto-ambiente').textContent = projetoAtual.ambiente;
+            document.getElementById('projeto-estilo').textContent = projetoAtual.estilo;
+            document.getElementById('projeto-cliente').textContent = projetoAtual.cliente;
+            document.getElementById('projeto-ano').textContent = projetoAtual.ano;
+
+            // Descrição
+            document.getElementById('projeto-descricao').textContent = projetoAtual.descricao;
+
+            // Tags
+            document.getElementById('projeto-tags').innerHTML = projetoAtual.tags
+                .map(tag => `<span class="projeto-tag">${tag}</span>`)
+                .join('');
+        }
+
+        /**
+         * Renderizar projetos relacionados
+         */
+        function renderizarRelacionados() {
+            const relacionados = obterProjetosPorEstilo(projetoAtual.estilo)
+                .filter(p => p.id !== projetoAtual.id)
+                .slice(0, 3);
+
+            if (relacionados.length === 0) {
+                document.getElementById('related-container').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('related-container').style.display = 'block';
+            document.getElementById('related-grid').innerHTML = relacionados.map(p => `
+                <div class="related-card" onclick="irParaProjeto(${p.id})">
+                    <h4>${p.titulo}</h4>
+                    <p>⭐ ${p.avaliacao}.0 • ${p.cliente}</p>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * Ir para projeto
+         */
+        function irParaProjeto(id) {
+            window.location.href = `projeto.html?id=${id}`;
+        }
+
+        /**
+         * Solicitar orçamento
+         */
+        function solicitarOrcamento() {
+            const mensagem = `Olá! Gostaria de solicitar um orçamento personalizado similar ao projeto: ${projetoAtual.titulo}. Mesa: ${projetoAtual.mesa}, Cor: ${projetoAtual.cor}`;
+            window.location.href = `https://wa.me/5547997168814?text=${encodeURIComponent(mensagem)}`;
+        }
+
+        /**
+         * Agendar consulta
+         */
+        function agendar() {
+            const mensagem = `Olá! Gostaria de agendar uma consulta para discutir um projeto similar a: ${projetoAtual.titulo}`;
+            window.location.href = `https://wa.me/5547997168814?text=${encodeURIComponent(mensagem)}`;
+        }
+
+        /**
+         * Atualizar meta tags (SEO)
+         */
+        function atualizarMetaTags() {
+            document.title = `${projetoAtual.titulo} - Galeria JPR Móveis Rústicos`;
+
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription) {
+                metaDescription.setAttribute('content', projetoAtual.descricao);
+            }
+
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            if (ogTitle) {
+                ogTitle.setAttribute('content', projetoAtual.titulo);
+            }
+
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogDesc) {
+                ogDesc.setAttribute('content', projetoAtual.descricao);
+            }
+
+            const ogUrl = document.querySelector('meta[property="og:url"]');
+            if (ogUrl) {
+                ogUrl.setAttribute('content', window.location.href);
+            }
+        }
+
+        /**
+         * Atualizar contagem de carrinho
+         */
+        function atualizarCarrinhoCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const count = cart.reduce((sum, item) => sum + item.quantidade, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        /**
+         * Toggle carrinho
+         */
+        function toggleCarrinho() {
+            window.location.href = 'index-nova.html#catalogo';
+        }
+
+        // Inicializar ao carregar
+        document.addEventListener('DOMContentLoaded', inicializarProjeto);
+    </script>
+</body>
+</html>

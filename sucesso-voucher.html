@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Voucher Gerado com Sucesso! - JPR Móveis Rústicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa: #C2185B;
+            --roxo: #BA68C8;
+            --orange: #FF9800;
+            --rosa-light: #F48FB1;
+            --gold: #FFD700;
+            --green: #4CAF50;
+            --dark: #1A1A1A;
+            --gray: #666;
+            --light: #F5F5F5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+            min-height: 100vh;
+            height: 100vh;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            height: 98vh;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .header .logo {
+            width: 60px;
+            height: auto;
+            margin-bottom: 6px;
+            filter: brightness(0) invert(1);
+        }
+
+        .success-icon {
+            font-size: 40px;
+            margin-bottom: 6px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .header h1 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 12px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .voucher-box {
+            background: var(--light);
+            border: 2px solid var(--rosa);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .voucher-label {
+            font-size: 9px;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .voucher-code {
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--rosa);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .voucher-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .voucher-details {
+            font-size: 10px;
+            color: var(--gray);
+        }
+
+        .info-box {
+            background: #FFF3E0;
+            border-left: 3px solid #FF9800;
+            padding: 8px 10px;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+
+        .info-box p {
+            font-size: 10px;
+            color: #555;
+            margin-bottom: 3px;
+            line-height: 1.4;
+        }
+
+        .info-box strong {
+            color: var(--dark);
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            padding: 12px 15px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--rosa);
+            border: 2px solid var(--rosa);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-email {
+            background: #4285F4;
+            color: white;
+        }
+
+        .footer {
+            background: var(--light);
+            padding: 12px 10px;
+            text-align: center;
+            border-top: 1px solid #E0E0E0;
+            flex-shrink: 0;
+        }
+
+        .footer p {
+            font-size: 10px;
+            color: var(--gray);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .footer a {
+            color: var(--rosa);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid var(--light);
+            border-top: 4px solid var(--rosa);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+            }
+
+            .container {
+                border-radius: 0;
+                height: 100vh;
+            }
+
+            .header {
+                padding: 8px;
+            }
+
+            .content {
+                padding: 8px;
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo">
+            <div class="success-icon">🎉</div>
+            <h1>Pagamento Confirmado!</h1>
+            <p>Seu voucher foi gerado com sucesso</p>
+        </div>
+
+        <div class="content">
+            <div class="voucher-box">
+                <div class="voucher-label">SEU CÓDIGO DO VOUCHER</div>
+                <div class="voucher-code" id="voucher-code">RM-XXXXX-XXXXX</div>
+                <div class="voucher-name" id="voucher-name">Carregando...</div>
+                <div class="voucher-details" id="voucher-details"></div>
+            </div>
+
+            <!-- QR Code do Voucher -->
+            <div style="text-align: center; flex-shrink: 0;">
+                <div id="qr-code" style="display: inline-block; border: 2px solid var(--rosa); border-radius: 8px; padding: 8px; background: white;"></div>
+                <p style="font-size: 10px; color: var(--gray); margin-top: 4px;">Escaneie para validar</p>
+            </div>
+
+            <div class="info-box" style="background: #E8F5E9; border-left-color: #4CAF50;">
+                <p><strong>📄 Baixe o PDF do seu voucher!</strong></p>
+                <p>Clique no botão abaixo para salvar o PDF completo no seu celular</p>
+                <p style="font-size: 11px; margin-top: 5px;">✅ PDF contém QR Code + Todas as informações</p>
+            </div>
+
+            <div class="info-box">
+                <p><strong>💡 Dica:</strong> Tire um print desta tela para ter sempre em mãos</p>
+                <p><strong>📱 Screenshot:</strong> Volume + Botão Lateral (iPhone) ou Volume - + Power (Android)</p>
+                <p><strong>🎯 Importante:</strong> Guarde bem seu código!</p>
+            </div>
+
+            <div class="buttons">
+                <a href="#" class="btn btn-primary" id="btn-download">
+                    📄 Baixar Voucher (PDF)
+                </a>
+
+                <a href="/" class="btn btn-secondary">
+                    🏠 Voltar para Início
+                </a>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Carregando voucher...</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>JPR Móveis Rústicos Blumenau</strong></p>
+            <p>📍 Rua Carlos Rischbieter, 64, Victor Konder</p>
+            <p>📞 (47) 3288-3096 | WhatsApp: (47) 99233-4348</p>
+            <p style="margin-top: 15px; font-size: 12px;">
+                Dúvidas? <a href="https://wa.me/5547992334348">Fale conosco</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Biblioteca QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        const BACKEND_URL = 'https://jpr-moveis-vouchers-production.up.railway.app';
+
+        // Pegar código do voucher da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const voucherCode = urlParams.get('code');
+
+        // Função para gerar QR Code
+        function generateQRCode(code) {
+            const qrContainer = document.getElementById('qr-code');
+
+            // Limpar QR code anterior se existir
+            qrContainer.innerHTML = '';
+
+            // Gerar novo QR Code (tamanho otimizado)
+            new QRCode(qrContainer, {
+                text: code,
+                width: 150,
+                height: 150,
+                colorDark: '#C2185B',
+                colorLight: '#FFFFFF',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        async function loadVoucher() {
+            if (!voucherCode) {
+                alert('Código do voucher não encontrado');
+                window.location.href = '/';
+                return;
+            }
+
+            try {
+                document.getElementById('loading').classList.add('active');
+
+                // Buscar dados do voucher
+                const response = await fetch(`${BACKEND_URL}/api/vouchers`);
+                const data = await response.json();
+
+                if (data.success && data.vouchers) {
+                    const voucher = data.vouchers.find(v => v.code === voucherCode);
+
+                    if (voucher) {
+                        // Preencher dados
+                        document.getElementById('voucher-code').textContent = voucher.code;
+                        document.getElementById('voucher-name').textContent = voucher.voucherName;
+                        // Formatar data de validade
+                        let validityText = '';
+                        if (voucher.useUntil) {
+                            // Format: YYYY-MM-DD to DD/MM/YYYY
+                            const [year, month, day] = voucher.useUntil.split('-');
+                            validityText = `${day}/${month}/${year}`;
+                        } else if (voucher.expiryDate) {
+                            validityText = new Date(voucher.expiryDate).toLocaleDateString('pt-BR');
+                        } else {
+                            validityText = 'Data não informada';
+                        }
+
+                        document.getElementById('voucher-details').innerHTML = `
+                            ${voucher.quantity} ${voucher.quantity === 1 ? 'pessoa' : 'pessoas'} •
+                            ${voucher.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} •
+                            Válido até ${validityText}
+                        `;
+
+                        // Configurar botão de download
+                        document.getElementById('btn-download').href = `${BACKEND_URL}/api/download-pdf?code=${voucher.code}`;
+
+                        // Gerar QR Code
+                        generateQRCode(voucher.code);
+
+                        document.getElementById('loading').classList.remove('active');
+                    } else {
+                        throw new Error('Voucher não encontrado');
+                    }
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('loading').classList.remove('active');
+
+                // Mostrar mensagem mais específica
+                const errorMsg = error.message.includes('não encontrado')
+                    ? 'Voucher não encontrado. Aguarde alguns segundos, o voucher pode estar sendo processado...'
+                    : 'Erro ao carregar voucher. Tente novamente em alguns segundos.';
+
+                alert(errorMsg);
+
+                // Tentar recarregar após 5 segundos
+                setTimeout(() => {
+                    window.location.reload();
+                }, 5000);
+            }
+        }
+
+        // Carregar voucher ao abrir página
+        if (voucherCode) {
+            loadVoucher();
+        } else {
+            // Se não tem código, tentar pegar do localStorage (do checkout)
+            const orderData = localStorage.getItem('currentOrder');
+            if (orderData) {
+                const order = JSON.parse(orderData);
+                // Aguardar alguns segundos para o webhook processar
+                setTimeout(() => {
+                    loadVoucher();
+                }, 3000);
+            } else {
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('voucher-code').textContent = 'Sem voucher';
+                document.getElementById('voucher-name').textContent = 'Aguardando processamento...';
+            }
+        }
+
+        // Auto-reload a cada 10 segundos se não tiver carregado
+        let reloadInterval;
+        if (!voucherCode) {
+            reloadInterval = setInterval(() => {
+                loadVoucher();
+            }, 10000);
+        }
+    </script>
+</body>
+</html>

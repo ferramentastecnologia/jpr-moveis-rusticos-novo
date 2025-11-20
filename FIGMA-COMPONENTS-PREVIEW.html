@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Componentes - Luis Alves Mesas</title>
+    <link rel="stylesheet" href="design-tokens.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-family: var(--typography-fontfamilies-body);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-family: var(--typography-fontfamilies-heading);
+            font-size: 3rem;
+            color: var(--colors-primary-marrom-rustico);
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: var(--colors-neutrals-text-secondary);
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-family: var(--typography-fontfamilies-menu);
+            font-size: 1.75rem;
+            color: var(--colors-primary-marrom-rustico);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--colors-secondary-bege);
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .component-item {
+            padding: 24px;
+            border: 1px solid var(--colors-borders-light);
+            border-radius: 8px;
+            background: var(--colors-neutrals-background-light);
+        }
+
+        .component-label {
+            font-family: var(--typography-fontfamilies-menu);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--colors-neutrals-text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Colors Preview */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .color-box {
+            text-align: center;
+        }
+
+        .color-swatch {
+            height: 100px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .color-hex {
+            font-size: 0.75rem;
+            color: var(--colors-neutrals-text-muted);
+            font-family: monospace;
+        }
+
+        /* Typography Preview */
+        .typography-item {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--colors-borders-light);
+        }
+
+        .typography-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 24px;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Preview dos Componentes</h1>
+            <p>Luis Alves Mesas para Festas - Design System</p>
+        </div>
+
+        <!-- Colors Section -->
+        <div class="section">
+            <h2 class="section-title">Paleta de Cores</h2>
+            <div class="color-grid">
+                <div class="color-box">
+                    <div class="color-swatch" style="background: #983421;"></div>
+                    <div class="color-name">Marrom Rustico</div>
+                    <div class="color-hex">#983421</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background: #D3B185;"></div>
+                    <div class="color-name">Bege</div>
+                    <div class="color-hex">#D3B185</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background: #23af24;"></div>
+                    <div class="color-name">Verde CTA</div>
+                    <div class="color-hex">#23af24</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background: #17252a;"></div>
+                    <div class="color-name">Texto Primary</div>
+                    <div class="color-hex">#17252a</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background: #563524;"></div>
+                    <div class="color-name">Footer</div>
+                    <div class="color-hex">#563524</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background: #ffffff; border: 1px solid #e9ecef;"></div>
+                    <div class="color-name">Branco</div>
+                    <div class="color-hex">#ffffff</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typography Section -->
+        <div class="section">
+            <h2 class="section-title">Tipografia</h2>
+
+            <div class="typography-item">
+                <div class="component-label">Heading 1 - Lobster Two Bold 56px</div>
+                <h1 style="font-family: var(--typography-fontfamilies-heading); font-size: 3.5rem; color: var(--colors-primary-marrom-rustico); margin: 0;">
+                    Mesas Rusticas Premium
+                </h1>
+            </div>
+
+            <div class="typography-item">
+                <div class="component-label">Heading 2 - Lobster Two Bold 40px</div>
+                <h2 style="font-family: var(--typography-fontfamilies-heading); font-size: 2.5rem; color: var(--colors-primary-marrom-rustico); margin: 0;">
+                    Nosso Catalogo
+                </h2>
+            </div>
+
+            <div class="typography-item">
+                <div class="component-label">Heading 3 - Poppins SemiBold 28px</div>
+                <h3 style="font-family: var(--typography-fontfamilies-menu); font-size: 1.75rem; font-weight: 600; margin: 0;">
+                    Por Que Escolher a Gente?
+                </h3>
+            </div>
+
+            <div class="typography-item">
+                <div class="component-label">Body Regular - Open Sans 16px</div>
+                <p style="font-family: var(--typography-fontfamilies-body); font-size: 1rem; line-height: 1.6; margin: 0;">
+                    Luis Alves Mesas para Festas e uma empresa familiar com mais de 7 anos de tradicao na fabricacao de moveis rusticos de alta qualidade. Localizados em Luis Alves - SC, atendemos toda Santa Catarina e Parana.
+                </p>
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="section">
+            <h2 class="section-title">Buttons</h2>
+            <div class="component-grid">
+                <div class="component-item">
+                    <div class="component-label">Primary Button</div>
+                    <button class="btn-primary">Solicitar Orcamento</button>
+                </div>
+
+                <div class="component-item">
+                    <div class="component-label">Secondary Button</div>
+                    <button class="btn-secondary">Ver Catalogo</button>
+                </div>
+
+                <div class="component-item">
+                    <div class="component-label">Primary Button Large</div>
+                    <button class="btn-primary" style="padding: 1.25rem 2.5rem; font-size: 1.25rem;">
+                        Explorar Produtos
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Card Section -->
+        <div class="section">
+            <h2 class="section-title">Product Card</h2>
+            <div style="max-width: 380px;">
+                <div class="product-card" style="position: relative;">
+                    <div style="position: absolute; top: 16px; right: 16px; background: var(--colors-accent-verde); color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
+                        SOB MEDIDA
+                    </div>
+                    <div style="width: 100%; height: 285px; background: linear-gradient(135deg, #D3B185 0%, #983421 100%); border-radius: 16px 16px 0 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                        [Imagem da Mesa]
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3 style="font-family: var(--typography-fontfamilies-menu); font-size: 1.25rem; font-weight: 600; margin: 0 0 8px 0;">
+                            Mesa Imperatriz Natural
+                        </h3>
+                        <p style="font-family: var(--typography-fontfamilies-heading); font-size: 1.75rem; color: var(--colors-primary-marrom-rustico); margin: 0 0 16px 0;">
+                            R$ 3.400
+                        </p>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-primary" style="flex: 1;">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Card Section -->
+        <div class="section">
+            <h2 class="section-title">Feature Card</h2>
+            <div class="component-grid">
+                <div style="background: white; border: 1px solid var(--colors-borders-light); border-radius: 16px; padding: 32px; text-align: center; transition: all 0.3s;">
+                    <div style="width: 64px; height: 64px; background: var(--colors-secondary-bege); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2rem;">
+                        🏆
+                    </div>
+                    <h4 style="font-family: var(--typography-fontfamilies-menu); font-size: 1.25rem; font-weight: 600; margin: 0 0 8px 0;">
+                        7+ Anos de Experiencia
+                    </h4>
+                    <p style="font-size: 0.875rem; color: var(--colors-neutrals-text-secondary); margin: 0;">
+                        Tradicao em moveis rusticos de alta qualidade
+                    </p>
+                </div>
+
+                <div style="background: white; border: 1px solid var(--colors-borders-light); border-radius: 16px; padding: 32px; text-align: center;">
+                    <div style="width: 64px; height: 64px; background: var(--colors-secondary-bege); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2rem;">
+                        📦
+                    </div>
+                    <h4 style="font-family: var(--typography-fontfamilies-menu); font-size: 1.25rem; font-weight: 600; margin: 0 0 8px 0;">
+                        Entrega SC/PR
+                    </h4>
+                    <p style="font-size: 0.875rem; color: var(--colors-neutrals-text-secondary); margin: 0;">
+                        Entregamos em toda Santa Catarina e Parana
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial Card Section -->
+        <div class="section">
+            <h2 class="section-title">Testimonial Card</h2>
+            <div style="max-width: 380px;">
+                <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); position: relative;">
+                    <div style="font-family: var(--typography-fontfamilies-heading); font-size: 4rem; color: var(--colors-secondary-bege); opacity: 0.3; position: absolute; top: 16px; left: 24px; line-height: 1;">
+                        "
+                    </div>
+                    <div style="color: var(--colors-accent-verde); margin-bottom: 16px; font-size: 1.25rem; position: relative; z-index: 1;">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <p style="font-style: italic; line-height: 1.8; margin: 0 0 24px 0; position: relative; z-index: 1;">
+                        Excelente! As mesas ficaram perfeitas para o casamento da minha filha. Qualidade impecavel e entrega pontual. Super recomendo!
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 48px; height: 48px; background: var(--colors-secondary-bege); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--colors-primary-marrom-rustico);">
+                            MS
+                        </div>
+                        <div>
+                            <div style="font-family: var(--typography-fontfamilies-menu); font-weight: 600; font-size: 0.875rem;">
+                                Maria Silva
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--colors-neutrals-text-muted);">
+                                Blumenau - SC
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px 20px; background: var(--colors-neutrals-footer); color: white; border-radius: 16px; margin-top: 60px;">
+            <p style="margin: 0 0 8px 0; font-size: 0.9rem;">
+                Preview dos Componentes - Luis Alves Mesas
+            </p>
+            <p style="margin: 0; font-size: 0.8rem; opacity: 0.8;">
+                Email: ferramentas.starken@gmail.com
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+═══════════════════════════════════════════════════════════════
+🚀 JPR MÓVEIS - LAUNCH CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+Data: 10 de Novembro de 2024
+Status: ✅ PRONTO PARA TESTES
+
+═══════════════════════════════════════════════════════════════
+📋 ANTES DE COMEÇAR
+═══════════════════════════════════════════════════════════════
+
+PRÉ-REQUISITOS:
+  [ ] Node.js v18+ instalado (verificar: node --version)
+  [ ] npm v8+ instalado (verificar: npm --version)
+  [ ] PostgreSQL instalado (verificar: psql --version)
+
+CLONAR/ACESSAR PROJETO:
+  [ ] Abrir pasta: /Users/juanminni/meu-repositorio/jpr-moveis-rusticos
+  [ ] Verificar que backend/ existe
+  [ ] Verificar que index-nova.html existe
+
+═══════════════════════════════════════════════════════════════
+🔧 PASSO 1: INICIAR POSTGRESQL
+═══════════════════════════════════════════════════════════════
+
+Comando:
+  brew services start postgresql   (macOS)
+  sudo systemctl start postgresql  (Linux)
+
+Verificar:
+  [ ] psql -U postgres -c "SELECT 1" retorna ?column? = 1
+
+Criar database:
+  [ ] createdb jpr_moveis_db
+  [ ] psql -l | grep jpr_moveis_db (deve aparecer na lista)
+
+═══════════════════════════════════════════════════════════════
+🟦 PASSO 2: ABRIR TERMINAL 1 - BACKEND
+═══════════════════════════════════════════════════════════════
+
+Executar:
+  cd /Users/juanminni/meu-repositorio/jpr-moveis-rusticos/backend
+  npm install  (primeira vez ou se houver atualizações)
+  npm run dev
+
+Esperar:
+  [ ] ✅ Conexão com PostgreSQL estabelecida
+  [ ] ✅ Schema do banco de dados criado
+  [ ] ✅ Pool de conexões pronto
+  [ ] ✅ Servidor JPR Móveis rodando na porta 3001
+  [ ] ✅ Backend pronto para receber requisições
+
+DEIXAR RODANDO! ← Nunca feche este terminal
+
+═══════════════════════════════════════════════════════════════
+🟨 PASSO 3: ABRIR TERMINAL 2 - FRONTEND
+═══════════════════════════════════════════════════════════════
+
+Executar:
+  cd /Users/juanminni/meu-repositorio/jpr-moveis-rusticos
+  python3 -m http.server 8001
+
+Esperar:
+  [ ] Serving HTTP on 0.0.0.0 port 8001
+
+DEIXAR RODANDO! ← Nunca feche este terminal
+
+═══════════════════════════════════════════════════════════════
+🟧 PASSO 4: ABRIR TERMINAL 3 - EXECUTAR TESTES
+═══════════════════════════════════════════════════════════════
+
+Executar:
+  cd /Users/juanminni/meu-repositorio/jpr-moveis-rusticos
+  chmod +x test-commands.sh
+  bash test-commands.sh
+
+Esperar todos os testes:
+  [ ] Health Check - OK
+  [ ] Registro usuário - OK
+  [ ] Login - OK
+  [ ] Dados usuário - OK
+  [ ] Listar produtos - OK
+  [ ] Criar pedido - OK
+  [ ] Listar pedidos - OK
+  [ ] Criar avaliação - OK
+  [ ] Erros de validação - OK
+
+Resultado esperado:
+  [ ] ✅ TESTES COMPLETOS COM SUCESSO!
+
+═══════════════════════════════════════════════════════════════
+🌐 PASSO 5: TESTES DE FRONTEND (Navegador)
+═══════════════════════════════════════════════════════════════
+
+Abrir:
+  http://localhost:8001/index-nova.html
+
+Verificar Homepage:
+  [ ] Logo aparece (não emoji 🪵)
+  [ ] Página carrega sem erros
+  [ ] Responsive em mobile (F12)
+  [ ] Busca funciona
+  [ ] Adicionar ao carrinho funciona
+
+Verificar Navegação:
+  [ ] Clique em "Blog" - carrega blog.html
+  [ ] Clique em "Galeria" - carrega galeria.html
+  [ ] Clique em "Avaliações" - carrega avaliacoes.html
+  [ ] Clique em "Rastreamento" - carrega rastreamento.html
+
+═══════════════════════════════════════════════════════════════
+👤 PASSO 6: CRIAR ADMIN USER (Necessário para testes avançados)
+═══════════════════════════════════════════════════════════════
+
+No Terminal 3:
+  psql jpr_moveis_db -U postgres
+
+Dentro do psql:
+  UPDATE usuarios SET role = 'admin' WHERE email = 'joao@example.com';
+  SELECT email, role FROM usuarios;  (verificar)
+  \q  (sair)
+
+Re-executar script com modo admin:
+  [ ] bash test-commands.sh ADMIN_MODE
+
+═══════════════════════════════════════════════════════════════
+📝 PASSO 7: TESTES DETALHADOS (Opcional)
+═══════════════════════════════════════════════════════════════
+
+Abra o arquivo: TESTES-COMPLETOS.md
+Siga cada suite e execute os comandos curl:
+
+  [ ] SUITE 2: Autenticação
+  [ ] SUITE 3: Produtos
+  [ ] SUITE 4: Pedidos
+  [ ] SUITE 5: Avaliações
+
+═══════════════════════════════════════════════════════════════
+❌ EM CASO DE ERRO
+═══════════════════════════════════════════════════════════════
+
+Erro: "Cannot connect to PostgreSQL"
+  → Verificar se PostgreSQL está rodando
+  → psql -U postgres -c "SELECT 1"
+  → Se não funcionar, iniciar: brew services start postgresql
+
+Erro: "Port 3001 already in use"
+  → lsof -i :3001
+  → kill -9 <PID>
+  → npm run dev novamente
+
+Erro: "Port 8001 already in use"
+  → Usar outra porta: python3 -m http.server 8002
+  → Acessar: http://localhost:8002
+
+Erro: "Database does not exist"
+  → createdb jpr_moveis_db
+
+═══════════════════════════════════════════════════════════════
+✅ CHECKLIST FINAL
+═══════════════════════════════════════════════════════════════
+
+PostgreSQL:
+  [ ] Rodando na porta 5432
+  [ ] Database jpr_moveis_db criado
+
+Backend:
+  [ ] Rodando na porta 3001
+  [ ] Schema criado (9 tabelas)
+  [ ] API respondendo (health check OK)
+
+Frontend:
+  [ ] Rodando na porta 8001
+  [ ] index-nova.html carregando
+  [ ] Sem erros de console
+
+Testes:
+  [ ] script test-commands.sh passou
+  [ ] Todos os endpoints respondendo
+  [ ] Admin user criado
+
+═══════════════════════════════════════════════════════════════
+🎉 SE TUDO PASSOU
+═══════════════════════════════════════════════════════════════
+
+Parabéns! Sistema está 100% funcional!
+
+Próximos passos:
+  1. Documentar resultados
+  2. Deploy em Railway
+  3. Configurar domínio
+  4. Go live!
+
+═══════════════════════════════════════════════════════════════
+📚 ARQUIVOS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+COMECE AQUI:
+  ✓ EXECUTE-TESTES.md ← Passo a passo
+  ✓ TESTES-COMPLETOS.md ← Testes detalhados
+  ✓ test-commands.sh ← Script automático
+
+PARA ENTENDER:
+  ✓ PROJETO-RESUMO-EXECUTIVO.md ← Visão geral
+  ✓ BACKEND-IMPLEMENTADO.md ← Backend
+  ✓ README-COMPLETO.md ← Documentação geral
+
+PARA TROUBLESHOOTING:
+  ✓ INSTRUÇÕES-TESTES-LOCAIS.md ← Problemas comuns
+
+═══════════════════════════════════════════════════════════════
+⏰ TEMPO ESTIMADO
+═══════════════════════════════════════════════════════════════
+
+Setup PostgreSQL:         10 minutos
+Iniciar 3 terminais:      2 minutos
+Executar script:          3 minutos
+Testes de Frontend:       10 minutos
+Testes Detalhados:        20 minutos
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOTAL:                    ~45 minutos
+
+═══════════════════════════════════════════════════════════════
+
+🚀 Você consegue! Tudo está pronto para executar!
+
+═══════════════════════════════════════════════════════════════

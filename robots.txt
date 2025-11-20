@@ -1,0 +1,26 @@
+# JPR Móveis Rústicos - robots.txt
+# Otimizado para SEO - Última atualização: 10/11/2024
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Sitemap
+Sitemap: https://jprmoveis.com.br/sitemap.xml
+
+# Cache control
+# Note: Instrua seus servidores web a implementar cache apropriado

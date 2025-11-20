@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rastreie sua encomenda JPR Móveis Rústicos em tempo real">
+    <title>Rastreamento de Pedidos - JPR Móveis Rústicos</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <style>
+        .rastreamento-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .rastreamento-box {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .rastreamento-titulo {
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: 30px;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid var(--gray-medium);
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-family: var(--font-body);
+        }
+
+        .search-form input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(27, 135, 104, 0.1);
+        }
+
+        .search-form button {
+            padding: 14px 32px;
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-form button:hover {
+            background: var(--accent);
+        }
+
+        .rastreamento-resultado {
+            display: none;
+        }
+
+        .pedido-header {
+            background: var(--gray-light);
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 30px;
+        }
+
+        .pedido-numero {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .pedido-status {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .pedido-data {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .timeline-rastreamento {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-rastreamento::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gray-medium);
+        }
+
+        .evento-timeline {
+            margin-bottom: 30px;
+            padding-left: 100px;
+            position: relative;
+        }
+
+        .evento-timeline.completo .evento-icon {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .evento-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--gray-light);
+            border: 3px solid var(--gray-medium);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            z-index: 10;
+            transition: all 0.4s ease;
+        }
+
+        .evento-conteudo h4 {
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .evento-conteudo p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .evento-data {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .pedido-items {
+            background: var(--gray-light);
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 30px;
+        }
+
+        .pedido-items h3 {
+            color: var(--text);
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .item-lista {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .item-lista:last-child {
+            border-bottom: none;
+        }
+
+        .item-nome {
+            color: var(--text);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .item-detalhes {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .contato-suporte {
+            background: #E8F5E9;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .contato-suporte p {
+            color: var(--text-secondary);
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .contato-suporte a {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contato-suporte a:hover {
+            text-decoration: underline;
+        }
+
+        .mensagem-erro {
+            background: #FFEBEE;
+            border-left: 4px solid var(--complementary-red);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            color: var(--complementary-red);
+            text-align: center;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .rastreamento-box {
+                padding: 20px;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .rastreamento-titulo {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="index-nova.html" class="nav-link">← Voltar à Loja</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Rastreamento Container -->
+    <div class="rastreamento-container">
+        <div class="rastreamento-box">
+            <h2 class="rastreamento-titulo">Rastreie Seu Pedido</h2>
+
+            <!-- Formulário de Busca -->
+            <form class="search-form" onsubmit="buscarPedido(event)">
+                <input
+                    type="text"
+                    id="numero-pedido"
+                    placeholder="Insira o número do pedido"
+                    required
+                >
+                <button type="submit">Rastrear</button>
+            </form>
+
+            <div class="mensagem-erro" id="erro-msg"></div>
+
+            <!-- Resultado do Rastreamento -->
+            <div class="rastreamento-resultado" id="resultado">
+                <!-- Cabeçalho do Pedido -->
+                <div class="pedido-header">
+                    <div class="pedido-numero">Pedido #<span id="result-numero"></span></div>
+                    <div class="pedido-status" id="result-status"></div>
+                    <div class="pedido-data">Pedido realizado em <span id="result-data"></span></div>
+                </div>
+
+                <!-- Timeline de Rastreamento -->
+                <div class="timeline-rastreamento" id="timeline-container"></div>
+
+                <!-- Itens do Pedido -->
+                <div class="pedido-items" id="pedido-items-container"></div>
+
+                <!-- Contato de Suporte -->
+                <div class="contato-suporte">
+                    <p><strong>Dúvidas sobre seu rastreamento?</strong></p>
+                    <p>
+                        📞 <a href="tel:4732883096">(47) 3288-3096</a> |
+                        📱 <a href="https://wa.me/5547997168814">WhatsApp</a>
+                    </p>
+                    <p style="font-size: 12px; margin-top: 12px;">
+                        Estamos disponíveis de seg-sex 8h-18h | sáb 8h-12h
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data-produtos.js"></script>
+    <script>
+        // Simulação de dados de rastreamento
+        const pedidosRastreamento = {
+            'JR-2024-001': {
+                numero: 'JR-2024-001',
+                data: '08/11/2024',
+                status: 'Em Preparação',
+                statusIcon: '🛠️',
+                items: [
+                    { nome: 'Mesa Requinte Nobre', quantidade: 1, valor: 'R$ 3.400,00' }
+                ],
+                eventos: [
+                    { titulo: 'Pedido Confirmado', descricao: 'Seu pedido foi confirmado', data: '08/11/2024', completo: true },
+                    { titulo: 'Pagamento Processado', descricao: 'Pagamento recebido com sucesso', data: '08/11/2024', completo: true },
+                    { titulo: 'Em Preparação', descricao: 'Nossa equipe está preparando seu móvel', data: '09/11/2024', completo: true },
+                    { titulo: 'Enviado', descricao: 'Aguardando saída para entrega', data: '', completo: false },
+                    { titulo: 'Entregue', descricao: 'Seu móvel foi entregue', data: '', completo: false }
+                ]
+            },
+            'JR-2024-002': {
+                numero: 'JR-2024-002',
+                data: '05/11/2024',
+                status: 'Enviado',
+                statusIcon: '🚚',
+                items: [
+                    { nome: 'Mesa Glamour', quantidade: 1, valor: 'R$ 3.400,00' },
+                    { nome: 'Banquinho de Cabeceira', quantidade: 2, valor: 'R$ 300,00' }
+                ],
+                eventos: [
+                    { titulo: 'Pedido Confirmado', descricao: 'Seu pedido foi confirmado', data: '05/11/2024', completo: true },
+                    { titulo: 'Pagamento Processado', descricao: 'Pagamento recebido com sucesso', data: '05/11/2024', completo: true },
+                    { titulo: 'Em Preparação', descricao: 'Nossa equipe preparou seu móvel', data: '06/11/2024', completo: true },
+                    { titulo: 'Enviado', descricao: 'Seu produto foi enviado - Código: BR123456789', data: '07/11/2024', completo: true },
+                    { titulo: 'Entregue', descricao: 'Seu móvel foi entregue', data: '', completo: false }
+                ]
+            },
+            'JR-2024-003': {
+                numero: 'JR-2024-003',
+                data: '01/11/2024',
+                status: 'Entregue',
+                statusIcon: '📦',
+                items: [
+                    { nome: 'Mesa Glamour Mel', quantidade: 1, valor: 'R$ 3.400,00' }
+                ],
+                eventos: [
+                    { titulo: 'Pedido Confirmado', descricao: 'Seu pedido foi confirmado', data: '01/11/2024', completo: true },
+                    { titulo: 'Pagamento Processado', descricao: 'Pagamento recebido com sucesso', data: '01/11/2024', completo: true },
+                    { titulo: 'Em Preparação', descricao: 'Nossa equipe preparou seu móvel', data: '02/11/2024', completo: true },
+                    { titulo: 'Enviado', descricao: 'Seu produto foi enviado - Código: BR987654321', data: '03/11/2024', completo: true },
+                    { titulo: 'Entregue', descricao: 'Seu móvel foi entregue com sucesso!', data: '10/11/2024', completo: true }
+                ]
+            }
+        };
+
+        function buscarPedido(event) {
+            event.preventDefault();
+
+            const numeroPedido = document.getElementById('numero-pedido').value.toUpperCase().trim();
+            const resultado = document.getElementById('resultado');
+            const erroMsg = document.getElementById('erro-msg');
+
+            // Validar pedido
+            if (!pedidosRastreamento[numeroPedido]) {
+                erroMsg.style.display = 'block';
+                erroMsg.textContent = '❌ Pedido não encontrado. Verifique o número e tente novamente.';
+                resultado.style.display = 'none';
+                return;
+            }
+
+            erroMsg.style.display = 'none';
+
+            // Exibir dados do pedido
+            const pedido = pedidosRastreamento[numeroPedido];
+
+            document.getElementById('result-numero').textContent = pedido.numero;
+            document.getElementById('result-status').textContent = `${pedido.statusIcon} ${pedido.status}`;
+            document.getElementById('result-data').textContent = pedido.data;
+
+            // Renderizar timeline
+            const timelineContainer = document.getElementById('timeline-container');
+            timelineContainer.innerHTML = pedido.eventos.map((evento, idx) => `
+                <div class="evento-timeline ${evento.completo ? 'completo' : ''}">
+                    <div class="evento-icon">${idx === 0 ? '✓' : idx === 1 ? '💳' : idx === 2 ? '🛠️' : idx === 3 ? '🚚' : '📦'}</div>
+                    <div class="evento-conteudo">
+                        <h4>${evento.titulo}</h4>
+                        <p>${evento.descricao}</p>
+                        ${evento.data ? `<div class="evento-data">${evento.data}</div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            // Renderizar itens
+            const itemsContainer = document.getElementById('pedido-items-container');
+            itemsContainer.innerHTML = `
+                <h3>Itens do Pedido</h3>
+                ${pedido.items.map(item => `
+                    <div class="item-lista">
+                        <div class="item-nome">${item.nome}</div>
+                        <div class="item-detalhes">Quantidade: ${item.quantidade} | ${item.valor}</div>
+                    </div>
+                `).join('')}
+            `;
+
+            resultado.style.display = 'block';
+        }
+
+        // Exemplos para facilitar testes
+        window.addEventListener('DOMContentLoaded', () => {
+            const mensagem = document.createElement('p');
+            mensagem.style.cssText = 'text-align: center; color: #999; font-size: 12px; margin-top: 20px;';
+            mensagem.innerHTML = '💡 <strong>Exemplos para testar:</strong> JR-2024-001, JR-2024-002, JR-2024-003';
+            document.querySelector('.rastreamento-box').appendChild(mensagem);
+        });
+    </script>
+</body>
+</html>

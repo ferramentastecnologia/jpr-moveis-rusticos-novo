@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Artigo - JPR Móveis Rústicos</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <style>
+        /* ========================
+           ESTILOS DA PÁGINA DE ARTIGO
+           ======================== */
+
+        .artigo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl);
+        }
+
+        .artigo-header {
+            margin-bottom: var(--spacing-3xl);
+            padding-bottom: var(--spacing-2xl);
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .artigo-breadcrumb {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .artigo-breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .artigo-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .artigo-categoria {
+            display: inline-block;
+            background: rgba(27, 135, 104, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .artigo-header h1 {
+            color: var(--secondary);
+            font-size: 36px;
+            line-height: 1.3;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .artigo-meta {
+            display: flex;
+            gap: var(--spacing-2xl);
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .artigo-conteudo {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .artigo-conteudo h3 {
+            color: var(--secondary);
+            font-size: 22px;
+            margin-top: var(--spacing-2xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .artigo-conteudo p {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .artigo-conteudo ul,
+        .artigo-conteudo ol {
+            margin-left: var(--spacing-2xl);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .artigo-conteudo li {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .artigo-conteudo strong {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Divisor de Seção */
+        .artigo-conteudo hr {
+            margin: var(--spacing-2xl) 0;
+            border: none;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        /* Share Section */
+        .artigo-share {
+            background: var(--gray-light);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-3xl) 0;
+            text-align: center;
+        }
+
+        .share-title {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 10px 16px;
+            border: 2px solid var(--gray-medium);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .share-btn:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+        }
+
+        /* Artigos Relacionados */
+        .artigos-relacionados {
+            margin: var(--spacing-3xl) 0;
+            padding: var(--spacing-2xl);
+            background: linear-gradient(135deg, rgba(219, 193, 162, 0.1) 0%, rgba(27, 135, 104, 0.1) 100%);
+            border-radius: var(--radius-lg);
+        }
+
+        .artigos-relacionados h2 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .relacionados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .related-card {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 4px solid var(--accent);
+        }
+
+        .related-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(8px);
+        }
+
+        .related-card h4 {
+            color: var(--secondary);
+            font-size: 16px;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.4;
+        }
+
+        .related-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Newsletter CTA */
+        .artigo-newsletter {
+            background: linear-gradient(135deg, #1b8768 0%, #0d4d3a 100%);
+            color: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin: var(--spacing-3xl) 0;
+        }
+
+        .artigo-newsletter h2 {
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .artigo-newsletter p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: var(--spacing-md);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+        }
+
+        .newsletter-form button {
+            padding: 12px 24px;
+            background: var(--primary);
+            color: var(--text);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: #cdb394;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .artigo-container {
+                padding: var(--spacing-lg);
+            }
+
+            .artigo-header h1 {
+                font-size: 28px;
+            }
+
+            .artigo-meta {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .artigo-conteudo {
+                font-size: 15px;
+            }
+
+            .share-buttons {
+                gap: var(--spacing-md);
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navegação -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="blog.html" class="nav-link">← Voltar ao Blog</a>
+                <button class="btn-carrinho" onclick="toggleCarrinho()">
+                    🛒 <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Artigo Principal -->
+    <main class="artigo-container">
+        <div class="artigo-header">
+            <div class="artigo-breadcrumb">
+                <a href="index-nova.html">Home</a> / <a href="blog.html">Blog</a> / <span id="breadcrumb-title"></span>
+            </div>
+
+            <span class="artigo-categoria" id="artigo-categoria"></span>
+
+            <h1 id="artigo-titulo"></h1>
+
+            <div class="artigo-meta">
+                <div class="meta-item">
+                    <span>✍️</span>
+                    <span id="artigo-autor"></span>
+                </div>
+                <div class="meta-item">
+                    <span>📅</span>
+                    <span id="artigo-data"></span>
+                </div>
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span id="artigo-tempo"></span> minutos
+                </div>
+            </div>
+        </div>
+
+        <!-- Conteúdo do Artigo -->
+        <article class="artigo-conteudo" id="artigo-conteudo">
+            <!-- Conteúdo renderizado aqui -->
+        </article>
+
+        <!-- Share Section -->
+        <div class="artigo-share">
+            <div class="share-title">Compartilhe este artigo</div>
+            <div class="share-buttons">
+                <button class="share-btn" onclick="compartilharFacebook()">👍 Facebook</button>
+                <button class="share-btn" onclick="compartilharTwitter()">𝕏 Twitter</button>
+                <button class="share-btn" onclick="compartilharWhatsapp()">💬 WhatsApp</button>
+                <button class="share-btn" onclick="copiarLink()">🔗 Copiar Link</button>
+            </div>
+        </div>
+
+        <!-- Newsletter CTA -->
+        <div class="artigo-newsletter">
+            <h2>Receba Mais Dicas Como Esta</h2>
+            <p>Inscreva-se em nossa newsletter para receber artigos sobre decoração, manutenção de móveis e tendências 2024.</p>
+            <form class="newsletter-form" onsubmit="inscreverNewsletter(event)">
+                <input
+                    type="email"
+                    placeholder="seu@email.com"
+                    required
+                    id="newsletter-email-artigo"
+                >
+                <button type="submit">Inscrever</button>
+            </form>
+        </div>
+
+        <!-- Artigos Relacionados -->
+        <div class="artigos-relacionados">
+            <h2>Artigos Relacionados</h2>
+            <div class="relacionados-grid" id="relacionados-grid">
+                <!-- Artigos relacionados renderizados aqui -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JPR Móveis Rústicos. Todos os direitos reservados.</p>
+            <p class="footer-credit">Desenvolvido com ❤️ para qualidade em móveis</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="blog-dados.js"></script>
+    <script>
+        let artigoAtual = null;
+
+        /**
+         * Inicializar página de artigo
+         */
+        function inicializarArtigo() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+
+            if (!id) {
+                window.location.href = 'blog.html';
+                return;
+            }
+
+            artigoAtual = obterArtigoPorId(id);
+
+            if (!artigoAtual) {
+                window.location.href = 'blog.html';
+                return;
+            }
+
+            renderizarArtigo();
+            renderizarRelacionados();
+            atualizarCarrinhoCount();
+            atualizarMetaTags();
+        }
+
+        /**
+         * Renderizar artigo
+         */
+        function renderizarArtigo() {
+            // Breadcrumb
+            document.getElementById('breadcrumb-title').textContent = artigoAtual.titulo.substring(0, 30) + '...';
+
+            // Header
+            document.getElementById('artigo-categoria').textContent = artigoAtual.categoria;
+            document.getElementById('artigo-titulo').textContent = artigoAtual.titulo;
+            document.getElementById('artigo-autor').textContent = artigoAtual.autor;
+            document.getElementById('artigo-data').textContent = formatarData(artigoAtual.data);
+            document.getElementById('artigo-tempo').textContent = artigoAtual.tempoLeitura;
+
+            // Conteúdo
+            document.getElementById('artigo-conteudo').innerHTML = artigoAtual.conteudo;
+        }
+
+        /**
+         * Renderizar artigos relacionados
+         */
+        function renderizarRelacionados() {
+            const relacionados = obterArtigosRelacionados(artigoAtual.id, 3);
+
+            if (relacionados.length === 0) {
+                document.querySelector('.artigos-relacionados').style.display = 'none';
+                return;
+            }
+
+            const grid = document.getElementById('relacionados-grid');
+            grid.innerHTML = relacionados.map(artigo => `
+                <div class="related-card" onclick="irParaArtigo(${artigo.id})">
+                    <h4>${artigo.titulo}</h4>
+                    <p>${formatarData(artigo.data)} • ${artigo.tempoLeitura} min de leitura</p>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * Formatar data
+         */
+        function formatarData(data) {
+            const date = new Date(data);
+            return date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        /**
+         * Ir para artigo
+         */
+        function irParaArtigo(id) {
+            window.location.href = `artigo.html?id=${id}`;
+        }
+
+        /**
+         * Compartilhar no Facebook
+         */
+        function compartilharFacebook() {
+            const url = window.location.href;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
+        }
+
+        /**
+         * Compartilhar no Twitter
+         */
+        function compartilharTwitter() {
+            const url = window.location.href;
+            const texto = `Confira este artigo interessante: ${artigoAtual.titulo}`;
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(texto)}`, '_blank', 'width=600,height=400');
+        }
+
+        /**
+         * Compartilhar no WhatsApp
+         */
+        function compartilharWhatsapp() {
+            const url = window.location.href;
+            const texto = `📖 Leia este artigo: ${artigoAtual.titulo}\n\n${url}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`, '_blank');
+        }
+
+        /**
+         * Copiar link
+         */
+        function copiarLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copiado para a área de transferência!');
+            });
+        }
+
+        /**
+         * Inscrever na newsletter
+         */
+        function inscreverNewsletter(event) {
+            event.preventDefault();
+            const email = document.getElementById('newsletter-email-artigo').value;
+
+            // Simular inscrição
+            let emails = JSON.parse(localStorage.getItem('newsletter-emails') || '[]');
+            if (!emails.includes(email)) {
+                emails.push(email);
+                localStorage.setItem('newsletter-emails', JSON.stringify(emails));
+            }
+
+            alert('✅ Você foi inscrito com sucesso! Fique atento ao seu email.');
+            document.getElementById('newsletter-email-artigo').value = '';
+        }
+
+        /**
+         * Atualizar meta tags (para SEO)
+         */
+        function atualizarMetaTags() {
+            document.title = `${artigoAtual.titulo} - Blog JPR Móveis Rústicos`;
+
+            // Atualizar description
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription) {
+                metaDescription.setAttribute('content', artigoAtual.resumo);
+            }
+
+            // Atualizar og:title
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            if (ogTitle) {
+                ogTitle.setAttribute('content', artigoAtual.titulo);
+            }
+
+            // Atualizar og:description
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogDesc) {
+                ogDesc.setAttribute('content', artigoAtual.resumo);
+            }
+
+            // Atualizar og:url
+            const ogUrl = document.querySelector('meta[property="og:url"]');
+            if (ogUrl) {
+                ogUrl.setAttribute('content', window.location.href);
+            }
+        }
+
+        /**
+         * Atualizar contagem de carrinho
+         */
+        function atualizarCarrinhoCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const count = cart.reduce((sum, item) => sum + item.quantidade, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        /**
+         * Toggle carrinho
+         */
+        function toggleCarrinho() {
+            window.location.href = 'index-nova.html#catalogo';
+        }
+
+        // Inicializar ao carregar
+        document.addEventListener('DOMContentLoaded', inicializarArtigo);
+    </script>
+</body>
+</html>

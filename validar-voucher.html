@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Voucher - Sistema Interno JPR Móveis Rústicos</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-decoder@0.5.0/dist/index.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --mexican-red: #D32F2F;
+            --mexican-orange: #FF6F00;
+            --mexican-yellow: #FFC107;
+            --mexican-green: #388E3C;
+            --dark: #1A1A1A;
+            --gray-dark: #2C2C2C;
+            --gray-medium: #666;
+            --gray-light: #E0E0E0;
+            --white: #FFFFFF;
+            --bg-light: #F5F5F5;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--mexican-red) 0%, var(--mexican-orange) 100%);
+            color: white;
+            padding: 25px 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2em;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5em;
+            margin-bottom: 3px;
+        }
+
+        .logo-text p {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .header-user {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .user-role {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Scanner Section */
+        .scanner-section {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            color: var(--gray-medium);
+            margin-bottom: 30px;
+        }
+
+        /* Input Section */
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .input-wrapper {
+            flex: 1;
+        }
+
+        .input-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--mexican-red);
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--mexican-red);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--mexican-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--mexican-red);
+            border: 2px solid var(--mexican-red);
+        }
+
+        .btn-secondary:hover {
+            background: var(--mexican-red);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--mexican-green);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #2E7D32;
+            transform: translateY(-2px);
+        }
+
+        /* Scanner Options */
+        .scanner-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .scanner-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .scanner-option:hover {
+            background: white;
+            border-color: var(--mexican-red);
+        }
+
+        .scanner-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--mexican-red);
+        }
+
+        .scanner-option-icon {
+            font-size: 1.5em;
+        }
+
+        .scanner-option-text {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .option-description {
+            font-size: 0.85em;
+            color: var(--gray-medium);
+        }
+
+        /* Result Section */
+        .result-section {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Status Cards */
+        .status-card {
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .status-card.valid {
+            background: #E8F5E9;
+            border: 2px solid var(--mexican-green);
+        }
+
+        .status-card.invalid {
+            background: #FFEBEE;
+            border: 2px solid #D32F2F;
+        }
+
+        .status-card.used {
+            background: #FFF3E0;
+            border: 2px solid #FF6F00;
+        }
+
+        .status-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+
+        .status-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .status-card.valid .status-title {
+            color: var(--mexican-green);
+        }
+
+        .status-card.invalid .status-title {
+            color: #D32F2F;
+        }
+
+        .status-card.used .status-title {
+            color: #FF6F00;
+        }
+
+        .status-message {
+            font-size: 1.1em;
+            color: var(--gray-dark);
+        }
+
+        /* Voucher Details */
+        .voucher-details {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .detail-item {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            font-size: 0.85em;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .detail-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .detail-value.highlight {
+            font-size: 1.5em;
+            color: var(--mexican-red);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* History Section */
+        .history-section {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .history-item {
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-info {
+            flex: 1;
+        }
+
+        .history-code {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .history-details {
+            font-size: 0.9em;
+            color: var(--gray-medium);
+        }
+
+        .history-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .history-status.validated {
+            background: #E8F5E9;
+            color: var(--mexican-green);
+        }
+
+        .history-status.rejected {
+            background: #FFEBEE;
+            color: #D32F2F;
+        }
+
+        /* Camera Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--gray-medium);
+        }
+
+        .close-button:hover {
+            color: var(--dark);
+        }
+
+        #videoElement {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .login-modal-content {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .login-modal h2 {
+            font-size: 28px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .login-modal-subtitle {
+            color: var(--gray-medium);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .login-modal .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .login-modal label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .login-modal input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #E0E0E0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .login-modal input:focus {
+            outline: none;
+            border-color: var(--mexican-red);
+        }
+
+        .login-modal .error-message {
+            background: #FFEBEE;
+            color: #C62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .login-modal .error-message.show {
+            display: block;
+        }
+
+        .login-modal .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--mexican-red) 0%, var(--mexican-orange) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-modal .btn-login:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(211, 47, 47, 0.3);
+        }
+
+        .login-modal .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .input-group {
+                flex-direction: column;
+            }
+
+            .scanner-section,
+            .result-section,
+            .history-section {
+                padding: 25px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="images/logo-branco.png" alt="JPR Móveis Rústicos" style="height: 50px;">
+                </div>
+                <div class="logo-text">
+                    <h1>JPR Móveis Rústicos</h1>
+                    <p>Sistema de Validação de Vouchers</p>
+                </div>
+            </div>
+            <div class="header-user">
+                <div class="user-name" id="userName">Funcionário</div>
+                <div class="user-role">Atendente</div>
+                <div style="display: flex; gap: 10px; margin-top: 8px;">
+                    <a href="admin-vouchers.html" class="logout-btn" id="backBtn" style="display: none; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 6px 12px;">
+                        ← Admin
+                    </a>
+                    <button class="logout-btn" onclick="logout()" id="logoutBtn" style="display: none;">
+                        🚪 Sair
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-modal-content">
+            <h2>Acesso Restrito</h2>
+            <p class="login-modal-subtitle">Área Administrativa - JPR Móveis Rústicos</p>
+
+            <div id="loginErrorMessage" class="error-message"></div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginUsername">Usuário</label>
+                    <input
+                        type="text"
+                        id="loginUsername"
+                        name="username"
+                        placeholder="Digite seu usuário"
+                        required
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Senha</label>
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        name="password"
+                        placeholder="Digite sua senha"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <button type="submit" class="btn-login" id="btnLogin">
+                    Entrar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Scanner Section -->
+        <div class="scanner-section">
+            <h2 class="section-title">Validar Voucher</h2>
+            <p class="section-subtitle">Digite ou escaneie o código do voucher para validar</p>
+
+            <!-- Input Method Selection -->
+            <div class="scanner-options">
+                <label class="scanner-option">
+                    <input type="radio" name="inputMethod" value="manual" checked>
+                    <div class="scanner-option-icon">⌨️</div>
+                    <div class="scanner-option-text">
+                        <div class="option-title">Digitar Código</div>
+                        <div class="option-description">Inserir manualmente</div>
+                    </div>
+                </label>
+
+                <label class="scanner-option">
+                    <input type="radio" name="inputMethod" value="qrcode">
+                    <div class="scanner-option-icon">📷</div>
+                    <div class="scanner-option-text">
+                        <div class="option-title">Escanear QR Code</div>
+                        <div class="option-description">Usar câmera</div>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Manual Input -->
+            <div class="input-group" id="manualInput">
+                <div class="input-wrapper">
+                    <label class="input-label">Código do Voucher</label>
+                    <input
+                        type="text"
+                        class="input-field"
+                        id="voucherCodeInput"
+                        placeholder="RM-XXXXXX-XXXX"
+                        autocomplete="off"
+                    >
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button class="btn btn-primary" onclick="validateVoucher()">
+                        🔍 Validar
+                    </button>
+                </div>
+            </div>
+
+            <!-- QR Code Scanner Button -->
+            <div id="qrCodeInput" style="display: none; text-align: center; padding: 20px;">
+                <button class="btn btn-primary" onclick="openCamera()" style="font-size: 18px; padding: 20px 40px; width: 100%; max-width: 400px;">
+                    📷 Abrir Câmera para Escanear QR Code
+                </button>
+                <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                    Clique no botão acima para ativar a câmera
+                </p>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section" id="resultSection">
+            <!-- Status Card -->
+            <div class="status-card valid" id="statusCard">
+                <div class="status-icon" id="statusIcon">✓</div>
+                <div class="status-title" id="statusTitle">Voucher Válido!</div>
+                <div class="status-message" id="statusMessage">Este voucher pode ser utilizado</div>
+            </div>
+
+            <!-- Voucher Details -->
+            <div class="voucher-details" id="voucherDetails">
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">Código</div>
+                        <div class="detail-value" id="detailCode">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Tipo de Voucher</div>
+                        <div class="detail-value highlight" id="detailType">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Valor</div>
+                        <div class="detail-value highlight" id="detailValue">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Cliente</div>
+                        <div class="detail-value" id="detailClient">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Data da Compra</div>
+                        <div class="detail-value" id="detailPurchaseDate">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Validade</div>
+                        <div class="detail-value" id="detailExpiry">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-success" id="confirmButton" onclick="confirmUse()">
+                    ✓ Confirmar Uso do Voucher
+                </button>
+                <button class="btn btn-secondary" onclick="resetScanner()">
+                    ← Validar Outro Voucher
+                </button>
+            </div>
+        </div>
+
+        <!-- Validation History -->
+        <div class="history-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div>
+                    <h2 class="section-title">Histórico de Validações</h2>
+                    <p class="section-subtitle">Últimas validações realizadas nesta sessão</p>
+                </div>
+                <button class="btn btn-secondary" onclick="clearHistory()" style="white-space: nowrap;">
+                    🗑️ Limpar Histórico
+                </button>
+            </div>
+            <div id="historyContainer">
+                <p style="text-align: center; color: var(--gray-medium); padding: 40px 0;">
+                    Nenhuma validação realizada ainda
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Modal -->
+    <div class="modal" id="cameraModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Escanear QR Code</h3>
+                <button class="close-button" onclick="closeCamera()">×</button>
+            </div>
+            <video id="videoElement" autoplay playsinline></video>
+            <canvas id="canvasElement" style="display: none;"></canvas>
+            <p style="text-align: center; color: var(--gray-medium);">
+                Posicione o QR Code do voucher na frente da câmera
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // API URL - Backend está no Railway
+        const API_URL = 'https://jpr-moveis-vouchers-production.up.railway.app';
+
+        // ===== AUTENTICAÇÃO =====
+        // Verificar se está autenticado
+        function checkAuthentication() {
+            const token = sessionStorage.getItem('admin_token');
+            const userName = sessionStorage.getItem('admin_user');
+
+            if (token) {
+                // Já está autenticado
+                document.getElementById('loginModal').classList.remove('active');
+                document.getElementById('userName').textContent = userName || 'Funcionário';
+                document.getElementById('logoutBtn').style.display = 'block';
+                document.getElementById('backBtn').style.display = 'block';
+            } else {
+                // Não está autenticado, mostrar modal de login
+                document.getElementById('loginModal').classList.add('active');
+                document.getElementById('logoutBtn').style.display = 'none';
+                document.getElementById('backBtn').style.display = 'none';
+            }
+        }
+
+        // Função para fazer login
+        async function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const btnLogin = document.getElementById('btnLogin');
+            const errorMessage = document.getElementById('loginErrorMessage');
+
+            // Desabilitar botão
+            btnLogin.disabled = true;
+            btnLogin.textContent = 'Entrando...';
+            errorMessage.classList.remove('show');
+
+            try {
+                const response = await fetch(`${API_URL}/api/admin-login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Salvar token e usuário
+                    sessionStorage.setItem('admin_token', data.token);
+                    sessionStorage.setItem('admin_user', username);
+
+                    // Atualizar interface
+                    document.getElementById('loginModal').classList.remove('active');
+                    document.getElementById('userName').textContent = username;
+                    document.getElementById('logoutBtn').style.display = 'block';
+                    document.getElementById('backBtn').style.display = 'block';
+
+                    // Limpar formulário
+                    document.getElementById('loginForm').reset();
+                } else {
+                    showLoginError(data.error || 'Usuário ou senha incorretos');
+                }
+            } catch (error) {
+                console.error('Erro no login:', error);
+                showLoginError('Erro ao conectar com o servidor. Tente novamente.');
+            } finally {
+                btnLogin.disabled = false;
+                btnLogin.textContent = 'Entrar';
+            }
+        }
+
+        // Mostrar erro de login
+        function showLoginError(message) {
+            const errorMessage = document.getElementById('loginErrorMessage');
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+        }
+
+        // Função para fazer logout
+        function logout() {
+            const confirm = window.confirm('Tem certeza que deseja sair?');
+            if (confirm) {
+                sessionStorage.removeItem('admin_token');
+                sessionStorage.removeItem('admin_user');
+
+                // Mostrar modal de login novamente
+                document.getElementById('loginModal').classList.add('active');
+                document.getElementById('logoutBtn').style.display = 'none';
+                document.getElementById('backBtn').style.display = 'none';
+                document.getElementById('userName').textContent = 'Funcionário';
+                document.getElementById('loginForm').reset();
+                document.getElementById('loginErrorMessage').classList.remove('show');
+                document.getElementById('loginUsername').focus();
+            }
+        }
+
+        // Verificar autenticação ao carregar a página
+        checkAuthentication();
+
+        // ===== VALIDAÇÃO DE VOUCHERS =====
+        // Estado da aplicação
+        let currentVoucher = null;
+        let validationHistory = [];
+
+        // Carregar histórico do localStorage ao iniciar
+        function loadHistoryFromStorage() {
+            try {
+                const stored = localStorage.getItem('validationHistory');
+                if (stored) {
+                    validationHistory = JSON.parse(stored);
+                    console.log('📚 Histórico carregado do localStorage:', validationHistory.length, 'itens');
+                    updateHistoryDisplay();
+                } else {
+                    console.log('📚 Nenhum histórico salvo no localStorage');
+                    validationHistory = [];
+                }
+            } catch (error) {
+                console.error('Erro ao carregar histórico:', error);
+                validationHistory = [];
+            }
+        }
+
+        // Salvar histórico no localStorage
+        function saveHistoryToStorage() {
+            try {
+                localStorage.setItem('validationHistory', JSON.stringify(validationHistory));
+                console.log('💾 Histórico salvo no localStorage');
+            } catch (error) {
+                console.error('Erro ao salvar histórico:', error);
+            }
+        }
+
+        // Limpar histórico
+        function clearHistory() {
+            if (confirm('Tem certeza que deseja limpar o histórico de validações?')) {
+                validationHistory = [];
+                localStorage.removeItem('validationHistory');
+                updateHistoryDisplay();
+                alert('✅ Histórico limpo com sucesso!');
+            }
+        }
+
+        // Carregar histórico ao iniciar a página
+        loadHistoryFromStorage();
+
+        // Trocar método de input
+        document.querySelectorAll('input[name="inputMethod"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'manual') {
+                    document.getElementById('manualInput').style.display = 'flex';
+                    document.getElementById('qrCodeInput').style.display = 'none';
+                } else {
+                    document.getElementById('manualInput').style.display = 'none';
+                    document.getElementById('qrCodeInput').style.display = 'block';
+                }
+            });
+        });
+
+        // Enter key para validar
+        document.getElementById('voucherCodeInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                validateVoucher();
+            }
+        });
+
+        // Função para validar voucher (chamando API backend)
+        async function validateVoucher() {
+            const code = document.getElementById('voucherCodeInput').value.trim();
+
+            if (!code) {
+                alert('Por favor, insira um código de voucher');
+                return;
+            }
+
+            try {
+                console.log('Validando voucher:', code);
+                console.log('API URL:', API_URL);
+
+                const response = await fetch(`${API_URL}/api/validate-voucher`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code })
+                });
+
+                console.log('Response status:', response.status);
+
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (!response.ok || !data.valid) {
+                    showResult('invalid', {
+                        title: 'Voucher Não Encontrado',
+                        message: data.error || 'Este código não foi encontrado no sistema',
+                        icon: '❌'
+                    });
+                    return;
+                }
+
+                const voucher = data.voucher;
+
+                // Verificar se já foi usado
+                if (voucher.used) {
+                    showResult('used', {
+                        title: 'Voucher Já Utilizado',
+                        message: 'Este voucher já foi resgatado anteriormente',
+                        icon: '⚠️',
+                        voucher: {
+                            code: voucher.code,
+                            type: `${voucher.voucheremoji || '🎫'} ${voucher.vouchername || 'Voucher'}`,
+                            emoji: voucher.voucheremoji || '🎫',
+                            value: voucher.total || voucher.value || 0,
+                            client: voucher.buyername || 'Desconhecido',
+                            purchaseDate: voucher.purchasedate,
+                            expiryDate: voucher.expirydate
+                        }
+                    });
+                    return;
+                }
+
+                // Verificar validade
+                const today = new Date();
+                const expiryDate = new Date(voucher.expirydate);
+
+                if (today > expiryDate) {
+                    showResult('invalid', {
+                        title: 'Voucher Expirado',
+                        message: `Este voucher expirou em ${formatDate(voucher.expirydate)}`,
+                        icon: '📅',
+                        voucher: {
+                            code: voucher.code,
+                            type: `${voucher.voucheremoji || '🎫'} ${voucher.vouchername || 'Voucher'}`,
+                            emoji: voucher.voucheremoji || '🎫',
+                            value: voucher.total || voucher.value || 0,
+                            client: voucher.buyername || 'Desconhecido',
+                            purchaseDate: voucher.purchasedate,
+                            expiryDate: voucher.expirydate
+                        }
+                    });
+                    return;
+                }
+
+                // Voucher válido!
+                currentVoucher = {
+                    code: voucher.code,
+                    type: `${voucher.voucheremoji || '🎫'} ${voucher.vouchername || 'Voucher'}`,
+                    emoji: voucher.voucheremoji || '🎫',
+                    value: voucher.total || voucher.value || 0,  // total é o campo correto da API
+                    client: voucher.buyername || 'Desconhecido',
+                    purchaseDate: voucher.purchasedate,
+                    expiryDate: voucher.expirydate,
+                    status: voucher.status,
+                    used: voucher.used,
+                    id: voucher.id
+                };
+
+                // Adicionar ao histórico como validação pendente de confirmação
+                addToHistory({
+                    ...currentVoucher,
+                    validated: false, // Ainda não foi confirmado
+                    timestamp: new Date().toISOString(),
+                    sessionId: Math.random().toString(36).substr(2, 9)
+                });
+
+                showResult('valid', {
+                    title: 'Voucher Válido!',
+                    message: 'Este voucher pode ser utilizado',
+                    icon: '✓',
+                    voucher: currentVoucher
+                });
+            } catch (error) {
+                console.error('Erro ao validar voucher:', error);
+                console.error('Error message:', error.message);
+                console.error('Error stack:', error.stack);
+
+                showResult('invalid', {
+                    title: 'Erro de Conexão',
+                    message: `Erro ao conectar com o servidor: ${error.message}. Verifique o console para mais detalhes.`,
+                    icon: '⚠️'
+                });
+            }
+        }
+
+        // Mostrar resultado da validação
+        function showResult(status, data) {
+            const resultSection = document.getElementById('resultSection');
+            const statusCard = document.getElementById('statusCard');
+            const statusIcon = document.getElementById('statusIcon');
+            const statusTitle = document.getElementById('statusTitle');
+            const statusMessage = document.getElementById('statusMessage');
+            const confirmButton = document.getElementById('confirmButton');
+            const detailsSection = document.getElementById('voucherDetails');
+
+            // Atualizar status card
+            statusCard.className = `status-card ${status}`;
+            statusIcon.textContent = data.icon;
+            statusTitle.textContent = data.title;
+            statusMessage.textContent = data.message;
+
+            // Mostrar/esconder detalhes e botão de confirmação
+            if (status === 'valid') {
+                confirmButton.style.display = 'block';
+                detailsSection.style.display = 'block';
+                fillVoucherDetails(data.voucher);
+            } else {
+                confirmButton.style.display = 'none';
+                if (data.voucher) {
+                    detailsSection.style.display = 'block';
+                    fillVoucherDetails(data.voucher);
+                } else {
+                    detailsSection.style.display = 'none';
+                }
+            }
+
+            // Mostrar resultado
+            resultSection.classList.add('show');
+
+            // Scroll suave para o resultado
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Preencher detalhes do voucher
+        function fillVoucherDetails(voucher) {
+            document.getElementById('detailCode').textContent = voucher.code;
+            document.getElementById('detailType').textContent = `${voucher.emoji} ${voucher.type}`;
+            document.getElementById('detailValue').textContent = formatCurrency(voucher.value);
+            document.getElementById('detailClient').textContent = voucher.client;
+            document.getElementById('detailPurchaseDate').textContent = formatDate(voucher.purchaseDate);
+            document.getElementById('detailExpiry').textContent = formatDate(voucher.expiryDate);
+        }
+
+        // Confirmar uso do voucher
+        async function confirmUse() {
+            if (!currentVoucher) return;
+
+            const confirmation = confirm(
+                `Confirmar o uso do voucher ${currentVoucher.code}?\n\n` +
+                `Cliente: ${currentVoucher.client}\n` +
+                `Tipo: ${currentVoucher.type}\n` +
+                `Valor: ${formatCurrency(currentVoucher.value)}\n\n` +
+                `Esta ação não pode ser desfeita.`
+            );
+
+            if (confirmation) {
+                try {
+                    // Marcar como usado no backend
+                    const response = await fetch(`${API_URL}/api/vouchers/use`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ code: currentVoucher.code })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok || !data.success) {
+                        alert(`❌ Erro ao marcar voucher como usado: ${data.error}`);
+                        return;
+                    }
+
+                    // Marcar localmente
+                    currentVoucher.used = true;
+                    currentVoucher.usedDate = new Date().toISOString();
+                    currentVoucher.usedBy = document.getElementById('userName').textContent;
+
+                    // Atualizar histórico: marcar o voucher como confirmado
+                    const historyIndex = validationHistory.findIndex(h => h.code === currentVoucher.code && h.sessionId);
+                    if (historyIndex !== -1) {
+                        validationHistory[historyIndex].validated = true;
+                        validationHistory[historyIndex].confirmedAt = new Date().toISOString();
+                        validationHistory[historyIndex].confirmedBy = document.getElementById('userName').textContent;
+                        updateHistoryDisplay();
+                        saveHistoryToStorage(); // Salvar após atualizar status
+                    }
+
+                    // Mostrar confirmação
+                    alert('✅ Voucher confirmado com sucesso!\n\nO voucher foi marcado como utilizado no sistema.');
+
+                    // Reset para próxima validação
+                    resetScanner();
+                } catch (error) {
+                    console.error('Erro ao confirmar uso:', error);
+                    alert(`❌ Erro ao confirmar: ${error.message}`);
+                }
+            }
+        }
+
+        // Reset do scanner
+        function resetScanner() {
+            document.getElementById('voucherCodeInput').value = '';
+            document.getElementById('resultSection').classList.remove('show');
+            currentVoucher = null;
+            document.getElementById('voucherCodeInput').focus();
+        }
+
+        // Adicionar ao histórico
+        function addToHistory(item) {
+            validationHistory.unshift(item);
+            updateHistoryDisplay();
+            saveHistoryToStorage(); // Salvar no localStorage após adicionar
+        }
+
+        // Atualizar exibição do histórico
+        function updateHistoryDisplay() {
+            const container = document.getElementById('historyContainer');
+
+            if (validationHistory.length === 0) {
+                container.innerHTML = `
+                    <p style="text-align: center; color: var(--gray-medium); padding: 40px 0;">
+                        Nenhuma validação realizada ainda
+                    </p>
+                `;
+                return;
+            }
+
+            container.innerHTML = validationHistory.map(item => `
+                <div class="history-item">
+                    <div class="history-info">
+                        <div class="history-code">${item.code}</div>
+                        <div class="history-details">
+                            ${item.type} - ${item.client} - ${formatDateTime(item.timestamp)}
+                            ${item.validated ? `<br><small style="color: #666;">Confirmado por: ${item.confirmedBy} em ${formatDateTime(item.confirmedAt)}</small>` : '<br><small style="color: #FF9800;">Pendente de confirmação</small>'}
+                        </div>
+                    </div>
+                    <div class="history-status ${item.validated ? 'validated' : 'rejected'}" style="background: ${item.validated ? '#E8F5E9' : '#FFF3E0'}; color: ${item.validated ? '#2E7D32' : '#F57C00'};">
+                        ${item.validated ? '✓ Confirmado' : '⏳ Pendente'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Funções auxiliares
+        function formatCurrency(value) {
+            return value.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('pt-BR');
+        }
+
+        function formatDateTime(dateString) {
+            return new Date(dateString).toLocaleString('pt-BR');
+        }
+
+        // Câmera para QR Code (simplificado)
+        let stream = null;
+
+        function openCamera() {
+            const modal = document.getElementById('cameraModal');
+            const video = document.getElementById('videoElement');
+
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                .then(mediaStream => {
+                    stream = mediaStream;
+                    video.srcObject = stream;
+                    modal.classList.add('active');
+                    startQRScanning();
+                })
+                .catch(error => {
+                    console.error('Erro ao acessar câmera:', error);
+                    alert('Não foi possível acessar a câmera. Verifique as permissões.');
+                });
+        }
+
+        function closeCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            document.getElementById('cameraModal').classList.remove('active');
+        }
+
+        function startQRScanning() {
+            // Implementação simplificada - em produção usar biblioteca como jsQR
+            alert('Funcionalidade de escaneamento de QR Code será implementada com biblioteca jsQR ou similar');
+            closeCamera();
+        }
+
+        // Foco inicial no input
+        document.getElementById('voucherCodeInput').focus();
+    </script>
+</body>
+</html>

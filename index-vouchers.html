@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vouchers JPR Móveis Rústicos - Compre Online</title>
+    <meta name="description" content="Compre vouchers JPR Móveis Rústicos Blumenau online. Pague com PIX ou Cartão e receba instantaneamente por WhatsApp e Email.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa-pink: #E91E63;
+            --rosa-purple: #9C27B0;
+            --rosa-orange: #FF6F00;
+            --dark: #1A1A1A;
+            --gray-medium: #666;
+            --gray-light: #E0E0E0;
+            --white: #FFFFFF;
+            --bg-light: #F5F5F5;
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--rosa-pink) 0%, var(--rosa-purple) 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        /* Vouchers Grid */
+        .vouchers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .voucher-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .voucher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .voucher-header {
+            background: linear-gradient(135deg, var(--rosa-pink), var(--rosa-purple));
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .voucher-card:nth-child(2) .voucher-header {
+            background: linear-gradient(135deg, var(--rosa-orange), #D32F2F);
+        }
+
+        .voucher-card:nth-child(3) .voucher-header {
+            background: linear-gradient(135deg, var(--rosa-purple), var(--rosa-pink));
+        }
+
+        .voucher-emoji {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .voucher-name {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .voucher-price {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .voucher-note {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Voucher Body */
+        .voucher-body {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .voucher-description {
+            color: var(--gray-medium);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            min-height: 50px;
+        }
+
+        .voucher-includes {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+
+        .voucher-includes h4 {
+            font-size: 0.9em;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .include-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 0.95em;
+        }
+
+        .include-item::before {
+            content: '✓';
+            color: var(--rosa-pink);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .voucher-alert {
+            background: #FFF3E0;
+            border-left: 4px solid var(--rosa-orange);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 0.9em;
+            flex-shrink: 0;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Quantity Selector */
+        .quantity-section {
+            margin-bottom: 25px;
+            min-height: 80px;
+        }
+
+        .quantity-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--rosa-pink);
+            background: white;
+            color: var(--rosa-pink);
+            border-radius: 8px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background: var(--rosa-pink);
+            color: white;
+        }
+
+        .quantity-display {
+            font-size: 1.5em;
+            font-weight: 700;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        /* Total Display */
+        .total-section {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .total-label {
+            font-size: 0.9em;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .total-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--rosa-pink);
+        }
+
+        /* Buy Button */
+        .buy-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--rosa-pink);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .buy-btn:hover {
+            background: var(--rosa-purple);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .buy-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-info {
+            margin-bottom: 20px;
+        }
+
+        .footer-info a {
+            color: var(--rosa-pink);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .vouchers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .vouchers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .voucher-price {
+                font-size: 2em;
+            }
+
+            .voucher-body {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vouchers-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <div class="hero">
+        <h1>🌮 Vouchers JPR Móveis Rústicos</h1>
+        <p>Escolha, pague e receba instantaneamente!</p>
+    </div>
+
+    <!-- Vouchers -->
+    <div class="container">
+        <h2 class="section-title">Escolha Seu Voucher</h2>
+
+        <div class="vouchers-grid">
+            <!-- VOUCHER DE TESTE R$ 1,00 -->
+            <div class="voucher-card" style="border: 3px solid #FF6F00; background: #FFF3E0;">
+                <div class="voucher-header" style="background: linear-gradient(135deg, #FF6F00, #F57C00);">
+                    <div class="voucher-emoji">🧪</div>
+                    <div class="voucher-name">TESTE R$ 1,00</div>
+                    <div class="voucher-price">R$ 1,00</div>
+                    <div class="voucher-note">TESTE DO SISTEMA</div>
+                </div>
+
+                <div class="voucher-body">
+                    <p class="voucher-description">
+                        Voucher de TESTE para validar o sistema de pagamento. Pagamento REAL de R$ 1,00.
+                    </p>
+
+                    <div class="voucher-includes">
+                        <h4>Este é um voucher de teste:</h4>
+                        <div class="include-item">Pagamento REAL de R$ 1,00</div>
+                        <div class="include-item">Testa toda a integração</div>
+                        <div class="include-item">Gera voucher PDF de verdade</div>
+                        <div class="include-item">Pode ser usado para testar</div>
+                    </div>
+
+                    <div class="voucher-alert" style="background: #FFE0B2; border-color: #FF6F00;">
+                        <strong>🧪 ATENÇÃO:</strong> Este é um pagamento REAL de R$ 1,00 para testar o sistema!
+                    </div>
+
+                    <div class="quantity-section">
+                        <label class="quantity-label">Quantidade:</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="changeQuantity('teste', -1)">−</button>
+                            <span class="quantity-display" id="qty-teste">1</span>
+                            <button class="quantity-btn" onclick="changeQuantity('teste', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="total-section">
+                        <div class="total-label">Total a Pagar</div>
+                        <div class="total-value" id="total-teste">R$ 1,00</div>
+                    </div>
+
+                    <button class="buy-btn" onclick="buyVoucher('teste')" style="background: linear-gradient(135deg, #FF6F00, #F57C00);">
+                        🧪 Testar Compra - R$ 1,00
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quinta no Rosa -->
+            <div class="voucher-card">
+                <div class="voucher-header">
+                    <div class="voucher-emoji">💃</div>
+                    <div class="voucher-name">Quinta no Rosa</div>
+                    <div class="voucher-price">R$ 60,00</div>
+                    <div class="voucher-note">por pessoa</div>
+                </div>
+
+                <div class="voucher-body">
+                    <p class="voucher-description">
+                        Uma noite exclusiva feita para elas! Bebidas liberadas por 3 horas em ambiente festivo especial.
+                    </p>
+
+                    <div class="voucher-includes">
+                        <h4>O que está incluído:</h4>
+                        <div class="include-item">Gin Tônica, Caipirinha e Espumante</div>
+                        <div class="include-item">Água mineral inclusa</div>
+                        <div class="include-item">3 horas de bebidas liberadas</div>
+                        <div class="include-item">Ambiente exclusivo e decorado</div>
+                    </div>
+
+                    <div class="voucher-alert">
+                        <strong>⚠️ Importante:</strong> Válido às quintas-feiras. Mínimo de 4 mulheres no grupo.
+                    </div>
+
+                    <div class="quantity-section">
+                        <label class="quantity-label">Quantidade de pessoas:</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="changeQuantity('quinta', -1)">−</button>
+                            <span class="quantity-display" id="qty-quinta">4</span>
+                            <button class="quantity-btn" onclick="changeQuantity('quinta', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="total-section">
+                        <div class="total-label">Total a Pagar</div>
+                        <div class="total-value" id="total-quinta">R$ 240,00</div>
+                    </div>
+
+                    <button class="buy-btn" onclick="buyVoucher('quinta')">
+                        Comprar Agora 🛒
+                    </button>
+                </div>
+            </div>
+
+            <!-- Couvert Livre Ter-Qui -->
+            <div class="voucher-card">
+                <div class="voucher-header">
+                    <div class="voucher-emoji">🎊</div>
+                    <div class="voucher-name">Couvert Livre</div>
+                    <div class="voucher-price">R$ 10,00</div>
+                    <div class="voucher-note">Terça a Quinta</div>
+                </div>
+
+                <div class="voucher-body">
+                    <p class="voucher-description">
+                        Isente o couvert e ganhe um drink de boas-vindas! Válido de terça a quinta-feira no restaurante.
+                    </p>
+
+                    <div class="voucher-includes">
+                        <h4>O que está incluído:</h4>
+                        <div class="include-item">Couvert totalmente isento</div>
+                        <div class="include-item">Drink de boas-vindas da casa</div>
+                        <div class="include-item">Válido Terça, Quarta e Quinta</div>
+                        <div class="include-item">Atendimento especial garantido</div>
+                    </div>
+
+                    <div class="voucher-alert">
+                        <strong>⚠️ Importante:</strong> Consumação mínima de R$ 80 por pessoa. Válido apenas para jantares.
+                    </div>
+
+                    <div class="quantity-section">
+                        <label class="quantity-label">Quantidade de pessoas:</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="changeQuantity('couvert-tq', -1)">−</button>
+                            <span class="quantity-display" id="qty-couvert-tq">1</span>
+                            <button class="quantity-btn" onclick="changeQuantity('couvert-tq', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="total-section">
+                        <div class="total-label">Total a Pagar</div>
+                        <div class="total-value" id="total-couvert-tq">R$ 10,00</div>
+                    </div>
+
+                    <button class="buy-btn" onclick="buyVoucher('couvert-tq')">
+                        Comprar Agora 🛒
+                    </button>
+                </div>
+            </div>
+
+            <!-- Couvert Livre Sex-Sáb -->
+            <div class="voucher-card">
+                <div class="voucher-header">
+                    <div class="voucher-emoji">🎉</div>
+                    <div class="voucher-name">Couvert Livre</div>
+                    <div class="voucher-price">R$ 12,00</div>
+                    <div class="voucher-note">Sexta e Sábado</div>
+                </div>
+
+                <div class="voucher-body">
+                    <p class="voucher-description">
+                        Curta o final de semana sem pagar couvert! Drink de boas-vindas incluso no restaurante.
+                    </p>
+
+                    <div class="voucher-includes">
+                        <h4>O que está incluído:</h4>
+                        <div class="include-item">Couvert totalmente isento</div>
+                        <div class="include-item">Drink de boas-vindas da casa</div>
+                        <div class="include-item">Válido Sexta-feira e Sábado</div>
+                        <div class="include-item">Atendimento especial garantido</div>
+                    </div>
+
+                    <div class="voucher-alert">
+                        <strong>⚠️ Importante:</strong> Consumação mínima de R$ 80 por pessoa. Válido apenas para jantares.
+                    </div>
+
+                    <div class="quantity-section">
+                        <label class="quantity-label">Quantidade de pessoas:</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="changeQuantity('couvert-fs', -1)">−</button>
+                            <span class="quantity-display" id="qty-couvert-fs">1</span>
+                            <button class="quantity-btn" onclick="changeQuantity('couvert-fs', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="total-section">
+                        <div class="total-label">Total a Pagar</div>
+                        <div class="total-value" id="total-couvert-fs">R$ 12,00</div>
+                    </div>
+
+                    <button class="buy-btn" onclick="buyVoucher('couvert-fs')">
+                        Comprar Agora 🛒
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-info">
+            <p><strong>🌮 JPR Móveis Rústicos Blumenau</strong></p>
+            <p>📍 Rua Carlos Rischbieter, 64 - Victor Konder</p>
+            <p>📞 <a href="tel:4732883096">(47) 3288-3096</a> |
+               📱 <a href="https://wa.me/5547992334348">(47) 99233-4348</a></p>
+            <p>🕐 Segunda a Domingo: 18h às 00h</p>
+        </div>
+        <p style="margin-top: 20px; opacity: 0.7;">
+            &copy; 2024 JPR Móveis Rústicos - Todos os direitos reservados
+        </p>
+    </div>
+
+    <script>
+        // Configuração dos vouchers
+        const vouchers = {
+            'teste': {
+                name: 'TESTE R$ 1,00',
+                price: 1.00,
+                minQty: 1,
+                emoji: '🧪'
+            },
+            'quinta': {
+                name: 'Quinta no Rosa',
+                price: 60.00,
+                minQty: 4,
+                emoji: '💃'
+            },
+            'couvert-tq': {
+                name: 'Couvert Livre (Ter-Qui)',
+                price: 10.00,
+                minQty: 1,
+                emoji: '🎊'
+            },
+            'couvert-fs': {
+                name: 'Couvert Livre (Sex-Sáb)',
+                price: 12.00,
+                minQty: 1,
+                emoji: '🎉'
+            }
+        };
+
+        // Quantidades atuais
+        let quantities = {
+            'teste': 1,
+            'quinta': 4,
+            'couvert-tq': 1,
+            'couvert-fs': 1
+        };
+
+        // Mudar quantidade
+        function changeQuantity(voucherId, delta) {
+            const voucher = vouchers[voucherId];
+            const newQty = quantities[voucherId] + delta;
+
+            if (newQty >= voucher.minQty) {
+                quantities[voucherId] = newQty;
+                updateDisplay(voucherId);
+            }
+        }
+
+        // Atualizar display
+        function updateDisplay(voucherId) {
+            const voucher = vouchers[voucherId];
+            const qty = quantities[voucherId];
+            const total = voucher.price * qty;
+
+            document.getElementById(`qty-${voucherId}`).textContent = qty;
+            document.getElementById(`total-${voucherId}`).textContent =
+                total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        // Comprar voucher
+        function buyVoucher(voucherId) {
+            const voucher = vouchers[voucherId];
+            const qty = quantities[voucherId];
+            const total = voucher.price * qty;
+
+            // Salvar no localStorage
+            const purchaseData = {
+                voucherId: voucherId,
+                voucherName: voucher.name,
+                voucherEmoji: voucher.emoji,
+                pricePerUnit: voucher.price,
+                quantity: qty,
+                total: total,
+                timestamp: new Date().toISOString()
+            };
+
+            localStorage.setItem('pendingPurchase', JSON.stringify(purchaseData));
+
+            // Redirecionar para checkout
+            window.location.href = 'checkout-melhorado.html';
+        }
+
+        // Inicializar displays
+        Object.keys(vouchers).forEach(voucherId => {
+            updateDisplay(voucherId);
+        });
+    </script>
+</body>
+</html>

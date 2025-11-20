@@ -1,0 +1,69 @@
+================================================================================
+   🔐 CREDENCIAIS DE ACESSO - PAINEL ADMIN ROSA MEXICANO VOUCHERS
+================================================================================
+
+📍 ACESSO RÁPIDO:
+
+URL do Painel Admin:
+https://rosamexicanovouchers.netlify.app/admin-login.html
+
+👤 CREDENCIAIS:
+
+Usuário: admin
+Senha: rosa2025
+
+================================================================================
+
+🚀 PRIMEIRO ACESSO:
+
+1. Abra o navegador (Chrome, Safari, Firefox, etc)
+2. Cole a URL acima
+3. Digite: admin
+4. Senha: rosa2025
+5. Clique em "ACESSAR PAINEL"
+
+================================================================================
+
+📊 FUNCIONALIDADES DO ADMIN:
+
+✓ Ver todos os vouchers vendidos
+✓ Conferir data e hora de cada compra
+✓ Visualizar status (Ativo, Validado, Utilizado, Expirado, Cancelado)
+✓ Ver gráficos de vendas em tempo real
+✓ Baixar PDF dos vouchers
+✓ Análises de vendas dos últimos 30 dias
+
+================================================================================
+
+📱 VALIDAR VOUCHER NA LOJA:
+
+URL de Validação:
+https://rosamexicanovouchers.netlify.app/validar-voucher.html
+
+Opção 1: Escanear QR Code da câmera
+Opção 2: Digitar o código manualmente
+
+================================================================================
+
+⚠️ IMPORTANTE:
+
+- Guarde estas credenciais com segurança
+- Não compartilhe por WhatsApp/SMS
+- O painel atualiza automaticamente a cada 5 segundos
+- Limpe o histórico do navegador ao terminar
+
+================================================================================
+
+📞 SUPORTE:
+
+JPR Móveis Rústicos Blumenau
+WhatsApp: (47) 99233-4348
+Telefone: (47) 3288-3096
+
+================================================================================
+
+Versão: 1.0
+Data: 09/11/2025
+Sistema: JPR Móveis Rústicos Vouchers - Black November
+
+================================================================================

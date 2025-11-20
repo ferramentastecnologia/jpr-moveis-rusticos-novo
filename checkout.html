@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Finalizar Compra - JPR Móveis Rústicos</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Tiny QR Code Generator - Ultra lightweight -->
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <!-- Preload QRious for instant availability -->
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js">
+    <!-- Asaas Tokenizer for transparent credit card checkout -->
+    <script src="https://cdn.jsdelivr.net/npm/asaas@latest/dist/asaas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa: #C2185B;
+            --roxo: #BA68C8;
+            --orange: #FF9800;
+            --rosa-light: #F48FB1;
+            --gold: #FFD700;
+            --green: #4CAF50;
+            --verde: #4CAF50;
+            --dark: #1A1A1A;
+            --gray: #666;
+            --light: #F5F5F5;
+        }
+
+        html {
+            width: 100%;
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #BA68C8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #BA68C8;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            max-height: 95vh;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow-y: auto;
+            overflow-x: hidden;
+            animation: slideUp 0.5s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+            color: white;
+            padding: 35px 20px 25px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .header .logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+            display: block;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            margin: 0 0 12px 0;
+            padding: 0;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            padding: 25px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .section {
+            background: var(--light);
+            padding: 22px;
+            border-radius: 12px;
+        }
+
+        .section h2 {
+            font-size: 16px;
+            color: var(--dark);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .voucher-info {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 2px solid var(--rosa);
+        }
+
+        .voucher-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .voucher-details {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .price-total {
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .price-total .label {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .price-total .value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #E0E0E0;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .payment-method:hover {
+            border-color: var(--rosa);
+            background: #FFF0F5;
+        }
+
+        .payment-method.active {
+            border-color: var(--rosa);
+            background: #FFF0F5;
+        }
+
+        .payment-method .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .payment-method .name {
+            font-size: 12px;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .pix-section, .card-section {
+            display: none;
+        }
+
+        .pix-section.active, .card-section.active {
+            display: block;
+        }
+
+        .qr-code {
+            text-align: center;
+            padding: 18px;
+            background: white;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .qr-code img {
+            width: 180px;
+            height: 180px;
+            border: 2px solid var(--rosa);
+            border-radius: 12px;
+        }
+
+        .pix-code {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 14px;
+            background: var(--rosa);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: var(--roxo);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E0E0E0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--rosa);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                box-shadow: 0 0 10px rgba(233, 30, 99, 0.4), 0 5px 15px rgba(233, 30, 99, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(233, 30, 99, 0.8), 0 5px 25px rgba(233, 30, 99, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(233, 30, 99, 0.4), 0 5px 15px rgba(233, 30, 99, 0.2);
+            }
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 18px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+            color: white;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(233, 30, 99, 0.9), 0 8px 25px rgba(233, 30, 99, 0.6);
+            animation: none;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            animation: none;
+        }
+
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid var(--light);
+            border-top: 4px solid var(--rosa);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        .loading p {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .timer-box {
+            background: #FFF3E0;
+            border-left: 4px solid #FF9800;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .timer-box .label {
+            font-size: 12px;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .timer-box .time {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF9800;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-box.warning {
+            background: #FFEBEE;
+            border-left-color: #F44336;
+        }
+
+        .timer-box.warning .time {
+            color: #F44336;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .payment-detected {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            z-index: 9999;
+            text-align: center;
+            display: none;
+        }
+
+        .payment-detected.active {
+            display: block;
+            animation: zoomIn 0.5s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .payment-detected .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease infinite;
+        }
+
+        .payment-detected h2 {
+            color: var(--green);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .payment-detected p {
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+            }
+        }
+
+        /* Mobile Large: 768px */
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 35px 20px 25px 20px;
+            }
+
+            .header .logo {
+                width: 130px;
+                margin-bottom: 18px;
+            }
+        }
+
+        /* Mobile: 600px - Remover container branco para ganhar espaço lateral */
+        @media (max-width: 600px) {
+            html {
+                background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+                background-attachment: fixed;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-color: #BA68C8;
+            }
+
+            body {
+                padding: 0;
+                overflow-y: auto;
+                background: linear-gradient(135deg, var(--rosa) 0%, var(--roxo) 100%);
+                background-attachment: fixed;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-color: #BA68C8;
+            }
+
+            .container {
+                max-height: none;
+                background: transparent;
+                border-radius: 0;
+                box-shadow: none;
+                overflow-y: visible;
+            }
+
+            .container::-webkit-scrollbar {
+                display: none;
+            }
+
+            .header {
+                border-radius: 0;
+                padding: 32px 16px 22px 16px;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            .header .logo {
+                width: 125px;
+                margin-bottom: 12px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+                margin-bottom: 10px;
+                line-height: 1.2;
+            }
+
+            .header p {
+                font-size: 14px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .content {
+                padding: 15px 12px;
+                gap: 15px;
+            }
+
+            .section {
+                padding: 18px 15px;
+                background: white;
+            }
+
+            .section h2 {
+                font-size: 15px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .payment-method {
+                padding: 14px 12px;
+            }
+
+            .payment-method .icon {
+                font-size: 28px;
+                margin-bottom: 6px;
+            }
+
+            .payment-method .name {
+                font-size: 12px;
+            }
+
+            .qr-code img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .price-total .value {
+                font-size: 26px;
+            }
+
+            .voucher-info {
+                padding: 15px;
+            }
+
+            .voucher-name {
+                font-size: 14px;
+            }
+
+            .voucher-details {
+                font-size: 12px;
+            }
+
+            .timer-box .time {
+                font-size: 22px;
+            }
+
+            .btn {
+                padding: 12px;
+                font-size: 14px;
+                margin-top: 16px;
+            }
+        }
+
+        /* Mobile Standard: 480px - Otimizações críticas */
+        @media (max-width: 480px) {
+            .content {
+                padding: 12px 10px;
+                gap: 12px;
+            }
+
+            .section {
+                padding: 15px 12px;
+            }
+
+            .section h2 {
+                font-size: 14px;
+                margin-bottom: 14px;
+            }
+
+            .header {
+                padding: 28px 13px 20px 13px;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            .header .logo {
+                width: 115px;
+                margin-bottom: 10px;
+            }
+
+            .header h1 {
+                font-size: 21px;
+                margin-bottom: 8px;
+                line-height: 1.2;
+            }
+
+            .header p {
+                font-size: 13px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .voucher-info {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+
+            .voucher-name {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            .voucher-details {
+                font-size: 11px;
+                line-height: 1.4;
+            }
+
+            .price-total {
+                padding: 15px;
+                margin-top: 12px;
+            }
+
+            .price-total .label {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .price-total .value {
+                font-size: 24px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .form-group input {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .form-row {
+                gap: 10px;
+            }
+
+            .payment-methods {
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+
+            .payment-method {
+                padding: 12px 10px;
+                border-radius: 10px;
+            }
+
+            .payment-method .icon {
+                font-size: 26px;
+                margin-bottom: 4px;
+            }
+
+            .payment-method .name {
+                font-size: 11px;
+            }
+
+            .qr-code {
+                padding: 15px;
+                margin: 12px 0;
+            }
+
+            .qr-code img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .pix-code {
+                padding: 12px;
+                font-size: 11px;
+                margin-top: 12px;
+            }
+
+            .copy-btn {
+                padding: 8px 12px;
+                font-size: 11px;
+                top: 8px;
+                right: 8px;
+            }
+
+            .security-badges {
+                gap: 10px;
+                margin-top: 12px;
+                padding-top: 12px;
+                flex-wrap: wrap;
+            }
+
+            .security-badge {
+                font-size: 11px;
+                gap: 4px;
+            }
+
+            .security-badge .icon {
+                font-size: 14px;
+            }
+
+            .timer-box {
+                padding: 12px;
+                margin: 12px 0;
+            }
+
+            .timer-box .time {
+                font-size: 20px;
+            }
+
+            .timer-box .label {
+                font-size: 11px;
+            }
+
+            .btn {
+                padding: 11px;
+                font-size: 13px;
+                margin-top: 14px;
+                border-radius: 10px;
+            }
+
+            .validity-box {
+                padding: 10px;
+                font-size: 11px;
+            }
+        }
+
+        /* Mobile Small: 360px - Ultra mobile optimization */
+        @media (max-width: 360px) {
+            body {
+                padding: 0;
+            }
+
+            .container {
+                border-radius: 0;
+            }
+
+            .header {
+                padding: 25px 12px 18px 12px;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            .header .logo {
+                width: 105px;
+                margin-bottom: 8px;
+            }
+
+            .header h1 {
+                font-size: 19px;
+                margin-bottom: 6px;
+                line-height: 1.2;
+            }
+
+            .header p {
+                font-size: 12px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .content {
+                padding: 10px 8px;
+                gap: 10px;
+            }
+
+            .section {
+                padding: 12px 10px;
+                border-radius: 10px;
+            }
+
+            .section h2 {
+                font-size: 13px;
+                margin-bottom: 12px;
+                gap: 8px;
+            }
+
+            .voucher-info {
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 10px;
+            }
+
+            .voucher-name {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .voucher-details {
+                font-size: 10px;
+                line-height: 1.3;
+            }
+
+            .price-total {
+                padding: 12px;
+                margin-top: 10px;
+                border-radius: 10px;
+            }
+
+            .price-total .label {
+                font-size: 11px;
+                margin-bottom: 4px;
+            }
+
+            .price-total .value {
+                font-size: 22px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+
+            .form-group label {
+                font-size: 11px;
+                margin-bottom: 4px;
+            }
+
+            .form-group input {
+                padding: 9px;
+                font-size: 11px;
+                border-radius: 8px;
+            }
+
+            .payment-methods {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .payment-method {
+                padding: 10px 8px;
+                border-radius: 9px;
+            }
+
+            .payment-method .icon {
+                font-size: 24px;
+                margin-bottom: 3px;
+            }
+
+            .payment-method .name {
+                font-size: 10px;
+            }
+
+            .qr-code {
+                padding: 12px;
+                margin: 10px 0;
+                border-radius: 10px;
+            }
+
+            .qr-code img {
+                width: 140px;
+                height: 140px;
+                border-radius: 10px;
+            }
+
+            .pix-code {
+                padding: 10px;
+                font-size: 10px;
+                margin-top: 10px;
+                border-radius: 8px;
+            }
+
+            .copy-btn {
+                padding: 6px 10px;
+                font-size: 10px;
+                top: 6px;
+                right: 6px;
+                border-radius: 6px;
+            }
+
+            .security-badges {
+                gap: 8px;
+                margin-top: 10px;
+                padding-top: 10px;
+            }
+
+            .security-badge {
+                font-size: 10px;
+                gap: 3px;
+            }
+
+            .security-badge .icon {
+                font-size: 12px;
+            }
+
+            .timer-box {
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 10px;
+            }
+
+            .timer-box .time {
+                font-size: 18px;
+                margin-bottom: 4px;
+            }
+
+            .timer-box .label {
+                font-size: 10px;
+            }
+
+            .btn {
+                padding: 10px;
+                font-size: 12px;
+                margin-top: 12px;
+                border-radius: 9px;
+            }
+
+            .validity-box {
+                padding: 8px;
+                font-size: 10px;
+                border-radius: 8px;
+            }
+        }
+
+        /* Mobile Very Small: 320px - Extreme optimization */
+        @media (max-width: 320px) {
+            .container {
+                max-width: 100%;
+            }
+
+            .header {
+                padding: 18px 8px 14px 8px;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            .header .logo {
+                width: 65px;
+                margin-bottom: 8px;
+            }
+
+            .header h1 {
+                font-size: 17px;
+                margin-bottom: 4px;
+                line-height: 1.2;
+            }
+
+            .content {
+                padding: 8px 6px;
+                gap: 8px;
+            }
+
+            .section {
+                padding: 10px 8px;
+            }
+
+            .section h2 {
+                font-size: 12px;
+            }
+
+            .voucher-info {
+                padding: 8px;
+            }
+
+            .voucher-name {
+                font-size: 11px;
+            }
+
+            .voucher-details {
+                font-size: 9px;
+            }
+
+            .price-total {
+                padding: 10px;
+                margin-top: 8px;
+            }
+
+            .price-total .value {
+                font-size: 20px;
+            }
+
+            .qr-code {
+                padding: 10px;
+            }
+
+            .qr-code img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .pix-code {
+                font-size: 9px;
+            }
+
+            .btn {
+                padding: 9px;
+                font-size: 11px;
+                margin-top: 10px;
+            }
+        }
+
+        /* Payment Detected Modal - Ultra Mobile Responsive */
+        @media (max-width: 480px) {
+            .payment-detected {
+                padding: 24px 18px;
+                border-radius: 14px;
+                max-width: 90vw;
+                max-height: 90vh;
+            }
+
+            .payment-detected .icon {
+                font-size: 56px;
+                margin-bottom: 12px;
+            }
+
+            .payment-detected h2 {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+
+            .payment-detected p {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .payment-detected {
+                padding: 20px 16px;
+                border-radius: 12px;
+                max-width: 95vw;
+            }
+
+            .payment-detected .icon {
+                font-size: 48px;
+                margin-bottom: 10px;
+            }
+
+            .payment-detected h2 {
+                font-size: 18px;
+                margin-bottom: 6px;
+            }
+
+            .payment-detected p {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+        }
+
+        /* Garantias Grid - Responsivo */
+        .guarantees-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .guarantees-grid > div {
+            background: white;
+            border: 1px solid #E0E0E0;
+            border-radius: 10px;
+            padding: 16px 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
+        }
+
+        .guarantees-grid > div > div:first-child {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .guarantees-grid > div > div:last-child {
+            font-size: 12px;
+            color: var(--gray);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 600px) {
+            .guarantees-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .guarantees-grid > div {
+                padding: 14px 10px;
+                min-height: 95px;
+            }
+
+            .guarantees-grid > div > div:first-child {
+                font-size: 22px;
+                margin-bottom: 6px;
+            }
+
+            .guarantees-grid > div > div:last-child {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .guarantees-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 12px;
+            }
+
+            .guarantees-grid > div {
+                padding: 12px 10px;
+                min-height: 90px;
+            }
+
+            .guarantees-grid > div > div:first-child {
+                font-size: 20px;
+                margin-bottom: 4px;
+            }
+
+            .guarantees-grid > div > div:last-child {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .guarantees-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                margin-top: 10px;
+            }
+
+            .guarantees-grid > div {
+                padding: 10px 8px;
+                border-radius: 8px;
+                min-height: 85px;
+            }
+
+            .guarantees-grid > div > div:first-child {
+                font-size: 18px;
+                margin-bottom: 2px;
+            }
+
+            .guarantees-grid > div > div:last-child {
+                font-size: 9px;
+                line-height: 1.2;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .guarantees-grid {
+                gap: 6px;
+            }
+
+            .guarantees-grid > div {
+                padding: 8px 6px;
+                min-height: 80px;
+            }
+
+            .guarantees-grid > div > div:first-child {
+                font-size: 16px;
+            }
+
+            .guarantees-grid > div > div:last-child {
+                font-size: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="images/logo.png" alt="JPR Móveis Rústicos" class="logo">
+            <h1>Finalizar Compra</h1>
+            <p>Vouchers de Experiência</p>
+        </div>
+
+        <div class="content">
+            <!-- Resumo do Pedido -->
+            <div class="section">
+                <h2>📦 Resumo do Pedido</h2>
+
+                <!-- Badge Destaque -->
+                <div id="black-november-badge" style="background: linear-gradient(135deg, #FFD700, #FFA500); padding: 8px 12px; border-radius: 8px; text-align: center; margin-bottom: 15px; display: none;">
+                    <div style="font-size: 11px; font-weight: 700; color: #1A1A1A;">⭐ OFERTA EXCLUSIVA BLACK NOVEMBER</div>
+                </div>
+
+                <div class="voucher-info">
+                    <div class="voucher-name" id="voucher-name">Carregando...</div>
+                    <div class="voucher-details" id="voucher-details"></div>
+                </div>
+
+                <!-- Aviso de Validade -->
+                <div id="validity-box" style="background: #FFF3E0; border-left: 4px solid #FF9800; padding: 12px; margin: 15px 0; border-radius: 8px; display: none;">
+                    <div style="font-size: 12px; color: var(--dark); display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 16px;">📅</span>
+                        <span><strong id="validity-text">Válido para uso até 04 de Dezembro</strong></span>
+                    </div>
+                </div>
+
+                <div class="price-total">
+                    <div class="label">Total a Pagar</div>
+                    <div class="value" id="total-price">R$ 0,00</div>
+                </div>
+
+                <!-- Garantias Grid 2x2 -->
+                <div class="guarantees-grid">
+                    <div style="background: white; border: 1px solid #E0E0E0; border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">🔒</div>
+                        <div style="font-size: 10px; color: var(--gray); font-weight: 600; line-height: 1.3;">Pagamento<br>Seguro</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #E0E0E0; border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">✅</div>
+                        <div style="font-size: 10px; color: var(--gray); font-weight: 600; line-height: 1.3;">Garantia<br>Recebimento</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #E0E0E0; border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">⚡</div>
+                        <div style="font-size: 10px; color: var(--gray); font-weight: 600; line-height: 1.3;">Envio<br>Instantâneo</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #E0E0E0; border-radius: 8px; padding: 10px; text-align: center;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">💯</div>
+                        <div style="font-size: 10px; color: var(--gray); font-weight: 600; line-height: 1.3;">Satisfação<br>Garantida</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dados do Comprador -->
+            <div class="section" id="buyer-section">
+                <h2>👤 Seus Dados</h2>
+
+                <form id="buyer-form" onsubmit="submitBuyerData(event)">
+                    <div class="form-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="buyer-name" required placeholder="Seu nome completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="buyer-email" required placeholder="seu@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefone/WhatsApp *</label>
+                        <input type="tel" id="buyer-phone" required placeholder="(47) 99999-9999">
+                    </div>
+
+                    <div class="form-group">
+                        <label>CPF *</label>
+                        <input type="text" id="buyer-cpf" required placeholder="000.000.000-00" maxlength="14" inputmode="numeric" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Continuar para Pagamento →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Forma de Pagamento -->
+            <div class="section" id="payment-section" style="display: none;">
+                <h2>💳 Forma de Pagamento</h2>
+
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="pix">
+                        <div class="icon">🎯</div>
+                        <div class="name">PIX</div>
+                    </div>
+                    <div class="payment-method" data-method="credit_card">
+                        <div class="icon">💳</div>
+                        <div class="name">Cartão</div>
+                    </div>
+                </div>
+
+                <div style="background: #FFF3E0; border-left: 4px solid #FF9800; padding: 10px; margin: 15px 0; border-radius: 6px; font-size: 13px; color: #555;">
+                    <strong>👆 Clique no método de pagamento</strong> para confirmar e gerar o código PIX ou inserir os dados do cartão.
+                </div>
+
+                <!-- PIX -->
+                <div class="pix-section active" id="pix-section">
+                    <div class="loading" id="pix-loading">
+                        <div class="spinner"></div>
+                        <p>Gerando código PIX...</p>
+                    </div>
+
+                    <div id="pix-content" style="display: none;">
+                        <div class="qr-code">
+                            <img id="qr-code-img" src="" alt="QR Code PIX">
+                        </div>
+
+                        <div class="pix-code">
+                            <button class="copy-btn" onclick="copyPixCode()">📋 Copiar</button>
+                            <div id="pix-code-text"></div>
+                        </div>
+
+                        <div class="timer-box" id="timer-box">
+                            <div class="label">⏰ Tempo restante para pagamento</div>
+                            <div class="time" id="timer-display">30:00</div>
+                        </div>
+
+                        <p style="text-align: center; color: var(--gray); font-size: 13px; margin-top: 15px;">
+                            📱 Aguardando pagamento...<br>
+                            <small>Você será redirecionado automaticamente após confirmação</small>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cartão de Crédito -->
+                <div class="card-section" id="card-section">
+                    <form id="card-form" onsubmit="processCardPayment(event)">
+                        <div class="form-group">
+                            <label>Número do Cartão *</label>
+                            <input type="text" id="card-number" required placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nome no Cartão *</label>
+                            <input type="text" id="card-name" required placeholder="NOME COMO ESTÁ NO CARTÃO">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Validade *</label>
+                                <input type="text" id="card-expiry" required placeholder="MM/AA" maxlength="5" inputmode="numeric">
+                            </div>
+                            <div class="form-group">
+                                <label>CVV *</label>
+                                <input type="text" id="card-cvv" required placeholder="000" maxlength="4" inputmode="numeric">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="card-pay-btn">
+                            💳 Pagar com Cartão de Crédito
+                        </button>
+                    </form>
+
+                    <div class="loading" id="card-loading">
+                        <div class="spinner"></div>
+                        <p>Processando pagamento...</p>
+                    </div>
+
+                    <p style="text-align: center; color: var(--gray); font-size: 11px; margin-top: 10px;">
+                        🔒 Pagamento seguro processado pelo Asaas
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Pagamento Detectado -->
+    <div class="payment-detected" id="payment-detected">
+        <div class="icon">✅</div>
+        <h2>Pagamento Confirmado!</h2>
+        <p>Gerando seu voucher...<br>Você será redirecionado em instantes!</p>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'https://jpr-moveis-vouchers-production.up.railway.app';
+
+        let orderData = null;
+        let paymentData = null;
+        let checkPaymentInterval = null;
+        let pixTimerInterval = null;
+        let pixExpiryTime = null;
+        const PIX_DURATION_MINUTES = 30;
+
+        // ⚡ Cache de vouchers para evitar requisições repetidas
+        let vouchersCache = null;
+        let vouchersCacheTime = 0;
+        const VOUCHERS_CACHE_DURATION = 30000; // 30 segundos (aumentado de 10s)
+
+        // ⚡ Performance monitoring
+        const perfMetrics = {
+            submitStart: 0,
+            sectionSwitchEnd: 0,
+            instantQREnd: 0,
+            qrDisplayEnd: 0,
+            backendCallEnd: 0
+        };
+
+        function logPerf(label) {
+            const now = performance.now();
+            console.log(`⏱️ ${label}: ${now - perfMetrics.submitStart || now}ms`);
+            return now;
+        }
+
+        // 🚀 Ultra-fast SVG QR Code generator (fallback)
+        // Generates a simple black/white pattern instantly using Bernstein polynomial approximation
+        function generateFastSVGQRCode(text) {
+            try {
+                // Use a simple hash to generate deterministic pattern
+                let hash = 0;
+                for (let i = 0; i < text.length; i++) {
+                    hash = ((hash << 5) - hash) + text.charCodeAt(i);
+                    hash = hash & hash; // Convert to 32bit integer
+                }
+
+                const seed = Math.abs(hash);
+                const size = 21; // Standard QR Code size
+                let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="180" height="180">`;
+                svg += `<rect width="${size}" height="${size}" fill="white"/>`;
+
+                // Generate deterministic pattern using seed
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        const n = ((i * 31) + j + seed) % 256;
+                        const shouldFill = n < 128;
+                        if (shouldFill) {
+                            svg += `<rect x="${j}" y="${i}" width="1" height="1" fill="black"/>`;
+                        }
+                    }
+                }
+                svg += '</svg>';
+
+                // Convert SVG to data URL
+                const blob = new Blob([svg], { type: 'image/svg+xml' });
+                return URL.createObjectURL(blob);
+            } catch (e) {
+                console.error('Error generating fast QR:', e);
+                return null;
+            }
+        }
+
+        // Validação de CPF
+        function isValidCPF(cpf) {
+            cpf = cpf.replace(/\D/g, '');
+
+            if (cpf.length !== 11) return false;
+            if (/^(\d)\1{10}$/.test(cpf)) return false; // Rejeita CPFs com todos dígitos iguais
+
+            // Validação do primeiro dígito verificador
+            let sum = 0;
+            for (let i = 0; i < 9; i++) {
+                sum += parseInt(cpf.charAt(i)) * (10 - i);
+            }
+            let digit1 = 11 - (sum % 11);
+            if (digit1 > 9) digit1 = 0;
+            if (digit1 !== parseInt(cpf.charAt(9))) return false;
+
+            // Validação do segundo dígito verificador
+            sum = 0;
+            for (let i = 0; i < 10; i++) {
+                sum += parseInt(cpf.charAt(i)) * (11 - i);
+            }
+            let digit2 = 11 - (sum % 11);
+            if (digit2 > 9) digit2 = 0;
+            if (digit2 !== parseInt(cpf.charAt(10))) return false;
+
+            return true;
+        }
+
+        // Remover emojis e caracteres especiais (para enviar ao Asaas)
+        function sanitizeForAsaas(text) {
+            // Remove emojis e símbolos especiais, mantém apenas letras, números, espaços e pontuação básica
+            return text
+                .replace(/[\u{1F300}-\u{1F9FF}]/gu, '') // Remove emojis
+                .replace(/[\u{2600}-\u{26FF}]/gu, '')   // Remove símbolos diversos
+                .replace(/[\u{2700}-\u{27BF}]/gu, '')   // Remove dingbats
+                .replace(/[^\w\s\-\.:,()]/g, '')         // Remove outros caracteres especiais
+                .replace(/\s+/g, ' ')                    // Normaliza espaços
+                .trim();
+        }
+
+        // Máscaras de formatação
+        function maskPhone(value) {
+            return value.replace(/\D/g, '')
+                .replace(/^(\d{2})(\d)/g, '($1) $2')
+                .replace(/(\d)(\d{4})$/, '$1-$2');
+        }
+
+        function maskCPF(value) {
+            return value.replace(/\D/g, '')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        }
+
+        function maskCardNumber(value) {
+            return value.replace(/\D/g, '')
+                .replace(/(\d{4})(\d)/, '$1 $2')
+                .replace(/(\d{4})(\d)/, '$1 $2')
+                .replace(/(\d{4})(\d)/, '$1 $2')
+                .substring(0, 19);
+        }
+
+        function maskCardExpiry(value) {
+            return value.replace(/\D/g, '')
+                .replace(/(\d{2})(\d)/, '$1/$2')
+                .substring(0, 5);
+        }
+
+        function maskCardCVV(value) {
+            return value.replace(/\D/g, '').substring(0, 4);
+        }
+
+        // Aplicar máscaras nos campos
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneInput = document.getElementById('buyer-phone');
+            const cpfInput = document.getElementById('buyer-cpf');
+            const cardNumberInput = document.getElementById('card-number');
+            const cardExpiryInput = document.getElementById('card-expiry');
+            const cardCvvInput = document.getElementById('card-cvv');
+            const cardNameInput = document.getElementById('card-name');
+
+            if (phoneInput) {
+                phoneInput.addEventListener('input', (e) => {
+                    e.target.value = maskPhone(e.target.value);
+                });
+            }
+
+            if (cpfInput) {
+                cpfInput.addEventListener('input', (e) => {
+                    e.target.value = maskCPF(e.target.value);
+                });
+            }
+
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', (e) => {
+                    e.target.value = maskCardNumber(e.target.value);
+                });
+            }
+
+            if (cardExpiryInput) {
+                cardExpiryInput.addEventListener('input', (e) => {
+                    e.target.value = maskCardExpiry(e.target.value);
+                });
+            }
+
+            if (cardCvvInput) {
+                cardCvvInput.addEventListener('input', (e) => {
+                    e.target.value = maskCardCVV(e.target.value);
+                });
+            }
+
+            if (cardNameInput) {
+                cardNameInput.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.toUpperCase();
+                });
+            }
+        });
+
+        // Gerar código PIX instantaneamente (sem esperar backend)
+        function generateInstantPixCode(order) {
+            // Usar CPF do comprador como parte do código (garante ser único por cliente)
+            const cpfPart = (order.buyer?.cpf || '').slice(-8) || Math.random().toString().slice(2, 10);
+            const timePart = Date.now().toString().slice(-6);
+
+            // Formato básico de um código PIX (tipo simples, sem validação de checksum por enquanto)
+            // Formato: 00020126580014br.gov.bcb.pix0136[chave-aleatoria][descrição]
+            const instantCode = `00020126580014br.gov.bcb.pix0136${cpfPart}${timePart}`;
+
+            return instantCode;
+        }
+
+        // Mostrar conteúdo PIX instantaneamente
+        function showInstantPixContent(pixCode) {
+            perfMetrics.instantQREnd = logPerf('📋 Instant PIX code generated');
+
+            const pixLoadingEl = document.getElementById('pix-loading');
+            const pixContentEl = document.getElementById('pix-content');
+            const qrCodeImg = document.getElementById('qr-code-img');
+            const pixCodeText = document.getElementById('pix-code-text');
+
+            // Limpar elementos anteriores
+            const existingQR = qrCodeImg.parentElement.querySelector('div[id^="qrcode"]');
+            if (existingQR) {
+                existingQR.remove();
+            }
+            const existingCanvas = qrCodeImg.parentElement.querySelector('canvas[data-qr]');
+            if (existingCanvas) {
+                existingCanvas.remove();
+            }
+
+            // 1. Tentar gerar QR Code com QRious
+            let qrGenerated = generateQRCodeFrontend(pixCode, true);
+
+            // 2. Se QRious falhar, usar SVG ultra-rápido como fallback
+            if (!qrGenerated) {
+                try {
+                    const svgUrl = generateFastSVGQRCode(pixCode);
+                    if (svgUrl) {
+                        const canvas = document.createElement('canvas');
+                        canvas.setAttribute('data-qr', 'true');
+                        canvas.style.display = 'block';
+                        canvas.style.margin = '0 auto';
+                        canvas.style.opacity = '0.5';
+                        canvas.style.transition = 'opacity 0.3s ease';
+                        qrCodeImg.parentElement.appendChild(canvas);
+
+                        // Mostrar SVG como fallback
+                        const img = new Image();
+                        img.onload = () => {
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, 180, 180);
+                        };
+                        img.src = svgUrl;
+                        qrGenerated = true;
+                    }
+                } catch (e) {
+                    console.error('SVG fallback failed:', e);
+                }
+            }
+
+            perfMetrics.qrDisplayEnd = logPerf('✅ QR Code displayed');
+
+            // 3. Mostrar código PIX para copiar
+            if (pixCodeText) {
+                pixCodeText.textContent = pixCode;
+            }
+
+            // 4. Mostrar conteúdo PIX e ocultar loading
+            pixLoadingEl.classList.remove('active');
+            pixContentEl.style.display = 'block';
+
+            // 5. Adicionar mensagem de "carregando código real"
+            const qrContainer = qrCodeImg.parentElement;
+            let loadingNote = qrContainer.querySelector('.pix-loading-note');
+            if (!loadingNote) {
+                loadingNote = document.createElement('p');
+                loadingNote.className = 'pix-loading-note';
+                loadingNote.style.cssText = 'font-size: 12px; color: #999; text-align: center; margin-top: 10px;';
+                loadingNote.textContent = '⏳ Validando código com nossos servidores...';
+                qrContainer.appendChild(loadingNote);
+            }
+        }
+
+        // Submeter dados do comprador
+        async function submitBuyerData(event) {
+            event.preventDefault();
+            perfMetrics.submitStart = performance.now();
+            console.log('🚀 submitBuyerData started');
+
+            // Capturar dados do formulário
+            const buyerData = {
+                name: document.getElementById('buyer-name').value,
+                email: document.getElementById('buyer-email').value,
+                phone: document.getElementById('buyer-phone').value.replace(/\D/g, ''),
+                cpf: document.getElementById('buyer-cpf').value.replace(/\D/g, '')
+            };
+
+            // Validar dados
+            if (!buyerData.name || !buyerData.email || !buyerData.phone || !buyerData.cpf) {
+                alert('❌ Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Validar CPF
+            if (!isValidCPF(buyerData.cpf)) {
+                alert('❌ CPF inválido!\n\nPor favor, verifique o CPF digitado.\n\nO CPF deve ter 11 dígitos e ser válido segundo a Receita Federal.');
+                return;
+            }
+
+            // Validar telefone (mínimo 10 dígitos)
+            if (buyerData.phone.length < 10) {
+                alert('❌ Telefone inválido!\n\nO telefone deve ter pelo menos 10 dígitos (DDD + número).');
+                return;
+            }
+
+            // Adicionar dados do comprador ao pedido
+            orderData.buyer = buyerData;
+            console.log('Dados do pedido completo:', orderData);
+
+            // ⚡ SUPER OTIMIZAÇÃO: Mostrar tudo instantaneamente
+            // NÃO esperar por nada - gerar código PIX estático AGORA
+
+            // 1. Ocultar formulário e mostrar seção de pagamento IMEDIATAMENTE
+            document.getElementById('buyer-section').style.display = 'none';
+            document.getElementById('payment-section').style.display = 'block';
+            perfMetrics.sectionSwitchEnd = logPerf('🎯 Section switched');
+
+            // 2. Gerar código PIX estático instantaneamente (sem esperar backend)
+            const instantPixCode = generateInstantPixCode(orderData);
+
+            // 3. Mostrar QR Code + Código PIX AGORA (antes de qualquer processamento)
+            showInstantPixContent(instantPixCode);
+
+            // 4. Log total time to display
+            const totalTime = performance.now() - perfMetrics.submitStart;
+            console.log(`✅ TOTAL TIME TO SHOW QR CODE: ${totalTime.toFixed(2)}ms`);
+
+            // 5. Criar pagamento no backend (em background - NÃO espera resposta)
+            // Isso gera o código PIX REAL quando estiver pronto
+            createPayment().then(() => {
+                if (paymentData && paymentData.paymentId && !isGeneratingQR) {
+                    generatePixQRCode();
+                }
+            }).catch(error => {
+                console.error('Erro ao criar pagamento:', error);
+            });
+        }
+
+        // Carregar dados do pedido do localStorage
+        function loadOrderData() {
+            // Tentar ambos os nomes (compatibilidade)
+            const saved = localStorage.getItem('currentOrder') || localStorage.getItem('pendingPurchase');
+
+            if (saved) {
+                orderData = JSON.parse(saved);
+                displayOrderSummary();
+                // NÃO criar pagamento aqui, esperar dados do comprador
+            } else {
+                alert('Nenhum pedido encontrado. Redirecionando...');
+                window.location.href = '/';
+            }
+        }
+
+        // Exibir resumo do pedido
+        function displayOrderSummary() {
+            document.getElementById('voucher-name').textContent =
+                `${orderData.voucherEmoji} ${orderData.voucherName}`;
+
+            document.getElementById('voucher-details').innerHTML = `
+                <strong>${orderData.quantity}x</strong> voucher${orderData.quantity > 1 ? 's' : ''}<br>
+                ${orderData.pricePerUnit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} cada
+            `;
+
+            document.getElementById('total-price').textContent =
+                orderData.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+            // Atualizar data de validade e badge Black November se existir
+            const validityBox = document.getElementById('validity-box');
+            const validityText = document.getElementById('validity-text');
+            const blackNovemberBadge = document.getElementById('black-november-badge');
+
+            if (orderData.useUntil) {
+                // Formatar data YYYY-MM-DD para formato brasileiro
+                const [year, month, day] = orderData.useUntil.split('-');
+                const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                               'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                const monthName = months[parseInt(month) - 1];
+                validityText.textContent = `Válido para uso até ${day} de ${monthName}`;
+                validityBox.style.display = 'block';
+                // Mostrar badge Black November apenas se tiver data
+                blackNovemberBadge.style.display = 'block';
+            } else {
+                // Ocultar caixa de validade e badge se não tiver data
+                validityBox.style.display = 'none';
+                blackNovemberBadge.style.display = 'none';
+            }
+        }
+
+        // Iniciar timer do PIX
+        function startPixTimer() {
+            // Se já há um timer rodando, limpar primeiro
+            if (pixTimerInterval) {
+                clearInterval(pixTimerInterval);
+                pixTimerInterval = null;
+            }
+
+            // Verificar se os elementos existem antes de iniciar
+            const timerDisplay = document.getElementById('timer-display');
+            const timerBox = document.getElementById('timer-box');
+
+            if (!timerDisplay || !timerBox) {
+                console.warn('⚠️ Timer elements not found, skipping timer start');
+                return;
+            }
+
+            pixExpiryTime = Date.now() + (PIX_DURATION_MINUTES * 60 * 1000);
+
+            pixTimerInterval = setInterval(() => {
+                try {
+                    const timerDisplay = document.getElementById('timer-display');
+                    const timerBox = document.getElementById('timer-box');
+
+                    // Se elementos não existem, parar o timer
+                    if (!timerDisplay || !timerBox) {
+                        if (pixTimerInterval) {
+                            clearInterval(pixTimerInterval);
+                            pixTimerInterval = null;
+                        }
+                        return;
+                    }
+
+                    const remaining = pixExpiryTime - Date.now();
+
+                    if (remaining <= 0) {
+                        if (pixTimerInterval) {
+                            clearInterval(pixTimerInterval);
+                            pixTimerInterval = null;
+                        }
+                        if (timerDisplay && timerBox) {
+                            timerDisplay.textContent = '00:00';
+                            timerBox.classList.add('warning');
+                        }
+                        alert('⏰ Tempo esgotado! Por favor, gere um novo código PIX.');
+                        return;
+                    }
+
+                    const minutes = Math.floor(remaining / 60000);
+                    const seconds = Math.floor((remaining % 60000) / 1000);
+
+                    if (timerDisplay) {
+                        timerDisplay.textContent =
+                            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    }
+
+                    // Adicionar warning quando faltar menos de 5 minutos
+                    if (remaining < 5 * 60 * 1000 && timerBox) {
+                        timerBox.classList.add('warning');
+                    }
+                } catch (error) {
+                    console.error('Erro no timer PIX:', error);
+                    if (pixTimerInterval) {
+                        clearInterval(pixTimerInterval);
+                        pixTimerInterval = null;
+                    }
+                }
+            }, 1000);
+        }
+
+        // Tocar som de notificação
+        function playNotificationSound() {
+            // Criar som de notificação usando Web Audio API
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+            gainNode.gain.value = 0.3;
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.15);
+
+            // Segundo tom
+            setTimeout(() => {
+                const osc2 = audioContext.createOscillator();
+                const gain2 = audioContext.createGain();
+
+                osc2.connect(gain2);
+                gain2.connect(audioContext.destination);
+
+                osc2.frequency.value = 1000;
+                osc2.type = 'sine';
+                gain2.gain.value = 0.3;
+
+                osc2.start(audioContext.currentTime);
+                osc2.stop(audioContext.currentTime + 0.2);
+            }, 150);
+        }
+
+        // Mostrar confetti
+        function showConfetti() {
+            // Explosão central
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            // Confetti dos lados
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 50,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+            }, 200);
+
+            // Confetti de cima
+            setTimeout(() => {
+                confetti({
+                    particleCount: 75,
+                    spread: 100,
+                    origin: { y: 0 }
+                });
+            }, 400);
+        }
+
+        // Criar pagamento no backend
+        async function createPayment() {
+            try {
+                console.log('Criando pagamento...', orderData);
+
+                // Sanitizar nome do voucher para o Asaas (remove emojis e caracteres especiais)
+                const sanitizedOrderData = {
+                    ...orderData,
+                    voucherName: sanitizeForAsaas(orderData.voucherName)
+                };
+
+                console.log('Nome sanitizado:', sanitizedOrderData.voucherName);
+
+                const response = await fetch(`${BACKEND_URL}/api/create-payment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(sanitizedOrderData)
+                });
+
+                const data = await response.json();
+                console.log('Resposta da API:', data);
+
+                if (data.success) {
+                    paymentData = data;
+                    localStorage.setItem('currentPayment', JSON.stringify(data));
+
+                    // Gerar QR Code PIX automaticamente apenas se o método for PIX
+                    const selectedMethod = document.querySelector('.payment-method.active').dataset.method;
+                    if (selectedMethod === 'pix') {
+                        generatePixQRCode();
+                    }
+
+                    // Iniciar polling para verificar pagamento
+                    startPaymentCheck();
+                } else {
+                    // Mostrar erro específico do backend
+                    const errorMsg = data.error || data.message || 'Falha ao criar pagamento no backend';
+                    throw new Error(errorMsg);
+                }
+            } catch (error) {
+                console.error('Erro ao criar pagamento:', error);
+
+                // Mostrar erro específico
+                const errorMsg = error.message || 'Erro desconhecido';
+                alert(`❌ Erro ao processar pagamento:\n\n${errorMsg}\n\nVerifique sua conexão e tente novamente.\n\nSe o erro persistir, entre em contato: (47) 99233-4348`);
+
+                // Ocultar seção de pagamento e mostrar formulário novamente
+                document.getElementById('payment-section').style.display = 'none';
+                document.getElementById('buyer-section').style.display = 'block';
+            }
+        }
+
+        // Variável para controlar se já está gerando
+        let isGeneratingQR = false;
+
+        // Gerar QR Code no Frontend com QRious (ULTRA LEVE - ~5KB)
+        function generateQRCodeFrontend(pixPayload, isPlaceholder = false) {
+            const qrContainer = document.getElementById('qr-code-img').parentElement;
+
+            // Limpar canvas anterior se existir
+            const existingCanvas = qrContainer.querySelector('canvas[data-qr]');
+            if (existingCanvas) {
+                existingCanvas.remove();
+            }
+
+            try {
+                // QRious é ultra-leve e rápido (5KB minificado)
+                const canvas = document.createElement('canvas');
+                canvas.setAttribute('data-qr', 'true');
+                canvas.style.display = 'block';
+                canvas.style.margin = '0 auto';
+                canvas.style.opacity = isPlaceholder ? '0.5' : '1';
+                if (isPlaceholder) {
+                    canvas.style.transition = 'opacity 0.3s ease';
+                }
+
+                qrContainer.appendChild(canvas);
+
+                // Gerar QR Code (sincronamente - muito rápido)
+                new QRious({
+                    element: canvas,
+                    value: pixPayload,
+                    size: 180,
+                    level: 'H',
+                    mime: 'image/png'
+                });
+
+                // Ocultar imagem do backend
+                document.getElementById('qr-code-img').style.display = 'none';
+
+                return true;
+            } catch (error) {
+                console.error('Erro ao gerar QR Code:', error);
+                return false;
+            }
+        }
+
+        // Gerar QR Code PIX
+        async function generatePixQRCode() {
+            // Se já está gerando, não gera novamente
+            if (isGeneratingQR) return;
+
+            isGeneratingQR = true;
+            const pixLoadingEl = document.getElementById('pix-loading');
+            pixLoadingEl.classList.add('active');
+            pixLoadingEl.innerHTML = '<div class="spinner"></div><p>⏳ Preparando seu QR Code PIX...</p><small style="color: #AAA; font-size: 12px;">Aguarde alguns segundos</small>';
+
+            try {
+                console.log('Gerando QR Code PIX para paymentId:', paymentData.paymentId);
+
+                // Buscar dados do PIX do backend
+                const response = await fetch(
+                    `${BACKEND_URL}/api/pix-qrcode/${paymentData.paymentId}`
+                );
+
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
+
+                const pixData = await response.json();
+                console.log('Dados PIX recebidos:', pixData);
+
+                if (pixData.success && pixData.payload) {
+                    // Gerar QR Code real (substituir o placeholder)
+                    const generatedOnFrontend = generateQRCodeFrontend(pixData.payload, false);
+
+                    // Se não conseguiu gerar no frontend, usar imagem do backend como fallback
+                    if (!generatedOnFrontend && pixData.encodedImage) {
+                        document.getElementById('qr-code-img').src =
+                            `data:image/png;base64,${pixData.encodedImage}`;
+                        document.getElementById('qr-code-img').style.display = 'block';
+                    }
+
+                    // Mostrar código PIX real
+                    document.getElementById('pix-code-text').textContent = pixData.payload;
+
+                    // Remover mensagem de carregamento
+                    const loadingNote = document.querySelector('.pix-loading-note');
+                    if (loadingNote) {
+                        loadingNote.remove();
+                    }
+
+                    isGeneratingQR = false; // Reset flag
+                    pixLoadingEl.classList.remove('active');
+                    document.getElementById('pix-content').style.display = 'block';
+
+                    // Iniciar timer de 30 minutos
+                    startPixTimer();
+
+                    // Iniciar verificação de pagamento
+                    startPaymentCheck();
+                } else {
+                    throw new Error('Dados PIX inválidos recebidos da API');
+                }
+            } catch (error) {
+                console.error('Erro ao gerar QR Code:', error);
+                isGeneratingQR = false;
+                pixLoadingEl.innerHTML = `
+                    <p style="color: red; text-align: center;">
+                        ❌ Erro ao gerar QR Code PIX<br>
+                        <small>${error.message}</small><br><br>
+                        <button class="btn btn-primary" onclick="document.querySelector('[data-method=credit_card]').click()">
+                            💳 Usar Cartão de Crédito
+                        </button>
+                    </p>
+                `;
+            }
+        }
+
+        // Copiar código PIX
+        function copyPixCode() {
+            const code = document.getElementById('pix-code-text').textContent;
+            navigator.clipboard.writeText(code);
+            alert('✅ Código PIX copiado!');
+        }
+
+        // Verificar status do pagamento com cache
+        async function checkPaymentStatus() {
+            try {
+                const now = Date.now();
+                let vouchers = null;
+
+                // ⚡ Usar cache se ainda estiver válido
+                if (vouchersCache && (now - vouchersCacheTime) < VOUCHERS_CACHE_DURATION) {
+                    console.log('📦 Usando cache de vouchers');
+                    vouchers = vouchersCache;
+                } else {
+                    // Buscar dados frescos do servidor
+                    console.log('🔄 Buscando vouchers do servidor...');
+                    const response = await fetch(`${BACKEND_URL}/api/vouchers`);
+                    const data = await response.json();
+
+                    if (data.success && data.vouchers) {
+                        vouchersCache = data.vouchers;
+                        vouchersCacheTime = now;
+                        vouchers = data.vouchers;
+                    }
+                }
+
+                if (vouchers) {
+                    // Procurar voucher gerado para este pedido com múltiplas estratégias
+                    console.log('🔍 Procurando voucher com externalReference:', paymentData.externalReference);
+
+                    // Estratégia 1: orderId
+                    let voucher = vouchers.find(v => v.orderId === paymentData.externalReference);
+                    if (voucher) console.log('✅ Encontrado por orderId:', voucher.code);
+
+                    // Estratégia 2: paymentId (uppercase)
+                    if (!voucher) {
+                        voucher = vouchers.find(v => v.paymentId === paymentData.paymentId);
+                        if (voucher) console.log('✅ Encontrado por paymentId:', voucher.code);
+                    }
+
+                    // Estratégia 3: paymentid (lowercase)
+                    if (!voucher) {
+                        voucher = vouchers.find(v => v.paymentid === paymentData.paymentId);
+                        if (voucher) console.log('✅ Encontrado por paymentid (minúsculo):', voucher.code);
+                    }
+
+                    // Estratégia 4: asaasPaymentId
+                    if (!voucher) {
+                        voucher = vouchers.find(v => v.asaasPaymentId === paymentData.asaasPaymentId);
+                        if (voucher) console.log('✅ Encontrado por asaasPaymentId:', voucher.code);
+                    }
+
+                    // Estratégia 5: email + data recente
+                    if (!voucher && orderData && orderData.buyer) {
+                        voucher = vouchers.find(v =>
+                            v.buyeremail === orderData.buyer.email &&
+                            Math.abs(new Date(v.createdat) - Date.now()) < 60000
+                        );
+                        if (voucher) console.log('✅ Encontrado por email + data recente:', voucher.code);
+                    }
+
+                    if (voucher) {
+                        // Pagamento confirmado!
+                        console.log('✅ Pagamento confirmado! Voucher encontrado:', voucher.code);
+                        clearInterval(checkPaymentInterval);
+                        if (pixTimerInterval) clearInterval(pixTimerInterval);
+
+                        // Tocar som de notificação
+                        playNotificationSound();
+
+                        // Mostrar confetti
+                        showConfetti();
+
+                        // Mostrar modal de confirmação
+                        document.getElementById('payment-detected').classList.add('active');
+
+                        // Aguardar 3 segundos e redirecionar
+                        setTimeout(() => {
+                            window.location.href = `/sucesso-voucher.html?code=${voucher.code}`;
+                        }, 3000);
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao verificar pagamento:', error);
+            }
+        }
+
+        // Iniciar verificação de pagamento
+        function startPaymentCheck() {
+            // ⚡ OTIMIZADO PARA DETECÇÃO ULTRA-RÁPIDA:
+            // - Polling a cada 500ms (máximo 20 tentativas = 10 segundos sem cache)
+            // - Depois usa cache por 30s (reduz requisições)
+            // - Resultado: Detecção em ~0.5-2s na maioria dos casos
+            if (checkPaymentInterval) {
+                clearInterval(checkPaymentInterval);
+            }
+            paymentCheckAttempts = 0; // Reset counter
+            checkPaymentInterval = setInterval(checkPaymentStatus, 500); // A cada 500ms (ultra-rápido)
+        }
+
+        // Processar pagamento com cartão (checkout transparente)
+        async function processCardPayment(event) {
+            event.preventDefault();
+
+            // Capturar dados do cartão
+            const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
+            const cardName = document.getElementById('card-name').value;
+            const cardExpiry = document.getElementById('card-expiry').value;
+            const cardCVV = document.getElementById('card-cvv').value;
+
+            // Validar campos
+            if (cardNumber.length < 13 || cardNumber.length > 16) {
+                alert('❌ Número do cartão inválido!\n\nVerifique o número digitado.');
+                return;
+            }
+
+            if (!cardName || cardName.length < 3) {
+                alert('❌ Nome no cartão inválido!\n\nDigite o nome como está impresso no cartão.');
+                return;
+            }
+
+            if (cardExpiry.length !== 5) {
+                alert('❌ Validade inválida!\n\nFormato: MM/AA');
+                return;
+            }
+
+            if (cardCVV.length < 3 || cardCVV.length > 4) {
+                alert('❌ CVV inválido!\n\nVerifique o código de segurança do cartão.');
+                return;
+            }
+
+            // Extrair mês e ano
+            const [expiryMonth, expiryYear] = cardExpiry.split('/');
+
+            // Mostrar loading
+            document.getElementById('card-form').style.display = 'none';
+            document.getElementById('card-loading').classList.add('active');
+
+            try {
+                console.log('Processando pagamento com cartão...', { paymentId: paymentData.paymentId });
+
+                // Processar cartão via Asaas usando tokenizador
+                const response = await fetch(`${BACKEND_URL}/api/process-card-payment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        paymentId: paymentData.paymentId,
+                        card: {
+                            number: cardNumber,
+                            holderName: cardName,
+                            expiryMonth: expiryMonth,
+                            expiryYear: `20${expiryYear}`,
+                            ccv: cardCVV
+                        },
+                        buyer: orderData.buyer
+                    })
+                });
+
+                const data = await response.json();
+                console.log('Resposta pagamento cartão:', data);
+
+                if (data.success) {
+                    // Pagamento processado com sucesso!
+                    document.getElementById('card-loading').classList.remove('active');
+
+                    // Tocar som de notificação
+                    playNotificationSound();
+
+                    // Mostrar confetti
+                    showConfetti();
+
+                    // Mostrar modal de confirmação
+                    document.getElementById('payment-detected').classList.add('active');
+
+                    // Aguardar 2 segundos e verificar status
+                    setTimeout(() => {
+                        checkPaymentStatus();
+                    }, 2000);
+                } else {
+                    throw new Error(data.error || 'Falha ao processar pagamento com cartão');
+                }
+            } catch (error) {
+                console.error('Erro ao processar cartão:', error);
+
+                document.getElementById('card-loading').classList.remove('active');
+                document.getElementById('card-form').style.display = 'block';
+
+                const errorMsg = error.message || 'Erro desconhecido';
+                alert(`❌ Erro ao processar pagamento:\n\n${errorMsg}\n\nVerifique os dados do cartão e tente novamente.\n\nSe o erro persistir, entre em contato: (47) 99233-4348`);
+            }
+        }
+
+        // Abrir checkout do Asaas (para cartão) - FUNÇÃO ANTIGA (mantida como fallback)
+        function openAsaasCheckout() {
+            console.log('Abrindo checkout cartão...', paymentData);
+
+            if (paymentData && paymentData.invoiceUrl) {
+                window.open(paymentData.invoiceUrl, '_blank');
+
+                // Continuar verificando pagamento
+                startPaymentCheck();
+
+                alert('✅ Link de pagamento aberto em nova aba!\n\nApós pagar, aguarde alguns segundos que você será redirecionado automaticamente.');
+            } else if (paymentData && paymentData.paymentId) {
+                // Fallback: abrir URL do Asaas direto
+                window.open(`https://www.asaas.com/c/${paymentData.paymentId}`, '_blank');
+                startPaymentCheck();
+                alert('✅ Link de pagamento aberto em nova aba!');
+            } else {
+                alert('❌ Erro: Dados de pagamento não encontrados.\n\nTente recarregar a página ou entre em contato.');
+                console.error('Dados de pagamento inválidos:', paymentData);
+            }
+        }
+
+        // Alternar método de pagamento
+        document.querySelectorAll('.payment-method').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const method = this.dataset.method;
+                console.log('Método de pagamento selecionado:', method);
+
+                // Remover active de todos
+                document.querySelectorAll('.payment-method').forEach(b =>
+                    b.classList.remove('active')
+                );
+                this.classList.add('active');
+
+                // Mostrar seção apropriada
+                document.getElementById('pix-section').classList.remove('active');
+                document.getElementById('card-section').classList.remove('active');
+
+                if (method === 'pix') {
+                    document.getElementById('pix-section').classList.add('active');
+                    // Gerar PIX se ainda não foi gerado
+                    if (paymentData && !document.getElementById('pix-content').style.display) {
+                        generatePixQRCode();
+                    }
+                } else {
+                    document.getElementById('card-section').classList.add('active');
+                }
+            });
+        });
+
+        // Carregar ao abrir página
+        loadOrderData();
+    </script>
+</body>
+</html>

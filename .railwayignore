@@ -1,0 +1,14 @@
+# Ignorar arquivos desnecessários no Railway
+node_modules/
+*.log
+.env.local
+.DS_Store
+.git
+.github
+docs/
+tests/
+*.md
+.claude/
+.mcp.json
+.trigger
+.redeploy-trigger

@@ -1,0 +1,5 @@
+# API Redirect para Railway Backend
+/api/*  https://rosa-mexicano-vouchers-production.up.railway.app/api/:splat  200
+
+# SPA redirect
+/*  /index.html  200

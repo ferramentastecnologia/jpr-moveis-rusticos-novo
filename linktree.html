@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>JPR Móveis Rústicos - Blumenau 🌮</title>
+    <meta name="description" content="JPR Móveis Rústicos Blumenau - Autêntica culinária mexicana. Pedidos, reservas e promoções.">
+    <meta name="theme-color" content="#780016">
+    <link rel="icon" href="./images/logo-branco.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa-primary: #780016;
+            --rosa-secondary: #c8102e;
+            --rosa-accent: #ff6b35;
+            --dark-bg: #0a0a0a;
+            --light-text: #ffffff;
+            --gradient-1: linear-gradient(135deg, #780016 0%, #c8102e 50%, #ff6b35 100%);
+            --gradient-2: linear-gradient(135deg, #ff6b35 0%, #c8102e 50%, #780016 100%);
+            --gradient-3: linear-gradient(135deg, #c8102e 0%, #ff6b35 100%);
+        }
+
+        html {
+            width: 100%;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a0a0a 50%, #0a1a0a 100%);
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #1a0a0a;
+        }
+
+        body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a0a0a 50%, #0a1a0a 100%);
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #1a0a0a;
+            color: var(--light-text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated background blobs */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+        }
+
+        .blob:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(120, 0, 22, 0.4) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .blob:nth-child(2) {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(200, 16, 46, 0.3) 0%, transparent 70%);
+            top: 50%;
+            right: -100px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        .blob:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.25) 0%, transparent 70%);
+            bottom: -50px;
+            left: 50%;
+            animation: float 18s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(40px, -40px) rotate(180deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px 60px 20px;
+            gap: 25px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-top: 20px;
+            animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 15px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 40px rgba(255, 107, 53, 0.4));
+            transition: filter 0.3s ease;
+            display: block;
+        }
+
+        .logo:hover {
+            filter: drop-shadow(0 12px 48px rgba(255, 107, 53, 0.6));
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 0 8px 0;
+            padding: 0;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 0.95em;
+            color: #aaa;
+            margin-bottom: 4px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: var(--rosa-accent);
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        /* Links Container */
+        .links-wrapper {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            perspective: 1000px;
+        }
+
+        .link-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(120, 0, 22, 0.6);
+            border: 2.5px solid rgba(255, 107, 53, 0.3);
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .link-item:nth-child(1) { animation-delay: 0.1s; }
+        .link-item:nth-child(2) { animation-delay: 0.15s; }
+        .link-item:nth-child(3) { animation-delay: 0.2s; }
+        .link-item:nth-child(4) { animation-delay: 0.25s; }
+        .link-item:nth-child(5) { animation-delay: 0.3s; }
+        .link-item:nth-child(6) { animation-delay: 0.35s; }
+        .link-item:nth-child(7) { animation-delay: 0.4s; }
+        .link-item:nth-child(8) { animation-delay: 0.45s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            z-index: -1;
+            transition: left 0.4s ease;
+            opacity: 0.2;
+        }
+
+        .link-item:hover::before {
+            left: 0;
+        }
+
+        .link-item:hover {
+            border-color: var(--rosa-accent);
+            transform: translateX(10px) translateY(-3px);
+            box-shadow: 0 16px 48px rgba(255, 107, 53, 0.4);
+            background: rgba(200, 16, 46, 0.7);
+        }
+
+        .link-item:active {
+            transform: translateX(5px) translateY(-1px) scale(0.98);
+        }
+
+        .link-icon {
+            font-size: 32px;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, rgba(200, 16, 46, 0.1) 100%);
+            border-radius: 14px;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover .link-icon {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.4) 0%, rgba(200, 16, 46, 0.3) 100%);
+            border-color: var(--rosa-accent);
+            transform: scale(1.15) rotate(-10deg);
+        }
+
+        .link-content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .link-title {
+            font-weight: 700;
+            font-size: 1.05em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+        }
+
+        .link-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--rosa-accent) 0%, #ff8c5a 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.65em;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: pulse 2.5s ease-in-out infinite;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+            }
+            50% {
+                opacity: 0.85;
+                box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+            }
+        }
+
+        .link-desc {
+            font-size: 0.8em;
+            color: #ccc;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 400;
+        }
+
+        .link-arrow {
+            font-size: 1.4em;
+            opacity: 0;
+            transform: translateX(-15px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-left: auto;
+        }
+
+        .link-item:hover .link-arrow {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        /* Featured Link */
+        .link-item.featured {
+            border: 2.5px solid var(--rosa-accent);
+            background: rgba(255, 107, 53, 0.15);
+            position: relative;
+        }
+
+        .link-item.featured::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-20px, -20px) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .link-item.featured:hover {
+            background: rgba(255, 107, 53, 0.25);
+            box-shadow: 0 16px 48px rgba(255, 107, 53, 0.6), inset 0 0 20px rgba(255, 107, 53, 0.1);
+        }
+
+        /* Social Links */
+        .social-section {
+            text-align: center;
+            margin-top: 10px;
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        .social-label {
+            font-size: 0.85em;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .social-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-item {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(120, 0, 22, 0.6);
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(20px);
+            cursor: pointer;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .social-item:nth-child(1) { animation-delay: 0.5s; }
+        .social-item:nth-child(2) { animation-delay: 0.55s; }
+
+        .social-item {
+            color: #ffffff;
+        }
+
+        .social-item.facebook {
+            color: #1877f2;
+        }
+
+        .social-item.facebook:hover {
+            background: rgba(24, 119, 242, 0.2);
+            border-color: #1877f2;
+            box-shadow: 0 12px 32px rgba(24, 119, 242, 0.4);
+            color: #ffffff;
+        }
+
+        .social-item.instagram {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(200, 16, 46, 0.1) 100%);
+            color: #e4405f;
+        }
+
+        .social-item.instagram:hover {
+            background: linear-gradient(135deg, #e4405f 0%, #fd1d1d 50%, #f77737 100%);
+            border-color: #e4405f;
+            box-shadow: 0 12px 32px rgba(228, 64, 95, 0.5);
+            color: #ffffff;
+        }
+
+        .social-item:hover {
+            background: rgba(200, 16, 46, 0.8);
+            border-color: var(--rosa-accent);
+            transform: translateY(-6px) scale(1.1);
+            box-shadow: 0 12px 32px rgba(255, 107, 53, 0.4);
+        }
+
+        .social-item.facebook:hover,
+        .social-item.instagram:hover {
+            background: inherit;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 1s ease-out 1s both;
+            width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .footer-text {
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--rosa-accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            text-decoration: underline;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 18px 50px 18px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .logo {
+                width: 130px;
+                height: 130px;
+            }
+
+            .subtitle {
+                font-size: 0.85em;
+            }
+
+            .links-wrapper {
+                max-width: 100%;
+            }
+
+            .link-item {
+                padding: 16px 18px;
+                gap: 14px;
+                border-radius: 18px;
+            }
+
+            .link-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                border-radius: 12px;
+            }
+
+            .link-title {
+                font-size: 1em;
+            }
+
+            .link-desc {
+                font-size: 0.75em;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 32px 16px 50px 16px;
+            }
+
+            h1 {
+                font-size: 2.1em;
+            }
+
+            .logo {
+                width: 125px;
+                height: 125px;
+                margin: 0 auto 12px;
+            }
+
+            .subtitle {
+                font-size: 0.83em;
+                margin: 0;
+                padding: 0;
+            }
+
+            .location {
+                margin-top: 10px;
+                gap: 6px;
+            }
+
+            .links-wrapper {
+                gap: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 28px 15px 45px 15px;
+                gap: 22px;
+            }
+
+            h1 {
+                font-size: 1.95em;
+                margin-bottom: 6px;
+            }
+
+            .logo {
+                width: 115px;
+                height: 115px;
+                margin: 0 auto 10px;
+            }
+
+            .subtitle {
+                font-size: 0.8em;
+                margin: 2px 0 0 0;
+            }
+
+            .location {
+                font-size: 0.85em;
+                margin-top: 8px;
+            }
+
+            .link-item {
+                padding: 14px 15px;
+                gap: 12px;
+                border-radius: 16px;
+            }
+
+            .link-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 26px;
+                border-radius: 11px;
+            }
+
+            .link-title {
+                font-size: 0.95em;
+            }
+
+            .link-desc {
+                font-size: 0.7em;
+            }
+
+            .link-arrow {
+                font-size: 1.2em;
+            }
+
+            .social-item {
+                width: 50px;
+                height: 50px;
+                font-size: 23px;
+                border-radius: 14px;
+            }
+
+            .links-wrapper {
+                gap: 12px;
+            }
+
+            .link-item {
+                transition: all 0.2s ease;
+            }
+
+            .link-item:hover {
+                transform: translateX(8px) translateY(-2px);
+                box-shadow: 0 12px 32px rgba(255, 107, 53, 0.3);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 25px 14px 40px 14px;
+                gap: 20px;
+            }
+
+            h1 {
+                font-size: 1.85em;
+            }
+
+            .logo {
+                width: 105px;
+                height: 105px;
+                margin: 0 auto 8px;
+            }
+
+            .subtitle {
+                font-size: 0.75em;
+            }
+
+            .location {
+                font-size: 0.8em;
+            }
+
+            .link-item {
+                padding: 12px 13px;
+                gap: 11px;
+            }
+
+            .link-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 24px;
+            }
+
+            .link-title {
+                font-size: 0.9em;
+            }
+
+            .link-desc {
+                font-size: 0.65em;
+            }
+
+            .social-item {
+                width: 46px;
+                height: 46px;
+                font-size: 21px;
+            }
+        }
+
+        /* Animations para dispositivos com preferência reduzida */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Touch feedback */
+        .link-item:active,
+        .social-item:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="./images/logo-branco.png" alt="JPR Móveis Rústicos" class="logo" loading="lazy">
+            <h1>JPR Móveis Rústicos</h1>
+            <p class="subtitle">Blumenau - SC</p>
+            <div class="location">
+                <span>📍</span>
+                <span>Autêntica Culinária Mexicana</span>
+            </div>
+        </div>
+
+        <!-- Links Container -->
+        <div class="links-wrapper">
+            <!-- Featured: Black November -->
+            <a href="https://rosamexicanovouchers.netlify.app/" class="link-item featured" target="_blank" rel="noopener noreferrer" title="Vouchers com ofertas incríveis">
+                <div class="link-icon">🔥</div>
+                <div class="link-content">
+                    <div class="link-title">
+                        Vouchers Black November
+                        <span class="link-badge">Promoção</span>
+                    </div>
+                    <div class="link-desc">Ofertas incríveis até 04/12</div>
+                </div>
+                <div class="link-arrow">↗</div>
+            </a>
+
+            <!-- Delivery -->
+            <a href="https://cardapio.link/rosamexicano" class="link-item" target="_blank" rel="noopener noreferrer" title="Peça seu delivery">
+                <div class="link-icon">🚗</div>
+                <div class="link-content">
+                    <div class="link-title">Fazer Pedido - Delivery</div>
+                    <div class="link-desc">Peça online e receba em casa</div>
+                </div>
+                <div class="link-arrow">↗</div>
+            </a>
+
+            <!-- Cardápio Salão -->
+            <a href="https://drive.google.com/file/d/1aRaS9oJXH0V-qHj9Xr7xot9HsoO4JZfz/view" class="link-item" target="_blank" rel="noopener noreferrer" title="Consulte nosso cardápio">
+                <div class="link-icon">📋</div>
+                <div class="link-content">
+                    <div class="link-title">Cardápio do Salão</div>
+                    <div class="link-desc">Consulte nossos pratos</div>
+                </div>
+                <div class="link-arrow">↗</div>
+            </a>
+
+            <!-- Reservas -->
+            <a href="https://www.rosamexicano.com.br/reservas" class="link-item" target="_blank" rel="noopener noreferrer" title="Faça sua reserva">
+                <div class="link-icon">📅</div>
+                <div class="link-content">
+                    <div class="link-title">Fazer Reserva</div>
+                    <div class="link-desc">Reserve sua mesa</div>
+                </div>
+                <div class="link-arrow">↗</div>
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="https://api.whatsapp.com/send?phone=5547992334348&text=Ola!%20Gostaria%20de%20fazer%20um%20pedido.%20😊" class="link-item" target="_blank" rel="noopener noreferrer" title="Fale via WhatsApp">
+                <div class="link-icon">💬</div>
+                <div class="link-content">
+                    <div class="link-title">Fale Conosco - WhatsApp</div>
+                    <div class="link-desc">(47) 99233-4348</div>
+                </div>
+                <div class="link-arrow">↗</div>
+            </a>
+
+            <!-- Website -->
+            <a href="https://www.rosamexicano.com.br/blumenau" class="link-item" target="_blank" rel="noopener noreferrer" title="Visite nosso site">
+                <div class="link-icon">🌐</div>
+                <div class="link-content">
+                    <div class="link-title">Site Oficial</div>
+                    <div class="link-desc">Conheça nossa história</div>
+                </div>
+                <div class="link-arrow">↗</div>
+            </a>
+
+            <!-- Localização -->
+            <a href="https://maps.google.com/?q=-26.9072606,-49.0731114" class="link-item" target="_blank" rel="noopener noreferrer" title="Veja nossa localização">
+                <div class="link-icon">🗺️</div>
+                <div class="link-content">
+                    <div class="link-title">Localização</div>
+                    <div class="link-desc">Veja nossa localização no mapa</div>
+                </div>
+                <div class="link-arrow">↗</div>
+            </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-section">
+            <div class="social-label">Nos Acompanhe</div>
+            <div class="social-container">
+                <a href="https://www.facebook.com/rosamexicanoblumenau/" class="social-item facebook" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/rosamexicanoblumenau/" class="social-item instagram" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+                        <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.117.626c-.779.3-1.438.717-2.114 1.394-.377.377-.6.637-.817 1.038-.263.534-.41 1.079-.472 1.967-.054 1.28-.07 1.687-.07 4.947s.015 3.667.072 4.947c.062.888.209 1.433.472 1.967.217.401.44.661.817 1.038.676.677 1.335 1.095 2.114 1.395.788.293 1.658.494 2.936.554 1.28.057 1.687.072 4.947.072s3.667-.015 4.947-.072c1.28-.06 2.136-.262 2.936-.554.779-.3 1.438-.718 2.114-1.395.377-.377.599-.637.817-1.038.263-.534.41-1.079.472-1.967.057-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.062-.888-.209-1.433-.472-1.967-.217-.401-.44-.661-.817-1.038-.676-.677-1.335-1.095-2.114-1.395-.788-.293-1.658-.494-2.936-.554-1.28-.057-1.687-.072-4.947-.072zM12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.24 2.227.4.562.217.96.477 1.382.896.419.42.679.819.896 1.381.16.422.346 1.057.4 2.227.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.805-.4 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381.896-.422.16-1.057.346-2.227.4-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.805-.24-2.227-.4-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.16-.422-.346-1.057-.4-2.227-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.054-1.17.24-1.805.4-2.227.217-.562.477-.96.896-1.382.42-.419.819-.679 1.381-.896.422-.16 1.057-.346 2.227-.4 1.266-.058 1.646-.07 4.85-.07z"/>
+                        <circle cx="12" cy="12" r="3.846"/>
+                        <circle cx="18.613" cy="5.387" r=".923"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-text">JPR Móveis Rústicos Blumenau © 2025</div>
+            <div class="footer-links">
+                <a href="tel:+554732883096">📞 (47) 3288-3096</a>
+                <a href="https://www.google.com/maps/place/-26.9072606,-49.0731114" target="_blank" rel="noopener noreferrer">📍 Localização</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Performance: Lazy load images
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            img.addEventListener('load', () => {
+                img.style.opacity = '1';
+            });
+        });
+
+        // Click tracking with haptic feedback
+        document.querySelectorAll('.link-item, .social-item').forEach(element => {
+            element.addEventListener('click', function(e) {
+                const title = this.querySelector('.link-title')?.textContent || this.title;
+                console.log(`Clicado: ${title}`);
+
+                // Haptic feedback on mobile
+                if (navigator.vibrate) {
+                    navigator.vibrate(10);
+                }
+
+                // Analytics would go here
+            });
+        });
+
+        // Intersection Observer para lazy animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.link-item, .social-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll behavior
+        document.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const parallax = document.querySelectorAll('.blob');
+
+            parallax.forEach((el, index) => {
+                el.style.transform = `translate(0, ${scrolled * (0.1 + index * 0.05)}px)`;
+            });
+        });
+
+        // Performance optimization: Debounced scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>

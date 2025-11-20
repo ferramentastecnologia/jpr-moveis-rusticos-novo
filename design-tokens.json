@@ -1,0 +1,282 @@
+{
+  "colors": {
+    "primary": {
+      "value": "#983421",
+      "type": "color",
+      "description": "Cor primária - marrom terracota",
+      "rgb": "152, 52, 33"
+    },
+    "secondary": {
+      "value": "#D3B185",
+      "type": "color",
+      "description": "Cor secundária - bege dourado",
+      "rgb": "211, 177, 133"
+    },
+    "accent": {
+      "value": "#23af24",
+      "type": "color",
+      "description": "Cor de destaque - verde",
+      "rgb": "35, 175, 36"
+    },
+    "text": {
+      "value": "#17252a",
+      "type": "color",
+      "description": "Cor do texto principal",
+      "rgb": "23, 37, 42"
+    },
+    "footer": {
+      "value": "#563524",
+      "type": "color",
+      "description": "Cor do rodapé",
+      "rgb": "86, 53, 36"
+    },
+    "white": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "gray": {
+      "value": "#f8f9fa",
+      "type": "color",
+      "description": "Cinza claro - backgrounds"
+    },
+    "gray-medium": {
+      "value": "#4a5c63",
+      "type": "color",
+      "description": "Cinza médio - texto secundário"
+    }
+  },
+  "typography": {
+    "fontFamilies": {
+      "display": {
+        "value": "Lobster Two",
+        "type": "fontFamily"
+      },
+      "heading": {
+        "value": "Poppins",
+        "type": "fontFamily"
+      },
+      "body": {
+        "value": "Open Sans",
+        "type": "fontFamily"
+      }
+    },
+    "fontSizes": {
+      "h1-desktop": {
+        "value": "64px",
+        "type": "fontSize"
+      },
+      "h1-mobile": {
+        "value": "48px",
+        "type": "fontSize"
+      },
+      "h2-desktop": {
+        "value": "40px",
+        "type": "fontSize"
+      },
+      "h2-mobile": {
+        "value": "32px",
+        "type": "fontSize"
+      },
+      "h3": {
+        "value": "28px",
+        "type": "fontSize"
+      },
+      "body": {
+        "value": "16px",
+        "type": "fontSize"
+      },
+      "button": {
+        "value": "14px",
+        "type": "fontSize"
+      },
+      "menu": {
+        "value": "16px",
+        "type": "fontSize"
+      },
+      "caption": {
+        "value": "14px",
+        "type": "fontSize"
+      },
+      "small": {
+        "value": "12px",
+        "type": "fontSize"
+      }
+    },
+    "fontWeights": {
+      "regular": {
+        "value": "400",
+        "type": "fontWeight"
+      },
+      "medium": {
+        "value": "500",
+        "type": "fontWeight"
+      },
+      "semibold": {
+        "value": "600",
+        "type": "fontWeight"
+      },
+      "bold": {
+        "value": "700",
+        "type": "fontWeight"
+      }
+    },
+    "lineHeights": {
+      "tight": {
+        "value": "120%",
+        "type": "lineHeight"
+      },
+      "normal": {
+        "value": "130%",
+        "type": "lineHeight"
+      },
+      "relaxed": {
+        "value": "140%",
+        "type": "lineHeight"
+      },
+      "loose": {
+        "value": "160%",
+        "type": "lineHeight"
+      }
+    }
+  },
+  "spacing": {
+    "xs": {
+      "value": "4px",
+      "type": "spacing"
+    },
+    "sm": {
+      "value": "8px",
+      "type": "spacing"
+    },
+    "md": {
+      "value": "16px",
+      "type": "spacing"
+    },
+    "lg": {
+      "value": "24px",
+      "type": "spacing"
+    },
+    "xl": {
+      "value": "32px",
+      "type": "spacing"
+    },
+    "2xl": {
+      "value": "48px",
+      "type": "spacing"
+    },
+    "3xl": {
+      "value": "64px",
+      "type": "spacing"
+    }
+  },
+  "borderRadius": {
+    "sm": {
+      "value": "4px",
+      "type": "borderRadius"
+    },
+    "md": {
+      "value": "8px",
+      "type": "borderRadius"
+    },
+    "lg": {
+      "value": "12px",
+      "type": "borderRadius"
+    },
+    "xl": {
+      "value": "16px",
+      "type": "borderRadius"
+    },
+    "full": {
+      "value": "9999px",
+      "type": "borderRadius"
+    }
+  },
+  "shadows": {
+    "card": {
+      "value": "0 4px 12px rgba(0, 0, 0, 0.1)",
+      "type": "boxShadow",
+      "description": "Sombra padrão para cards"
+    },
+    "card-hover": {
+      "value": "0 8px 24px rgba(0, 0, 0, 0.15)",
+      "type": "boxShadow",
+      "description": "Sombra para cards em hover"
+    },
+    "button": {
+      "value": "0 2px 8px rgba(0, 0, 0, 0.1)",
+      "type": "boxShadow",
+      "description": "Sombra para botões"
+    }
+  },
+  "components": {
+    "button": {
+      "primary": {
+        "backgroundColor": "#983421",
+        "color": "#ffffff",
+        "padding": "16px 32px",
+        "borderRadius": "8px",
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "letterSpacing": "1px"
+      },
+      "secondary": {
+        "backgroundColor": "#D3B185",
+        "color": "#17252a",
+        "padding": "16px 32px",
+        "borderRadius": "8px"
+      },
+      "outline": {
+        "backgroundColor": "transparent",
+        "color": "#983421",
+        "border": "2px solid #983421",
+        "padding": "16px 32px",
+        "borderRadius": "8px"
+      }
+    },
+    "card": {
+      "product": {
+        "width": "380px",
+        "height": "480px",
+        "borderRadius": "12px",
+        "padding": "16px",
+        "backgroundColor": "#ffffff",
+        "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.1)"
+      },
+      "testimonial": {
+        "width": "360px",
+        "height": "200px",
+        "borderRadius": "12px",
+        "padding": "24px",
+        "backgroundColor": "#ffffff"
+      },
+      "feature": {
+        "width": "260px",
+        "height": "220px",
+        "borderRadius": "12px",
+        "padding": "24px",
+        "backgroundColor": "#f8f9fa"
+      }
+    },
+    "navigation": {
+      "height": "80px",
+      "backgroundColor": "#ffffff",
+      "boxShadow": "0 2px 8px rgba(0, 0, 0, 0.06)"
+    }
+  },
+  "layout": {
+    "desktop": {
+      "width": "1280px"
+    },
+    "mobile": {
+      "width": "375px"
+    },
+    "hero": {
+      "height": "600px"
+    },
+    "section": {
+      "paddingDesktop": "100px 80px",
+      "paddingMobile": "60px 20px"
+    }
+  }
+}

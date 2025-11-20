@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paleta de Cores - Luis Alves Mesas para Festas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f8f9fa;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-family: 'Lobster Two', cursive;
+      font-size: 3rem;
+      color: #983421;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      color: #4a5c63;
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #17252a;
+      margin-bottom: 24px;
+      border-bottom: 3px solid #D3B185;
+      padding-bottom: 10px;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .color-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .color-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .color-swatch {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .color-name {
+      position: absolute;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 16px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .color-info {
+      padding: 20px;
+      background: #f8f9fa;
+    }
+
+    .color-hex {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #17252a;
+      margin-bottom: 8px;
+    }
+
+    .color-rgb {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.875rem;
+      color: #4a5c63;
+      margin-bottom: 8px;
+    }
+
+    .color-usage {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.875rem;
+      color: #8a9ca3;
+      font-style: italic;
+    }
+
+    .typography-example {
+      margin-bottom: 24px;
+    }
+
+    .font-example {
+      margin-bottom: 16px;
+    }
+
+    .font-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #8a9ca3;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .example-h1 {
+      font-family: 'Lobster Two', cursive;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #983421;
+      line-height: 1.2;
+    }
+
+    .example-h2 {
+      font-family: 'Lobster Two', cursive;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #983421;
+      line-height: 1.2;
+    }
+
+    .example-h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #17252a;
+      line-height: 1.6;
+    }
+
+    .example-menu {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #17252a;
+      line-height: 1.6;
+    }
+
+    .example-body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #17252a;
+      line-height: 1.6;
+      max-width: 700px;
+    }
+
+    .button-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background-color: #23af24;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:hover {
+      background-color: #2bc42c;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #983421;
+      border: 2px solid #983421;
+    }
+
+    .btn-secondary:hover {
+      background-color: #983421;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background-color: white;
+      color: #17252a;
+      border: 1px solid #dee2e6;
+    }
+
+    .btn-outline:hover {
+      border-color: #983421;
+      color: #983421;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .example-h1 {
+        font-size: 2.5rem;
+      }
+
+      .example-h2 {
+        font-size: 2rem;
+      }
+
+      .button-showcase {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Luis Alves Mesas para Festas</h1>
+    <p class="subtitle">Design System - Paleta de Cores e Tipografia</p>
+
+    <!-- PRIMARY COLORS -->
+    <section class="section">
+      <h2 class="section-title">Cores Primárias</h2>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #983421;">
+            <span class="color-name">Marrom Rústico</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#983421</div>
+            <div class="color-rgb">RGB(152, 52, 33)</div>
+            <div class="color-usage">Títulos, links, hover states</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #b64a32;">
+            <span class="color-name">Marrom Claro</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#b64a32</div>
+            <div class="color-rgb">RGB(182, 74, 50)</div>
+            <div class="color-usage">Hover state primário</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #7a2a1a;">
+            <span class="color-name" style="color: white;">Marrom Escuro</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#7a2a1a</div>
+            <div class="color-rgb">RGB(122, 42, 26)</div>
+            <div class="color-usage">Active state primário</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECONDARY COLORS -->
+    <section class="section">
+      <h2 class="section-title">Cores Secundárias</h2>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #D3B185;">
+            <span class="color-name">Bege/Tan</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#D3B185</div>
+            <div class="color-rgb">RGB(211, 177, 133)</div>
+            <div class="color-usage">Ícones, detalhes decorativos</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #e5c89f;">
+            <span class="color-name">Bege Claro</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#e5c89f</div>
+            <div class="color-rgb">RGB(229, 200, 159)</div>
+            <div class="color-usage">Hover secundário</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #c19f6c;">
+            <span class="color-name">Bege Escuro</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#c19f6c</div>
+            <div class="color-rgb">RGB(193, 159, 108)</div>
+            <div class="color-usage">Active secundário</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCENT COLORS -->
+    <section class="section">
+      <h2 class="section-title">Cores de Destaque (CTA)</h2>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #23af24;">
+            <span class="color-name" style="color: white;">Verde CTA</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#23af24</div>
+            <div class="color-rgb">RGB(35, 175, 36)</div>
+            <div class="color-usage">Botões principais, CTAs</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #2bc42c;">
+            <span class="color-name" style="color: white;">Verde Claro</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#2bc42c</div>
+            <div class="color-rgb">RGB(43, 196, 44)</div>
+            <div class="color-usage">Hover em CTAs</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #1d8f1e;">
+            <span class="color-name" style="color: white;">Verde Escuro</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#1d8f1e</div>
+            <div class="color-rgb">RGB(29, 143, 30)</div>
+            <div class="color-usage">Active em CTAs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEUTRAL COLORS -->
+    <section class="section">
+      <h2 class="section-title">Cores Neutras</h2>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #17252a;">
+            <span class="color-name" style="color: white;">Preto/Texto</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#17252a</div>
+            <div class="color-rgb">RGB(23, 37, 42)</div>
+            <div class="color-usage">Texto principal</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #4a5c63;">
+            <span class="color-name" style="color: white;">Cinza Escuro</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#4a5c63</div>
+            <div class="color-rgb">RGB(74, 92, 99)</div>
+            <div class="color-usage">Texto secundário</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #8a9ca3;">
+            <span class="color-name">Cinza Médio</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#8a9ca3</div>
+            <div class="color-rgb">RGB(138, 156, 163)</div>
+            <div class="color-usage">Texto desbotado</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #ffffff; border: 1px solid #dee2e6;">
+            <span class="color-name">Branco</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#ffffff</div>
+            <div class="color-rgb">RGB(255, 255, 255)</div>
+            <div class="color-usage">Background principal</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #f8f9fa;">
+            <span class="color-name">Cinza Claro</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#f8f9fa</div>
+            <div class="color-rgb">RGB(248, 249, 250)</div>
+            <div class="color-usage">Background alternativo</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #563524;">
+            <span class="color-name" style="color: white;">Marrom Footer</span>
+          </div>
+          <div class="color-info">
+            <div class="color-hex">#563524</div>
+            <div class="color-rgb">RGB(86, 53, 36)</div>
+            <div class="color-usage">Footer background</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="section">
+      <h2 class="section-title">Tipografia</h2>
+
+      <div class="typography-example">
+        <div class="font-example">
+          <div class="font-name">Lobster Two - Bold (700) - Títulos H1</div>
+          <div class="example-h1">Mesas Rústicas Premium</div>
+        </div>
+
+        <div class="font-example">
+          <div class="font-name">Lobster Two - Bold (700) - Títulos H2</div>
+          <div class="example-h2">Nosso Catálogo</div>
+        </div>
+
+        <div class="font-example">
+          <div class="font-name">Poppins - SemiBold (600) - Subtítulos H3</div>
+          <div class="example-h3">Por Que Escolher a Gente?</div>
+        </div>
+
+        <div class="font-example">
+          <div class="font-name">Poppins - SemiBold (600) - Menu/Botões</div>
+          <div class="example-menu">Explorar Catálogo</div>
+        </div>
+
+        <div class="font-example">
+          <div class="font-name">Open Sans - Regular (400) - Body Text</div>
+          <div class="example-body">
+            Luis Alves Mesas para Festas é uma empresa familiar com mais de 7 anos de tradição na fabricação de móveis rústicos de alta qualidade. Cada peça é cuidadosamente selecionada e trabalhada por artesãos experientes.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section class="section">
+      <h2 class="section-title">Botões</h2>
+
+      <div class="button-showcase">
+        <button class="btn btn-primary">Botão Primário</button>
+        <button class="btn btn-secondary">Botão Secundário</button>
+        <button class="btn btn-outline">Botão Outline</button>
+      </div>
+    </section>
+
+    <!-- CSS VARIABLES -->
+    <section class="section">
+      <h2 class="section-title">CSS Variables (Pronto para Copiar)</h2>
+
+      <pre style="background: #17252a; color: #23af24; padding: 24px; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 14px; line-height: 1.6;">
+:root {
+  /* Primary Colors */
+  --color-primary: #983421;
+  --color-primary-light: #b64a32;
+  --color-primary-dark: #7a2a1a;
+
+  /* Secondary Colors */
+  --color-secondary: #D3B185;
+  --color-secondary-light: #e5c89f;
+  --color-secondary-dark: #c19f6c;
+
+  /* Accent/CTA */
+  --color-accent: #23af24;
+  --color-accent-light: #2bc42c;
+  --color-accent-dark: #1d8f1e;
+
+  /* Neutrals */
+  --color-text-primary: #17252a;
+  --color-text-secondary: #4a5c63;
+  --color-text-muted: #8a9ca3;
+  --color-bg-white: #ffffff;
+  --color-bg-light: #f8f9fa;
+  --color-footer: #563524;
+
+  /* Typography */
+  --font-heading: 'Lobster Two', cursive;
+  --font-menu: 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+}
+      </pre>
+    </section>
+
+  </div>
+</body>
+</html>

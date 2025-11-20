@@ -1,0 +1,61 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                   JPR MÓVEIS RÚSTICOS - RESUMO RÁPIDO                      ║
+║                                                                            ║
+║                        ✅ PROJETO CRIADO COM SUCESSO!                     ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📂 LOCALIZAÇÃO
+   /Users/juanminni/meu-repositorio/jpr-moveis-rusticos
+
+📋 O QUE FOI FEITO:
+   ✅ Copiado 105 arquivos do projeto Rosa Mexicano
+   ✅ Atualizadas 309 referências de nomes
+   ✅ Configurado .env para JPR
+   ✅ Inicializado repositório Git
+   ✅ Criada documentação completa
+
+🎯 PRIMEIROS PASSOS:
+   1. Ler: JPR-SETUP.md
+   2. Seguir: JPR-CHECKLIST.md
+   3. Testar: npm install && node server-vouchers.js
+   4. Deploy: Railway + Netlify
+
+💳 CREDENCIAIS PADRÃO:
+   ├─ Admin: admin
+   ├─ Senha: JPR2025#@ (ALTERAR!)
+   ├─ Email: jpr.moveis.rusticos@gmail.com
+   ├─ API Key: [ADICIONAR]
+   └─ Email Pass: [ADICIONAR]
+
+📞 CONTATO CLIENTE:
+   Telefone: (47) 3288-3096
+   WhatsApp: (47) 99233-4348
+   Email: jpr.moveis.rusticos@gmail.com
+
+🚀 COMANDOS ÚTEIS:
+   npm install                    # Instalar dependências
+   node server-vouchers.js        # Rodar localmente
+   git log --oneline              # Ver commits
+   railway up                     # Deploy Railway
+
+📊 FUNCIONALIDADES:
+   ✓ Landing page (vouchers)
+   ✓ Checkout (PIX + Cartão)
+   ✓ Geração PDF com QR Code
+   ✓ Admin panel (validar vouchers)
+   ✓ API RESTful
+   ✓ Webhooks Asaas
+
+📁 ARQUIVOS IMPORTANTES:
+   JPR-SETUP.md          ← LEIA PRIMEIRO!
+   JPR-CHECKLIST.md      ← Guia passo a passo
+   PROJETO-CRIADO.md     ← Resumo completo
+   README.md             ← Documentação geral
+   .env                  ← Configuração (EDITAR)
+
+✨ STATUS: 100% PRONTO PARA CONFIGURAÇÃO!
+
+═══════════════════════════════════════════════════════════════════════════════
+Desenvolvido com ❤️ por Juan Minni
+Data: 2025-11-09
+═══════════════════════════════════════════════════════════════════════════════
