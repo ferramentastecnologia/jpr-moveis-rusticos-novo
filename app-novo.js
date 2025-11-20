@@ -457,7 +457,7 @@ function abrirModalProduto(produtoId) {
                 </div>
 
                 <!-- Conteúdo das Abas - COM SCROLL -->
-                <div class="modal-tabs-content" style="max-height: 180px; overflow-y: auto; padding-right: 8px; padding-bottom: 8px; margin-bottom: 10px;">
+                <div class="modal-tabs-content" style="max-height: 150px; overflow-y: auto; padding-right: 8px; padding-bottom: 6px; margin-bottom: 8px;">
                     <!-- ABA 1: Descrição -->
                     <div class="modal-tab-pane active" id="descricao">
                         <p class="description-text" style="font-size: 11px; line-height: 1.4; margin: 0 0 10px 0; color: #5D4037;">${produto.descricaoLonga}</p>
@@ -545,7 +545,7 @@ function abrirModalProduto(produtoId) {
                 </div>
 
                 <!-- Botões de Ação - COMPACTOS -->
-                <div class="modal-actions-modern" style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-top: 10px;">
+                <div class="modal-actions-modern" style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-top: 8px;">
                     <button class="btn-primary-modal" onclick="adicionarAoCarrinho('${produto.id}'); fecharModalProduto();" style="padding: 10px 12px; font-size: 13px;">
                         <span class="btn-icon">🛒</span>
                         <span>Adicionar ao Carrinho</span>
@@ -556,17 +556,17 @@ function abrirModalProduto(produtoId) {
                 </div>
 
                 <!-- Trust Badges - COMPACTOS -->
-                <div class="trust-badges-modern" style="display: flex; gap: 6px; justify-content: space-around; margin-top: 8px; padding-top: 8px; border-top: 1px solid #E5D4C1;">
+                <div class="trust-badges-modern" style="display: flex; gap: 6px; justify-content: space-around; margin-top: 6px; padding-top: 6px; border-top: 1px solid #E5D4C1;">
                     <div class="trust-badge" style="text-align: center; font-size: 9px;">
-                        <span style="font-size: 14px; display: block; margin-bottom: 1px;">🔐</span>
+                        <span style="font-size: 14px; display: block; margin-bottom: 0;">🔐</span>
                         <small>Compra Segura</small>
                     </div>
                     <div class="trust-badge" style="text-align: center; font-size: 9px;">
-                        <span style="font-size: 14px; display: block; margin-bottom: 1px;">📱</span>
+                        <span style="font-size: 14px; display: block; margin-bottom: 0;">📱</span>
                         <small>WhatsApp</small>
                     </div>
                     <div class="trust-badge" style="text-align: center; font-size: 9px;">
-                        <span style="font-size: 14px; display: block; margin-bottom: 1px;">✓</span>
+                        <span style="font-size: 14px; display: block; margin-bottom: 0;">✓</span>
                         <small>Entrega Verificada</small>
                     </div>
                 </div>
