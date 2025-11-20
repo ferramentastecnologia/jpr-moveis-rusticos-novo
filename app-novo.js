@@ -358,6 +358,9 @@ function abrirModalProduto(produtoId) {
         { nome: 'João P.', estrelas: 4, texto: 'Bom custo-benefício, atendimento impecável.' }
     ];
 
+    // Calcular frete
+    const resultadoFrete = calcularFrete('Blumenau'); // Usa cidade padrão para exibição
+
     const conteudo = `
         <div class="modal-product-modern">
             <!-- SEÇÃO ESQUERDA: Galeria -->
@@ -370,81 +373,102 @@ function abrirModalProduto(produtoId) {
 
             <!-- SEÇÃO DIREITA: Informações com Tabs -->
             <div class="modal-right-section">
-                <!-- Header Superior -->
-                <div class="modal-header-modern">
+                <!-- Header Superior - COMPACTO -->
+                <div class="modal-header-modern" style="padding: 12px 0; margin-bottom: 8px;">
                     <div>
-                        <h2 class="product-title-modal">${produto.nome}</h2>
-                        <span class="modal-category-modern">${produto.categoria}</span>
+                        <h2 class="product-title-modal" style="font-size: 22px; margin: 0 0 4px 0;">${produto.nome}</h2>
+                        <span class="modal-category-modern" style="font-size: 12px;">${produto.categoria}</span>
                     </div>
-                    <div class="modal-rating-modern">
+                    <div class="modal-rating-modern" style="font-size: 13px;">
                         <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="rating-count">${reviews.length} avaliações</span>
+                        <span class="rating-count">(${reviews.length})</span>
                     </div>
                 </div>
 
-                <!-- Preço em Destaque -->
-                <div class="price-highlight-section">
-                    <div class="price-main">${produto.precoFormatado}</div>
-                    <div class="availability-badge-modern">
+                <!-- Preço e Frete - COMPACTO -->
+                <div class="price-highlight-section" style="margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <div class="price-main" style="font-size: 28px;">${produto.precoFormatado}</div>
+                    <div class="availability-badge-modern" style="font-size: 12px;">
                         <span class="badge-dot"></span>
                         ${produto.disponibilidade}
                     </div>
+                    ${resultadoFrete.gratis ? `
+                        <div style="
+                            background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+                            color: white;
+                            padding: 6px 14px;
+                            border-radius: 30px;
+                            font-weight: 700;
+                            font-size: 12px;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 6px;
+                            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+                            animation: pulse 2s infinite;
+                        ">
+                            <span style="font-size: 14px;">🚚</span>
+                            FRETE GRÁTIS
+                        </div>
+                    ` : ''}
                 </div>
 
-                <!-- Tabs de Navegação -->
-                <div class="modal-tabs-container">
-                    <button class="modal-tab-btn active" onclick="mudarAbaModal(this, 'descricao')">
+                <!-- Tabs de Navegação - COMPACTAS -->
+                <div class="modal-tabs-container" style="gap: 6px; margin-bottom: 12px;">
+                    <button class="modal-tab-btn active" onclick="mudarAbaModal(this, 'descricao')" style="padding: 8px 12px; font-size: 13px;">
                         📝 Descrição
                     </button>
-                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'especificacoes')">
+                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'especificacoes')" style="padding: 8px 12px; font-size: 13px;">
                         📐 Especificações
                     </button>
-                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'entrega')">
+                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'entrega')" style="padding: 8px 12px; font-size: 13px;">
                         🚚 Entrega
                     </button>
-                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'avaliacoes')">
+                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'avaliacoes')" style="padding: 8px 12px; font-size: 13px;">
                         ⭐ Avaliações
                     </button>
                 </div>
 
-                <!-- Conteúdo das Abas -->
-                <div class="modal-tabs-content">
+                <!-- Conteúdo das Abas - COMPACTO -->
+                <div class="modal-tabs-content" style="max-height: 350px; overflow-y: auto; padding-right: 8px;">
                     <!-- ABA 1: Descrição -->
                     <div class="modal-tab-pane active" id="descricao">
-                        <p class="description-text">${produto.descricaoLonga}</p>
+                        <p class="description-text" style="font-size: 13px; line-height: 1.5; margin-bottom: 12px;">${produto.descricaoLonga}</p>
 
-                        <!-- Seletor de Tamanho -->
-                        <div class="size-selector-modern">
-                            <h4>Escolha o Tamanho</h4>
-                            <div class="size-options">
-                                ${produto.tamanhos ? produto.tamanhos.map((tamanho, idx) => `
-                                    <button class="size-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarTamanho(this, ${tamanho.preco}, '${tamanho.precoFormatado}')">
-                                        <span class="size-text">${tamanho.tamanho}</span>
-                                        <span class="size-price">${tamanho.precoFormatado}</span>
-                                    </button>
-                                `).join('') : '<p>Sob consulta</p>'}
+                        <!-- Seletores em linha -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                            <!-- Seletor de Tamanho -->
+                            <div class="size-selector-modern">
+                                <h4 style="font-size: 13px; margin-bottom: 8px; font-weight: 600;">Tamanho</h4>
+                                <div class="size-options" style="display: flex; flex-direction: column; gap: 6px;">
+                                    ${produto.tamanhos ? produto.tamanhos.map((tamanho, idx) => `
+                                        <button class="size-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarTamanho(this, ${tamanho.preco}, '${tamanho.precoFormatado}')" style="padding: 8px; font-size: 12px;">
+                                            <span class="size-text">${tamanho.tamanho}</span>
+                                            <span class="size-price">${tamanho.precoFormatado}</span>
+                                        </button>
+                                    `).join('') : '<p>Sob consulta</p>'}
+                                </div>
+                            </div>
+
+                            <!-- Seletor de Acabamento -->
+                            <div class="finish-selector-modern">
+                                <h4 style="font-size: 13px; margin-bottom: 8px; font-weight: 600;">Acabamento</h4>
+                                <div class="finish-options" style="display: flex; flex-direction: column; gap: 6px;">
+                                    ${variantes.map((variante, idx) => `
+                                        <button class="finish-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarVariante(this, '${variante}')" style="padding: 8px; font-size: 12px;">
+                                            <span class="finish-name">${variante}</span>
+                                        </button>
+                                    `).join('')}
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Seletor de Acabamento -->
-                        <div class="finish-selector-modern">
-                            <h4>Escolha o Acabamento</h4>
-                            <div class="finish-options">
-                                ${variantes.map((variante, idx) => `
-                                    <button class="finish-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarVariante(this, '${variante}')">
-                                        <span class="finish-name">${variante}</span>
-                                    </button>
-                                `).join('')}
-                            </div>
-                        </div>
-
-                        <!-- Características -->
+                        <!-- Características - 2 COLUNAS -->
                         <div class="characteristics-modern">
-                            <h4>Características Principais</h4>
-                            <ul class="char-list">
+                            <h4 style="font-size: 13px; margin-bottom: 8px; font-weight: 600;">Características</h4>
+                            <ul class="char-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; list-style: none; padding: 0; margin: 0;">
                                 ${produto.caracteristicas.map(car => `
-                                    <li class="char-item">
-                                        <span class="char-icon">✓</span>
+                                    <li class="char-item" style="display: flex; align-items: start; gap: 6px; font-size: 12px;">
+                                        <span class="char-icon" style="color: #2E7D32; font-weight: bold;">✓</span>
                                         <span>${car}</span>
                                     </li>
                                 `).join('')}
@@ -452,102 +476,97 @@ function abrirModalProduto(produtoId) {
                         </div>
                     </div>
 
-                    <!-- ABA 2: Especificações -->
+                    <!-- ABA 2: Especificações - GRID COMPACTO -->
                     <div class="modal-tab-pane" id="especificacoes">
-                        <div class="specs-modern">
-                            <div class="spec-row">
-                                <div class="spec-card">
-                                    <span class="spec-icon">📏</span>
-                                    <span class="spec-label">Comprimento</span>
-                                    <span class="spec-value">${produto.dimensoes.comprimento}</span>
-                                </div>
-                                <div class="spec-card">
-                                    <span class="spec-icon">↔️</span>
-                                    <span class="spec-label">Largura</span>
-                                    <span class="spec-value">${produto.dimensoes.largura}</span>
-                                </div>
+                        <div class="specs-modern" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="spec-card" style="padding: 10px; background: #F5F1E8; border-radius: 8px; text-align: center;">
+                                <span class="spec-icon" style="font-size: 18px;">📏</span>
+                                <span class="spec-label" style="display: block; font-size: 11px; color: #6B5D4F; margin: 4px 0;">Comprimento</span>
+                                <span class="spec-value" style="font-weight: 600; font-size: 13px;">${produto.dimensoes.comprimento}</span>
                             </div>
-                            <div class="spec-row">
-                                <div class="spec-card">
-                                    <span class="spec-icon">↕️</span>
-                                    <span class="spec-label">Altura</span>
-                                    <span class="spec-value">${produto.dimensoes.altura}</span>
-                                </div>
-                                <div class="spec-card">
-                                    <span class="spec-icon">⬚</span>
-                                    <span class="spec-label">Espessura</span>
-                                    <span class="spec-value">${produto.dimensoes.espessura}</span>
-                                </div>
+                            <div class="spec-card" style="padding: 10px; background: #F5F1E8; border-radius: 8px; text-align: center;">
+                                <span class="spec-icon" style="font-size: 18px;">↔️</span>
+                                <span class="spec-label" style="display: block; font-size: 11px; color: #6B5D4F; margin: 4px 0;">Largura</span>
+                                <span class="spec-value" style="font-weight: 600; font-size: 13px;">${produto.dimensoes.largura}</span>
+                            </div>
+                            <div class="spec-card" style="padding: 10px; background: #F5F1E8; border-radius: 8px; text-align: center;">
+                                <span class="spec-icon" style="font-size: 18px;">↕️</span>
+                                <span class="spec-label" style="display: block; font-size: 11px; color: #6B5D4F; margin: 4px 0;">Altura</span>
+                                <span class="spec-value" style="font-weight: 600; font-size: 13px;">${produto.dimensoes.altura}</span>
+                            </div>
+                            <div class="spec-card" style="padding: 10px; background: #F5F1E8; border-radius: 8px; text-align: center;">
+                                <span class="spec-icon" style="font-size: 18px;">⬚</span>
+                                <span class="spec-label" style="display: block; font-size: 11px; color: #6B5D4F; margin: 4px 0;">Espessura</span>
+                                <span class="spec-value" style="font-weight: 600; font-size: 13px;">${produto.dimensoes.espessura}</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ABA 3: Entrega -->
+                    <!-- ABA 3: Entrega - GRID COMPACTO -->
                     <div class="modal-tab-pane" id="entrega">
-                        <div class="delivery-info-modern">
-                            <div class="delivery-card">
-                                <span class="delivery-icon">📦</span>
-                                <span class="delivery-label">Prazo de Entrega</span>
-                                <span class="delivery-value">${produto.prazoEntrega}</span>
+                        <div class="delivery-info-modern" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="delivery-card" style="padding: 10px; background: #F5F1E8; border-radius: 8px; text-align: center;">
+                                <span class="delivery-icon" style="font-size: 20px;">📦</span>
+                                <span class="delivery-label" style="display: block; font-size: 11px; color: #6B5D4F; margin: 4px 0;">Prazo</span>
+                                <span class="delivery-value" style="font-weight: 600; font-size: 12px;">${produto.prazoEntrega}</span>
                             </div>
-                            <div class="delivery-card">
-                                <span class="delivery-icon">🛡️</span>
-                                <span class="delivery-label">Garantia</span>
-                                <span class="delivery-value">2 Anos</span>
+                            <div class="delivery-card" style="padding: 10px; background: #F5F1E8; border-radius: 8px; text-align: center;">
+                                <span class="delivery-icon" style="font-size: 20px;">🛡️</span>
+                                <span class="delivery-label" style="display: block; font-size: 11px; color: #6B5D4F; margin: 4px 0;">Garantia</span>
+                                <span class="delivery-value" style="font-weight: 600; font-size: 12px;">2 Anos</span>
                             </div>
-                            <div class="delivery-card">
-                                <span class="delivery-icon">🚚</span>
-                                <span class="delivery-label">Frete</span>
-                                <span class="delivery-value">Cálculo na compra</span>
+                            <div class="delivery-card" style="padding: 10px; background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%); border-radius: 8px; text-align: center; color: white;">
+                                <span class="delivery-icon" style="font-size: 20px;">🚚</span>
+                                <span class="delivery-label" style="display: block; font-size: 11px; opacity: 0.9; margin: 4px 0;">Frete</span>
+                                <span class="delivery-value" style="font-weight: 700; font-size: 12px;">${resultadoFrete.gratis ? 'GRÁTIS' : 'Calcular'}</span>
                             </div>
-                            <div class="delivery-card">
-                                <span class="delivery-icon">🔒</span>
-                                <span class="delivery-label">Seguro</span>
-                                <span class="delivery-value">Incluído</span>
+                            <div class="delivery-card" style="padding: 10px; background: #F5F1E8; border-radius: 8px; text-align: center;">
+                                <span class="delivery-icon" style="font-size: 20px;">🔒</span>
+                                <span class="delivery-label" style="display: block; font-size: 11px; color: #6B5D4F; margin: 4px 0;">Seguro</span>
+                                <span class="delivery-value" style="font-weight: 600; font-size: 12px;">Incluído</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ABA 4: Avaliações -->
+                    <!-- ABA 4: Avaliações - COMPACTA -->
                     <div class="modal-tab-pane" id="avaliacoes">
-                        <div class="reviews-modern">
+                        <div class="reviews-modern" style="display: flex; flex-direction: column; gap: 10px;">
                             ${reviews.map(review => `
-                                <div class="review-card">
-                                    <div class="review-top">
-                                        <span class="review-author">${review.nome}</span>
-                                        <span class="review-stars">${'⭐'.repeat(review.estrelas)}</span>
+                                <div class="review-card" style="background: #F5F1E8; padding: 10px; border-radius: 8px;">
+                                    <div class="review-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                        <span class="review-author" style="font-weight: 600; font-size: 13px;">${review.nome}</span>
+                                        <span class="review-stars" style="font-size: 12px;">${'⭐'.repeat(review.estrelas)}</span>
                                     </div>
-                                    <p class="review-text">${review.texto}</p>
+                                    <p class="review-text" style="font-size: 12px; margin: 0; line-height: 1.4;">${review.texto}</p>
                                 </div>
                             `).join('')}
                         </div>
                     </div>
                 </div>
 
-                <!-- Botões de Ação -->
-                <div class="modal-actions-modern">
-                    <button class="btn-primary-modal" onclick="adicionarAoCarrinho('${produto.id}'); fecharModalProduto();">
+                <!-- Botões de Ação - COMPACTOS -->
+                <div class="modal-actions-modern" style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-top: 16px;">
+                    <button class="btn-primary-modal" onclick="adicionarAoCarrinho('${produto.id}'); fecharModalProduto();" style="padding: 12px 16px; font-size: 14px;">
                         <span class="btn-icon">🛒</span>
                         <span>Adicionar ao Carrinho</span>
                     </button>
-                    <button class="btn-secondary-modal" onclick="toggleWishlistModal(this)">
+                    <button class="btn-secondary-modal" onclick="toggleWishlistModal(this)" style="padding: 12px 16px; font-size: 14px;">
                         <span class="btn-icon">❤️</span>
-                        <span>Salvar para Depois</span>
                     </button>
                 </div>
 
-                <!-- Trust Badges -->
-                <div class="trust-badges-modern">
-                    <div class="trust-badge">
-                        <span>🔐</span>
-                        <small>Compra 100% Segura</small>
+                <!-- Trust Badges - COMPACTOS -->
+                <div class="trust-badges-modern" style="display: flex; gap: 8px; justify-content: space-around; margin-top: 12px; padding-top: 12px; border-top: 1px solid #E5D4C1;">
+                    <div class="trust-badge" style="text-align: center; font-size: 11px;">
+                        <span style="font-size: 16px; display: block; margin-bottom: 2px;">🔐</span>
+                        <small>Compra Segura</small>
                     </div>
-                    <div class="trust-badge">
-                        <span>📱</span>
+                    <div class="trust-badge" style="text-align: center; font-size: 11px;">
+                        <span style="font-size: 16px; display: block; margin-bottom: 2px;">📱</span>
                         <small>Suporte WhatsApp</small>
                     </div>
-                    <div class="trust-badge">
-                        <span>✓</span>
+                    <div class="trust-badge" style="text-align: center; font-size: 11px;">
+                        <span style="font-size: 16px; display: block; margin-bottom: 2px;">✓</span>
                         <small>Entrega Verificada</small>
                     </div>
                 </div>
