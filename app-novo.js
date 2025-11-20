@@ -429,7 +429,7 @@ function abrirModalProduto(produtoId) {
                 </div>
 
                 <!-- Conteúdo das Abas - COMPACTO -->
-                <div class="modal-tabs-content" style="max-height: 450px; overflow-y: auto; padding-right: 8px; padding-bottom: 24px; margin-bottom: 16px;">
+                <div class="modal-tabs-content" style="max-height: 320px; overflow-y: auto; padding-right: 8px; padding-bottom: 20px; margin-bottom: 12px;">
                     <!-- ABA 1: Descrição -->
                     <div class="modal-tab-pane active" id="descricao">
                         <p class="description-text" style="font-size: 13px; line-height: 1.5; margin: 0 0 12px 0;">${produto.descricaoLonga}</p>
@@ -463,11 +463,11 @@ function abrirModalProduto(produtoId) {
                         </div>
 
                         <!-- Características - 2 COLUNAS -->
-                        <div class="characteristics-modern" style="margin: 0 0 20px 0;">
-                            <h4 style="font-size: 13px; margin: 0 0 10px 0; font-weight: 600; color: #5D4037;">Características</h4>
-                            <ul class="char-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; list-style: none; padding: 0; margin: 0;">
+                        <div class="characteristics-modern" style="margin: 0;">
+                            <h4 style="font-size: 13px; margin: 0 0 8px 0; font-weight: 600; color: #5D4037;">Características</h4>
+                            <ul class="char-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; list-style: none; padding: 0; margin: 0;">
                                 ${produto.caracteristicas.map(car => `
-                                    <li class="char-item" style="display: flex; align-items: start; gap: 6px; font-size: 12px; line-height: 1.5; padding-bottom: 2px;">
+                                    <li class="char-item" style="display: flex; align-items: start; gap: 6px; font-size: 12px; line-height: 1.4;">
                                         <span class="char-icon" style="color: #2E7D32; font-weight: bold; flex-shrink: 0;">✓</span>
                                         <span style="word-break: break-word;">${car}</span>
                                     </li>
