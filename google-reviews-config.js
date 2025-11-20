@@ -23,11 +23,11 @@
  */
 
 const GOOGLE_CONFIG = {
-    // IMPORTANTE: Substitua com sua API Key real
-    apiKey: 'SUA_API_KEY_AQUI',
+    // API Key do Google Cloud - JPR Moveis Reviews
+    apiKey: 'AIzaSyCX3yZkJ_293IyL1Ay7sVqo5oAn9pliDbM',
 
-    // IMPORTANTE: Substitua com o Place ID da sua loja
-    placeId: 'SEU_PLACE_ID_AQUI',
+    // Place ID da JPR Móveis Rústicos - Luiz Alves, SC
+    placeId: 'ChIJsd950B7a3pQRWrVVVHDaLfA',
 
     // Configurações opcionais
     language: 'pt-BR',
