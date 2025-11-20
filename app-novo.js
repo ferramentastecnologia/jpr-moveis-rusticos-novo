@@ -457,17 +457,17 @@ function abrirModalProduto(produtoId) {
                 </div>
 
                 <!-- Conteúdo das Abas - COM SCROLL -->
-                <div class="modal-tabs-content" style="max-height: 150px; overflow-y: auto; padding-right: 8px; padding-bottom: 6px; margin-bottom: 8px;">
+                <div class="modal-tabs-content" style="max-height: 140px; overflow-y: auto; padding-right: 8px; padding-bottom: 4px; margin-bottom: 6px;">
                     <!-- ABA 1: Descrição -->
                     <div class="modal-tab-pane active" id="descricao">
-                        <p class="description-text" style="font-size: 11px; line-height: 1.4; margin: 0 0 10px 0; color: #5D4037;">${produto.descricaoLonga}</p>
+                        <p class="description-text" style="font-size: 11px; line-height: 1.3; margin: 0 0 8px 0; color: #5D4037;">${produto.descricaoLonga}</p>
 
                         <!-- Características - 2 COLUNAS -->
                         <div class="characteristics-modern">
-                            <h4 style="font-size: 11px; margin: 0 0 6px 0; font-weight: 600; color: #5D4037;">Características</h4>
-                            <ul class="char-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; list-style: none; padding: 0; margin: 0;">
+                            <h4 style="font-size: 11px; margin: 0 0 5px 0; font-weight: 600; color: #5D4037;">Características</h4>
+                            <ul class="char-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; list-style: none; padding: 0; margin: 0;">
                                 ${produto.caracteristicas.map(car => `
-                                    <li class="char-item" style="display: flex; align-items: start; gap: 4px; font-size: 10px; line-height: 1.4;">
+                                    <li class="char-item" style="display: flex; align-items: start; gap: 4px; font-size: 10px; line-height: 1.3;">
                                         <span class="char-icon" style="color: #2E7D32; font-weight: bold; flex-shrink: 0; font-size: 11px;">✓</span>
                                         <span style="word-break: break-word;">${car}</span>
                                     </li>
@@ -544,30 +544,30 @@ function abrirModalProduto(produtoId) {
                     </div>
                 </div>
 
-                <!-- Botões de Ação - COMPACTOS -->
-                <div class="modal-actions-modern" style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-top: 8px;">
-                    <button class="btn-primary-modal" onclick="adicionarAoCarrinho('${produto.id}'); fecharModalProduto();" style="padding: 10px 12px; font-size: 13px;">
-                        <span class="btn-icon">🛒</span>
+                <!-- Botões de Ação - OTIMIZADOS -->
+                <div class="modal-actions-modern" style="display: grid; grid-template-columns: 2.5fr 1fr; gap: 6px; margin-top: 6px;">
+                    <button class="btn-primary-modal" onclick="adicionarAoCarrinho('${produto.id}'); fecharModalProduto();" style="padding: 9px 10px; font-size: 12px; font-weight: 600; border-radius: 8px;">
+                        <span class="btn-icon" style="font-size: 14px;">🛒</span>
                         <span>Adicionar ao Carrinho</span>
                     </button>
-                    <button class="btn-secondary-modal" onclick="toggleWishlistModal(this)" style="padding: 10px 12px; font-size: 13px;">
+                    <button class="btn-secondary-modal" onclick="toggleWishlistModal(this)" style="padding: 9px 10px; font-size: 18px; border-radius: 8px;">
                         <span class="btn-icon">❤️</span>
                     </button>
                 </div>
 
-                <!-- Trust Badges - COMPACTOS -->
-                <div class="trust-badges-modern" style="display: flex; gap: 6px; justify-content: space-around; margin-top: 6px; padding-top: 6px; border-top: 1px solid #E5D4C1;">
-                    <div class="trust-badge" style="text-align: center; font-size: 9px;">
-                        <span style="font-size: 14px; display: block; margin-bottom: 0;">🔐</span>
+                <!-- Trust Badges - OTIMIZADOS -->
+                <div class="trust-badges-modern" style="display: flex; gap: 4px; justify-content: space-around; margin-top: 5px; padding-top: 5px; border-top: 1px solid #E5D4C1;">
+                    <div class="trust-badge" style="text-align: center; font-size: 8px; line-height: 1.2;">
+                        <span style="font-size: 12px; display: block;">🔐</span>
                         <small>Compra Segura</small>
                     </div>
-                    <div class="trust-badge" style="text-align: center; font-size: 9px;">
-                        <span style="font-size: 14px; display: block; margin-bottom: 0;">📱</span>
+                    <div class="trust-badge" style="text-align: center; font-size: 8px; line-height: 1.2;">
+                        <span style="font-size: 12px; display: block;">📱</span>
                         <small>WhatsApp</small>
                     </div>
-                    <div class="trust-badge" style="text-align: center; font-size: 9px;">
-                        <span style="font-size: 14px; display: block; margin-bottom: 0;">✓</span>
-                        <small>Entrega Verificada</small>
+                    <div class="trust-badge" style="text-align: center; font-size: 8px; line-height: 1.2;">
+                        <span style="font-size: 12px; display: block;">✓</span>
+                        <small>Entrega OK</small>
                     </div>
                 </div>
             </div>
