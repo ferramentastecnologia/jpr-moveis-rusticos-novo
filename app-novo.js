@@ -776,17 +776,23 @@ function mostrarPopupCarrinho(produto, tamanho) {
                     ">OFERTA ESPECIAL</div>
 
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="font-size: 36px;">🪑</div>
+                        <div style="font-size: 36px;">🪑🪑</div>
                         <div style="flex: 1;">
                             <h3 style="color: #E65100; margin: 0 0 4px 0; font-size: 16px; font-weight: 700;">
                                 Complete seu conjunto!
                             </h3>
                             <p style="color: #5D4037; margin: 0 0 8px 0; font-size: 13px; line-height: 1.4;">
-                                Aproveite e leve <strong>banquetas exclusivas</strong> para sua mesa
+                                Aproveite e leve <strong>2 banquetas exclusivas</strong> para sua mesa
                             </p>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <span style="font-size: 18px; font-weight: 700; color: #2E7D32;">R$ 500,00</span>
-                                <span style="font-size: 11px; color: #6B5D4F;">por banqueta</span>
+                            <div style="display: flex; flex-direction: column; gap: 2px;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 11px; color: #6B5D4F; text-decoration: line-through;">R$ 1.200,00</span>
+                                    <span style="background: #FF6F00; color: white; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 700;">ECONOMIA R$ 200</span>
+                                </div>
+                                <div style="display: flex; align-items: baseline; gap: 6px;">
+                                    <span style="font-size: 20px; font-weight: 700; color: #2E7D32;">R$ 1.000,00</span>
+                                    <span style="font-size: 11px; color: #6B5D4F;">(2 banquetas)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -797,15 +803,15 @@ function mostrarPopupCarrinho(produto, tamanho) {
                         background: linear-gradient(135deg, #FF6F00 0%, #E65100 100%);
                         color: white;
                         border: none;
-                        padding: 10px;
+                        padding: 12px;
                         border-radius: 8px;
                         font-weight: 700;
-                        font-size: 13px;
+                        font-size: 14px;
                         cursor: pointer;
                         box-shadow: 0 3px 10px rgba(255, 111, 0, 0.3);
                         transition: all 0.3s ease;
                     " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 111, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 10px rgba(255, 111, 0, 0.3)'">
-                        ✨ Adicionar Banquetas ao Pedido
+                        ✨ Adicionar e Ir para Checkout
                     </button>
                 </div>
             ` : ''}
@@ -888,7 +894,7 @@ function fecharPopupCarrinho() {
     }
 }
 
-// Adicionar banquetas ao carrinho (upsell)
+// Adicionar banquetas ao carrinho (upsell) e ir direto para checkout
 function adicionarBanquetas() {
     const banqueta = {
         id: 'banqueta-exclusiva',
@@ -904,22 +910,24 @@ function adicionarBanquetas() {
     const itemExistente = carrinho.find(item => item.id === 'banqueta-exclusiva');
 
     if (itemExistente) {
-        itemExistente.quantidade += 1;
+        itemExistente.quantidade += 2; // Adiciona 2 banquetas
     } else {
         carrinho.push({
             ...banqueta,
-            quantidade: 1
+            quantidade: 2, // Adiciona 2 banquetas por padrão
+            tamanhoSelecionado: 'Padrão'
         });
     }
 
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    localStorage.setItem('carrinhoCheckout', JSON.stringify(carrinho));
     atualizarCarrinho();
 
-    // Atualizar o popup com novo total
+    // Fechar popup
     fecharPopupCarrinho();
 
-    // Mostrar notificação de sucesso
-    mostrarNotificacao('🪑 Banqueta adicionada ao carrinho! ✅');
+    // Ir direto para checkout
+    window.location.href = 'checkout-novo.html';
 }
 
 function toggleWishlistModal(btn) {
