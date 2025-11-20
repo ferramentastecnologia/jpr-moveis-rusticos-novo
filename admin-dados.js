@@ -196,14 +196,41 @@ function atualizarStatusVenda(id, novoStatus) {
  * Obter todos os produtos para admin
  */
 function obterProdutosAdmin() {
-    return produtosData; // Vem do data-produtos.js
+    // Tentar carregar de data-produtos.js (variável global 'produtos')
+    if (typeof produtos !== 'undefined') {
+        return produtos;
+    }
+
+    // Fallback: dados em localStorage
+    const produtosStorage = localStorage.getItem('jpr_produtos');
+    if (produtosStorage) {
+        return JSON.parse(produtosStorage);
+    }
+
+    // Dados padrão se não houver nada
+    return [
+        { id: 1, nome: 'Mesa Glamour', preco: 3400, categoria: 'Premium', estoque: 5 },
+        { id: 2, nome: 'Mesa Sublime', preco: 3400, categoria: 'Premium', estoque: 3 },
+        { id: 3, nome: 'Mesa Paris', preco: 3400, categoria: 'Premium', estoque: 4 },
+        { id: 4, nome: 'Mesa Imperatriz', preco: 4200, categoria: 'Premium', estoque: 2 },
+        { id: 5, nome: 'Mesa Império', preco: 3800, categoria: 'Premium', estoque: 3 },
+        { id: 6, nome: 'Mesa Nobreza', preco: 3600, categoria: 'Premium', estoque: 4 },
+        { id: 7, nome: 'Mesa Luxúria', preco: 5200, categoria: 'Premium', estoque: 1 },
+        { id: 8, nome: 'Mesa Requinte', preco: 3200, categoria: 'Premium', estoque: 5 },
+        { id: 9, nome: 'Mesa Charme', preco: 2800, categoria: 'Premium', estoque: 6 },
+        { id: 10, nome: 'Mesa Encanto', preco: 3000, categoria: 'Premium', estoque: 4 },
+        { id: 11, nome: 'Mesa Glamour Mel', preco: 3500, categoria: 'Premium', estoque: 3 },
+        { id: 12, nome: 'Mesa Imperatriz Natural', preco: 4300, categoria: 'Premium', estoque: 2 },
+        { id: 13, nome: 'Mesa Requinte Nobre', preco: 3400, categoria: 'Premium', estoque: 3 }
+    ];
 }
 
 /**
  * Adicionar produto
  */
 function adicionarProduto(novoProduto) {
-    const id = Math.max(...produtosData.map(p => p.id)) + 1;
+    const produtosAtuais = obterProdutosAdmin();
+    const id = Math.max(...produtosAtuais.map(p => p.id || 0)) + 1;
 
     const produto = {
         id: id,
@@ -211,7 +238,8 @@ function adicionarProduto(novoProduto) {
         criadoEm: new Date().toISOString().split('T')[0]
     };
 
-    produtosData.push(produto);
+    produtosAtuais.push(produto);
+    localStorage.setItem('jpr_produtos', JSON.stringify(produtosAtuais));
     return produto;
 }
 
@@ -219,11 +247,13 @@ function adicionarProduto(novoProduto) {
  * Editar produto
  */
 function editarProduto(id, atualizacoes) {
-    const produto = produtosData.find(p => p.id === id);
+    const produtosAtuais = obterProdutosAdmin();
+    const produto = produtosAtuais.find(p => p.id === id);
 
     if (produto) {
         Object.assign(produto, atualizacoes);
         produto.atualizadoEm = new Date().toISOString().split('T')[0];
+        localStorage.setItem('jpr_produtos', JSON.stringify(produtosAtuais));
         return true;
     }
 
@@ -234,10 +264,12 @@ function editarProduto(id, atualizacoes) {
  * Deletar produto
  */
 function deletarProduto(id) {
-    const index = produtosData.findIndex(p => p.id === id);
+    const produtosAtuais = obterProdutosAdmin();
+    const index = produtosAtuais.findIndex(p => p.id === id);
 
     if (index !== -1) {
-        produtosData.splice(index, 1);
+        produtosAtuais.splice(index, 1);
+        localStorage.setItem('jpr_produtos', JSON.stringify(produtosAtuais));
         return true;
     }
 
