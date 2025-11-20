@@ -258,6 +258,26 @@
                 </div>
             </div>
 
+            <!-- Badge Frete Grátis -->
+            <div style="margin: 24px 0; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                <div style="
+                    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 50px;
+                    font-weight: 700;
+                    font-size: 16px;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+                    animation: pulseGlow 2s infinite;
+                ">
+                    <span style="font-size: 24px;">🚚</span>
+                    FRETE GRÁTIS para Blumenau e Luiz Alves
+                </div>
+            </div>
+
             <button class="btn-primary btn-large" onclick="scrollTo('catalogo')">Explorar Catálogo</button>
 
             <div class="hero-social">
@@ -265,6 +285,19 @@
             </div>
         </div>
     </section>
+
+    <style>
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+            }
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 6px 25px rgba(46, 125, 50, 0.6);
+            }
+        }
+    </style>
 
     <!-- Seção de Filtros e Busca - Melhorada -->
     <section class="catalogo-controls">
@@ -761,6 +794,147 @@
         </div>
     </section>
 
+    <!-- Seção Informações de Frete -->
+    <section style="background: #F5F1E8; padding: 60px 20px;">
+        <div class="container" style="max-width: 1200px;">
+            <h2 style="text-align: center; color: #5D4037; margin-bottom: 40px;">
+                🚚 Informações de Entrega
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
+                <!-- Card Frete Grátis -->
+                <div style="
+                    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+                    color: white;
+                    padding: 30px;
+                    border-radius: 16px;
+                    text-align: center;
+                    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+                ">
+                    <div style="font-size: 48px; margin-bottom: 16px;">🚚</div>
+                    <h3 style="font-size: 22px; margin-bottom: 12px; color: white;">FRETE GRÁTIS</h3>
+                    <p style="opacity: 0.95; line-height: 1.6;">
+                        Para Blumenau e Luiz Alves<br>
+                        <small style="font-size: 13px; opacity: 0.85;">Aproveite a entrega gratuita!</small>
+                    </p>
+                </div>
+
+                <!-- Card Santa Catarina -->
+                <div style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 16px;
+                    border: 2px solid #C8A882;
+                    text-align: center;
+                ">
+                    <div style="font-size: 48px; margin-bottom: 16px;">📍</div>
+                    <h3 style="font-size: 22px; margin-bottom: 12px; color: #5D4037;">Santa Catarina</h3>
+                    <p style="color: #6B5D4F; line-height: 1.6;">
+                        Entregamos em diversas cidades<br>
+                        <small style="font-size: 13px;">A partir de R$ 50,00</small>
+                    </p>
+                </div>
+
+                <!-- Card Paraná -->
+                <div style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 16px;
+                    border: 2px solid #C8A882;
+                    text-align: center;
+                ">
+                    <div style="font-size: 48px; margin-bottom: 16px;">🗺️</div>
+                    <h3 style="font-size: 22px; margin-bottom: 12px; color: #5D4037;">Paraná</h3>
+                    <p style="color: #6B5D4F; line-height: 1.6;">
+                        Atendemos todo o estado<br>
+                        <small style="font-size: 13px;">Consulte valores</small>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Calculadora de Frete -->
+            <div style="background: white; padding: 40px; border-radius: 16px; max-width: 600px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <h3 style="color: #5D4037; margin-bottom: 20px; text-align: center;">
+                    📦 Calcule o Frete para Sua Cidade
+                </h3>
+
+                <div style="display: grid; gap: 16px;">
+                    <select id="calc-frete-cidade" style="
+                        width: 100%;
+                        padding: 14px;
+                        border: 2px solid #E5D4C1;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        font-family: inherit;
+                        color: #5D4037;
+                    ">
+                        <option value="">Selecione sua cidade...</option>
+                        <optgroup label="🆓 Frete Grátis">
+                            <option value="Blumenau">Blumenau</option>
+                            <option value="Luiz Alves">Luiz Alves</option>
+                        </optgroup>
+                        <optgroup label="Santa Catarina">
+                            <option value="Gaspar">Gaspar - R$ 50,00</option>
+                            <option value="Pomerode">Pomerode - R$ 60,00</option>
+                            <option value="Timbó">Timbó - R$ 70,00</option>
+                            <option value="Ilhota">Ilhota - R$ 80,00</option>
+                            <option value="Indaial">Indaial - R$ 85,00</option>
+                            <option value="Guabiruba">Guabiruba - R$ 90,00</option>
+                            <option value="Brusque">Brusque - R$ 100,00</option>
+                            <option value="Jaraguá do Sul">Jaraguá do Sul - R$ 150,00</option>
+                            <option value="Rio do Sul">Rio do Sul - R$ 200,00</option>
+                        </optgroup>
+                        <optgroup label="Paraná">
+                            <option value="Joinville">Joinville - R$ 180,00</option>
+                            <option value="Curitiba">Curitiba - R$ 300,00</option>
+                        </optgroup>
+                    </select>
+
+                    <div id="resultado-frete" style="
+                        padding: 20px;
+                        border-radius: 8px;
+                        text-align: center;
+                        font-weight: 600;
+                        font-size: 18px;
+                        display: none;
+                    "></div>
+
+                    <p style="text-align: center; color: #9E8A78; font-size: 14px; margin-top: 12px;">
+                        💬 Não encontrou sua cidade? <a href="https://wa.me/5547997168814" target="_blank" style="color: #2E7D32; text-decoration: underline;">Consulte via WhatsApp</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Calculadora de frete interativa
+        document.getElementById('calc-frete-cidade').addEventListener('change', function(e) {
+            const valor = e.target.value;
+            const resultado = document.getElementById('resultado-frete');
+
+            if (!valor) {
+                resultado.style.display = 'none';
+                return;
+            }
+
+            resultado.style.display = 'block';
+
+            if (valor === 'Blumenau' || valor === 'Luiz Alves') {
+                resultado.style.background = 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)';
+                resultado.style.color = 'white';
+                resultado.innerHTML = '🎉 FRETE GRÁTIS!';
+            } else {
+                resultado.style.background = '#F5F1E8';
+                resultado.style.color = '#5D4037';
+                const option = e.target.options[e.target.selectedIndex];
+                const texto = option.text;
+                const match = texto.match(/R\$ [\d,]+/);
+                resultado.innerHTML = match ? `Frete: ${match[0]}` : '📞 Consulte valor';
+            }
+        });
+    </script>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -854,6 +1028,7 @@
 
     <!-- Scripts -->
     <script src="data-produtos.js"></script>
+    <script src="frete-calculator.js"></script>
     <script src="app-novo.js"></script>
     <script>
         // Script para formulário de contato via WhatsApp
