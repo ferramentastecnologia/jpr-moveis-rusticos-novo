@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logística e Entregas - JPR Móveis Rústicos</title>
+    <link rel="stylesheet" href="styles-novo.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-item {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 12px 16px;
+            color: #bdc3c7;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: #1b8768;
+            color: white;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #1b8768;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #156b51;
+            transform: translateY(-2px);
+        }
+
+        /* STATS CARDS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            float: right;
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            color: #1b8768;
+            border-bottom-color: #1b8768;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* TABLE */
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f5f5f5;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .btn-action {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .btn-view {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-edit {
+            background: #FF9800;
+            color: white;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1b8768;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">🚚 Logística JPR</div>
+                <div style="font-size: 12px; color: #bdc3c7; margin-top: 5px;">Sistema de Entregas</div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a href="admin.html" class="sidebar-link">📊 Dashboard</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin-logistica.html" class="sidebar-link active">🚚 Logística</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin.html#vendas" class="sidebar-link">💰 Vendas</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin.html#produtos" class="sidebar-link">📦 Produtos</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin-login.html" class="sidebar-link">🚪 Sair</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="header">
+                <h1>🚚 Logística e Entregas</h1>
+                <button class="btn btn-primary" onclick="abrirModalNovoPedido()">
+                    + Novo Pedido
+                </button>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-label">Pedidos Hoje</div>
+                    <div class="stat-value" id="statPedidosHoje">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🚚</div>
+                    <div class="stat-label">Em Transporte</div>
+                    <div class="stat-value" id="statEmTransito">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-label">Entregues Semana</div>
+                    <div class="stat-value" id="statEntreguesSemana">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📍</div>
+                    <div class="stat-label">Rotas Ativas</div>
+                    <div class="stat-value" id="statRotasAtivas">0</div>
+                </div>
+            </div>
+
+            <!-- TABS -->
+            <div class="tabs">
+                <button class="tab active" onclick="trocarTab('pedidos')">📋 Pedidos</button>
+                <button class="tab" onclick="trocarTab('rotas')">🗺️ Rotas</button>
+                <button class="tab" onclick="trocarTab('expedicao')">📦 Expedição</button>
+                <button class="tab" onclick="trocarTab('relatorios')">📊 Relatórios</button>
+            </div>
+
+            <!-- TAB: PEDIDOS -->
+            <div id="tab-pedidos" class="tab-content active">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pedido</th>
+                                <th>Cliente</th>
+                                <th>Produto</th>
+                                <th>Cidade</th>
+                                <th>Status</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaPedidos">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 40px;">
+                                    Nenhum pedido encontrado
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB: ROTAS -->
+            <div id="tab-rotas" class="tab-content">
+                <div class="table-container">
+                    <button class="btn btn-primary" style="margin: 20px;" onclick="abrirModalNovaRota()">
+                        + Nova Rota
+                    </button>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Dia</th>
+                                <th>Motorista</th>
+                                <th>Pedidos</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaRotas">
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 40px;">
+                                    Nenhuma rota encontrada
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB: EXPEDIÇÃO -->
+            <div id="tab-expedicao" class="tab-content">
+                <h2>📦 Central de Expedição</h2>
+                <p>Pedidos prontos para expedição:</p>
+                <div id="listaExpedicao"></div>
+            </div>
+
+            <!-- TAB: RELATÓRIOS -->
+            <div id="tab-relatorios" class="tab-content">
+                <h2>📊 Relatórios e Análises</h2>
+                <div id="relatorios"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOVO PEDIDO -->
+    <div id="modalNovoPedido" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Novo Pedido</h2>
+                <span class="modal-close" onclick="fecharModal('modalNovoPedido')">&times;</span>
+            </div>
+
+            <form id="formNovoPedido" onsubmit="salvarNovoPedido(event)">
+                <h3>👤 Dados do Cliente</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="clienteNome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp *</label>
+                        <input type="tel" id="clienteWhatsapp" placeholder="(47) 99999-9999" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="clienteEmail">
+                    </div>
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" id="clienteCpf" placeholder="000.000.000-00">
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px;">📍 Endereço</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" id="enderecoCep" placeholder="89000-000">
+                    </div>
+                    <div class="form-group">
+                        <label>Cidade *</label>
+                        <select id="enderecoCidade" required onchange="calcularFreteAuto()">
+                            <option value="">Selecione...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Rua *</label>
+                        <input type="text" id="enderecoRua" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Número *</label>
+                        <input type="text" id="enderecoNumero" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Complemento</label>
+                        <input type="text" id="enderecoComplemento">
+                    </div>
+                    <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" id="enderecoBairro">
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px;">🪑 Produto</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Modelo *</label>
+                        <select id="produtoModelo" required>
+                            <option value="">Selecione...</option>
+                            <option value="Mesa Imperatriz">Mesa Imperatriz</option>
+                            <option value="Mesa Império">Mesa Império</option>
+                            <option value="Mesa Glamour">Mesa Glamour</option>
+                            <option value="Mesa Sublime">Mesa Sublime</option>
+                            <option value="Mesa Nobreza">Mesa Nobreza</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tamanho *</label>
+                        <select id="produtoTamanho" required>
+                            <option value="2.0m">2,0m</option>
+                            <option value="2.5m">2,5m</option>
+                            <option value="3.0m">3,0m</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Valor Unitário *</label>
+                        <input type="number" id="produtoValor" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Frete</label>
+                        <input type="number" id="freteValor" step="0.01" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea id="entregaObservacoes" rows="3"></textarea>
+                </div>
+
+                <div style="margin-top: 30px; text-align: right;">
+                    <button type="button" class="btn" onclick="fecharModal('modalNovoPedido')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="logistica-dados.js"></script>
+    <script>
+        // Inicializar ao carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            verificarAutenticacao();
+            carregarCidades();
+            carregarDashboard();
+            carregarPedidos();
+            carregarRotas();
+        });
+
+        function verificarAutenticacao() {
+            if (!sessionStorage.getItem('admin_token')) {
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        function carregarCidades() {
+            const select = document.getElementById('enderecoCidade');
+            const cidades = obterCidadesAtendidas();
+            cidades.forEach(cidade => {
+                const option = document.createElement('option');
+                option.value = cidade;
+                option.textContent = cidade;
+                select.appendChild(option);
+            });
+        }
+
+        function calcularFreteAuto() {
+            const cidade = document.getElementById('enderecoCidade').value;
+            const frete = calcularFrete(cidade);
+            document.getElementById('freteValor').value = frete.toFixed(2);
+        }
+
+        function carregarDashboard() {
+            const pedidos = listarPedidos();
+            const hoje = new Date().toISOString().split('T')[0];
+
+            // Pedidos hoje
+            const pedidosHoje = pedidos.filter(p => p.data.startsWith(hoje));
+            document.getElementById('statPedidosHoje').textContent = pedidosHoje.length;
+
+            // Em trânsito
+            const emTransito = pedidos.filter(p => p.status === 'EM_TRANSITO' || p.status === 'SAIU_ENTREGA');
+            document.getElementById('statEmTransito').textContent = emTransito.length;
+
+            // Entregues semana
+            const rotas = listarRotas();
+            document.getElementById('statRotasAtivas').textContent = rotas.filter(r => r.status === 'EM_ANDAMENTO').length;
+        }
+
+        function carregarPedidos() {
+            const pedidos = listarPedidos();
+            const tbody = document.getElementById('tabelaPedidos');
+
+            if (pedidos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px;">Nenhum pedido encontrado</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = pedidos.map(p => {
+                const status = STATUS_PEDIDO[p.status];
+                return `
+                    <tr>
+                        <td><strong>#${p.numero}</strong></td>
+                        <td>${p.cliente.nome}</td>
+                        <td>${p.produto.modelo} ${p.produto.tamanho}</td>
+                        <td>${p.cliente.endereco.cidade}</td>
+                        <td>
+                            <span class="status-badge" style="background: ${status.cor}20; color: ${status.cor};">
+                                ${status.icone} ${status.nome}
+                            </span>
+                        </td>
+                        <td>R$ ${p.pagamento.valor_total.toFixed(2)}</td>
+                        <td>
+                            <button class="btn-action btn-view" onclick="verPedido('${p.id}')">👁️ Ver</button>
+                            <button class="btn-action btn-edit" onclick="editarStatus('${p.id}')">✏️ Status</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function carregarRotas() {
+            const rotas = listarRotas();
+            const tbody = document.getElementById('tabelaRotas');
+
+            if (rotas.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px;">Nenhuma rota encontrada</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = rotas.map(r => `
+                <tr>
+                    <td>${new Date(r.data).toLocaleDateString('pt-BR')}</td>
+                    <td>${r.dia_semana}</td>
+                    <td>${r.motorista.nome || '-'}</td>
+                    <td>${r.pedidos.length} pedidos</td>
+                    <td>${r.status}</td>
+                    <td>
+                        <button class="btn-action btn-view" onclick="verRota('${r.id}')">👁️ Ver</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function trocarTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        function abrirModalNovoPedido() {
+            document.getElementById('modalNovoPedido').classList.add('show');
+        }
+
+        function fecharModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        function salvarNovoPedido(event) {
+            event.preventDefault();
+
+            const pedido = new Pedido({
+                cliente: {
+                    nome: document.getElementById('clienteNome').value,
+                    whatsapp: document.getElementById('clienteWhatsapp').value,
+                    email: document.getElementById('clienteEmail').value,
+                    cpf: document.getElementById('clienteCpf').value,
+                    endereco: {
+                        cep: document.getElementById('enderecoCep').value,
+                        rua: document.getElementById('enderecoRua').value,
+                        numero: document.getElementById('enderecoNumero').value,
+                        complemento: document.getElementById('enderecoComplemento').value,
+                        bairro: document.getElementById('enderecoBairro').value,
+                        cidade: document.getElementById('enderecoCidade').value
+                    }
+                },
+                produto: {
+                    modelo: document.getElementById('produtoModelo').value,
+                    tamanho: document.getElementById('produtoTamanho').value,
+                    quantidade: 1,
+                    valor_unitario: parseFloat(document.getElementById('produtoValor').value)
+                },
+                entrega: {
+                    observacoes: document.getElementById('entregaObservacoes').value
+                }
+            });
+
+            salvarPedido(pedido);
+            fecharModal('modalNovoPedido');
+            carregarPedidos();
+            carregarDashboard();
+
+            alert(`Pedido #${pedido.numero} criado com sucesso!`);
+            document.getElementById('formNovoPedido').reset();
+        }
+
+        function verPedido(id) {
+            const pedido = buscarPedido(id);
+            alert(`Ver detalhes do pedido #${pedido.numero}\n\nImplementar modal de detalhes`);
+        }
+
+        function editarStatus(id) {
+            const pedido = buscarPedido(id);
+            const novoStatus = prompt(`Status atual: ${pedido.status}\n\nNovo status:`);
+
+            if (novoStatus && STATUS_PEDIDO[novoStatus]) {
+                pedido.alterarStatus(novoStatus, sessionStorage.getItem('admin_user'));
+                carregarPedidos();
+                carregarDashboard();
+            }
+        }
+
+        function verRota(id) {
+            const rota = buscarRota(id);
+            alert(`Ver detalhes da rota ${rota.id}\n\nImplementar modal de detalhes`);
+        }
+
+        function abrirModalNovaRota() {
+            alert('Implementar modal de nova rota');
+        }
+    </script>
+</body>
+</html>
