@@ -353,7 +353,7 @@ section {
 }
 
 .btn-secondary:hover {
-    background: #c4a274;
+    background: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
@@ -778,7 +778,7 @@ section {
 }
 
 .btn-adicionar {
-    background: linear-gradient(135deg, #ff6913 0%, #e04c16 100%);
+    background: var(--gradient-wood);
     color: var(--white);
     box-shadow: 0 4px 15px rgba(255, 105, 19, 0.3);
     font-size: 14px;
@@ -2124,15 +2124,15 @@ section {
 }
 
 .pagamento-tabela th.pix-col {
-    background: linear-gradient(180deg, #6b4436 0%, #5a3a2e 100%);
+    background: linear-gradient(180deg, var(--secondary) 0%, #5a3a2e 100%);
 }
 
 .pagamento-tabela th.cartao-col {
-    background: linear-gradient(180deg, #6b4436 0%, #5a3a2e 100%);
+    background: linear-gradient(180deg, var(--secondary) 0%, #5a3a2e 100%);
 }
 
 .pagamento-tabela th.boleto-col {
-    background: linear-gradient(180deg, #6b4436 0%, #5a3a2e 100%);
+    background: linear-gradient(180deg, var(--secondary) 0%, #5a3a2e 100%);
 }
 
 .pagamento-tabela td {
@@ -2263,7 +2263,7 @@ section {
     position: absolute;
     top: 16px;
     right: 16px;
-    background: linear-gradient(135deg, #1b8768 0%, #0f5a47 100%);
+    background: var(--gradient-forest);
     color: white;
     padding: 10px 16px;
     border-radius: 50px;
@@ -2362,7 +2362,7 @@ section {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    color: #27ae60;
+    color: var(--accent-light);
     font-weight: 600;
     font-size: 14px;
 }
@@ -2370,7 +2370,7 @@ section {
 .badge-dot {
     width: 12px;
     height: 12px;
-    background: #27ae60;
+    background: var(--accent-light);
     border-radius: 50%;
     animation: pulse 2s infinite;
 }
