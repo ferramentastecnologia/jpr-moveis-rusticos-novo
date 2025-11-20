@@ -343,6 +343,214 @@
         </div>
     </section>
 
+    <!-- Seção Fabricação de Móveis -->
+    <section id="fabricacao" class="fabricacao-section" style="background: #F5F1E8; padding: 80px 20px;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; color: #5D4037; font-size: 42px; margin-bottom: 60px; font-family: 'Georgia', serif;">
+                Fabricação De Móveis
+            </h2>
+
+            <!-- Tabs de Fabricação -->
+            <div class="fabricacao-tabs" style="display: flex; gap: 20px; margin-bottom: 50px; justify-content: center; flex-wrap: wrap;">
+                <button class="fab-tab active" onclick="mostrarFabricacao('mesas')" style="
+                    background: linear-gradient(135deg, #5D4037 0%, #3E2723 100%);
+                    color: white;
+                    border: none;
+                    padding: 15px 40px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 12px rgba(93, 64, 55, 0.3);
+                ">
+                    Fabricação de Mesas
+                </button>
+                <button class="fab-tab" onclick="mostrarFabricacao('cadeiras')" style="
+                    background: linear-gradient(135deg, #C8A882 0%, #A08968 100%);
+                    color: #5D4037;
+                    border: none;
+                    padding: 15px 40px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 12px rgba(200, 168, 130, 0.3);
+                ">
+                    Fabricação de Cadeiras
+                </button>
+                <button class="fab-tab" onclick="mostrarFabricacao('banquetas')" style="
+                    background: linear-gradient(135deg, #C8A882 0%, #A08968 100%);
+                    color: #5D4037;
+                    border: none;
+                    padding: 15px 40px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 12px rgba(200, 168, 130, 0.3);
+                ">
+                    Fabricação de Banquetas
+                </button>
+            </div>
+
+            <!-- Conteúdo de Fabricação de Mesas -->
+            <div id="fab-mesas" class="fab-content active" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                <div class="fab-text">
+                    <h3 style="color: #5D4037; font-size: 32px; margin-bottom: 20px; font-family: 'Georgia', serif;">
+                        Fabricação de Mesas
+                    </h3>
+                    <p style="color: #6B5D4F; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+                        Nossas mesas rústicas são feitas com materiais de altíssima qualidade e um auto padrão de acabamento possuem um design único que certamente irá adicionar charme e elegância ao seu ambiente. Com opções de tamanhos e estilos diferentes, você poderá encontrar a mesa perfeita para combinar com a decoração da sua casa.
+                    </p>
+                    <button onclick="window.location.href='#catalogo'" style="
+                        background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+                        color: white;
+                        border: none;
+                        padding: 14px 32px;
+                        border-radius: 8px;
+                        font-size: 15px;
+                        font-weight: 700;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+                        transition: all 0.3s ease;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(46, 125, 50, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(46, 125, 50, 0.3)'">
+                        💬 SOLICITAR ORÇAMENTO
+                    </button>
+                </div>
+                <div class="fab-image">
+                    <img src="https://via.placeholder.com/600x400/8B6F61/FFFFFF?text=Mesa+R%C3%BAstica" alt="Mesa Rústica" style="
+                        width: 100%;
+                        border-radius: 12px;
+                        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+                    ">
+                </div>
+            </div>
+
+            <!-- Conteúdo de Fabricação de Cadeiras -->
+            <div id="fab-cadeiras" class="fab-content" style="display: none; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                <div class="fab-text">
+                    <h3 style="color: #5D4037; font-size: 32px; margin-bottom: 20px; font-family: 'Georgia', serif;">
+                        Fabricação de Cadeiras
+                    </h3>
+                    <p style="color: #6B5D4F; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+                        Cadeiras artesanais em madeira rústica, combinando conforto e estilo. Cada peça é cuidadosamente trabalhada para garantir durabilidade e elegância, perfeitas para complementar suas mesas.
+                    </p>
+                    <button onclick="window.location.href='#catalogo'" style="
+                        background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+                        color: white;
+                        border: none;
+                        padding: 14px 32px;
+                        border-radius: 8px;
+                        font-size: 15px;
+                        font-weight: 700;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+                        transition: all 0.3s ease;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(46, 125, 50, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(46, 125, 50, 0.3)'">
+                        💬 SOLICITAR ORÇAMENTO
+                    </button>
+                </div>
+                <div class="fab-image">
+                    <img src="https://via.placeholder.com/600x400/8B6F61/FFFFFF?text=Cadeiras" alt="Cadeiras" style="
+                        width: 100%;
+                        border-radius: 12px;
+                        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+                    ">
+                </div>
+            </div>
+
+            <!-- Conteúdo de Fabricação de Banquetas -->
+            <div id="fab-banquetas" class="fab-content" style="display: none; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                <div class="fab-text">
+                    <h3 style="color: #5D4037; font-size: 32px; margin-bottom: 20px; font-family: 'Georgia', serif;">
+                        Fabricação de Banquetas
+                    </h3>
+                    <p style="color: #6B5D4F; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+                        Banquetas exclusivas em madeira rústica, ideais para complementar suas mesas. Design versátil e acabamento premium para adicionar charme ao seu ambiente.
+                    </p>
+                    <button onclick="window.location.href='#catalogo'" style="
+                        background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+                        color: white;
+                        border: none;
+                        padding: 14px 32px;
+                        border-radius: 8px;
+                        font-size: 15px;
+                        font-weight: 700;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+                        transition: all 0.3s ease;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(46, 125, 50, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(46, 125, 50, 0.3)'">
+                        💬 SOLICITAR ORÇAMENTO
+                    </button>
+                </div>
+                <div class="fab-image">
+                    <img src="https://via.placeholder.com/600x400/8B6F61/FFFFFF?text=Banquetas" alt="Banquetas" style="
+                        width: 100%;
+                        border-radius: 12px;
+                        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+                    ">
+                </div>
+            </div>
+
+            <!-- Seção de Vídeo -->
+            <div class="fabricacao-video" style="margin-top: 80px;">
+                <h3 style="text-align: center; color: #5D4037; font-size: 36px; margin-bottom: 40px; font-family: 'Georgia', serif;">
+                    Confira O Processo de Fabricação
+                </h3>
+                <div style="max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.2);">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                            src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
+                            title="Processo de Fabricação JPR Móveis"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function mostrarFabricacao(tipo) {
+            // Esconder todos os conteúdos
+            document.querySelectorAll('.fab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // Resetar todos os botões
+            document.querySelectorAll('.fab-tab').forEach(btn => {
+                btn.style.background = 'linear-gradient(135deg, #C8A882 0%, #A08968 100%)';
+                btn.style.color = '#5D4037';
+            });
+
+            // Mostrar conteúdo selecionado
+            const conteudo = document.getElementById('fab-' + tipo);
+            if (conteudo) {
+                conteudo.style.display = 'grid';
+            }
+
+            // Destacar botão ativo
+            event.target.style.background = 'linear-gradient(135deg, #5D4037 0%, #3E2723 100%)';
+            event.target.style.color = 'white';
+        }
+    </script>
+
     <!-- Seção Sobre -->
     <section id="sobre" class="sobre">
         <div class="container">
