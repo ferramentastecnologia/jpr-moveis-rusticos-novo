@@ -412,62 +412,62 @@ function abrirModalProduto(produtoId) {
                     ` : ''}
                 </div>
 
+                <!-- Seletores FIXOS (Fora do scroll) -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; padding: 0 4px;">
+                    <!-- Seletor de Tamanho -->
+                    <div class="size-selector-modern">
+                        <h4 style="font-size: 12px; margin: 0 0 6px 0; font-weight: 600; color: #5D4037;">Tamanho</h4>
+                        <div class="size-options" style="display: flex; flex-direction: column; gap: 4px;">
+                            ${produto.tamanhos ? produto.tamanhos.map((tamanho, idx) => `
+                                <button class="size-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarTamanho(this, ${tamanho.preco}, '${tamanho.precoFormatado}')" style="padding: 6px 8px; font-size: 11px; border-radius: 6px;">
+                                    <span class="size-text">${tamanho.tamanho}</span>
+                                    <span class="size-price" style="font-weight: 600;">${tamanho.precoFormatado}</span>
+                                </button>
+                            `).join('') : '<p style="font-size: 11px;">Sob consulta</p>'}
+                        </div>
+                    </div>
+
+                    <!-- Seletor de Acabamento -->
+                    <div class="finish-selector-modern">
+                        <h4 style="font-size: 12px; margin: 0 0 6px 0; font-weight: 600; color: #5D4037;">Acabamento</h4>
+                        <div class="finish-options" style="display: flex; flex-direction: column; gap: 4px;">
+                            ${variantes.map((variante, idx) => `
+                                <button class="finish-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarVariante(this, '${variante}')" style="padding: 6px 8px; font-size: 11px; border-radius: 6px;">
+                                    <span class="finish-name">${variante}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Tabs de Navegação - COMPACTAS -->
-                <div class="modal-tabs-container" style="gap: 6px; margin-bottom: 12px;">
-                    <button class="modal-tab-btn active" onclick="mudarAbaModal(this, 'descricao')" style="padding: 8px 12px; font-size: 13px;">
+                <div class="modal-tabs-container" style="gap: 6px; margin-bottom: 10px;">
+                    <button class="modal-tab-btn active" onclick="mudarAbaModal(this, 'descricao')" style="padding: 6px 10px; font-size: 12px;">
                         📝 Descrição
                     </button>
-                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'especificacoes')" style="padding: 8px 12px; font-size: 13px;">
+                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'especificacoes')" style="padding: 6px 10px; font-size: 12px;">
                         📐 Especificações
                     </button>
-                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'entrega')" style="padding: 8px 12px; font-size: 13px;">
+                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'entrega')" style="padding: 6px 10px; font-size: 12px;">
                         🚚 Entrega
                     </button>
-                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'avaliacoes')" style="padding: 8px 12px; font-size: 13px;">
+                    <button class="modal-tab-btn" onclick="mudarAbaModal(this, 'avaliacoes')" style="padding: 6px 10px; font-size: 12px;">
                         ⭐ Avaliações
                     </button>
                 </div>
 
-                <!-- Conteúdo das Abas - COMPACTO -->
-                <div class="modal-tabs-content" style="max-height: 320px; overflow-y: auto; padding-right: 8px; padding-bottom: 20px; margin-bottom: 12px;">
+                <!-- Conteúdo das Abas - COM SCROLL -->
+                <div class="modal-tabs-content" style="max-height: 240px; overflow-y: auto; padding-right: 8px; padding-bottom: 12px; margin-bottom: 12px;">
                     <!-- ABA 1: Descrição -->
                     <div class="modal-tab-pane active" id="descricao">
-                        <p class="description-text" style="font-size: 13px; line-height: 1.5; margin: 0 0 12px 0;">${produto.descricaoLonga}</p>
-
-                        <!-- Seletores em linha -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 16px 0;">
-                            <!-- Seletor de Tamanho -->
-                            <div class="size-selector-modern">
-                                <h4 style="font-size: 13px; margin: 0 0 8px 0; font-weight: 600; color: #5D4037;">Tamanho</h4>
-                                <div class="size-options" style="display: flex; flex-direction: column; gap: 6px;">
-                                    ${produto.tamanhos ? produto.tamanhos.map((tamanho, idx) => `
-                                        <button class="size-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarTamanho(this, ${tamanho.preco}, '${tamanho.precoFormatado}')" style="padding: 8px; font-size: 12px;">
-                                            <span class="size-text">${tamanho.tamanho}</span>
-                                            <span class="size-price">${tamanho.precoFormatado}</span>
-                                        </button>
-                                    `).join('') : '<p>Sob consulta</p>'}
-                                </div>
-                            </div>
-
-                            <!-- Seletor de Acabamento -->
-                            <div class="finish-selector-modern">
-                                <h4 style="font-size: 13px; margin: 0 0 8px 0; font-weight: 600; color: #5D4037;">Acabamento</h4>
-                                <div class="finish-options" style="display: flex; flex-direction: column; gap: 6px;">
-                                    ${variantes.map((variante, idx) => `
-                                        <button class="finish-btn ${idx === 0 ? 'active' : ''}" onclick="selecionarVariante(this, '${variante}')" style="padding: 8px; font-size: 12px;">
-                                            <span class="finish-name">${variante}</span>
-                                        </button>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        </div>
+                        <p class="description-text" style="font-size: 12px; line-height: 1.5; margin: 0 0 12px 0; color: #5D4037;">${produto.descricaoLonga}</p>
 
                         <!-- Características - 2 COLUNAS -->
-                        <div class="characteristics-modern" style="margin: 0;">
-                            <h4 style="font-size: 13px; margin: 0 0 8px 0; font-weight: 600; color: #5D4037;">Características</h4>
+                        <div class="characteristics-modern">
+                            <h4 style="font-size: 12px; margin: 0 0 8px 0; font-weight: 600; color: #5D4037;">Características</h4>
                             <ul class="char-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; list-style: none; padding: 0; margin: 0;">
                                 ${produto.caracteristicas.map(car => `
-                                    <li class="char-item" style="display: flex; align-items: start; gap: 6px; font-size: 12px; line-height: 1.4;">
+                                    <li class="char-item" style="display: flex; align-items: start; gap: 6px; font-size: 11px; line-height: 1.5;">
                                         <span class="char-icon" style="color: #2E7D32; font-weight: bold; flex-shrink: 0;">✓</span>
                                         <span style="word-break: break-word;">${car}</span>
                                     </li>
