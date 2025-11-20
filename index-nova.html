@@ -38,6 +38,136 @@
     <link rel="stylesheet" href="styles-novo.css">
     <link rel="canonical" href="https://jprmoveis.com.br">
     <link rel="alternate" hreflang="pt-BR" href="https://jprmoveis.com.br">
+    <style>
+        /* Estilos adicionais para seção de contato melhorada */
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .contato-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .info-block {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .info-block h4 {
+            color: var(--secondary);
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .info-block .info-item {
+            line-height: 1.8;
+            margin: 8px 0;
+        }
+
+        .info-block .info-item a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-block .info-item a:hover {
+            color: var(--accent);
+        }
+
+        .whatsapp-link {
+            color: #25D366 !important;
+            font-weight: 600;
+        }
+
+        .whatsapp-link:hover {
+            text-decoration: underline;
+        }
+
+        .contato-mapa {
+            position: relative;
+            height: 600px;
+            background: #f0f0f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .mapa-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .contato-form-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contato-form-section h3 {
+            color: var(--secondary);
+            font-size: 24px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .contato-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(27, 135, 104, 0.1);
+        }
+
+        @media (max-width: 968px) {
+            .contato-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contato-mapa {
+                height: 400px;
+            }
+
+            .contato-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contato-form-section {
+                padding: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header / Navegação -->
@@ -452,38 +582,108 @@
     <section id="contato" class="contato">
         <div class="container">
             <h2>Entre em Contato</h2>
+            <p class="section-subtitle">Visite nossa loja ou entre em contato pelo WhatsApp</p>
+
             <div class="contato-content">
+                <!-- Informações de Contato -->
                 <div class="contato-info">
                     <h3>JPR Móveis Rústicos</h3>
-                    <p class="info-item">
-                        <span class="icon">📍</span>
-                        Luis Alves, SC - Brasil
-                    </p>
-                    <p class="info-item">
-                        <span class="icon">📱</span>
-                        <a href="https://wa.me/5547997168814">(47) 99716-8814 (WhatsApp)</a>
-                    </p>
-                    <p class="info-item">
-                        <span class="icon">📞</span>
-                        <a href="tel:4732883096">(47) 3288-3096</a>
-                    </p>
-                    <p class="info-item">
-                        <span class="icon">📧</span>
-                        <a href="mailto:contato@jprmoveis.com.br">contato@jprmoveis.com.br</a>
-                    </p>
-                    <div class="social-links">
-                        <a href="https://instagram.com/jprmoveis" class="social-btn">📷 Instagram</a>
-                        <a href="https://facebook.com/jprmoveis" class="social-btn">👍 Facebook</a>
+
+                    <div class="info-block">
+                        <h4>📍 Endereço</h4>
+                        <p class="info-item">
+                            <strong>R. Francisco Schmitz, 1528</strong><br>
+                            Luiz Alves - SC, 89115-000<br>
+                            <small style="color: #666;">Entre Blumenau e Itajaí</small>
+                        </p>
+                        <a href="https://www.google.com/maps/place/R.+Francisco+Schmitz,+1528+-+Luiz+Alves,+SC,+89115-000"
+                           target="_blank"
+                           class="btn-secondary"
+                           style="margin-top: 10px; display: inline-block;">
+                            🗺️ Ver no Google Maps
+                        </a>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>📱 Contatos</h4>
+                        <p class="info-item">
+                            <a href="https://wa.me/5547997168814" class="whatsapp-link" target="_blank">
+                                <strong>WhatsApp:</strong> (47) 99716-8814
+                            </a>
+                        </p>
+                        <p class="info-item">
+                            <a href="tel:+554732883096">
+                                <strong>Telefone:</strong> (47) 3288-3096
+                            </a>
+                        </p>
+                        <p class="info-item">
+                            <a href="mailto:contato@jprmoveis.com.br">
+                                <strong>Email:</strong> contato@jprmoveis.com.br
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>🕒 Horário de Funcionamento</h4>
+                        <p class="info-item">
+                            <strong>Segunda a Sexta:</strong> 08:00 - 18:00<br>
+                            <strong>Sábado:</strong> 08:00 - 12:00<br>
+                            <strong>Domingo:</strong> Fechado
+                        </p>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>⭐ Avaliações</h4>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <span style="font-size: 24px; font-weight: 700; color: var(--accent);">5.0</span>
+                            <span style="color: #FFA500;">★★★★★</span>
+                        </div>
+                        <p class="info-item">
+                            <strong>104 avaliações</strong> no Google
+                        </p>
+                        <a href="avaliacoes.html" class="btn-secondary" style="margin-top: 10px; display: inline-block;">
+                            Ver Avaliações
+                        </a>
+                    </div>
+
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="https://instagram.com/jprmoveis" target="_blank" class="social-btn">📷 Instagram</a>
+                        <a href="https://facebook.com/jprmoveis" target="_blank" class="social-btn">👍 Facebook</a>
                     </div>
                 </div>
-                <div class="contato-form">
-                    <form id="contato-form">
-                        <input type="text" placeholder="Seu Nome" required>
-                        <input type="email" placeholder="Seu Email" required>
-                        <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
-                        <button type="submit" class="btn-primary">Enviar Mensagem</button>
-                    </form>
+
+                <!-- Mapa do Google -->
+                <div class="contato-mapa">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.123456789!2d-48.9123456!3d-26.8765432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDUyJzM1LjYiUyA0OMKwNTQnNDQuNCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                        width="100%"
+                        height="100%"
+                        style="border:0; border-radius: 12px;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <div class="mapa-overlay">
+                        <p style="margin: 0; font-size: 12px; color: #666;">
+                            📍 R. Francisco Schmitz, 1528 - Luiz Alves, SC
+                        </p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Formulário de Contato -->
+            <div class="contato-form-section">
+                <h3>Envie uma Mensagem</h3>
+                <p style="color: #666; margin-bottom: 20px;">Ou preencha o formulário abaixo e entraremos em contato</p>
+                <form id="contato-form" class="contato-form-grid">
+                    <input type="text" placeholder="Seu Nome" required class="form-input">
+                    <input type="tel" placeholder="Seu WhatsApp" required class="form-input">
+                    <input type="email" placeholder="Seu Email" required class="form-input" style="grid-column: 1 / -1;">
+                    <textarea placeholder="Sua Mensagem (opcional)" rows="4" class="form-input" style="grid-column: 1 / -1;"></textarea>
+                    <button type="submit" class="btn-primary" style="grid-column: 1 / -1;">
+                        📨 Enviar Mensagem via WhatsApp
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -610,5 +810,38 @@
     <!-- Scripts -->
     <script src="data-produtos.js"></script>
     <script src="app-novo.js"></script>
+    <script>
+        // Script para formulário de contato via WhatsApp
+        document.getElementById('contato-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nome = this.querySelector('input[type="text"]').value;
+            const whatsapp = this.querySelector('input[type="tel"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const mensagem = this.querySelector('textarea').value;
+
+            // Montar mensagem para WhatsApp
+            let textoWhatsApp = `Olá! Vim através do site.%0A%0A`;
+            textoWhatsApp += `*Nome:* ${encodeURIComponent(nome)}%0A`;
+            textoWhatsApp += `*WhatsApp:* ${encodeURIComponent(whatsapp)}%0A`;
+            textoWhatsApp += `*Email:* ${encodeURIComponent(email)}%0A`;
+
+            if (mensagem) {
+                textoWhatsApp += `%0A*Mensagem:*%0A${encodeURIComponent(mensagem)}`;
+            }
+
+            // Número do WhatsApp da JPR Móveis
+            const numeroWhatsApp = '5547997168814';
+
+            // Abrir WhatsApp
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${textoWhatsApp}`, '_blank');
+
+            // Limpar formulário
+            this.reset();
+
+            // Mostrar mensagem de sucesso
+            alert('Redirecionando para WhatsApp! 📱');
+        });
+    </script>
 </body>
 </html>
