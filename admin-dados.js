@@ -9,21 +9,21 @@ const usuariosAdmin = [
         id: 1,
         nome: "Administrador JPR",
         email: "admin@jprmoveis.com.br",
-        senha: "admin123", // Hash em produção!
+        senha: "JPR2025#Admin", // Hash em produção!
         role: "admin",
         ativo: true,
-        criadoEm: "2024-01-01",
-        ultimoAcesso: "2024-11-10"
+        criadoEm: "2025-11-20",
+        ultimoAcesso: "2025-11-20"
     },
     {
         id: 2,
-        nome: "Gerenciador",
+        nome: "Gerente",
         email: "gerente@jprmoveis.com.br",
-        senha: "gerente123",
+        senha: "JPR2025#Gerente",
         role: "gerente",
         ativo: true,
-        criadoEm: "2024-02-15",
-        ultimoAcesso: "2024-11-09"
+        criadoEm: "2025-11-20",
+        ultimoAcesso: "2025-11-20"
     }
 ];
 
