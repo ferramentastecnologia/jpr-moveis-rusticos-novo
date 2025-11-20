@@ -727,6 +727,15 @@ function mostrarPopupCarrinho(produto, tamanho) {
     const totalCarrinho = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
     const qtdItens = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
 
+    // Verificar se é uma mesa (produto sem banquetas)
+    const isMesa = produto.nome.toLowerCase().includes('mesa');
+    const temBanquetas = produto.nome.toLowerCase().includes('bancos') ||
+                         produto.nome.toLowerCase().includes('banquetas') ||
+                         produto.descricao.toLowerCase().includes('bancos');
+
+    // Mostrar upsell de banquetas apenas para mesas sem banquetas
+    const mostrarUpsellBanquetas = isMesa && !temBanquetas;
+
     popup.innerHTML = `
         <div style="
             background: white;
@@ -742,6 +751,64 @@ function mostrarPopupCarrinho(produto, tamanho) {
                 <h2 style="color: #2E7D32; margin: 0 0 8px 0; font-size: 24px;">Produto Adicionado!</h2>
                 <p style="color: #5D4037; margin: 0; font-size: 14px;">${produto.nome} ${tamanho ? `(${tamanho})` : ''}</p>
             </div>
+
+            ${mostrarUpsellBanquetas ? `
+                <!-- UPSELL DE BANQUETAS -->
+                <div style="
+                    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+                    border: 2px solid #FF6F00;
+                    border-radius: 12px;
+                    padding: 16px;
+                    margin-bottom: 20px;
+                    position: relative;
+                    overflow: hidden;
+                ">
+                    <div style="
+                        position: absolute;
+                        top: 8px;
+                        right: 8px;
+                        background: #FF6F00;
+                        color: white;
+                        padding: 4px 12px;
+                        border-radius: 20px;
+                        font-size: 10px;
+                        font-weight: 700;
+                    ">OFERTA ESPECIAL</div>
+
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="font-size: 36px;">🪑</div>
+                        <div style="flex: 1;">
+                            <h3 style="color: #E65100; margin: 0 0 4px 0; font-size: 16px; font-weight: 700;">
+                                Complete seu conjunto!
+                            </h3>
+                            <p style="color: #5D4037; margin: 0 0 8px 0; font-size: 13px; line-height: 1.4;">
+                                Aproveite e leve <strong>banquetas exclusivas</strong> para sua mesa
+                            </p>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 18px; font-weight: 700; color: #2E7D32;">R$ 500,00</span>
+                                <span style="font-size: 11px; color: #6B5D4F;">por banqueta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="adicionarBanquetas(); event.stopPropagation();" style="
+                        width: 100%;
+                        margin-top: 12px;
+                        background: linear-gradient(135deg, #FF6F00 0%, #E65100 100%);
+                        color: white;
+                        border: none;
+                        padding: 10px;
+                        border-radius: 8px;
+                        font-weight: 700;
+                        font-size: 13px;
+                        cursor: pointer;
+                        box-shadow: 0 3px 10px rgba(255, 111, 0, 0.3);
+                        transition: all 0.3s ease;
+                    " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 111, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 10px rgba(255, 111, 0, 0.3)'">
+                        ✨ Adicionar Banquetas ao Pedido
+                    </button>
+                </div>
+            ` : ''}
 
             <div style="background: #F5F1E8; padding: 16px; border-radius: 12px; margin-bottom: 24px;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
@@ -819,6 +886,40 @@ function fecharPopupCarrinho() {
         popup.style.animation = 'fadeOut 0.3s ease';
         setTimeout(() => popup.remove(), 300);
     }
+}
+
+// Adicionar banquetas ao carrinho (upsell)
+function adicionarBanquetas() {
+    const banqueta = {
+        id: 'banqueta-exclusiva',
+        nome: 'Banqueta Exclusiva',
+        preco: 500,
+        precoFormatado: 'R$ 500,00',
+        categoria: 'Acessórios',
+        descricao: 'Banqueta em madeira rústica, perfeita para complementar sua mesa',
+        imagem: 'https://via.placeholder.com/300x200/8B6F61/FFFFFF?text=Banqueta',
+        disponibilidade: 'Em estoque'
+    };
+
+    const itemExistente = carrinho.find(item => item.id === 'banqueta-exclusiva');
+
+    if (itemExistente) {
+        itemExistente.quantidade += 1;
+    } else {
+        carrinho.push({
+            ...banqueta,
+            quantidade: 1
+        });
+    }
+
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    atualizarCarrinho();
+
+    // Atualizar o popup com novo total
+    fecharPopupCarrinho();
+
+    // Mostrar notificação de sucesso
+    mostrarNotificacao('🪑 Banqueta adicionada ao carrinho! ✅');
 }
 
 function toggleWishlistModal(btn) {
