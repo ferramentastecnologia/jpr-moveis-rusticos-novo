@@ -337,19 +337,21 @@ section {
 }
 
 .btn-primary {
-    background: var(--primary);
+    background: var(--accent);
     color: var(--white);
+    font-weight: 600;
 }
 
 .btn-primary:hover {
-    background: var(--footer);
+    background: var(--accent-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
 
 .btn-secondary {
-    background: var(--secondary);
-    color: var(--text);
+    background: var(--primary);
+    color: var(--secondary-dark);
+    font-weight: 600;
 }
 
 .btn-secondary:hover {

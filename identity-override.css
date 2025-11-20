@@ -1,0 +1,171 @@
+/* ========================
+   OVERRIDE DE IDENTIDADE VISUAL
+   Força aplicação da nova paleta
+   ======================== */
+
+/* BOTÕES - Força cores corretas */
+.btn-primary,
+button[type="submit"],
+.cta-btn,
+.add-to-cart,
+.comprar-btn {
+    background: var(--accent) !important;
+    color: var(--white) !important;
+    border-color: var(--accent) !important;
+}
+
+.btn-primary:hover,
+button[type="submit"]:hover,
+.cta-btn:hover,
+.add-to-cart:hover,
+.comprar-btn:hover {
+    background: var(--accent-dark) !important;
+}
+
+.btn-secondary {
+    background: var(--primary) !important;
+    color: var(--secondary-dark) !important;
+}
+
+/* HERO/BANNER - Gradiente madeira */
+.hero,
+.banner,
+.promo-banner {
+    background: var(--gradient-wood) !important;
+}
+
+/* TÍTULOS - Cor secundária */
+h1, h2, h3 {
+    color: var(--secondary) !important;
+}
+
+/* LINKS E NAVEGAÇÃO */
+.nav-link,
+a:not(.btn) {
+    color: var(--text-secondary);
+}
+
+.nav-link:hover,
+a:not(.btn):hover {
+    color: var(--accent);
+}
+
+/* CARDS E CONTAINERS */
+.card,
+.produto-card,
+.info-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+}
+
+/* BADGES E TAGS */
+.badge,
+.tag,
+.promo-tag {
+    background: var(--accent-light) !important;
+    color: var(--white) !important;
+}
+
+/* FOOTER */
+.footer {
+    background: linear-gradient(180deg, var(--secondary) 0%, var(--secondary-dark) 100%) !important;
+    color: var(--off-white) !important;
+}
+
+/* SEÇÕES ALTERNADAS */
+section:nth-child(even) {
+    background: var(--off-white);
+}
+
+section:nth-child(odd) {
+    background: var(--white);
+}
+
+/* INPUTS E FORMS */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1) !important;
+}
+
+/* PREÇOS */
+.preco,
+.price,
+.valor {
+    color: var(--accent) !important;
+    font-weight: 700;
+}
+
+/* DESTAQUE/ACCENT */
+.destaque,
+.highlight,
+.featured {
+    border-left: 4px solid var(--accent) !important;
+    background: var(--complementary-cream);
+}
+
+/* CARRINHO */
+.btn-carrinho,
+.cart-btn {
+    background: var(--accent) !important;
+    color: var(--white) !important;
+}
+
+/* AVALIAÇÕES */
+.rating-star,
+.star {
+    color: var(--complementary-amber) !important;
+}
+
+/* LOADING/SPINNER */
+.loading,
+.spinner {
+    border-color: var(--accent) !important;
+}
+
+/* TOOLTIPS */
+.tooltip {
+    background: var(--secondary-dark) !important;
+    color: var(--white) !important;
+}
+
+/* MODAIS */
+.modal-header {
+    background: var(--gradient-wood) !important;
+    color: var(--white) !important;
+}
+
+/* TABELAS */
+thead {
+    background: var(--primary-light) !important;
+    color: var(--secondary-dark) !important;
+}
+
+tbody tr:hover {
+    background: var(--complementary-cream) !important;
+}
+
+/* MENSAGENS DE SUCESSO */
+.success,
+.alert-success {
+    background: rgba(46, 125, 50, 0.1) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent-dark) !important;
+}
+
+/* MENSAGENS DE ERRO */
+.error,
+.alert-error {
+    background: rgba(216, 67, 21, 0.1) !important;
+    border-color: var(--complementary-terracota) !important;
+    color: var(--complementary-terracota) !important;
+}
+
+/* PROMOÇÕES */
+.promo,
+.sale,
+.desconto {
+    background: var(--complementary-amber) !important;
+    color: var(--white) !important;
+}
