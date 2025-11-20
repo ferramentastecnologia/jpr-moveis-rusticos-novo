@@ -1061,7 +1061,63 @@
         }
 
         // Inicializar ao carregar
-        document.addEventListener('DOMContentLoaded', inicializarAvaliacoes);
+        document.addEventListener('DOMContentLoaded', function() {
+            inicializarAvaliacoes();
+
+            // FORÇAR CORES COM JAVASCRIPT - Ignora CSS
+            setTimeout(function() {
+                // Números das estatísticas em VERDE
+                document.querySelectorAll('.stat-number').forEach(function(el) {
+                    el.style.color = '#2E7D32';
+                    el.style.fontWeight = '700';
+                });
+
+                // Rating score em VERDE
+                const ratingNumber = document.getElementById('rating-number');
+                if (ratingNumber) {
+                    ratingNumber.style.color = '#2E7D32';
+                    ratingNumber.style.fontSize = '48px';
+                    ratingNumber.style.fontWeight = '700';
+                }
+
+                // Título principal em MARROM ESCURO
+                document.querySelectorAll('.avaliacoes-header h1').forEach(function(el) {
+                    el.style.color = '#5D4037';
+                });
+
+                // Todos h2 e h3 em MARROM
+                document.querySelectorAll('h2, h3').forEach(function(el) {
+                    el.style.color = '#5D4037';
+                });
+
+                // Barras de rating em VERDE
+                document.querySelectorAll('.rating-bar-fill').forEach(function(el) {
+                    el.style.background = '#2E7D32';
+                });
+
+                // Botões em VERDE
+                document.querySelectorAll('.form-submit-btn, button[type="submit"]').forEach(function(el) {
+                    el.style.background = '#2E7D32';
+                    el.style.color = 'white';
+                    el.style.border = 'none';
+                });
+
+                // Badges verificado em VERDE
+                document.querySelectorAll('.avaliacao-badge').forEach(function(el) {
+                    if (el.textContent.includes('Verificado')) {
+                        el.style.background = 'rgba(46, 125, 50, 0.1)';
+                        el.style.color = '#2E7D32';
+                    }
+                });
+
+                // Cards com borda VERDE
+                document.querySelectorAll('.info-block, .avaliacao-card').forEach(function(el) {
+                    el.style.borderLeftColor = '#2E7D32';
+                });
+
+                console.log('✅ CORES FORÇADAS VIA JAVASCRIPT APLICADAS!');
+            }, 100);
+        });
     </script>
 </body>
 </html>
