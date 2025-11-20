@@ -654,6 +654,7 @@
 
     <!-- Scripts -->
     <script src="avaliacoes-dados.js"></script>
+    <script src="google-reviews-config.js"></script>
     <script>
         // Estado global
         let ratingAtual = 0;
@@ -661,11 +662,16 @@
             rating: null,
             ordenar: 'recente'
         };
+        let reviewsGoogleCarregados = null;
+        let usandoGoogleReviews = false;
 
         /**
          * Inicializar avaliações
          */
-        function inicializarAvaliacoes() {
+        async function inicializarAvaliacoes() {
+            // Tentar carregar reviews do Google primeiro
+            await carregarGoogleReviews();
+
             renderizarEstatisticas();
             renderizarRatingSelector();
             renderizarProdutos();
@@ -674,16 +680,61 @@
         }
 
         /**
+         * Carregar reviews do Google
+         */
+        async function carregarGoogleReviews() {
+            try {
+                reviewsGoogleCarregados = await buscarReviewsGoogle();
+
+                if (reviewsGoogleCarregados && reviewsGoogleCarregados.reviews.length > 0) {
+                    usandoGoogleReviews = true;
+                    console.log('✅ Usando avaliações do Google');
+
+                    // Adicionar badge do Google no header
+                    adicionarGoogleBadge();
+                } else {
+                    console.log('ℹ️ Usando avaliações locais');
+                }
+            } catch (error) {
+                console.error('Erro ao carregar Google Reviews:', error);
+                console.log('ℹ️ Usando avaliações locais');
+            }
+        }
+
+        /**
+         * Adicionar badge do Google
+         */
+        function adicionarGoogleBadge() {
+            if (!reviewsGoogleCarregados) return;
+
+            const header = document.querySelector('.avaliacoes-header p');
+            if (header) {
+                header.innerHTML = `
+                    Confira a opinião de clientes reais que confiaram na JPR Móveis Rústicos
+                    <div style="margin-top: 16px;">
+                        ${criarGoogleBadge(reviewsGoogleCarregados.rating, reviewsGoogleCarregados.total)}
+                    </div>
+                `;
+            }
+        }
+
+        /**
          * Renderizar estatísticas
          */
         function renderizarEstatisticas() {
-            const stats = obterEstatisticasAvaliacoes();
+            // Usar estatísticas do Google se disponível
+            let stats;
+            if (usandoGoogleReviews && reviewsGoogleCarregados) {
+                stats = calcularEstatisticasGoogle(reviewsGoogleCarregados);
+            } else {
+                stats = obterEstatisticasAvaliacoes();
+            }
 
             document.getElementById('stat-total').textContent = stats.total;
-            document.getElementById('stat-media').textContent = stats.media;
-            document.getElementById('stat-verificadas').textContent = stats.verificadas;
-            document.getElementById('stat-resposta').textContent = stats.comResposta;
-            document.getElementById('rating-number').textContent = stats.media;
+            document.getElementById('stat-media').textContent = stats.media.toFixed(1);
+            document.getElementById('stat-verificadas').textContent = stats.verificadas || stats.total;
+            document.getElementById('stat-resposta').textContent = stats.comResposta || 0;
+            document.getElementById('rating-number').textContent = stats.media.toFixed(1);
 
             // Rating bars
             const barsHTML = `
@@ -822,11 +873,37 @@
          * Renderizar avaliações
          */
         function renderizarAvaliacoes() {
-            const avaliacoesFiltradas = filtrarAvaliacoes({
-                rating: filtrosAtivos.rating,
-                verificado: true,
-                ordenar: filtrosAtivos.ordenar
-            });
+            let avaliacoesFiltradas;
+
+            // Se estiver usando Google Reviews, mesclar com locais
+            if (usandoGoogleReviews && reviewsGoogleCarregados) {
+                const reviewsLocais = obterAvaliacoes();
+                const todoReviews = mesclarReviews(reviewsGoogleCarregados, reviewsLocais);
+
+                // Aplicar filtros manualmente
+                avaliacoesFiltradas = todoReviews.filter(av => {
+                    if (filtrosAtivos.rating && av.rating !== filtrosAtivos.rating) {
+                        return false;
+                    }
+                    return true;
+                });
+
+                // Ordenar
+                if (filtrosAtivos.ordenar === 'recente') {
+                    avaliacoesFiltradas.sort((a, b) => new Date(b.data) - new Date(a.data));
+                } else if (filtrosAtivos.ordenar === 'util') {
+                    avaliacoesFiltradas.sort((a, b) => b.util - a.util);
+                } else if (filtrosAtivos.ordenar === 'rating') {
+                    avaliacoesFiltradas.sort((a, b) => b.rating - a.rating);
+                }
+            } else {
+                // Usar apenas reviews locais
+                avaliacoesFiltradas = filtrarAvaliacoes({
+                    rating: filtrosAtivos.rating,
+                    verificado: true,
+                    ordenar: filtrosAtivos.ordenar
+                });
+            }
 
             if (avaliacoesFiltradas.length === 0) {
                 document.getElementById('avaliacoes-grid').innerHTML = `
@@ -843,11 +920,13 @@
                     <div class="avaliacao-header">
                         <div class="avaliacao-info">
                             <div class="avaliacao-cliente">
+                                ${avaliacao.foto ? `<img src="${avaliacao.foto}" alt="${avaliacao.cliente}" style="width: 32px; height: 32px; border-radius: 50%; margin-right: 8px; vertical-align: middle;">` : ''}
                                 ${avaliacao.cliente}
                                 <span class="avaliacao-badge">✓ Verificado</span>
+                                ${avaliacao.fonte === 'Google' ? '<span class="avaliacao-badge" style="background: rgba(66, 133, 244, 0.1); color: #4285f4; margin-left: 4px;">Google</span>' : ''}
                             </div>
                             <div class="avaliacao-meta">
-                                <span>📍 ${avaliacao.cidade}</span>
+                                <span>📍 ${avaliacao.cidade || 'Não informado'}</span>
                                 <span>📅 ${formatarData(avaliacao.data)}</span>
                                 <span>🛋️ ${avaliacao.produto}</span>
                             </div>
