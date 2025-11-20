@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Venda - JPR Móveis Rústicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-primary {
+            background: #1b8768;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1b8768;
+        }
+
+        .info-card h3 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #999;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1b8768;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .status-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .status-option {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .status-option:hover {
+            border-color: #1b8768;
+            background: #f0f9f6;
+        }
+
+        .status-option.active {
+            border-color: #1b8768;
+            background: #1b8768;
+            color: white;
+        }
+
+        .timeline {
+            margin-top: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1b8768;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .actions-bar {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            padding: 20px 0;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Detalhes da Venda #<span id="vendaNumero">-</span></h1>
+                <p style="color: #666; margin-top: 5px;">Criado em: <span id="vendaData">-</span></p>
+            </div>
+            <div>
+                <a href="admin.html" class="btn btn-secondary">← Voltar</a>
+                <button class="btn btn-primary" onclick="salvarVenda()">💾 Salvar</button>
+            </div>
+        </div>
+
+        <!-- INFO RÁPIDA -->
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>💰 Informações Financeiras</h3>
+                <div class="info-item">
+                    <span class="info-label">Valor Total</span>
+                    <span class="info-value" id="infoValorTotal">R$ 0,00</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Método de Pagamento</span>
+                    <span class="info-value" id="infoPagamento">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Status Pagamento</span>
+                    <span class="info-value" id="infoStatusPagamento">-</span>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>📦 Entrega</h3>
+                <div class="info-item">
+                    <span class="info-label">Data Programada</span>
+                    <span class="info-value" id="infoDataEntrega">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Cidade</span>
+                    <span class="info-value" id="infoCidade">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Status Entrega</span>
+                    <span class="info-value" id="infoStatusEntrega">-</span>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>👤 Cliente</h3>
+                <div class="info-item">
+                    <span class="info-label">Nome</span>
+                    <span class="info-value" id="infoNome">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">WhatsApp</span>
+                    <span class="info-value" id="infoWhatsApp">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Email</span>
+                    <span class="info-value" id="infoEmail">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMULÁRIO DE EDIÇÃO -->
+        <form id="formVenda" onsubmit="salvarVenda(event)">
+            <!-- CLIENTE -->
+            <div class="form-section">
+                <h2>👤 Dados do Cliente</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="clienteNome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp *</label>
+                        <input type="tel" id="clienteWhatsapp" placeholder="(47) 99999-9999" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="clienteEmail">
+                    </div>
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" id="clienteCpf" placeholder="000.000.000-00">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ENDEREÇO -->
+            <div class="form-section">
+                <h2>📍 Endereço de Entrega</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" id="enderecoCep" placeholder="89000-000">
+                    </div>
+                    <div class="form-group">
+                        <label>Cidade *</label>
+                        <select id="enderecoCidade" required>
+                            <option value="Blumenau">Blumenau</option>
+                            <option value="Gaspar">Gaspar</option>
+                            <option value="Ilhota">Ilhota</option>
+                            <option value="Pomerode">Pomerode</option>
+                            <option value="Timbó">Timbó</option>
+                            <option value="Brusque">Brusque</option>
+                            <option value="Guabiruba">Guabiruba</option>
+                            <option value="Jaraguá do Sul">Jaraguá do Sul</option>
+                            <option value="Indaial">Indaial</option>
+                            <option value="Rio do Sul">Rio do Sul</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Rua *</label>
+                        <input type="text" id="enderecoRua" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Número *</label>
+                        <input type="text" id="enderecoNumero" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Complemento</label>
+                        <input type="text" id="enderecoComplemento">
+                    </div>
+                    <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" id="enderecoBairro">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUTO -->
+            <div class="form-section">
+                <h2>🪑 Produto</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Modelo *</label>
+                        <select id="produtoModelo" required>
+                            <option value="Mesa Imperatriz">Mesa Imperatriz</option>
+                            <option value="Mesa Império">Mesa Império</option>
+                            <option value="Mesa Glamour">Mesa Glamour</option>
+                            <option value="Mesa Sublime">Mesa Sublime</option>
+                            <option value="Mesa Nobreza">Mesa Nobreza</option>
+                            <option value="Mesa Luxúria">Mesa Luxúria</option>
+                            <option value="Mesa Paris">Mesa Paris</option>
+                            <option value="Mesa Requinte">Mesa Requinte</option>
+                            <option value="Mesa Charme">Mesa Charme</option>
+                            <option value="Mesa Encanto">Mesa Encanto</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tamanho *</label>
+                        <select id="produtoTamanho" required>
+                            <option value="2.0m">2,0m</option>
+                            <option value="2.5m">2,5m</option>
+                            <option value="3.0m">3,0m</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Valor Unitário *</label>
+                        <input type="number" id="produtoValor" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantidade</label>
+                        <input type="number" id="produtoQuantidade" value="1" min="1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGAMENTO -->
+            <div class="form-section">
+                <h2>💳 Pagamento</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Método de Pagamento</label>
+                        <select id="pagamentoMetodo">
+                            <option value="PIX">PIX</option>
+                            <option value="Cartão de Crédito">Cartão de Crédito</option>
+                            <option value="Boleto">Boleto</option>
+                            <option value="Transferência">Transferência</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status Pagamento</label>
+                        <select id="pagamentoStatus">
+                            <option value="PENDENTE">Pendente</option>
+                            <option value="CONFIRMADO">Confirmado</option>
+                            <option value="CANCELADO">Cancelado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Data do Pagamento</label>
+                    <input type="date" id="pagamentoData">
+                </div>
+            </div>
+
+            <!-- ENTREGA -->
+            <div class="form-section">
+                <h2>🚚 Entrega</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data Programada</label>
+                        <input type="date" id="entregaData">
+                    </div>
+                    <div class="form-group">
+                        <label>Período</label>
+                        <select id="entregaPeriodo">
+                            <option value="MANHA">Manhã (08:00 - 12:00)</option>
+                            <option value="TARDE">Tarde (13:00 - 18:00)</option>
+                            <option value="NOITE">Noite (18:00 - 20:00)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea id="entregaObservacoes" rows="3" placeholder="Ex: Portão azul, interfone quebrado..."></textarea>
+                </div>
+            </div>
+
+            <!-- STATUS -->
+            <div class="form-section">
+                <h2>📊 Status do Pedido</h2>
+                <div class="status-selector">
+                    <div class="status-option" data-status="NOVO_PEDIDO">
+                        🆕<br>Novo Pedido
+                    </div>
+                    <div class="status-option" data-status="AGUARDANDO_PAGAMENTO">
+                        💰<br>Aguard. Pgto
+                    </div>
+                    <div class="status-option" data-status="PAGAMENTO_CONFIRMADO">
+                        ✅<br>Pago
+                    </div>
+                    <div class="status-option" data-status="EM_PREPARACAO">
+                        🔨<br>Preparação
+                    </div>
+                    <div class="status-option" data-status="PRONTO_EXPEDICAO">
+                        📦<br>Pronto
+                    </div>
+                    <div class="status-option" data-status="EM_TRANSITO">
+                        🚚<br>Em Trânsito
+                    </div>
+                    <div class="status-option" data-status="ENTREGUE">
+                        ✅<br>Entregue
+                    </div>
+                    <div class="status-option" data-status="CANCELADO">
+                        ❌<br>Cancelado
+                    </div>
+                </div>
+                <input type="hidden" id="vendaStatus">
+            </div>
+
+            <!-- HISTÓRICO -->
+            <div class="form-section timeline">
+                <h2>📜 Histórico de Status</h2>
+                <div id="historicoTimeline">
+                    <!-- Será preenchido via JS -->
+                </div>
+            </div>
+        </form>
+
+        <!-- ACTIONS BAR -->
+        <div class="actions-bar">
+            <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">🗑️ Excluir Venda</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='admin.html'">Cancelar</button>
+            <button type="button" class="btn btn-primary" onclick="salvarVenda()">💾 Salvar Alterações</button>
+        </div>
+    </div>
+
+    <script src="logistica-dados.js"></script>
+    <script>
+        let vendaAtual = null;
+
+        // Carregar venda ao abrir
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const vendaId = urlParams.get('id');
+
+            if (vendaId) {
+                carregarVenda(vendaId);
+            } else {
+                alert('ID da venda não fornecido');
+                window.location.href = 'admin.html';
+            }
+
+            // Configurar seletores de status
+            document.querySelectorAll('.status-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.status-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById('vendaStatus').value = this.dataset.status;
+                });
+            });
+        });
+
+        function carregarVenda(id) {
+            vendaAtual = buscarPedido(id);
+
+            if (!vendaAtual) {
+                alert('Venda não encontrada');
+                window.location.href = 'admin.html';
+                return;
+            }
+
+            // Header
+            document.getElementById('vendaNumero').textContent = vendaAtual.numero;
+            document.getElementById('vendaData').textContent = new Date(vendaAtual.data).toLocaleDateString('pt-BR');
+
+            // Info rápida
+            document.getElementById('infoValorTotal').textContent = `R$ ${vendaAtual.pagamento.valor_total.toFixed(2)}`;
+            document.getElementById('infoPagamento').textContent = vendaAtual.pagamento.metodo || '-';
+            document.getElementById('infoStatusPagamento').textContent = vendaAtual.pagamento.status;
+            document.getElementById('infoDataEntrega').textContent = vendaAtual.entrega.data_programada ? new Date(vendaAtual.entrega.data_programada).toLocaleDateString('pt-BR') : '-';
+            document.getElementById('infoCidade').textContent = vendaAtual.cliente.endereco.cidade;
+            document.getElementById('infoStatusEntrega').textContent = vendaAtual.status;
+            document.getElementById('infoNome').textContent = vendaAtual.cliente.nome;
+            document.getElementById('infoWhatsApp').textContent = vendaAtual.cliente.whatsapp;
+            document.getElementById('infoEmail').textContent = vendaAtual.cliente.email || '-';
+
+            // Formulário
+            document.getElementById('clienteNome').value = vendaAtual.cliente.nome;
+            document.getElementById('clienteWhatsapp').value = vendaAtual.cliente.whatsapp;
+            document.getElementById('clienteEmail').value = vendaAtual.cliente.email || '';
+            document.getElementById('clienteCpf').value = vendaAtual.cliente.cpf || '';
+
+            document.getElementById('enderecoCep').value = vendaAtual.cliente.endereco.cep || '';
+            document.getElementById('enderecoCidade').value = vendaAtual.cliente.endereco.cidade;
+            document.getElementById('enderecoRua').value = vendaAtual.cliente.endereco.rua;
+            document.getElementById('enderecoNumero').value = vendaAtual.cliente.endereco.numero;
+            document.getElementById('enderecoComplemento').value = vendaAtual.cliente.endereco.complemento || '';
+            document.getElementById('enderecoBairro').value = vendaAtual.cliente.endereco.bairro || '';
+
+            document.getElementById('produtoModelo').value = vendaAtual.produto.modelo;
+            document.getElementById('produtoTamanho').value = vendaAtual.produto.tamanho;
+            document.getElementById('produtoValor').value = vendaAtual.produto.valor_unitario;
+            document.getElementById('produtoQuantidade').value = vendaAtual.produto.quantidade;
+
+            document.getElementById('pagamentoMetodo').value = vendaAtual.pagamento.metodo || 'PIX';
+            document.getElementById('pagamentoStatus').value = vendaAtual.pagamento.status;
+            document.getElementById('pagamentoData').value = vendaAtual.pagamento.data_pagamento ? vendaAtual.pagamento.data_pagamento.split('T')[0] : '';
+
+            document.getElementById('entregaData').value = vendaAtual.entrega.data_programada ? vendaAtual.entrega.data_programada.split('T')[0] : '';
+            document.getElementById('entregaPeriodo').value = vendaAtual.entrega.periodo || 'MANHA';
+            document.getElementById('entregaObservacoes').value = vendaAtual.entrega.observacoes || '';
+
+            // Status
+            document.getElementById('vendaStatus').value = vendaAtual.status;
+            document.querySelectorAll('.status-option').forEach(option => {
+                if (option.dataset.status === vendaAtual.status) {
+                    option.classList.add('active');
+                }
+            });
+
+            // Histórico
+            renderizarHistorico();
+        }
+
+        function renderizarHistorico() {
+            const container = document.getElementById('historicoTimeline');
+            container.innerHTML = vendaAtual.historico.map(h => `
+                <div class="timeline-item">
+                    <div class="timeline-icon">📝</div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">${new Date(h.data).toLocaleString('pt-BR')}</div>
+                        <div class="timeline-title">${h.status}</div>
+                        <div class="timeline-desc">
+                            ${h.observacao || 'Sem observações'}
+                            <em style="color: #999;">por ${h.user}</em>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function salvarVenda(event) {
+            if (event) event.preventDefault();
+
+            // Atualizar objeto
+            vendaAtual.cliente.nome = document.getElementById('clienteNome').value;
+            vendaAtual.cliente.whatsapp = document.getElementById('clienteWhatsapp').value;
+            vendaAtual.cliente.email = document.getElementById('clienteEmail').value;
+            vendaAtual.cliente.cpf = document.getElementById('clienteCpf').value;
+
+            vendaAtual.cliente.endereco.cep = document.getElementById('enderecoCep').value;
+            vendaAtual.cliente.endereco.cidade = document.getElementById('enderecoCidade').value;
+            vendaAtual.cliente.endereco.rua = document.getElementById('enderecoRua').value;
+            vendaAtual.cliente.endereco.numero = document.getElementById('enderecoNumero').value;
+            vendaAtual.cliente.endereco.complemento = document.getElementById('enderecoComplemento').value;
+            vendaAtual.cliente.endereco.bairro = document.getElementById('enderecoBairro').value;
+
+            vendaAtual.produto.modelo = document.getElementById('produtoModelo').value;
+            vendaAtual.produto.tamanho = document.getElementById('produtoTamanho').value;
+            vendaAtual.produto.valor_unitario = parseFloat(document.getElementById('produtoValor').value);
+            vendaAtual.produto.quantidade = parseInt(document.getElementById('produtoQuantidade').value);
+
+            vendaAtual.pagamento.metodo = document.getElementById('pagamentoMetodo').value;
+            vendaAtual.pagamento.status = document.getElementById('pagamentoStatus').value;
+            vendaAtual.pagamento.data_pagamento = document.getElementById('pagamentoData').value;
+
+            vendaAtual.entrega.data_programada = document.getElementById('entregaData').value;
+            vendaAtual.entrega.periodo = document.getElementById('entregaPeriodo').value;
+            vendaAtual.entrega.observacoes = document.getElementById('entregaObservacoes').value;
+
+            const novoStatus = document.getElementById('vendaStatus').value;
+            if (novoStatus !== vendaAtual.status) {
+                vendaAtual.alterarStatus(novoStatus, sessionStorage.getItem('admin_user'), 'Atualizado via painel admin');
+            } else {
+                // Recalcular valores
+                vendaAtual.calcularValores();
+                salvarPedido(vendaAtual);
+            }
+
+            alert('Venda atualizada com sucesso!');
+            window.location.reload();
+        }
+
+        function confirmarExclusao() {
+            if (confirm(`Tem certeza que deseja excluir a venda #${vendaAtual.numero}?\n\nEsta ação não pode ser desfeita!`)) {
+                const pedidos = listarPedidos();
+                const index = pedidos.findIndex(p => p.id === vendaAtual.id);
+                if (index >= 0) {
+                    pedidos.splice(index, 1);
+                    localStorage.setItem('jpr_pedidos', JSON.stringify(pedidos));
+                    alert('Venda excluída com sucesso!');
+                    window.location.href = 'admin.html';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

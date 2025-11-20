@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - JPR Móveis Rústicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-item {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 12px 16px;
+            color: #bdc3c7;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: #1b8768;
+            color: white;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        /* SEARCH BAR */
+        .search-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #1b8768;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #1b8768;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #156b51;
+            transform: translateY(-2px);
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* TABLE */
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f5f5f5;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:hover {
+            background: #f9f9f9;
+            cursor: pointer;
+        }
+
+        .cliente-nome {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .cliente-info {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .btn-action {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .btn-view {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .modal-header h2 {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        .modal-close {
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-section h3 {
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .info-value {
+            color: #2c3e50;
+        }
+
+        .compras-list {
+            margin-top: 15px;
+        }
+
+        .compra-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .compra-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .compra-produto {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .compra-valor {
+            font-weight: 700;
+            color: #1b8768;
+        }
+
+        .compra-data {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">👥 Clientes JPR</div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a href="admin.html" class="sidebar-link">📊 Dashboard</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin-clientes.html" class="sidebar-link active">👥 Clientes</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin-logistica.html" class="sidebar-link">🚚 Logística</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin.html#vendas" class="sidebar-link">💰 Vendas</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin-login.html" class="sidebar-link">🚪 Sair</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="header">
+                <h1>👥 Gestão de Clientes</h1>
+            </div>
+
+            <!-- SEARCH -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar por nome, telefone, email..." onkeyup="filtrarClientes()">
+                <select id="filterCidade" onchange="filtrarClientes()">
+                    <option value="">Todas as Cidades</option>
+                </select>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" id="statTotalClientes">0</div>
+                    <div class="stat-label">Total de Clientes</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🛒</div>
+                    <div class="stat-value" id="statClientesAtivos">0</div>
+                    <div class="stat-label">Clientes Ativos</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value" id="statTicketMedio">R$ 0</div>
+                    <div class="stat-label">Ticket Médio</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-value" id="statAvaliacaoMedia">0.0</div>
+                    <div class="stat-label">Avaliação Média</div>
+                </div>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Cidade</th>
+                            <th>Compras</th>
+                            <th>Total Gasto</th>
+                            <th>Última Compra</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaClientes">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px;">
+                                Nenhum cliente encontrado
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DETALHES CLIENTE -->
+    <div id="modalCliente" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>👤 Detalhes do Cliente</h2>
+                <span class="modal-close" onclick="fecharModal()">&times;</span>
+            </div>
+
+            <div id="clienteDetalhes">
+                <!-- Será preenchido via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="logistica-dados.js"></script>
+    <script>
+        let todosClientes = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            verificarAutenticacao();
+            carregarClientes();
+            carregarCidades();
+        });
+
+        function verificarAutenticacao() {
+            if (!sessionStorage.getItem('admin_token')) {
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        function carregarClientes() {
+            const pedidos = listarPedidos();
+
+            // Agrupar por cliente
+            const clientesMap = new Map();
+
+            pedidos.forEach(pedido => {
+                const key = pedido.cliente.whatsapp; // Usar WhatsApp como ID único
+
+                if (!clientesMap.has(key)) {
+                    clientesMap.set(key, {
+                        nome: pedido.cliente.nome,
+                        whatsapp: pedido.cliente.whatsapp,
+                        email: pedido.cliente.email,
+                        cpf: pedido.cliente.cpf,
+                        endereco: pedido.cliente.endereco,
+                        compras: [],
+                        totalGasto: 0,
+                        ultimaCompra: null
+                    });
+                }
+
+                const cliente = clientesMap.get(key);
+                cliente.compras.push(pedido);
+                cliente.totalGasto += pedido.pagamento.valor_total;
+
+                if (!cliente.ultimaCompra || new Date(pedido.data) > new Date(cliente.ultimaCompra)) {
+                    cliente.ultimaCompra = pedido.data;
+                }
+            });
+
+            todosClientes = Array.from(clientesMap.values());
+
+            // Stats
+            document.getElementById('statTotalClientes').textContent = todosClientes.length;
+
+            const clientesAtivos = todosClientes.filter(c => {
+                const dias = (new Date() - new Date(c.ultimaCompra)) / (1000 * 60 * 60 * 24);
+                return dias <= 90; // Ativo se comprou nos últimos 90 dias
+            }).length;
+            document.getElementById('statClientesAtivos').textContent = clientesAtivos;
+
+            const ticketMedio = todosClientes.reduce((sum, c) => sum + c.totalGasto, 0) / todosClientes.length;
+            document.getElementById('statTicketMedio').textContent = `R$ ${ticketMedio.toFixed(0)}`;
+
+            document.getElementById('statAvaliacaoMedia').textContent = '4.9';
+
+            renderizarTabela(todosClientes);
+        }
+
+        function renderizarTabela(clientes) {
+            const tbody = document.getElementById('tabelaClientes');
+
+            if (clientes.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px;">Nenhum cliente encontrado</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = clientes.map(cliente => {
+                const diasDesdeUltimaCompra = Math.floor((new Date() - new Date(cliente.ultimaCompra)) / (1000 * 60 * 60 * 24));
+                let statusBadge = '';
+
+                if (diasDesdeUltimaCompra <= 30) {
+                    statusBadge = '<span class="badge badge-success">Ativo</span>';
+                } else if (diasDesdeUltimaCompra <= 90) {
+                    statusBadge = '<span class="badge badge-warning">Regular</span>';
+                } else {
+                    statusBadge = '<span class="badge badge-info">Inativo</span>';
+                }
+
+                return `
+                    <tr onclick="verDetalhesCliente('${cliente.whatsapp}')">
+                        <td>
+                            <div class="cliente-nome">${cliente.nome}</div>
+                            <div class="cliente-info">
+                                📱 ${cliente.whatsapp}
+                                ${cliente.email ? `• ✉️ ${cliente.email}` : ''}
+                            </div>
+                        </td>
+                        <td>${cliente.endereco.cidade}</td>
+                        <td>
+                            ${cliente.compras.length} ${cliente.compras.length === 1 ? 'compra' : 'compras'}
+                            <br>${statusBadge}
+                        </td>
+                        <td><strong>R$ ${cliente.totalGasto.toFixed(2)}</strong></td>
+                        <td>${new Date(cliente.ultimaCompra).toLocaleDateString('pt-BR')}</td>
+                        <td>
+                            <button class="btn-action btn-view" onclick="event.stopPropagation(); verDetalhesCliente('${cliente.whatsapp}')">
+                                👁️ Ver
+                            </button>
+                            <button class="btn-action btn-whatsapp" onclick="event.stopPropagation(); abrirWhatsApp('${cliente.whatsapp}')">
+                                💬 WhatsApp
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function carregarCidades() {
+            const cidades = [...new Set(todosClientes.map(c => c.endereco.cidade))].sort();
+            const select = document.getElementById('filterCidade');
+
+            cidades.forEach(cidade => {
+                const option = document.createElement('option');
+                option.value = cidade;
+                option.textContent = cidade;
+                select.appendChild(option);
+            });
+        }
+
+        function filtrarClientes() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cidadeFiltro = document.getElementById('filterCidade').value;
+
+            const clientesFiltrados = todosClientes.filter(cliente => {
+                const matchSearch = !searchTerm ||
+                    cliente.nome.toLowerCase().includes(searchTerm) ||
+                    cliente.whatsapp.includes(searchTerm) ||
+                    (cliente.email && cliente.email.toLowerCase().includes(searchTerm));
+
+                const matchCidade = !cidadeFiltro || cliente.endereco.cidade === cidadeFiltro;
+
+                return matchSearch && matchCidade;
+            });
+
+            renderizarTabela(clientesFiltrados);
+        }
+
+        function verDetalhesCliente(whatsapp) {
+            const cliente = todosClientes.find(c => c.whatsapp === whatsapp);
+
+            if (!cliente) return;
+
+            const comprasSortedordernadas = cliente.compras.sort((a, b) =>
+                new Date(b.data) - new Date(a.data)
+            );
+
+            const detalhesHTML = `
+                <div class="info-section">
+                    <h3>📋 Informações Pessoais</h3>
+                    <div class="info-item">
+                        <span class="info-label">Nome:</span>
+                        <span class="info-value">${cliente.nome}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">WhatsApp:</span>
+                        <span class="info-value">${cliente.whatsapp}</span>
+                    </div>
+                    ${cliente.email ? `
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value">${cliente.email}</span>
+                    </div>` : ''}
+                    ${cliente.cpf ? `
+                    <div class="info-item">
+                        <span class="info-label">CPF:</span>
+                        <span class="info-value">${cliente.cpf}</span>
+                    </div>` : ''}
+                </div>
+
+                <div class="info-section">
+                    <h3>📍 Endereço</h3>
+                    <div class="info-item">
+                        <span class="info-label">Endereço:</span>
+                        <span class="info-value">
+                            ${cliente.endereco.rua}, ${cliente.endereco.numero}
+                            ${cliente.endereco.complemento ? ` - ${cliente.endereco.complemento}` : ''}
+                        </span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Bairro:</span>
+                        <span class="info-value">${cliente.endereco.bairro || '-'}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Cidade:</span>
+                        <span class="info-value">${cliente.endereco.cidade} - SC</span>
+                    </div>
+                    ${cliente.endereco.cep ? `
+                    <div class="info-item">
+                        <span class="info-label">CEP:</span>
+                        <span class="info-value">${cliente.endereco.cep}</span>
+                    </div>` : ''}
+                </div>
+
+                <div class="info-section">
+                    <h3>💰 Resumo de Compras</h3>
+                    <div class="info-item">
+                        <span class="info-label">Total de Compras:</span>
+                        <span class="info-value">${cliente.compras.length}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Valor Total Gasto:</span>
+                        <span class="info-value" style="color: #1b8768; font-weight: 700;">
+                            R$ ${cliente.totalGasto.toFixed(2)}
+                        </span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Ticket Médio:</span>
+                        <span class="info-value">R$ ${(cliente.totalGasto / cliente.compras.length).toFixed(2)}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Última Compra:</span>
+                        <span class="info-value">${new Date(cliente.ultimaCompra).toLocaleDateString('pt-BR')}</span>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>🛒 Histórico de Compras</h3>
+                    <div class="compras-list">
+                        ${comprasSortedordernadas.map(compra => `
+                            <div class="compra-item">
+                                <div class="compra-header">
+                                    <span class="compra-produto">
+                                        ${compra.produto.modelo} - ${compra.produto.tamanho}
+                                    </span>
+                                    <span class="compra-valor">R$ ${compra.pagamento.valor_total.toFixed(2)}</span>
+                                </div>
+                                <div class="compra-data">
+                                    📅 ${new Date(compra.data).toLocaleDateString('pt-BR')}
+                                    • Pedido #${compra.numero}
+                                    • ${compra.status}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('clienteDetalhes').innerHTML = detalhesHTML;
+            document.getElementById('modalCliente').classList.add('show');
+        }
+
+        function fecharModal() {
+            document.getElementById('modalCliente').classList.remove('show');
+        }
+
+        function abrirWhatsApp(numero) {
+            const numeroLimpo = numero.replace(/\D/g, '');
+            window.open(`https://wa.me/55${numeroLimpo}`, '_blank');
+        }
+    </script>
+</body>
+</html>
