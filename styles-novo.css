@@ -1,33 +1,47 @@
 /* ========================
    DESIGN TOKENS & VARIÁVEIS
-   (Baseado no Manual Oficial JPR Móveis Rústicos)
+   (Identidade Visual JPR Móveis Rústicos - Harmonia Natural)
    ======================== */
 :root {
-    /* Cores Primárias (Manual Oficial JPR) */
-    /* Cor Principal Bege */
-    --primary: #dbc1a2;          /* RGB: 219, 193, 162 */
+    /* ===== PALETA PRINCIPAL ===== */
+    /* Inspirada em madeira rústica e natureza */
 
-    /* Cor Secundária Marrom Escuro */
-    --secondary: #6b4436;        /* RGB: 107, 68, 54 */
+    /* Madeira Clara - Cor Principal */
+    --primary: #C8A882;          /* Tom quente de madeira clara */
+    --primary-light: #E5D4C1;    /* Madeira clara suave */
+    --primary-dark: #A08968;     /* Madeira envelhecida */
 
-    /* Cor Terciária Marrom Médio */
-    --tertiary: #737353;         /* RGB: 115, 115, 83 */
+    /* Madeira Escura - Secundária */
+    --secondary: #5D4037;        /* Marrom madeira escura */
+    --secondary-light: #8B6F61;  /* Tom médio quente */
+    --secondary-dark: #3E2723;   /* Marrom profundo */
 
-    /* Cor Verde Teal (Destaque) */
-    --accent: #1b8768;           /* Teal/Verde do manual */
+    /* Verde Floresta - Accent/Destaque */
+    --accent: #2E7D32;           /* Verde floresta natural */
+    --accent-light: #4CAF50;     /* Verde vibrante */
+    --accent-dark: #1B5E20;      /* Verde escuro */
 
-    /* Cores Complementares */
-    --complementary-orange: #ff6913;  /* #FF6913 */
-    --complementary-red: #e04c16;     /* #E04C16 */
-    --complementary-teal: #009476;    /* #009476 */
-    --complementary-mint: #1ce0b8;    /* #1CE0B8 */
+    /* ===== CORES COMPLEMENTARES ===== */
+    --complementary-amber: #FFA726;   /* Âmbar quente */
+    --complementary-terracota: #D84315;  /* Terracota */
+    --complementary-sage: #8D9B6D;    /* Verde sálvia */
+    --complementary-cream: #F5F1E8;   /* Creme natural */
 
-    /* Cores Neutras */
-    --text: #17252a;             /* Escuro para textos */
-    --text-secondary: #737353;   /* Marrom médio para textos secundários */
-    --white: #ffffff;
-    --gray-light: #f5f5f5;
-    --gray-medium: #d4d4d4;
+    /* ===== CORES NEUTRAS ===== */
+    --text-primary: #2C2416;     /* Texto principal escuro */
+    --text-secondary: #6B5D4F;   /* Texto secundário */
+    --text-muted: #9E8A78;       /* Texto suave */
+
+    --white: #FFFFFF;
+    --off-white: #FAF8F5;        /* Branco levemente bege */
+    --gray-light: #F0EDE8;       /* Cinza quente claro */
+    --gray-medium: #D4CFC7;      /* Cinza quente médio */
+    --gray-dark: #8B8378;        /* Cinza quente escuro */
+
+    /* ===== GRADIENTES ===== */
+    --gradient-wood: linear-gradient(135deg, #C8A882 0%, #A08968 100%);
+    --gradient-forest: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    --gradient-warm: linear-gradient(135deg, #F5F1E8 0%, #E5D4C1 100%);
 
     /* Sombras */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
