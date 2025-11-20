@@ -47,6 +47,43 @@
             --secondary: #5D4037 !important;
         }
 
+        /* HERO - Novo gradiente dramático */
+        .hero {
+            background: linear-gradient(135deg, #5D4037 0%, #3E2723 50%, #2E7D32 100%) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,200 Q300,100 600,200 T1200,200 L1200,600 L0,600 Z" fill="rgba(46,125,50,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        /* Títulos mais escuros e impactantes */
+        .hero h1,
+        .hero h2 {
+            color: #FFFFFF !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Botões do hero */
+        .hero .btn-primary {
+            background: #2E7D32 !important;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+        }
+
+        .hero .btn-primary:hover {
+            background: #1B5E20 !important;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.6);
+        }
+
         /* Estilos adicionais para seção de contato melhorada */
         .section-subtitle {
             text-align: center;
