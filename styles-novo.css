@@ -1057,7 +1057,8 @@ section {
     z-index: 200;
     align-items: center;
     justify-content: center;
-    padding: 60px 20px;
+    padding: 0;
+    overflow: auto;
 }
 
 .modal.active {
@@ -1069,11 +1070,11 @@ section {
     border-radius: var(--radius-lg);
     max-width: 1400px;
     width: 95%;
-    max-height: calc(100vh - 120px);
+    max-height: 85vh;
     overflow-y: auto;
     position: relative;
     padding: 0;
-    margin: auto;
+    margin: 60px auto;
 }
 
 .modal .btn-close {

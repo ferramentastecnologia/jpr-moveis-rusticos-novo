@@ -618,17 +618,17 @@ function abrirModalProduto(produtoId) {
     const modal = document.getElementById('produto-modal');
     const modalContent = modal.querySelector('.modal-content');
 
-    modal.style.padding = '60px 20px';
-    modal.style.paddingTop = '60px';
-    modal.style.paddingBottom = '60px';
     modal.style.display = 'flex';
     modal.style.alignItems = 'center';
     modal.style.justifyContent = 'center';
+    modal.style.padding = '0';
+    modal.style.overflow = 'auto';
 
     if (modalContent) {
-        modalContent.style.maxHeight = 'calc(100vh - 120px)';
-        modalContent.style.marginTop = 'auto';
-        modalContent.style.marginBottom = 'auto';
+        modalContent.style.maxHeight = '85vh';
+        modalContent.style.marginTop = '60px';
+        modalContent.style.marginBottom = '60px';
+        modalContent.style.position = 'relative';
     }
 
     modal.classList.add('active');

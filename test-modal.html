@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste Modal Centralizado</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px 20px !important;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex !important;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 1200px;
+            width: 90%;
+            max-height: calc(100vh - 80px) !important;
+            overflow-y: auto;
+            padding: 40px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body style="padding: 50px;">
+    <h1>Teste de Modal Centralizado</h1>
+    <button onclick="document.getElementById('teste-modal').classList.add('active')" style="padding: 20px; font-size: 18px;">
+        Abrir Modal
+    </button>
+
+    <div id="teste-modal" class="modal">
+        <div class="modal-content">
+            <h2>Modal Centralizado</h2>
+            <p>Este modal deve ter 40px de espaço em cima e 40px embaixo.</p>
+            <p>Conteúdo de exemplo...</p>
+            <p style="height: 800px;">Conteúdo longo para testar scroll...</p>
+            <button onclick="document.getElementById('teste-modal').classList.remove('active')" style="padding: 10px 20px;">
+                Fechar
+            </button>
+        </div>
+    </div>
+</body>
+</html>
