@@ -29,7 +29,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: '⭐ CAMPEÃ DE VENDAS',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -63,7 +63,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -97,7 +97,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -131,7 +131,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -165,7 +165,7 @@ const produtos = [
             'Banquetas artesanais incluídas'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'TOP PREMIUM',
         notas: 'Banquetas artesanais variam conforme o tamanho: 8 (2,0m), 10 (2,5m), 12 (3,0m)'
@@ -199,7 +199,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -233,7 +233,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -267,7 +267,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -301,7 +301,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PREMIUM PLUS',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -335,7 +335,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -369,7 +369,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -403,7 +403,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'PERSONALIZAÇÃO',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'
@@ -437,7 +437,7 @@ const produtos = [
             '2 bancos grandes inclusos'
         ],
         disponibilidade: 'Em estoque',
-        prazoEntrega: '10-25 dias úteis',
+        prazoEntrega: '30-45 dias',
         sobMedida: true,
         badge: 'NATURAL',
         notas: 'Banquinho de cabeceira adicional: R$ 150,00 cada'

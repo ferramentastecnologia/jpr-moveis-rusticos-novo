@@ -35,7 +35,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <title>JPR Móveis Rústicos - Mesas Premium de Madeira | Artesanal 100% Personalizável</title>
-    <link rel="stylesheet" href="styles-novo.css?v=2.0">
+    <link rel="stylesheet" href="styles-novo.css?v=2025.1">
     <link rel="stylesheet" href="identity-override.css?v=2.0">
     <link rel="canonical" href="https://jprmoveis.com.br">
     <link rel="alternate" hreflang="pt-BR" href="https://jprmoveis.com.br">
@@ -47,11 +47,14 @@
             --secondary: #5D4037 !important;
         }
 
-        /* HERO - Novo gradiente dramático */
+        /* HERO - Com imagem personalizada */
         .hero {
-            background: linear-gradient(135deg, #5D4037 0%, #3E2723 50%, #2E7D32 100%) !important;
+            background: linear-gradient(135deg, rgba(93, 64, 55, 0.65) 0%, rgba(62, 39, 35, 0.65) 50%, rgba(46, 125, 50, 0.65) 100%),
+                        url('images/HeroBanner.png') center center/cover no-repeat !important;
+            background-blend-mode: multiply;
             position: relative;
             overflow: hidden;
+            min-height: 650px;
         }
 
         .hero::before {
@@ -61,8 +64,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,200 Q300,100 600,200 T1200,200 L1200,600 L0,600 Z" fill="rgba(46,125,50,0.1)"/></svg>');
-            opacity: 0.3;
+            background: transparent;
+            pointer-events: none;
         }
 
         /* Títulos mais escuros e impactantes */
@@ -245,16 +248,16 @@
 
             <div class="hero-highlights">
                 <div class="hero-highlight">
-                    <span class="highlight-number">13+</span>
-                    <span class="highlight-label">Modelos</span>
+                    <span class="highlight-number">7+</span>
+                    <span class="highlight-label">Anos de Experiência</span>
                 </div>
                 <div class="hero-highlight">
                     <span class="highlight-number">100%</span>
-                    <span class="highlight-label">Personalizável</span>
+                    <span class="highlight-label">Madeira Maciça</span>
                 </div>
                 <div class="hero-highlight">
-                    <span class="highlight-number">10-25</span>
-                    <span class="highlight-label">Dias de Entrega</span>
+                    <span class="highlight-number">13+</span>
+                    <span class="highlight-label">Modelos Exclusivos</span>
                 </div>
             </div>
 
@@ -281,7 +284,7 @@
             <button class="btn-primary btn-large" onclick="scrollTo('catalogo')">Explorar Catálogo</button>
 
             <div class="hero-social">
-                <p>⭐⭐⭐⭐⭐ 4.8 (127 avaliações)</p>
+                <p>⭐⭐⭐⭐⭐ 4.8 (127 avaliações) • ✅ <strong>+4.000 mesas entregues</strong></p>
             </div>
         </div>
     </section>
@@ -298,6 +301,109 @@
             }
         }
     </style>
+
+    <!-- Badges de Destaque -->
+    <section style="background: #FFFFFF; padding: 40px 20px; border-bottom: 1px solid #E5D4C1;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                    <div style="font-size: 48px;">💳</div>
+                    <h3 style="color: #5D4037; font-size: 18px; font-weight: 700; margin: 0;">Parcelamento</h3>
+                    <p style="color: #6B5D4F; margin: 0;">em até 12x sem juros</p>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                    <div style="font-size: 48px;">🚚</div>
+                    <h3 style="color: #5D4037; font-size: 18px; font-weight: 700; margin: 0;">Entrega Para</h3>
+                    <p style="color: #6B5D4F; margin: 0;">Santa Catarina e Paraná</p>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                    <div style="font-size: 48px;">💬</div>
+                    <h3 style="color: #5D4037; font-size: 18px; font-weight: 700; margin: 0;">Atendimento</h3>
+                    <p style="color: #6B5D4F; margin: 0;">via WhatsApp</p>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                    <div style="font-size: 48px;">🏭</div>
+                    <h3 style="color: #5D4037; font-size: 18px; font-weight: 700; margin: 0;">Segurança</h3>
+                    <p style="color: #6B5D4F; margin: 0;">fábrica com 7 anos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Conheça a JPR - Vídeo do Patrick -->
+    <section class="video-apresentacao">
+        <div class="container">
+            <div class="video-header">
+                <span class="video-badge">🎬 Conheça Nossa História</span>
+                <h2>Conheça o Patrick e Nossa Operação</h2>
+                <p class="video-subtitle">Veja como trabalhamos com dedicação para criar cada peça única para você</p>
+            </div>
+
+            <div class="video-grid">
+                <!-- Coluna do Vídeo -->
+                <div class="video-container-reels">
+                    <div class="video-wrapper">
+                        <video
+                            id="video-patrick"
+                            class="video-player"
+                            controls
+                            playsinline
+                            preload="auto"
+                            webkit-playsinline
+                            controlsList="nodownload"
+                        >
+                            <source src="ultima-versao-jpr.mov" type="video/mp4">
+                            <source src="ultima-versao-jpr.mov" type="video/quicktime">
+                            Seu navegador não suporta a reprodução de vídeo.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Coluna de Informações -->
+                <div class="video-info">
+                    <div class="info-card">
+                        <div class="info-icon">👨‍🔧</div>
+                        <h3>Patrick - Fundador e Artesão</h3>
+                        <p>Com 7 anos de experiência em marcenaria, Patrick lidera nossa equipe com paixão e dedicação, garantindo que cada móvel seja uma obra-prima em madeira maciça.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🏭</div>
+                        <h3>Nossa Oficina</h3>
+                        <p>Equipada com tecnologia moderna e técnicas tradicionais, nossa oficina em Luiz Alves produz móveis de altíssima qualidade.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">✨</div>
+                        <h3>Processo Artesanal</h3>
+                        <p>Cada etapa é cuidadosamente executada: seleção de madeira, corte preciso, acabamento impecável e controle de qualidade rigoroso.</p>
+                    </div>
+
+                    <div class="trust-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">7+</span>
+                            <span class="stat-label">Anos de Experiência</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4.000+</span>
+                            <span class="stat-label">Mesas Entregues</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5.0⭐</span>
+                            <span class="stat-label">Avaliação Google</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Badge de Credibilidade -->
+    <div style="background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%); padding: 20px; text-align: center;">
+        <p style="color: white; font-size: 20px; font-weight: 800; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            ✅ MAIS DE 4.000 MESAS ENTREGUES EM SANTA CATARINA E PARANÁ
+        </p>
+    </div>
 
     <!-- Seção de Filtros e Busca - Melhorada -->
     <section class="catalogo-controls">
@@ -512,17 +618,47 @@
                 <h3 style="text-align: center; color: #5D4037; font-size: 36px; margin-bottom: 40px; font-family: 'Georgia', serif;">
                     Confira O Processo de Fabricação
                 </h3>
-                <div style="max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.2);">
-                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                        <iframe
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-                            src="https://www.youtube.com/embed/FiA5uLvD-Ag"
-                            title="Processo de Fabricação JPR Móveis Rústicos"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen>
-                        </iframe>
+                <div style="max-width: 900px; margin: 0 auto;">
+                    <!-- Player de Vídeo Local -->
+                    <div style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.2); background: #000;">
+                        <video
+                            id="video-fabricacao"
+                            controls
+                            playsinline
+                            preload="metadata"
+                            controlsList="nodownload"
+                            style="width: 100%; height: auto; display: block; background: #000;">
+                            <source src="video/Video-Fabricacao.mp4" type="video/mp4">
+                            Seu navegador não suporta vídeo HTML5.
+                            <a href="https://www.youtube.com/watch?v=FiA5uLvD-Ag" target="_blank" style="color: #FF0000; text-decoration: underline;">
+                                Assistir no YouTube
+                            </a>
+                        </video>
+                    </div>
+
+                    <!-- Link alternativo caso o vídeo local não carregue -->
+                    <div style="text-align: center; margin-top: 16px;">
+                        <a href="https://www.youtube.com/watch?v=FiA5uLvD-Ag"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           style="
+                               display: inline-flex;
+                               align-items: center;
+                               gap: 8px;
+                               color: #5D4037;
+                               text-decoration: none;
+                               font-size: 14px;
+                               opacity: 0.7;
+                               transition: opacity 0.3s;
+                           "
+                           onmouseover="this.style.opacity='1'"
+                           onmouseout="this.style.opacity='0.7'">
+                            <svg width="20" height="14" viewBox="0 0 20 14" fill="currentColor">
+                                <path d="M19.615 3.184c-.23-.86-.907-1.537-1.768-1.768C16.283.984 10 .984 10 .984s-6.283 0-7.846.432c-.862.23-1.538.907-1.769 1.768C0 4.747 0 7 0 7s0 2.252.385 3.816c.23.86.907 1.538 1.769 1.768 1.563.432 7.846.432 7.846.432s6.283 0 7.847-.432c.86-.23 1.537-.908 1.768-1.768C20 9.252 20 7 20 7s0-2.253-.385-3.816z"/>
+                                <path fill="#FF0000" d="M8 10l5.196-3L8 4v6z"/>
+                            </svg>
+                            Ou assistir no YouTube
+                        </a>
                     </div>
                 </div>
             </div>
@@ -557,29 +693,33 @@
     <!-- Seção Sobre -->
     <section id="sobre" class="sobre">
         <div class="container">
-            <h2>Sobre Nós</h2>
+            <h2>JPR Móveis Rústicos</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>A JPR Móveis Rústicos oferece móveis de madeira de alta qualidade, confeccionados com técnicas tradicionais e materiais premium. Cada peça é um trabalho artesanal que reflete o compromisso com a excelência.</p>
-                    <ul class="features-list">
-                        <li>✓ Madeira de reflorestamento certificada</li>
-                        <li>✓ Acabamento premium e artesanal</li>
-                        <li>✓ Sob medida conforme necessário</li>
-                        <li>✓ Entrega em Santa Catarina e Paraná</li>
-                    </ul>
+                    <p>Somos especializados na <strong>fabricação de mesas para ambientes internos e externos</strong> com um alto padrão de acabamento - um móvel rústico com design moderno. Oferecemos uma solução prática e durável para tornar cada ambiente mais aconchegante e funcional.</p>
+
+                    <p>Com <strong>mais de 7 anos de experiência</strong>, atuamos na fabricação de mesas de madeira, bancos, cadeiras e banquetas. Atendemos toda SC e PR.</p>
+
+                    <p>Trabalhamos no sistema de linha de produção com medidas, tamanhos e modelos padronizados. Contamos com uma <strong>equipe de 10 colaboradores</strong> que seguem rigorosamente um padrão de fabricação admirável.</p>
+
+                    <p style="font-size: 18px; color: #2E7D32; font-weight: 700; margin-top: 20px;">Atualmente produzimos e entregamos em média 70 mesas por mês - são mais de <strong>4.000 unidades entregues</strong> em Santa Catarina e Paraná, transformando lares por toda a região!</p>
+
+                    <p style="font-style: italic; color: #5D4037; font-size: 20px; font-weight: 700; margin-top: 20px;">
+                        "Com qualidade se conquista confiança!"
+                    </p>
                 </div>
                 <div class="about-stats">
                     <div class="stat">
-                        <span class="stat-number">13+</span>
-                        <span class="stat-label">Modelos</span>
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Anos de Experiência</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">Categorias</span>
+                        <span class="stat-number">70</span>
+                        <span class="stat-label">Mesas/Mês</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Customizável</span>
+                        <span class="stat-number">4.000+</span>
+                        <span class="stat-label">Mesas Entregues</span>
                     </div>
                 </div>
             </div>
@@ -609,7 +749,7 @@
                 <div class="beneficio-card">
                     <div class="beneficio-icon">🚚</div>
                     <h3>Entrega Garantida</h3>
-                    <p>Enviamos para Santa Catarina e Paraná. Prazo de 10-25 dias úteis com rastreamento completo do produto.</p>
+                    <p>Enviamos para Santa Catarina e Paraná. Prazo de 30 a 45 dias com rastreamento completo do produto.</p>
                 </div>
                 <div class="beneficio-card">
                     <div class="beneficio-icon">💰</div>
@@ -679,7 +819,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>O prazo de entrega é de 10 a 25 dias úteis, dependendo da localização e do tamanho do pedido. Você receberá atualizações sobre o status do envio por email.</p>
+                        <p>O prazo de entrega é de 30 a 45 dias, dependendo da localização e do tamanho do pedido. Você receberá atualizações sobre o status do envio por email.</p>
                     </div>
                 </div>
 
@@ -719,7 +859,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>1. Escolha o modelo e personalize no carrinho; 2. Preencha dados pessoais e endereço; 3. Escolha forma de pagamento (PIX, Cartão ou Boleto); 4. Receba confirmação por email; 5. Seu móvel é preparado e enviado.</p>
+                        <p>1. Escolha o modelo e personalize no carrinho; 2. Preencha dados pessoais e endereço; 3. Escolha forma de pagamento (PIX ou Cartão); 4. Receba confirmação por email; 5. Seu móvel é preparado e enviado.</p>
                     </div>
                 </div>
             </div>
@@ -755,31 +895,16 @@
                     <h3>Cartão de Crédito</h3>
                     <div class="pagamento-badge">Parcelado</div>
                     <ul class="pagamento-features">
-                        <li>✓ Parcelamento em até 12x</li>
-                        <li>✓ Juros a partir de 3 parcelas</li>
+                        <li>✓ Parcelamento em até 12x sem juros</li>
                         <li>✓ Todas as bandeiras</li>
                         <li>✓ Proteção ao comprador</li>
+                        <li>✓ Segurança máxima</li>
                     </ul>
                     <div class="pagamento-tempo">
                         <strong>Processamento:</strong> Até 24h
                     </div>
                 </div>
 
-                <!-- Boleto Bancário -->
-                <div class="pagamento-card boleto-card">
-                    <div class="pagamento-icon">📄</div>
-                    <h3>Boleto Bancário</h3>
-                    <div class="pagamento-badge">Tradicional</div>
-                    <ul class="pagamento-features">
-                        <li>✓ Desconto de 3%</li>
-                        <li>✓ Aceito em qualquer banco</li>
-                        <li>✓ Sem risco de clonagem</li>
-                        <li>✓ Comprovante instantâneo</li>
-                    </ul>
-                    <div class="pagamento-tempo">
-                        <strong>Processamento:</strong> 2-3 dias úteis
-                    </div>
-                </div>
             </div>
 
             <!-- Informações de Segurança -->
@@ -824,34 +949,29 @@
                         <tr>
                             <th>Característica</th>
                             <th class="pix-col">PIX</th>
-                            <th class="cartao-col">Cartão</th>
-                            <th class="boleto-col">Boleto</th>
+                            <th class="cartao-col">Cartão de Crédito</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Velocidade</td>
                             <td class="pix-col">⚡ Imediata</td>
-                            <td class="cartao-col">⏱️ 24h</td>
-                            <td class="boleto-col">📅 2-3 dias</td>
+                            <td class="cartao-col">⏱️ Até 24h</td>
                         </tr>
                         <tr>
                             <td>Parcelamento</td>
-                            <td class="pix-col">Não</td>
-                            <td class="cartao-col">Até 12x</td>
-                            <td class="boleto-col">Não</td>
+                            <td class="pix-col">À vista</td>
+                            <td class="cartao-col">Até 12x sem juros</td>
                         </tr>
                         <tr>
                             <td>Taxa</td>
                             <td class="pix-col">Sem taxa</td>
-                            <td class="cartao-col">Variável</td>
-                            <td class="boleto-col">Desconto 3%</td>
+                            <td class="cartao-col">Sem juros</td>
                         </tr>
                         <tr>
-                            <td>Risco</td>
-                            <td class="pix-col">Mínimo</td>
-                            <td class="cartao-col">Proteção</td>
-                            <td class="boleto-col">Seguro</td>
+                            <td>Segurança</td>
+                            <td class="pix-col">Máxima</td>
+                            <td class="cartao-col">Proteção ao comprador</td>
                         </tr>
                     </tbody>
                 </table>
@@ -873,7 +993,96 @@
             <h2>Entre em Contato</h2>
             <p class="section-subtitle">Visite nossa loja ou entre em contato pelo WhatsApp</p>
 
-            <div class="contato-content">
+            <!-- Card Único Compacto e Retangular -->
+            <div style="max-width: 1000px; margin: 0 auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); overflow: hidden; border: 4px solid #C8A882;">
+
+                <!-- Header Compacto -->
+                <div style="background: linear-gradient(135deg, #5D4037 0%, #3E2723 50%, #2E7D32 100%); padding: 20px 30px; text-align: center;">
+                    <h3 style="color: #FFFFFF; font-size: 24px; margin: 0; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-weight: 800;">
+                        📍 JPR Móveis Rústicos - Visite-nos ou Entre em Contato
+                    </h3>
+                </div>
+
+                <!-- Grid Compacto 4 Colunas -->
+                <div style="padding: 30px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+
+                    <!-- Endereço -->
+                    <div style="background: #F5F1E8; padding: 18px; border-radius: 10px; border-left: 4px solid #5D4037;">
+                        <h4 style="color: #5D4037; font-size: 15px; margin: 0 0 10px 0; font-weight: 800;">📍 ENDEREÇO</h4>
+                        <p style="margin: 0 0 10px 0; line-height: 1.5; font-size: 13px; color: #6B5D4F;">
+                            <strong style="font-size: 14px;">R. Francisco Schmitz, 1528</strong><br>
+                            Luiz Alves - SC<br>
+                            <small style="color: #999; font-size: 12px;">Entre Blumenau e Itajaí</small>
+                        </p>
+                        <a href="https://www.google.com/maps/place/R.+Francisco+Schmitz,+1528+-+Luiz+Alves,+SC,+89115-000" target="_blank" style="display: inline-block; margin-top: 8px; padding: 6px 12px; background: #5D4037; color: white; text-decoration: none; border-radius: 5px; font-size: 12px; font-weight: 700;">
+                            🗺️ Ver Maps
+                        </a>
+                    </div>
+
+                    <!-- Contatos -->
+                    <div style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); padding: 18px; border-radius: 10px;">
+                        <h4 style="color: white; font-size: 15px; margin: 0 0 10px 0; font-weight: 800;">💬 CONTATOS</h4>
+                        <div style="background: rgba(255,255,255,0.95); padding: 10px; border-radius: 6px;">
+                            <a href="https://wa.me/5547997168814" target="_blank" style="display: flex; align-items: center; gap: 6px; color: #25D366; text-decoration: none; font-weight: 800; margin-bottom: 6px; font-size: 13px;">
+                                📱 (47) 99716-8814
+                            </a>
+                            <a href="tel:+554732883096" style="display: flex; align-items: center; gap: 6px; color: #5D4037; text-decoration: none; margin-bottom: 6px; font-size: 13px; font-weight: 600;">
+                                ☎️ (47) 3288-3096
+                            </a>
+                            <a href="mailto:contato@jprmoveis.com.br" style="display: block; color: #5D4037; text-decoration: none; font-size: 11px; margin-top: 4px;">
+                                ✉️ contato@jprmoveis.com.br
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Horário -->
+                    <div style="background: #F5F1E8; padding: 18px; border-radius: 10px; border-left: 4px solid #2E7D32;">
+                        <h4 style="color: #5D4037; font-size: 15px; margin: 0 0 12px 0; font-weight: 800;">🕒 HORÁRIO</h4>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed #C8A882;">
+                            <span style="color: #5D4037; font-weight: 600; font-size: 13px;">Seg-Sex:</span>
+                            <span style="color: #2E7D32; font-weight: 800; font-size: 13px;">08:00-18:00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed #C8A882;">
+                            <span style="color: #5D4037; font-weight: 600; font-size: 13px;">Sábado:</span>
+                            <span style="color: #2E7D32; font-weight: 800; font-size: 13px;">08:00-12:00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0;">
+                            <span style="color: #5D4037; font-weight: 600; font-size: 13px;">Domingo:</span>
+                            <span style="color: #999; font-weight: 700; font-size: 13px;">Fechado</span>
+                        </div>
+                    </div>
+
+                    <!-- Avaliações -->
+                    <div style="background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%); padding: 18px; border-radius: 10px; text-align: center;">
+                        <h4 style="color: white; font-size: 15px; margin: 0 0 10px 0; font-weight: 800;">⭐ AVALIAÇÕES</h4>
+                        <div style="background: rgba(255,255,255,0.95); padding: 12px; border-radius: 6px;">
+                            <div style="font-size: 32px; font-weight: 900; color: #FF8C00; margin-bottom: 4px; line-height: 1;">5.0</div>
+                            <div style="color: #FFA500; font-size: 18px; margin-bottom: 6px;">★★★★★</div>
+                            <p style="margin: 0 0 8px 0; color: #5D4037; font-weight: 700; font-size: 13px;">104 avaliações</p>
+                            <a href="avaliacoes.html" style="display: inline-block; padding: 5px 12px; background: #FF8C00; color: white; text-decoration: none; border-radius: 5px; font-size: 11px; font-weight: 800;">
+                                Ver Todas
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Redes Sociais - Linha Inferior -->
+                <div style="padding: 18px 30px; background: linear-gradient(135deg, #F5F1E8 0%, #E5D4C1 100%); text-align: center; border-top: 3px solid #C8A882;">
+                    <h4 style="color: #5D4037; margin: 0 0 12px 0; font-size: 14px; font-weight: 800;">🌐 SIGA-NOS NAS REDES SOCIAIS</h4>
+                    <div style="display: flex; justify-content: center; gap: 16px;">
+                        <a href="https://www.instagram.com/jpr.moveisrusticos/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: linear-gradient(135deg, #E1306C 0%, #C13584 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: 800; font-size: 13px; box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);">
+                            📷 Instagram
+                        </a>
+                        <a href="https://www.facebook.com/jprmoveisrusticos" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: #1877F2; color: white; text-decoration: none; border-radius: 50px; font-weight: 800; font-size: 13px; box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);">
+                            👍 Facebook
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="contato-content" style="display: none;">
                 <!-- Informações de Contato -->
                 <div class="contato-info">
                     <h3>JPR Móveis Rústicos</h3>
@@ -893,32 +1102,50 @@
                         </a>
                     </div>
 
-                    <div class="info-block">
-                        <h4>📱 Contatos</h4>
-                        <p class="info-item">
-                            <a href="https://wa.me/5547997168814" class="whatsapp-link" target="_blank">
-                                <strong>WhatsApp:</strong> (47) 99716-8814
-                            </a>
-                        </p>
-                        <p class="info-item">
-                            <a href="tel:+554732883096">
-                                <strong>Telefone:</strong> (47) 3288-3096
-                            </a>
-                        </p>
-                        <p class="info-item">
-                            <a href="mailto:contato@jprmoveis.com.br">
-                                <strong>Email:</strong> contato@jprmoveis.com.br
-                            </a>
-                        </p>
+                    <div class="info-block" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border-left: none;">
+                        <h4 style="color: white; display: flex; align-items: center; gap: 10px; font-size: 18px;">
+                            <span style="font-size: 28px;">💬</span> Contatos
+                        </h4>
+                        <div style="background: rgba(255,255,255,0.95); padding: 16px; border-radius: 8px; margin-top: 12px;">
+                            <p class="info-item" style="margin: 12px 0;">
+                                <a href="https://wa.me/5547997168814" style="color: #25D366; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 16px;" target="_blank">
+                                    <span style="font-size: 24px;">📱</span>
+                                    <span>WhatsApp: (47) 99716-8814</span>
+                                </a>
+                            </p>
+                            <p class="info-item" style="margin: 12px 0;">
+                                <a href="tel:+554732883096" style="color: #5D4037; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 20px;">☎️</span>
+                                    <span><strong>Telefone:</strong> (47) 3288-3096</span>
+                                </a>
+                            </p>
+                            <p class="info-item" style="margin: 12px 0;">
+                                <a href="mailto:contato@jprmoveis.com.br" style="color: #5D4037; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 20px;">✉️</span>
+                                    <span><strong>Email:</strong> contato@jprmoveis.com.br</span>
+                                </a>
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="info-block">
-                        <h4>🕒 Horário de Funcionamento</h4>
-                        <p class="info-item">
-                            <strong>Segunda a Sexta:</strong> 08:00 - 18:00<br>
-                            <strong>Sábado:</strong> 08:00 - 12:00<br>
-                            <strong>Domingo:</strong> Fechado
-                        </p>
+                    <div class="info-block" style="background: linear-gradient(135deg, #5D4037 0%, #3E2723 100%); border-left: none;">
+                        <h4 style="color: white; display: flex; align-items: center; gap: 10px; font-size: 18px;">
+                            <span style="font-size: 28px;">🕒</span> Horário de Funcionamento
+                        </h4>
+                        <div style="background: rgba(255,255,255,0.95); padding: 16px; border-radius: 8px; margin-top: 12px;">
+                            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E5D4C1;">
+                                <span style="font-weight: 600; color: #5D4037;">Segunda a Sexta:</span>
+                                <span style="color: #2E7D32; font-weight: 700;">08:00 - 18:00</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E5D4C1;">
+                                <span style="font-weight: 600; color: #5D4037;">Sábado:</span>
+                                <span style="color: #2E7D32; font-weight: 700;">08:00 - 12:00</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                                <span style="font-weight: 600; color: #5D4037;">Domingo:</span>
+                                <span style="color: #999; font-weight: 600;">Fechado</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="info-block">
@@ -936,8 +1163,8 @@
                     </div>
 
                     <div class="social-links" style="margin-top: 20px;">
-                        <a href="https://instagram.com/jprmoveis" target="_blank" class="social-btn">📷 Instagram</a>
-                        <a href="https://facebook.com/jprmoveis" target="_blank" class="social-btn">👍 Facebook</a>
+                        <a href="https://www.instagram.com/jpr.moveisrusticos/" target="_blank" rel="noopener noreferrer" class="social-btn">📷 Instagram</a>
+                        <a href="https://www.facebook.com/jprmoveisrusticos" target="_blank" rel="noopener noreferrer" class="social-btn">👍 Facebook</a>
                     </div>
                 </div>
 
@@ -960,48 +1187,6 @@
                 </div>
             </div>
 
-            <!-- Formulário de Contato -->
-            <div class="contato-form-section">
-                <h3>Envie uma Mensagem</h3>
-                <p style="color: #666; margin-bottom: 20px;">Ou preencha o formulário abaixo e entraremos em contato</p>
-                <form id="contato-form" class="contato-form-grid">
-                    <input type="text" placeholder="Seu Nome" required class="form-input">
-                    <input type="tel" placeholder="Seu WhatsApp" required class="form-input">
-                    <input type="email" placeholder="Seu Email" required class="form-input" style="grid-column: 1 / -1;">
-                    <textarea placeholder="Sua Mensagem (opcional)" rows="4" class="form-input" style="grid-column: 1 / -1;"></textarea>
-                    <button type="submit" class="btn-primary" style="grid-column: 1 / -1;">
-                        📨 Enviar Mensagem via WhatsApp
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção: Newsletter -->
-    <section class="newsletter">
-        <div class="container" style="max-width: 600px;">
-            <h2>Receba Nossas Novidades</h2>
-            <p>Inscreva-se em nossa newsletter e receba descontos exclusivos, dicas de decoração e informações sobre novos modelos.</p>
-
-            <form class="newsletter-form" onsubmit="inscreverNewsletter(event)">
-                <input
-                    type="email"
-                    id="newsletter-email"
-                    placeholder="seu@email.com"
-                    required
-                    class="newsletter-input"
-                >
-                <button type="submit" class="newsletter-btn">
-                    Inscrever-se
-                </button>
-            </form>
-
-            <div id="newsletter-message" class="newsletter-message"></div>
-
-            <p class="newsletter-privacy">
-                Você receberá emails sobre promoções e conteúdo relevante.
-                Respeitar sua privacidade é nossa prioridade. Você pode desinscrever-se a qualquer momento.
-            </p>
         </div>
     </section>
 
@@ -1149,7 +1334,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 JPR Móveis Rústicos. Todos os direitos reservados.</p>
+            <p>&copy; 2025 JPR Móveis Rústicos. Todos os direitos reservados.</p>
             <p class="footer-credit">Desenvolvido com ❤️ para qualidade em móveis</p>
         </div>
     </footer>
@@ -1216,6 +1401,12 @@
                     <span>💳 Parcelado</span>
                 </div>
 
+                <div style="background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%); padding: 12px; border-radius: 8px; text-align: center; margin-top: 12px;">
+                    <p style="color: white; font-size: 13px; font-weight: 700; margin: 0;">
+                        ✅ +4.000 mesas entregues em SC e PR
+                    </p>
+                </div>
+
                 <!-- Botões -->
                 <button class="btn-primary btn-checkout" onclick="finalizarCompra()" id="btn-checkout">
                     Finalizar Compra
@@ -1228,8 +1419,8 @@
     </div>
 
     <!-- Modal de Detalhes do Produto -->
-    <div id="produto-modal" class="modal">
-        <div class="modal-content">
+    <div id="produto-modal" class="modal" style="padding: 40px 20px !important;">
+        <div class="modal-content" style="max-height: calc(100vh - 80px) !important; margin: auto !important;">
             <button class="btn-close" onclick="fecharModalProduto()">✕</button>
             <div id="modal-product-content" class="modal-product-content">
                 <!-- Conteúdo do produto carregado via JavaScript -->
@@ -1238,9 +1429,53 @@
     </div>
 
     <!-- Scripts -->
-    <script src="data-produtos.js"></script>
-    <script src="frete-calculator.js"></script>
-    <script src="app-novo.js"></script>
+    <script src="data-produtos.js?v=2025.1"></script>
+    <script src="frete-calculator.js?v=2025.1"></script>
+    <script src="app-novo.js?v=2025.1"></script>
+    <script>
+        // Adicionar efeito de scroll no header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Controle do vídeo de apresentação
+        function playVideo() {
+            const video = document.getElementById('video-patrick');
+            const overlay = document.querySelector('.video-play-overlay');
+
+            if (video && overlay) {
+                video.play();
+                overlay.style.display = 'none';
+            }
+        }
+
+        // Mostrar overlay quando vídeo pausar
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('video-patrick');
+            const overlay = document.querySelector('.video-play-overlay');
+
+            if (video && overlay) {
+                video.addEventListener('pause', function() {
+                    if (video.currentTime > 0 && !video.ended) {
+                        overlay.style.display = 'flex';
+                    }
+                });
+
+                video.addEventListener('play', function() {
+                    overlay.style.display = 'none';
+                });
+
+                video.addEventListener('ended', function() {
+                    overlay.style.display = 'flex';
+                });
+            }
+        });
+    </script>
     <script>
         // Script para formulário de contato via WhatsApp
         document.getElementById('contato-form').addEventListener('submit', function(e) {

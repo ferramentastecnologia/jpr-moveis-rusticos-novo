@@ -284,15 +284,15 @@ function renderizarProdutos(filtro = 'todas', termoBusca = '') {
         const stars = '⭐'.repeat(rating.stars);
 
         return `
-            <div class="product-card">
+            <div class="product-card" onclick="abrirModalProduto('${produto.id}')" style="cursor: pointer;">
                 <div class="product-badges">
                     ${produto.badge ? `<span class="product-badge ${badgeClass}">${produto.badge}</span>` : ''}
                 </div>
                 <div class="product-image-container">
                     <img src="${produto.imagem}" alt="${produto.nome}" class="product-image">
                     <div class="quick-actions">
-                        <button class="btn-wishlist" onclick="toggleWishlist(event)">❤️</button>
-                        <button class="btn-compare" onclick="compareProducts(event)">⚖️</button>
+                        <button class="btn-wishlist" onclick="event.stopPropagation(); toggleWishlist(event)">❤️</button>
+                        <button class="btn-compare" onclick="event.stopPropagation(); compareProducts(event)">⚖️</button>
                     </div>
                 </div>
                 <div class="product-header">
@@ -309,11 +309,11 @@ function renderizarProdutos(filtro = 'todas', termoBusca = '') {
                     </div>
 
                     <!-- SELETOR DE TAMANHO -->
-                    <div class="product-sizes-section">
+                    <div class="product-sizes-section" onclick="event.stopPropagation()">
                         <label class="sizes-label">Tamanhos:</label>
                         <div class="product-sizes">
                             ${produto.tamanhos ? produto.tamanhos.map((t, idx) => `
-                                <button class="size-option ${idx === 0 ? 'active' : ''}" onclick="selecionarTamanhoCard(event, '${produto.id}', '${t.tamanho}', ${t.preco}, '${t.precoFormatado}')">
+                                <button class="size-option ${idx === 0 ? 'active' : ''}" onclick="event.stopPropagation(); selecionarTamanhoCard(event, '${produto.id}', '${t.tamanho}', ${t.preco}, '${t.precoFormatado}')">
                                     <span class="size-label">${t.tamanho}</span>
                                     <span class="size-price">${t.precoFormatado}</span>
                                 </button>
@@ -327,38 +327,50 @@ function renderizarProdutos(filtro = 'todas', termoBusca = '') {
                         <span class="product-price" data-price="${produto.preco}">${produto.precoFormatado}</span>
                     </div>
                 </div>
-                <div class="product-footer">
-                    <button class="btn-adicionar" onclick="adicionarAoCarrinhoRapido('${produto.id}', event)" style="
+                <div class="product-footer" style="display: flex; gap: 12px; padding: 16px;" onclick="event.stopPropagation()">
+                    <button class="btn-adicionar" onclick="event.stopPropagation(); adicionarAoCarrinhoRapido('${produto.id}', event)" style="
+                        flex: 1;
                         background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
                         color: white;
                         border: none;
-                        padding: 12px 16px;
-                        border-radius: 8px;
-                        font-weight: 700;
-                        font-size: 14px;
+                        padding: 16px 20px;
+                        border-radius: 12px;
+                        font-weight: 800;
+                        font-size: 15px;
                         cursor: pointer;
-                        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+                        box-shadow: 0 4px 16px rgba(46, 125, 50, 0.35);
+                        transition: all 0.3s ease;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+                        letter-spacing: 0.5px;
+                        text-transform: uppercase;
+                    " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 24px rgba(46, 125, 50, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 16px rgba(46, 125, 50, 0.35)'">
+                        <span style="font-size: 18px;">🛒</span>
+                        <span>Comprar</span>
+                    </button>
+                    <button class="btn-detalhes" onclick="event.stopPropagation(); abrirModalProduto('${produto.id}')" style="
+                        flex: 0.8;
+                        background: white;
+                        color: #5D4037;
+                        border: 3px solid #5D4037;
+                        padding: 16px 20px;
+                        border-radius: 12px;
+                        font-weight: 800;
+                        font-size: 15px;
+                        cursor: pointer;
+                        box-shadow: 0 2px 12px rgba(93, 64, 55, 0.2);
                         transition: all 0.3s ease;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         gap: 8px;
-                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(46, 125, 50, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(46, 125, 50, 0.3)'">
-                        🛒 Comprar Agora
-                    </button>
-                    <button class="btn-detalhes" onclick="abrirModalProduto('${produto.id}')" style="
-                        background: linear-gradient(135deg, #8B6F61 0%, #5D4037 100%);
-                        color: white;
-                        border: none;
-                        padding: 12px 16px;
-                        border-radius: 8px;
-                        font-weight: 600;
-                        font-size: 13px;
-                        cursor: pointer;
-                        box-shadow: 0 2px 8px rgba(93, 64, 55, 0.3);
-                        transition: all 0.3s ease;
-                    " onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                        📋 Detalhes
+                        letter-spacing: 0.5px;
+                        text-transform: uppercase;
+                    " onmouseover="this.style.background='#5D4037'; this.style.color='white'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='white'; this.style.color='#5D4037'; this.style.transform='translateY(0)'">
+                        <span style="font-size: 18px;">📋</span>
+                        <span>Detalhes</span>
                     </button>
                 </div>
             </div>
@@ -388,7 +400,7 @@ function abrirModalProduto(produtoId) {
     const resultadoFrete = calcularFrete('Blumenau'); // Usa cidade padrão para exibição
 
     const conteudo = `
-        <div class="modal-product-modern">
+        <div class="modal-product-modern" style="max-height: calc(100vh - 120px) !important; overflow-y: auto !important;">
             <!-- SEÇÃO ESQUERDA: Galeria -->
             <div class="modal-left-section">
                 <div class="modal-main-image-modern">
@@ -601,7 +613,22 @@ function abrirModalProduto(produtoId) {
     `;
 
     document.getElementById('modal-product-content').innerHTML = conteudo;
-    document.getElementById('produto-modal').classList.add('active');
+
+    // Forçar estilos de centralização do modal
+    const modal = document.getElementById('produto-modal');
+    const modalContent = modal.querySelector('.modal-content');
+
+    modal.style.padding = '40px 20px';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+
+    if (modalContent) {
+        modalContent.style.maxHeight = 'calc(100vh - 80px)';
+        modalContent.style.margin = 'auto';
+    }
+
+    modal.classList.add('active');
 }
 
 // Funções auxiliares para o modal
