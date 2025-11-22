@@ -48,3 +48,9 @@ coverage/
 # Build
 dist/
 build/
+
+# Arquivos grandes
+*.mov
+*.mp4
+video/
+*.png

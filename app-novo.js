@@ -400,7 +400,7 @@ function abrirModalProduto(produtoId) {
     const resultadoFrete = calcularFrete('Blumenau'); // Usa cidade padrão para exibição
 
     const conteudo = `
-        <div class="modal-product-modern" style="max-height: calc(100vh - 120px) !important; overflow-y: auto !important;">
+        <div class="modal-product-modern">
             <!-- SEÇÃO ESQUERDA: Galeria -->
             <div class="modal-left-section">
                 <div class="modal-main-image-modern">
@@ -614,23 +614,8 @@ function abrirModalProduto(produtoId) {
 
     document.getElementById('modal-product-content').innerHTML = conteudo;
 
-    // Forçar estilos de centralização do modal
+    // Adicionar classe active - CSS cuida do resto
     const modal = document.getElementById('produto-modal');
-    const modalContent = modal.querySelector('.modal-content');
-
-    modal.style.display = 'flex';
-    modal.style.alignItems = 'center';
-    modal.style.justifyContent = 'center';
-    modal.style.padding = '0';
-    modal.style.overflow = 'auto';
-
-    if (modalContent) {
-        modalContent.style.maxHeight = '85vh';
-        modalContent.style.marginTop = '60px';
-        modalContent.style.marginBottom = '60px';
-        modalContent.style.position = 'relative';
-    }
-
     modal.classList.add('active');
 }
 
